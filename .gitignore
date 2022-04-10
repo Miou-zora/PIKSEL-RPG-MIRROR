@@ -1,0 +1,10 @@
+*.o
+*.gc*
+*~
+#*#
+*.a
+.vscode
+*.txt
+my_rpg
+unit_tests
+include/my.h
