@@ -5,13 +5,16 @@
 ## Makefile
 ##
 
-SRC 		= 	# src/uwu.c
+SRC 		= 	src/main.c \
+				src/init_rpg.c \
+				src/free.c \
+				src/display.c \
 
 MAIN		=	src/main.c
 
 TEST_FONC	=	tests/temp_test.c
 
-MAIN_DEBUG	=	# src/test_main.c	\
+MAIN_DEBUG	=	src/temp_test.c
 
 OBJ_SRC		=	$(SRC:%.c=%.o)
 OBJ_MAIN	=	$(MAIN:%.c=%.o)
@@ -23,7 +26,8 @@ CC			=	gcc
 
 TEST_BINARY	=	unit_tests
 
-CFLAGS		=	-Wall -Wextra -Wshadow -I./include
+CFLAGS		=	-Wall -Wextra -Wshadow -I./include -lcsfml-audio \
+				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
 
 TESTS_FLAGS	=	--coverage -lcriterion -I./include
 

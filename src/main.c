@@ -1,15 +1,33 @@
 /*
 ** EPITECH PROJECT, 2022
-** B-PSU-200-NAN-2-1-tetris-mathis.evain
+** B-MUL-200-NAN-2-1-my_rpg_kentin_paille
 ** File description:
-** main
+** rpg maoin
 */
 
 #include "my.h"
+#include "rpg.h"
+
+int my_rpg()
+{
+    game_t *game = malloc(sizeof(game_t));
+
+    if (initialize_var(game) == 84)
+        return (84);
+    while (sfRenderWindow_isOpen(game->window)) {
+        display(game);
+        set_mouse_cursor(game);
+        sfRenderWindow_display(game->window);
+        while (sfRenderWindow_pollEvent(game->window, game->event))
+            analyse_event(game->event, game);
+        sfRenderWindow_clear(game->window, sfBlack);
+    }
+    free_all(game);
+    return (0);
+}
 
 int main(int argc, char **argv)
 {
-    if (argc == 1) {
-        my_printf("%s", argv[0]);
-    }
+    if (my_rpg() == 84)
+        return (84);
 }
