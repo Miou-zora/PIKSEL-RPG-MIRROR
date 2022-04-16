@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2022
 ** B-MUL-200-NAN-2-1-my_rpg_kentin_paille
 ** File description:
-** rpg maoin
+** rpg main
 */
 
 #include "my.h"
 #include "rpg.h"
 
-int my_rpg()
+int my_rpg(void)
 {
     game_t *game = malloc(sizeof(game_t));
 
@@ -19,7 +19,7 @@ int my_rpg()
         set_mouse_cursor(game);
         sfRenderWindow_display(game->window);
         while (sfRenderWindow_pollEvent(game->window, game->event))
-            analyse_event(game->event, game);
+            analyse_event(game);
         sfRenderWindow_clear(game->window, sfBlack);
     }
     free_all(game);

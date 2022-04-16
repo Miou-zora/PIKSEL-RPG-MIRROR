@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2022
 ** B-MUL-200-NAN-2-1-my_rpg_kentin_paille
 ** File description:
-** display file
+** init sprite and data in rpg
 */
 
 #include "my.h"
 #include "rpg.h"
 
-void display(game_t *game)
+int initialize_game_end(game_t *game)
 {
-
+    return (0);
 }

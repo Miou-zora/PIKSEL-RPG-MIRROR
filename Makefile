@@ -5,10 +5,18 @@
 ## Makefile
 ##
 
-SRC 		= 	src/main.c \
-				src/init_rpg.c \
-				src/free.c \
+SRC 		=	src/free.c \
 				src/display.c \
+				src/set_mouse_cursor.c \
+				src/init_game/init_cursor.c \
+				src/init_game/init_game_end.c \
+				src/init_game/init_how_to_play.c \
+				src/init_game/init_intro.c \
+				src/init_game/init_menu.c \
+				src/init_game/init_options.c \
+				src/init_game/init_pause.c \
+				src/init_game/init_rpg.c \
+				src/analyse_event/event.c \
 
 MAIN		=	src/main.c
 

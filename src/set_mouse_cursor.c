@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2022
 ** B-MUL-200-NAN-2-1-my_rpg_kentin_paille
 ** File description:
-** display file
+** mousse set
 */
 
 #include "my.h"
 #include "rpg.h"
 
-void display(game_t *game)
+void set_mouse_cursor(game_t *game)
 {
-
+    return;
 }
