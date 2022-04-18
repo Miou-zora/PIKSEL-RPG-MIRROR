@@ -5,7 +5,8 @@
 ## Makefile
 ##
 
-SRC 		=	src/free.c \
+SRC 		=	src/main.c
+				src/free.c \
 				src/display.c \
 				src/set_mouse_cursor.c \
 				src/init_game/init_cursor.c \
@@ -21,14 +22,11 @@ SRC 		=	src/free.c \
 				src/init_game/init_music.c \
 				src/analyse_event/event.c \
 
-MAIN		=	src/main.c
-
 TEST_FONC	=	tests/temp_test.c
 
 MAIN_DEBUG	=	src/temp_test.c
 
 OBJ_SRC		=	$(SRC:%.c=%.o)
-OBJ_MAIN	=	$(MAIN:%.c=%.o)
 
 OBJ_TEST	+=	$(OBJ_SRC)
 OBJ_TEST	+=	$(TEST_FONC:%.c=%.o)

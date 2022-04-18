@@ -5,9 +5,9 @@
 ** temp_test
 */
 
-#include <criterion/criterion.h>
+#include "rpg.h"
 
-Test(temp, temp)
+Test(temp, tempz)
 {
     cr_assert_eq(1, 1);
 }
