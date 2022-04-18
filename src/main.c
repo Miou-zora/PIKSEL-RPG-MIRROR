@@ -18,8 +18,8 @@ int my_rpg(void)
         display(game);
         set_mouse_cursor(game);
         sfRenderWindow_display(game->window);
-        while (sfRenderWindow_pollEvent(game->window, game->event))
-            analyse_event(game);
+        //while (sfRenderWindow_pollEvent(game->window, game->event))
+            //analyse_event(game);
         sfRenderWindow_clear(game->window, sfBlack);
     }
     free_all(game);

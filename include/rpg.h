@@ -33,6 +33,9 @@ int initialize_intro(game_t *game);
 int initialize_menu(game_t *game);
 int initialize_options(game_t *game);
 int initialize_pause(game_t *game);
+int initialize_window(game_t *game);
+int initialize_sound(game_t *game);
+int initialize_music(game_t *game);
 
 /************************set event fonctions*********************************/
 

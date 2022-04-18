@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg.h"
 
-int initialize_menu(game_t *game)
+int initialize_music(game_t *game)
 {
     return (0);
 }

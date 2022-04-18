@@ -9,6 +9,7 @@ SRC 		=	src/free.c \
 				src/display.c \
 				src/set_mouse_cursor.c \
 				src/init_game/init_cursor.c \
+				src/init_game/init_window.c \
 				src/init_game/init_game_end.c \
 				src/init_game/init_how_to_play.c \
 				src/init_game/init_intro.c \
@@ -16,6 +17,8 @@ SRC 		=	src/free.c \
 				src/init_game/init_options.c \
 				src/init_game/init_pause.c \
 				src/init_game/init_rpg.c \
+				src/init_game/init_sound.c \
+				src/init_game/init_music.c \
 				src/analyse_event/event.c \
 
 MAIN		=	src/main.c
