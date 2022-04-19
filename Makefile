@@ -5,8 +5,9 @@
 ## Makefile
 ##
 
-SRC 		=	src/main.c \
-				src/free.c \
+MAIN 		=	src/main.c
+
+SRC 		=	src/free.c \
 				src/display.c \
 				src/set_mouse_cursor.c \
 				src/init_game/init_cursor.c \
@@ -38,7 +39,7 @@ TEST_BINARY	=	unit_tests
 CFLAGS		=	-Wall -Wextra -Wshadow -I./include -lcsfml-audio \
 				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
 
-TESTS_FLAGS	=	--coverage -lcriterion -I./include
+TESTS_FLAGS	=	--coverage -lcriterion
 
 LFLAGS		=	-L./lib -lmy
 
@@ -71,12 +72,12 @@ clean:
 			@printf "\033[31m[Message]\033[39m Clean libmy reussi !\n"
 			@printf "\033[31m[Message]\033[39m Clean %s reussi !\n" $(NAME)
 
-tests_run:		tclean $(NAME)
-			@$(CC) $(SRC) $(TEST_FONC) $(CFLAGS) $(TESTS_FLAGS) $(LFLAGS) -o $(TEST_BINARY)
+tests_run:		tclean make_lib $(OBJ_SRC)
+			@$(CC) $(OBJ_SRC) $(TEST_FONC) $(CFLAGS) $(TESTS_FLAGS) $(LFLAGS) -o $(TEST_BINARY)
 			./$(TEST_BINARY)
 			@printf "\033[32m[Message]\033[39m Compilation de tests réussi !\n"
-			@$(MV) *.gcda tests
-			@$(MV) *.gcno tests
+			$(MV) *.gcda tests
+			$(MV) *.gcno tests
 			gcovr -e tests
 			gcovr -e tests -bu
 
