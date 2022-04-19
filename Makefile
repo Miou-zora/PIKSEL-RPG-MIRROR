@@ -72,7 +72,7 @@ clean:
 			@printf "\033[31m[Message]\033[39m Clean %s reussi !\n" $(NAME)
 
 tests_run:		tclean $(NAME)
-			@$(CC) $(SRC) $(TEST_FONC) $(TESTS_FLAGS) $(LFLAGS) -o $(TEST_BINARY)
+			@$(CC) $(SRC) $(TEST_FONC) $(CFLAGS) $(TESTS_FLAGS) $(LFLAGS) -o $(TEST_BINARY)
 			./$(TEST_BINARY)
 			@printf "\033[32m[Message]\033[39m Compilation de tests réussi !\n"
 			@$(MV) *.gcda tests
