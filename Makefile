@@ -57,7 +57,8 @@ all:		$(NAME)
 
 $(NAME):	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(MAIN) $(CFLAGS) -o $(NAME) $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de %s réussi\n" $(NAME)
+			@printf "\033[32m[Message]\033[39m Compilation de %s réussi\n" \
+				$(NAME)
 
 make_lib:
 			@$(MK) -C lib/my/
@@ -72,8 +73,9 @@ clean:
 			@printf "\033[31m[Message]\033[39m Clean libmy reussi !\n"
 			@printf "\033[31m[Message]\033[39m Clean %s reussi !\n" $(NAME)
 
-tests_run:		tclean make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(TEST_FONC) $(CFLAGS) $(TESTS_FLAGS) $(LFLAGS) -o $(TEST_BINARY)
+tests_run:		tclean $(NAME)
+			@$(CC) $(SRC) $(TEST_FONC) $(CFLAGS) $(TESTS_FLAGS) $(LFLAGS) \
+			-o $(TEST_BINARY)
 			./$(TEST_BINARY)
 			@printf "\033[32m[Message]\033[39m Compilation de tests réussi !\n"
 			$(MV) *.gcda tests
