@@ -10,5 +10,6 @@
 
 void display(game_t *game)
 {
+    (void)game;
     return;
 }

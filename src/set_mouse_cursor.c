@@ -10,5 +10,6 @@
 
 void set_mouse_cursor(game_t *game)
 {
+    (void)game;
     return;
 }

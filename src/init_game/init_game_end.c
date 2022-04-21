@@ -10,5 +10,6 @@
 
 int initialize_game_end(game_t *game)
 {
+    (void)game;
     return (0);
 }

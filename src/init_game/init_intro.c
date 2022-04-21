@@ -10,5 +10,6 @@
 
 int initialize_intro(game_t *game)
 {
+    (void)game;
     return (0);
 }

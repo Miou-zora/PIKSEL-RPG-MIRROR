@@ -10,5 +10,6 @@
 
 void free_all(game_t *game)
 {
+    (void)game;
     return;
 }

@@ -10,5 +10,6 @@
 
 int initialize_how_to_play(game_t *game)
 {
+    (void)game;
     return (0);
 }

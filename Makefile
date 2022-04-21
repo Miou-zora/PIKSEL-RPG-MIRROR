@@ -36,7 +36,7 @@ CC			=	gcc
 
 TEST_BINARY	=	unit_tests
 
-CFLAGS		=	-Wall -Wextra -Wshadow -I./include -lcsfml-audio \
+CFLAGS		=	-Wall -Wextra -Wshadow -Werror -I./include -lcsfml-audio \
 				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
 
 TESTS_FLAGS	=	--coverage -lcriterion

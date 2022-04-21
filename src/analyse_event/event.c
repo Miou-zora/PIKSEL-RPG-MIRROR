@@ -10,5 +10,6 @@
 
 void analyse_event(game_t *game)
 {
+    (void)game;
     return;
 }
