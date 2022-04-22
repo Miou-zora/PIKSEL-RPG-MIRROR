@@ -51,6 +51,7 @@ struct animator_s {
     sfVector2i nbr_image_xy;
     sfVector2i size_image;
     sprite_data_t *sprite_data;
+    clock_t *clock;
 };
 
 struct clock_s {
