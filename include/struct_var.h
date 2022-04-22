@@ -23,6 +23,7 @@ enum types_bonus_basic {HEALTH, REGENERATION, POWER, ARMOR, SPEED, CHARISMA};
 typedef struct armor_s armor_t;
 typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
+typedef struct clock_s clock_t;
 
 /************************** struct ***********************************/
 
@@ -50,6 +51,13 @@ struct animator_s {
     sfVector2i nbr_image_xy;
     sfVector2i size_image;
     sprite_data_t *sprite_data;
+};
+
+struct clock_s {
+    sfClock *clocksfInt64;
+    sfInt64 elapsed_time;
+    sfTime currElapsedTime;
+    int time_between_each_actualization;
 };
 
 typedef struct init_sprite_s {
