@@ -22,6 +22,7 @@ enum types_bonus_basic {HEALTH, REGENERATION, POWER, ARMOR, SPEED, CHARISMA};
 
 typedef struct armor_s armor_t;
 typedef struct sprite_data_s sprite_data_t;
+typedef struct animator_s animator_t;
 
 /************************** struct ***********************************/
 
@@ -41,6 +42,14 @@ struct sprite_data_s {
     sfVector2f pos;
     sfVector2f scale;
     sfIntRect rect;
+};
+
+struct animator_s {
+    int number_image;
+    sfVector2i actual_image;
+    sfVector2i nbr_image_xy;
+    sfVector2i size_image;
+    sprite_data_t *sprite_data;
 };
 
 typedef struct init_sprite_s {
