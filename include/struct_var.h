@@ -7,6 +7,60 @@
 
 #pragma once
 
+#include <SFML/Window.h>
+#include <SFML/Graphics.h>
+#include <SFML/System.h>
+#include <SFML/Audio.h>
+#include <SFML/Network.h>
+
+/************************** enum ***********************************/
+
+enum types_armor {HELMET, CHESTPLATE, LEGGINGS, BOOTS};
+enum types_bonus_basic {HEALTH, REGENERATION, POWER, ARMOR, SPEED, CHARISMA};
+
+/************************** typedef ***********************************/
+
+typedef struct armor_s armor_t;
+typedef struct sprite_data_s sprite_data_t;
+typedef struct animator_s animator_t;
+typedef struct clock_data_s clock_data_t;
+
+/************************** struct ***********************************/
+
+struct armor_s {
+    char *name;
+    int id;
+    enum types_armor type_armor;
+    enum types_bonus_basic type_bonus_basic;
+    float rarity;
+    int value_bonus;
+    sprite_data_t *sprite_data;
+};
+
+struct sprite_data_s {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f pos;
+    sfVector2f scale;
+    sfIntRect rect;
+};
+
+struct animator_s {
+    int number_image;
+    sfVector2i actual_image;
+    sfVector2i nbr_image_xy;
+    sfVector2i size_image;
+    sprite_data_t *sprite_data;
+    clock_data_t *clock;
+};
+
+struct clock_data_s {
+    sfClock *clocksfInt64;
+    sfInt64 elapsed_time;
+    sfTime currElapsedTime;
+    int time_between_each_actualization;
+};
+
 typedef struct init_sprite_s {
     sfSprite *sprite;
     sfTexture *texture;
@@ -43,10 +97,6 @@ typedef struct sprite_s {
     //cursor_t *cursor;
 }sprite_t;
 
-typedef struct clock_s {
-
-}clock_s_t;
-
 typedef struct sound_s {
 
 }sound_t;
@@ -70,6 +120,6 @@ typedef struct game {
     sound_t *sound;
     music_t *music;
     text_t *text[10];
-    clock_s_t *clock;
+    clock_data_t *clock;
     stock_data_t *data;
 }game_t;
