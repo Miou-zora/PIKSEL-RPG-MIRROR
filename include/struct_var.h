@@ -7,6 +7,33 @@
 
 #pragma once
 
+#include <SFML/Window.h>
+#include <SFML/Graphics.h>
+#include <SFML/System.h>
+#include <SFML/Audio.h>
+#include <SFML/Network.h>
+
+/************************** enum ***********************************/
+
+enum types_armor {HELMET, CHESTPLATE, LEGGINGS, BOOTS};
+enum types_bonus_basic {HEALTH, REGENERATION, POWER, ARMOR, SPEED, CHARISMA};
+
+/************************** typedef ***********************************/
+
+typedef struct armor_s armor_t;
+
+/************************** struct ***********************************/
+
+struct armor_s {
+    char *name;
+    int id;
+    enum types_armor type_armor;
+    enum types_bonus_basic type_bonus_basic;
+    float rarity;
+    int value_bonus;
+    sprite_data_t *sprite_data;
+};
+
 typedef struct init_sprite_s {
     sfSprite *sprite;
     sfTexture *texture;
@@ -42,10 +69,6 @@ typedef struct sprite_s {
     //caracter_t *caracter_pos[5];
     //cursor_t *cursor;
 }sprite_t;
-
-typedef struct clock_s {
-
-}clock_s_t;
 
 typedef struct sound_s {
 
