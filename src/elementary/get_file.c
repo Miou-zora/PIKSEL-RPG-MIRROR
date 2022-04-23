@@ -9,10 +9,6 @@
 #include <errno.h>
 #include <string.h>
 
-//Write a function that open a file and return the content of the file
-
-
-
 char *get_file(char *filepath)
 {
     FILE *stream = NULL;
