@@ -12,6 +12,7 @@
 #include <SFML/System.h>
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
+#include <stdbool.h>
 
 /************************** global ***********************************/
 
@@ -49,8 +50,8 @@ struct npc_s {
     char *name;
     sprite_data_t *sprite_data;
     int postion[2];
-    struct dialogues dialogue;
-    int index
+    struct dialogues *dialogue;
+    int index;
 };
 
 struct ennemy_s {
