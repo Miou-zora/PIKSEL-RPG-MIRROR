@@ -29,9 +29,3 @@ char *get_file(char *filepath)
     fclose(stream);
     return (buff);
 }
-
-void main(int ac, char **av)
-{
-    char *file = get_file(av[1]);
-    printf("%s\n", file);
-}
