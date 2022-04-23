@@ -6,23 +6,10 @@
 */
 
 #include "my.h"
-#include "rpg.h"
+#include "struct_var.h"
 
 int my_rpg(void)
 {
-    game_t *game = malloc(sizeof(game_t));
-
-    if (initialize_var(game) == 84)
-        return (84);
-    while (sfRenderWindow_isOpen(game->window)) {
-        display(game);
-        set_mouse_cursor(game);
-        sfRenderWindow_display(game->window);
-        //while (sfRenderWindow_pollEvent(game->window, game->event))
-            //analyse_event(game);
-        sfRenderWindow_clear(game->window, sfBlack);
-    }
-    free_all(game);
     return (0);
 }
 

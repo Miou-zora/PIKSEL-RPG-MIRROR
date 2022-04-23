@@ -13,10 +13,15 @@
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
 
+/************************** global ***********************************/
+
+#define NOT_SET 0
+
 /************************** enum ***********************************/
 
-enum types_armor {HELMET, CHESTPLATE, LEGGINGS, BOOTS};
-enum types_bonus_basic {HEALTH, REGENERATION, POWER, ARMOR, SPEED, CHARISMA};
+enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
+enum types_bonus_basic {HEALTH = 1, REGENERATION,
+POWER, ARMOR, SPEED, CHARISMA};
 
 /************************** typedef ***********************************/
 
@@ -49,7 +54,7 @@ struct animator_s {
     int number_image;
     sfVector2i actual_image;
     sfVector2i nbr_image_xy;
-    sfVector2i size_image;
+    sfVector2f size_image;
     sprite_data_t *sprite_data;
     clock_data_t *clock;
 };
@@ -61,65 +66,23 @@ struct clock_data_s {
     int time_between_each_actualization;
 };
 
-typedef struct init_sprite_s {
-    sfSprite *sprite;
-    sfTexture *texture;
-    sfVector2f pos;
-    sfVector2f scale;
-    sfIntRect rect;
-}init_sprite_t;
+/************************** functions ***********************************/
 
-typedef struct text_s {
-    sfText *text;
-    sfFont *font;
-    sfVector2f pos;
-    sfVector2f scale;
-    char *str;
-} text_t;
+//* elementary
 
-typedef struct background_s {
-    init_sprite_t *sprite;
-    char *name;
-}background_t;
+char *get_file(char *path);
+char **get_data_from_file(char *path);
+void freen(void **ptr);
+int put_str_error(char *str);
 
-typedef struct button_s {
-    init_sprite_t *sprite;
-    text_t *text;
-    int status;
-}button_t;
+//* armor
 
-typedef struct sprite_s {
-    background_t *background[60];
-    button_t *button[60];
-    //mob_t *mob[4];
-    //map_t *map[5];
-    //caracter_t *caracter_pos[5];
-    //cursor_t *cursor;
-}sprite_t;
+armor_t *create_armor(void);
+armor_t *load_armor(char *path);
+void destroy_armor(armor_t *armor);
 
-typedef struct sound_s {
+//* sprite_data
 
-}sound_t;
-
-typedef struct music_s {
-
-}music_t;
-
-//utilisez cette struct pour y mettre toutes les listes chainées de data
-//ou block de donnée à créer dans une struct approprié
-
-typedef struct stock_data_s {
-    int data;
-}stock_data_t;
-
-typedef struct game {
-    sfRenderWindow *window;
-    sfVideoMode mode;
-    sfEvent *event;
-    sprite_t *sprite;
-    sound_t *sound;
-    music_t *music;
-    text_t *text[10];
-    clock_data_t *clock;
-    stock_data_t *data;
-}game_t;
+void destroy_sprite_data(sprite_data_t *sprite_data);
+sprite_data_t *load_sprite_data(const char *filename);
+sprite_data_t *create_sprite_data(void);

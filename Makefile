@@ -7,23 +7,19 @@
 
 MAIN 		=	src/main.c
 
-SRC 		=	src/free.c \
-				src/display.c \
-				src/set_mouse_cursor.c \
-				src/init_game/init_cursor.c \
-				src/init_game/init_window.c \
-				src/init_game/init_game_end.c \
-				src/init_game/init_how_to_play.c \
-				src/init_game/init_intro.c \
-				src/init_game/init_menu.c \
-				src/init_game/init_options.c \
-				src/init_game/init_pause.c \
-				src/init_game/init_rpg.c \
-				src/init_game/init_sound.c \
-				src/init_game/init_music.c \
-				src/analyse_event/event.c \
+SRC 		=	src/elementary/get_file.c			\
+				src/elementary/get_data_from_file.c	\
+				src/elementary/freen.c				\
+				src/elementary/put_str_error.c		\
+				src/load_management/create_armor.c	\
+				src/load_management/fill_armor.c	\
+				src/load_management/destroy_armor.c	\
+				src/load_management/load_armor.c	\
+				src/load_management/create_sprite_data.c	\
+				src/load_management/destroy_sprite_data.c	\
+				src/load_management/load_sprite_data.c	\
 
-TEST_FONC	=	tests/temp_test.c
+TEST_FONC	=	tests/elementary/test_freen.c
 
 MAIN_DEBUG	=	src/temp_test.c
 
