@@ -19,7 +19,14 @@ SRC 		=	src/elementary/get_file.c			\
 				src/load_management/destroy_sprite_data.c	\
 				src/load_management/load_sprite_data.c	\
 
-TEST_FONC	=	tests/elementary/test_freen.c
+TEST_FONC	=	tests/elementary/test_freen.c	\
+				tests/elementary/test_put_str_error.c	\
+				tests/load_management/test_create_armor.c	\
+				tests/load_management/test_create_sprite_data.c	\
+				tests/load_management/test_load_sprite_data.c	\
+				tests/load_management/test_destroy_sprite_data.c	\
+				tests/load_management/test_load_armor.c	\
+				tests/elementary/test_get_file.c
 
 MAIN_DEBUG	=	src/temp_test.c
 
@@ -70,7 +77,7 @@ clean:
 			@printf "\033[31m[Message]\033[39m Clean %s reussi !\n" $(NAME)
 
 tests_run:		tclean $(NAME)
-			@$(CC) $(SRC) $(TEST_FONC) $(CFLAGS) $(TESTS_FLAGS) $(LFLAGS) \
+			$(CC) $(SRC) $(TEST_FONC) $(CFLAGS) $(TESTS_FLAGS) $(LFLAGS) \
 			-o $(TEST_BINARY)
 			./$(TEST_BINARY)
 			@printf "\033[32m[Message]\033[39m Compilation de tests réussi !\n"

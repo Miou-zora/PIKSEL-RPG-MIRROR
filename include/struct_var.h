@@ -79,10 +79,11 @@ int put_str_error(char *str);
 
 armor_t *create_armor(void);
 armor_t *load_armor(char *path);
-void destroy_armor(armor_t *armor);
+void destroy_armor(armor_t **armor);
+armor_t *fill_armor(armor_t *armor, char **data);
 
 //* sprite_data
 
-void destroy_sprite_data(sprite_data_t *sprite_data);
+void destroy_sprite_data(sprite_data_t **sprite_data);
 sprite_data_t *load_sprite_data(const char *filename);
 sprite_data_t *create_sprite_data(void);
