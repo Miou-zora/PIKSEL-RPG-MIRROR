@@ -6,20 +6,26 @@
 */
 
 #include <stdio.h>
-#include "struct_var.h"
+#include <errno.h>
+#include <string.h>
 
-char *get_file(char *path)
+//Write a function that open a file and return the content of the file
+
+
+
+char *get_file(char *filepath)
 {
-    char *buffer = NULL;
-    size_t size = 0;
-    FILE *file = fopen(path, "r");
+    FILE *stream = NULL;
+    char *buff;
+    size_t len = 0;
 
-    if (file == NULL) {
-        put_str_error("Unable to open file:");
-        put_str_error(path);
+    stream = fopen(filepath, "r");
+    if (stream == NULL) {
         return (NULL);
     }
-    getline(&buffer, &size, file);
-    fclose(file);
-    return (buffer);
+    if (getline(&buff, &len, stream) == -1) {
+        return (NULL);
+    }
+    fclose(stream);
+    return (buff);
 }

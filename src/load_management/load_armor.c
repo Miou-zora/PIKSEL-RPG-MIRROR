@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 armor_t *load_armor(char *path)
 {
@@ -17,9 +18,13 @@ armor_t *load_armor(char *path)
             freen((void **)&data);
         }
         if (armor != NULL) {
-            destroy_armor(armor);
+            destroy_armor(&armor);
         }
         return (NULL);
+    }
+    if (fill_armor(armor, data) == NULL) {
+        freen((void **)&data);
+        freen((void **)&armor);
     }
     return (armor);
 }
