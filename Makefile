@@ -32,6 +32,8 @@ TEST_FONC	=	tests/elementary/test_freen.c	\
 				tests/load_management/test_load_armor.c	\
 				tests/elementary/test_get_file.c
 
+TEST_ENNEMY = 	tests/ennemy/test_ennemy_main.c	\
+
 MAIN_DEBUG	=	src/temp_test.c
 
 OBJ_SRC		=	$(SRC:%.c=%.o)
@@ -89,6 +91,11 @@ tests_run:		tclean $(NAME)
 			$(MV) *.gcno tests
 			gcovr -e tests
 			gcovr -e tests -bu
+
+tests_ennemy: 	make_lib $(OBJ_SRC)
+			@$(CC) $(OBJ_SRC) $(TEST_ENNEMY) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
+			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy \
+			réussi\n"
 
 tclean:
 			@$(RM) tests/*.gcda
