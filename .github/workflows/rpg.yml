@@ -41,6 +41,7 @@ jobs:
         run: make clean
       - name: check if binary file exist and are executable
         run: |
+          sudo apt-get install xorg openbox
           for executable in ${{ env.EXECUTABLES }}
           do
             if [ ! -x $executable ] || [ ! -f $executable ]; then
