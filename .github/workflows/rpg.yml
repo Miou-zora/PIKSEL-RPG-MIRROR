@@ -33,7 +33,7 @@ jobs:
     needs: [check_repository_cleanliness]
     container: epitechcontent/epitest-docker
     steps:
-      - uses: actions/checkout@v2
+      - uses: GabrielBB/xvfb-action@v1
       - name: check if the source code can compile
         timeout-minutes: 2
         run: make
@@ -41,7 +41,6 @@ jobs:
         run: make clean
       - name: check if binary file exist and are executable
         run: |
-          sudo apt-get install xorg openbox
           for executable in ${{ env.EXECUTABLES }}
           do
             if [ ! -x $executable ] || [ ! -f $executable ]; then
