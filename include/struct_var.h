@@ -31,8 +31,27 @@ typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
 typedef struct ennemy_s ennemy_t;
+typedef struct npc_s npc_t;
+typedef struct dialogues_s dialogues_t;
 
 /************************** struct ***********************************/
+
+struct dialogues_s {
+    char *text;
+    bool text_changed;
+    dialogues_t *changed_text;
+    bool binary_reponse;
+    dialogues_t **next;
+    //struct quest *quest_add;
+};
+
+struct npc_s {
+    char *name;
+    sprite_data_t *sprite_data;
+    int postion[2];
+    struct dialogues dialogue;
+    int index
+};
 
 struct ennemy_s {
     enum types_ennemy type_ennemy;
