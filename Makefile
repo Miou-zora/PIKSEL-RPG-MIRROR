@@ -17,7 +17,11 @@ SRC 		=	src/elementary/get_file.c			\
 				src/load_management/load_armor.c	\
 				src/load_management/create_sprite_data.c	\
 				src/load_management/destroy_sprite_data.c	\
-				src/load_management/load_sprite_data.c	\
+				src/load_management/load_sprite_data.c		\
+				src/ennemy/create_ennemy.c 		\
+				src/ennemy/destroy_ennemy.c 	\
+				src/ennemy/fill_ennemy.c 	\
+				src/ennemy/load_ennemy.c 	\
 
 TEST_FONC	=	tests/elementary/test_freen.c	\
 				tests/elementary/test_put_str_error.c	\

@@ -22,6 +22,7 @@
 enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
+enum types_ennemy {MOB = 1, MINI_BOSS, BOSS};
 
 /************************** typedef ***********************************/
 
@@ -29,8 +30,20 @@ typedef struct armor_s armor_t;
 typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
+typedef struct ennemy_s ennemy_t;
 
 /************************** struct ***********************************/
+
+struct ennemy_s {
+    enum types_ennemy type_ennemy;
+    char *name;
+    int id;
+    int health;
+    int armor;
+    int power;
+    int speed;
+    sprite_data_t *sprite_data;
+};
 
 struct armor_s {
     char *name;
@@ -74,6 +87,13 @@ char *get_file(char *path);
 char **get_data_from_file(char *path);
 void freen(void **ptr);
 int put_str_error(char *str);
+
+//*ennemy
+
+ennemy_t *create_ennemy(void);
+void destroy_ennemy(ennemy_t **ennemy);
+ennemy_t *fill_ennemy(ennemy_t *ennemy, char **data);
+ennemy_t *load_ennemy(char *path);
 
 //* armor
 
