@@ -8,7 +8,8 @@
 #include "my.h"
 #include "rpg.h"
 
-// int initialize_cursor(game_t *game)
-// {
-//     return (0);
-// }
+int initialize_cursor(game_t *game)
+{
+    (void)game;
+    return (0);
+}

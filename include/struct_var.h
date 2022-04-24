@@ -6,89 +6,90 @@
 */
 
 #pragma once
+#include <SFML/Window.h>
+#include <SFML/Graphics.h>
+#include <SFML/System.h>
+#include <SFML/Audio.h>
+#include <SFML/Network.h>
 
-typedef struct sprite_data_s {
-    sfTexture *texture;
-    sfSprite *sprite;
-    sfVector2f scale;
-    sfVector2f position;
-} sprite_data_t;
+/************************** global ***********************************/
 
-typedef struct point_s {
-    int x;
-    int y;
-} point_t;
+#define NOT_SET 0
 
-typedef struct animator_s {
-    int number_image;
-    point_t *nb_image_xy;
+/************************** enum ***********************************/
+
+enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
+enum types_bonus_basic {HEALTH = 1, REGENERATION,
+POWER, ARMOR, SPEED, CHARISMA};
+
+/************************** typedef ***********************************/
+
+typedef struct armor_s armor_t;
+typedef struct sprite_data_s sprite_data_t;
+typedef struct animator_s animator_t;
+typedef struct clock_data_s clock_data_t;
+typedef struct scene_s scene_t;
+
+/************************** struct ***********************************/
+
+struct armor_s {
+    char *name;
+    int id;
+    enum types_armor type_armor;
+    enum types_bonus_basic type_bonus_basic;
+    float rarity;
+    int value_bonus;
     sprite_data_t *sprite_data;
-    point_t *image;
-} animator_t;
+};
 
-typedef struct weapon_s {
+struct sprite_data_s {
     sfSprite *sprite;
     sfTexture *texture;
-    // enum type_weapon;
-    int nb_of_the_bonus;
-    animator_t *animator;
-} weapon_t;
+    sfVector2f pos;
+    sfVector2f scale;
+    sfIntRect rect;
+};
 
-typedef struct armor_s {
-    sfSprite *sprite;
-    sfTexture *texture;
-    // enum type_bonus;
-    int nb_of_the_bonus;
-    animator_t *animator;
-} armor_t;
+struct animator_s {
+    int number_image;
+    sfVector2i actual_image;
+    sfVector2i nbr_image_xy;
+    sfVector2f size_image;
+    sprite_data_t *sprite_data;
+    clock_data_t *clock;
+};
 
-typedef struct inventory_s {
-    int actual_helmet;
-    int actual_chestplate;
-    int actual_leggings;
-    int actual_boots;
-    weapon_t *actual_weapon;
-    int *stuff;
-} inventory_t;
-
-typedef struct level_s {
-    int level;
-    int max_level;
-    int xp;
-    int xp_to_pass_level;
-} level_t;
-
-typedef struct characteristics_s {
-    int life;
-    int regeneration;
-    int power;
-    armor_t *armor;
-    int speed;
-    int charisma;
-} characteristics_t;
-
-typedef struct main_character_s {
-    int actual_life;
-    level_t *level;
-    characteristics_t *characteristics;
-    // enum actual_animation;
-    inventory_t *inventory;
-} main_character_t;
-
-typedef struct vector_s {
-    void *object;
-    void *next;
-    void *prev;
-} vector_t;
-
-typedef struct my_clock_s {
+struct clock_data_s {
     sfClock *clocksfInt64;
     sfInt64 elapsed_time;
     sfTime currElapsedTime;
-} my_clock_t;
+    int time_between_each_actualization;
+};
 
-typedef struct scene_s {
+struct scene_s {
     sfRenderWindow *window;
     sprite_data_t *background;
     sfRectangleShape *hitbox;
-} scene_t;
+};
+
+/************************** functions ***********************************/
+
+//* elementary
+
+char *get_file(char *path);
+char **get_data_from_file(char *path);
+void freen(void *ptr);
+int put_str_error(char *str);
+
+//* armor
+
+armor_t *create_armor(void);
+armor_t *load_armor(char *path);
+void destroy_armor(armor_t **armor);
+armor_t *fill_armor(armor_t *armor, char **data);
+
+//* sprite_data
+
+void destroy_sprite_data(sprite_data_t **sprite_data);
+sprite_data_t *load_sprite_data(const char *filename);
+sprite_data_t *create_sprite_data(void);

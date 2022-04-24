@@ -8,7 +8,8 @@
 #include "my.h"
 #include "rpg.h"
 
-// void free_all(game_t *game)
-// {
-//     return;
-// }
+void free_all(game_t *game)
+{
+    (void)game;
+    return;
+}

@@ -27,35 +27,14 @@
 
 int my_rpg(void)
 {
-    scene_t *menu;
-    sfEvent event;
-    my_clock_t *principal_clock;
-
-    if (initialize_scene(&menu) == 84)
-        return (84);
-    if (initialize_clock(&principal_clock) == 84)
-        return (84);
-    sfRenderWindow_display(menu->window);
-    while (sfRenderWindow_isOpen(menu->window)) {
-        principal_clock->currElapsedTime =
-        sfClock_restart(principal_clock->clocksfInt64);
-        principal_clock->elapsed_time +=
-        principal_clock->currElapsedTime.microseconds;
-        while (principal_clock->elapsed_time > 10000) {
-            principal_clock->elapsed_time -= 10000;
-            // set_mouse_cursor(game);
-            while (sfRenderWindow_pollEvent(menu->window, &event))
-                analyse_events(&event, menu->window, menu->hitbox);
-            sfRenderWindow_clear(menu->window, sfBlack);
-            display(menu);
-        }
-    }
-    // free_all(game);
     return (0);
 }
 
 int main(int argc, char **argv)
 {
+    (void)argc;
+    (void)argv;
+
     if (my_rpg() == 84)
         return (84);
 }

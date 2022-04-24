@@ -8,7 +8,8 @@
 #include "my.h"
 #include "rpg.h"
 
-// int initialize_pause(game_t *game)
-// {
-//     return (0);
-// }
+int initialize_pause(game_t *game)
+{
+    (void)game;
+    return (0);
+}

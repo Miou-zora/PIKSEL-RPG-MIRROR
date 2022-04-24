@@ -8,7 +8,8 @@
 #include "my.h"
 #include "rpg.h"
 
-// int initialize_how_to_play(game_t *game)
-// {
-//     return (0);
-// }
+int initialize_how_to_play(game_t *game)
+{
+    (void)game;
+    return (0);
+}
