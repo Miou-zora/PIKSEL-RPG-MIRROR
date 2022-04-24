@@ -54,6 +54,11 @@ void analyse_event(sfEvent event, game_t *game)
     return;
 }
 
+void move_ennemy(game_t *game) {
+    game->pos[0] += 1;
+    return;
+}
+
 int main(void)
 {
     sfEvent event;
@@ -69,6 +74,7 @@ int main(void)
     while (sfRenderWindow_isOpen(game->window)) {
         display(game);
         sfRenderWindow_display(game->window);
+        move_ennemy(game);
         while (sfRenderWindow_pollEvent(game->window, &event))
             analyse_event(event, game);
         sfRenderWindow_clear(game->window, sfBlack);
