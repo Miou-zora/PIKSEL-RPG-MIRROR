@@ -8,8 +8,10 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-void freen(void **ptr)
+void freen(void *ptr)
 {
-    free(*ptr);
-    *ptr = NULL;
+    void **the_ptr = (void **)ptr;
+
+    free(*the_ptr);
+    *the_ptr = NULL;
 }

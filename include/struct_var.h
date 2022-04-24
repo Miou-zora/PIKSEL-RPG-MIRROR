@@ -72,7 +72,7 @@ struct clock_data_s {
 
 char *get_file(char *path);
 char **get_data_from_file(char *path);
-void freen(void **ptr);
+void freen(void *ptr);
 int put_str_error(char *str);
 
 //* armor
