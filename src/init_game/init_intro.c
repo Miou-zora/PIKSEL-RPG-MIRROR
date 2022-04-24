@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg.h"
 
-int initialize_intro(game_t *game)
-{
-    return (0);
-}
+// int initialize_intro(game_t *game)
+// {
+//     return (0);
+// }

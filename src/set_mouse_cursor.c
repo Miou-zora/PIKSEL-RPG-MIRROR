@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg.h"
 
-void set_mouse_cursor(game_t *game)
-{
-    return;
-}
+// void set_mouse_cursor(game_t *game)
+// {
+//     return;
+// }

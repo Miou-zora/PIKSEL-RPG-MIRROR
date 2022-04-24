@@ -19,7 +19,17 @@ SRC 		=	src/free.c \
 				src/init_game/init_rpg.c \
 				src/init_game/init_sound.c \
 				src/init_game/init_music.c \
+				src/init_game/init_scene.c \
+				src/init_game/init_sprite.c \
+				src/init_game/init_clock.c \
 				src/analyse_event/event.c \
+				src/analyse_event/change_menu.c \
+
+TESTS_MENU =	tests/menu/main.c \
+				tests/menu/analyse_event/event.c \
+				tests/menu/init_game/init_scene.c \
+				tests/menu/analyse_event/change_menu.c \
+				tests/menu/analyse_event/event.c \
 
 MAIN		=	src/main.c
 
@@ -65,6 +75,11 @@ make_lib:
 
 debug:		CFLAGS += -g
 debug:		re
+
+tests_menu:		make_lib $(OBJ_SRC)
+				@$(CC) $(OBJ_SRC) $(TESTS_MENU) $(CFLAGS) -o "tests_menu" $(LFLAGS)
+				@printf "\033[32m[Message]\033[39m Compilation de tests_menu \
+				réussi\n"
 
 clean:
 			@$(RM) $(OBJ_SRC)
