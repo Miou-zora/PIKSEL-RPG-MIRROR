@@ -39,6 +39,8 @@ CC			=	gcc
 
 TEST_BINARY	=	unit_tests
 
+TEST_PLAYER =	src/entities/player/test_file_player.c    \
+
 CFLAGS		=	-Wall -Wextra -Wshadow -Werror -I./include -lcsfml-audio \
 				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
 
@@ -85,6 +87,11 @@ tests_run:		tclean $(NAME)
 			$(MV) *.gcno tests
 			gcovr -e tests
 			gcovr -e tests -bu
+
+tests_player:	make_lib $(OBJ_SRC)
+			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
+			@printf "\033[32m[Message]\033[39m Compilation de tests_player \
+			réussi\n"
 
 tclean:
 			@$(RM) tests/*.gcda
