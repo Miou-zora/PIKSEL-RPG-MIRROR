@@ -74,6 +74,8 @@ char *get_file(char *path);
 char **get_data_from_file(char *path);
 void freen(void *ptr);
 int put_str_error(char *str);
+int get_number_of_files_in_directory(const char *directory);
+char **get_files_from_directory(const char *directory);
 
 //* armor
 

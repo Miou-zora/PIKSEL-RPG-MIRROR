@@ -17,7 +17,8 @@ SRC 		=	src/elementary/get_file.c			\
 				src/load_management/load_armor.c	\
 				src/load_management/create_sprite_data.c	\
 				src/load_management/destroy_sprite_data.c	\
-				src/load_management/load_sprite_data.c	\
+				src/load_management/load_sprite_data.c		\
+				src/elementary/get_files_from_directory.c	\
 
 TEST_FONC	=	tests/elementary/test_freen.c	\
 				tests/elementary/test_put_str_error.c	\
@@ -26,7 +27,9 @@ TEST_FONC	=	tests/elementary/test_freen.c	\
 				tests/load_management/test_load_sprite_data.c	\
 				tests/load_management/test_destroy_sprite_data.c	\
 				tests/load_management/test_load_armor.c	\
-				tests/elementary/test_get_file.c
+				tests/elementary/test_get_file.c		\
+				tests/elementary/test_get_number_of_files_in_directory.c	\
+				tests/elementary/test_get_files_from_directory.c
 
 MAIN_DEBUG	=	src/temp_test.c
 
