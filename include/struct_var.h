@@ -7,69 +7,88 @@
 
 #pragma once
 
-typedef struct init_sprite_s {
+typedef struct sprite_data_s {
+    sfTexture *texture;
+    sfSprite *sprite;
+    sfVector2f scale;
+    sfVector2f position;
+} sprite_data_t;
+
+typedef struct point_s {
+    int x;
+    int y;
+} point_t;
+
+typedef struct animator_s {
+    int number_image;
+    point_t *nb_image_xy;
+    sprite_data_t *sprite_data;
+    point_t *image;
+} animator_t;
+
+typedef struct weapon_s {
     sfSprite *sprite;
     sfTexture *texture;
-    sfVector2f pos;
-    sfVector2f scale;
-    sfIntRect rect;
-}init_sprite_t;
+    // enum type_weapon;
+    int nb_of_the_bonus;
+    animator_t *animator;
+} weapon_t;
 
-typedef struct text_s {
-    sfText *text;
-    sfFont *font;
-    sfVector2f pos;
-    sfVector2f scale;
-    char *str;
-} text_t;
+typedef struct armor_s {
+    sfSprite *sprite;
+    sfTexture *texture;
+    // enum type_bonus;
+    int nb_of_the_bonus;
+    animator_t *animator;
+} armor_t;
 
-typedef struct background_s {
-    init_sprite_t *sprite;
-    char *name;
-}background_t;
+typedef struct inventory_s {
+    int actual_helmet;
+    int actual_chestplate;
+    int actual_leggings;
+    int actual_boots;
+    weapon_t *actual_weapon;
+    int *stuff;
+} inventory_t;
 
-typedef struct button_s {
-    init_sprite_t *sprite;
-    text_t *text;
-    int status;
-}button_t;
+typedef struct level_s {
+    int level;
+    int max_level;
+    int xp;
+    int xp_to_pass_level;
+} level_t;
 
-typedef struct sprite_s {
-    background_t *background[60];
-    button_t *button[60];
-    //mob_t *mob[4];
-    //map_t *map[5];
-    //caracter_t *caracter_pos[5];
-    //cursor_t *cursor;
-}sprite_t;
+typedef struct characteristics_s {
+    int life;
+    int regeneration;
+    int power;
+    armor_t *armor;
+    int speed;
+    int charisma;
+} characteristics_t;
 
-typedef struct clock_s {
+typedef struct main_character_s {
+    int actual_life;
+    level_t *level;
+    characteristics_t *characteristics;
+    // enum actual_animation;
+    inventory_t *inventory;
+} main_character_t;
 
-}clock_s_t;
+typedef struct vector_s {
+    void *object;
+    void *next;
+    void *prev;
+} vector_t;
 
-typedef struct sound_s {
+typedef struct my_clock_s {
+    sfClock *clocksfInt64;
+    sfInt64 elapsed_time;
+    sfTime currElapsedTime;
+} my_clock_t;
 
-}sound_t;
-
-typedef struct music_s {
-
-}music_t;
-
-//utilisez cette struct pour y mettre toutes les listes chainées de data
-//ou block de donnée à créer dans une struct approprié
-
-typedef struct stock_data_s {
-    int data;
-}stock_data_t;
-
-typedef struct game {
+typedef struct scene_s {
     sfRenderWindow *window;
-    sfVideoMode mode;
-    sfEvent *event;
-    sprite_t *sprite;
-    sound_t *sound;
-    music_t *music;
-    text_t *text[10];
-    clock_s_t *clock;
-    stock_data_t *data;
-}game_t;
+    sprite_data_t *background;
+    sfRectangleShape *hitbox;
+} scene_t;

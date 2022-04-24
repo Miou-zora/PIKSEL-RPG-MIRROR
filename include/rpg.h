@@ -18,25 +18,29 @@
 #include "struct_var.h"
 
 
-void display(game_t *game);
-void free_all(game_t *game);
+void display(scene_t *scene);
+// void free_all(game_t *game);
 int my_rpg(void);
-void set_mouse_cursor(game_t *game);
+// void set_mouse_cursor(game_t *game);
 
 /**************************init fonctions***********************************/
 
-int initialize_var(game_t *game);
-int initialize_cursor(game_t *game);
-int initialize_game_end(game_t *game);
-int initialize_how_to_play(game_t *game);
-int initialize_intro(game_t *game);
-int initialize_menu(game_t *game);
-int initialize_options(game_t *game);
-int initialize_pause(game_t *game);
-int initialize_window(game_t *game);
-int initialize_sound(game_t *game);
-int initialize_music(game_t *game);
+// int initialize_var(game_t *game);
+// int initialize_cursor(game_t *game);
+// int initialize_game_end(game_t *game);
+// int initialize_how_to_play(game_t *game);
+// int initialize_intro(game_t *game);
+// int initialize_menu(game_t *game);
+// int initialize_options(game_t *game);
+// int initialize_pause(game_t *game);
+int initialize_window(sfRenderWindow **window);
+// int initialize_sound(game_t *game);
+// int initialize_music(game_t *game);
+int initialize_scene(scene_t **scene);
+int initialize_sprite_data(sprite_data_t **sprite_data, char *path_to_image,
+sfVector2f scale, sfVector2f position);
+int initialize_clock(my_clock_t **clock);
 
 /************************set event fonctions*********************************/
 
-void analyse_event(game_t *game);
+void change_menu(sfRectangleShape *hitbox, sfEvent *event);
