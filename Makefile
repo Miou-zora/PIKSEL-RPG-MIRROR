@@ -19,6 +19,12 @@ SRC 		=	src/elementary/get_file.c			\
 				src/load_management/destroy_sprite_data.c	\
 				src/load_management/load_sprite_data.c		\
 				src/elementary/get_files_from_directory.c	\
+				src/load_management/load_all_armors.c		\
+				src/elementary/freen_array.c				\
+				src/load_management/fill_all_armors.c	\
+				src/load_management/destroy_all_armors.c	\
+				src/load_management/create_all_armors.c	\
+				src/load_management/print_armor.c	\
 
 TEST_FONC	=	tests/elementary/test_freen.c	\
 				tests/elementary/test_put_str_error.c	\

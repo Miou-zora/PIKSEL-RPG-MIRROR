@@ -8,7 +8,7 @@
 #include "struct_var.h"
 #include "my.h"
 
-sprite_data_t *load_sprite_data(const char *filename)
+sprite_data_t *load_sprite_data(char *filename)
 {
     sprite_data_t *sprite_data = create_sprite_data();
     sfTexture *texture = NULL;

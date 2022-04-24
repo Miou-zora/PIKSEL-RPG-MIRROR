@@ -9,7 +9,7 @@
 #include <dirent.h>
 #include "my.h"
 
-int get_number_of_files_in_directory(const char *directory)
+int get_number_of_files_in_directory(char *directory)
 {
     DIR *dir = opendir(directory);
     struct dirent *file;
@@ -25,7 +25,7 @@ int get_number_of_files_in_directory(const char *directory)
     return (nb_files);
 }
 
-char **get_files_from_directory(const char *directory)
+char **get_files_from_directory(char *directory)
 {
     DIR *dir = opendir(directory);
     struct dirent *file;
@@ -37,7 +37,11 @@ char **get_files_from_directory(const char *directory)
         return (NULL);
     while ((file = readdir(dir)) != NULL) {
         if (file->d_name[0] != '.' && file->d_type == DT_REG) {
-            files[i] = my_strdup(file->d_name);
+            files[i] = my_calloc(my_strlen(directory) + 2 +
+            my_strlen(file->d_name), sizeof(*files[i]));
+            files[i] = my_strcat(files[i], directory);
+            files[i] = my_strcat(files[i], "/");
+            files[i] = my_strcat(files[i], file->d_name);
             i++;
         }
     }
