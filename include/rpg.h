@@ -39,4 +39,4 @@ int initialize_music(game_t *game);
 
 /************************set event fonctions*********************************/
 
-void analyse_event(game_t *game);
+void analyse_event(sfEvent event, game_t *game);

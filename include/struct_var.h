@@ -99,6 +99,12 @@ struct clock_data_s {
     int time_between_each_actualization;
 };
 
+typedef struct game {
+    int pos[2];
+    sfRenderWindow *window;
+    sprite_data_t *sprite;
+}game_t;
+
 /************************** functions ***********************************/
 
 //* elementary

@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg.h"
 
-void analyse_event(game_t *game)
+void analyse_event(sfEvent event, game_t *game)
 {
     (void)game;
     return;
