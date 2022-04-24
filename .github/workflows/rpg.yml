@@ -47,9 +47,9 @@ jobs:
               exit 1
             fi
           done
-      - name: check if tests of the project can be run
-        timeout-minutes: 2
-        run: make tests_run
+      # - name: check if tests of the project can be run
+      #   timeout-minutes: 2
+      #   run: make tests_run
 
   push_to_github:
     runs-on: ubuntu-latest
