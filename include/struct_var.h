@@ -63,6 +63,8 @@ struct animator_s {
 
 struct player_s {
     sfRenderWindow *window;
+    sfEvent event;
+    sfVideoMode mode;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;

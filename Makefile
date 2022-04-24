@@ -89,7 +89,7 @@ tests_run:		tclean $(NAME)
 			gcovr -e tests -bu
 
 tests_player:	make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
+			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_player" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_player \
 			réussi\n"
 
