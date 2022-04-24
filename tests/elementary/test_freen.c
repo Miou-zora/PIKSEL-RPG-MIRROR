@@ -16,8 +16,8 @@ Test(freen, normal_free)
     char *str2 = NULL;
 
     (void)str3;
-    freen((void **)&str);
+    freen(&str);
     cr_assert_eq(str, NULL);
-    freen((void **)&str2);
+    freen(&str2);
     cr_assert_eq(str2, NULL);
 }

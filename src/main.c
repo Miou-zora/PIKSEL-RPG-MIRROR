@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 {
     (void)argc;
     (void)argv;
+
     if (my_rpg() == 84)
         return (84);
 }

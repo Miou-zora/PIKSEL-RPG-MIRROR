@@ -16,6 +16,6 @@ void destroy_sprite_data(sprite_data_t **sprite_data)
         if ((*sprite_data)->texture) {
             sfTexture_destroy((*sprite_data)->texture);
         }
-        freen((void **)sprite_data);
+        freen(sprite_data);
     }
 }
