@@ -25,5 +25,6 @@ armor_t **load_all_armors(char *filepath)
         freen_array(&all_files);
         return (NULL);
     }
+    freen_array(&all_files);
     return (all_armors);
 }

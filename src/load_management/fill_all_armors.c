@@ -11,7 +11,6 @@
 armor_t **fill_all_armors(armor_t **armors, char **all_files)
 {
     for (int i = 0; all_files[i]; i++) {
-        my_printf("%s\n", all_files[i]);
         armors[i] = load_armor(all_files[i]);
         if (armors[i] == NULL) {
             return (NULL);

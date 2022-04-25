@@ -23,7 +23,6 @@ sprite_data_t *load_sprite_data(char *filename)
     }
     sprite = sfSprite_create();
     if (sprite == NULL) {
-        sfTexture_destroy(texture);
         destroy_sprite_data(&sprite_data);
         return (NULL);
     }
