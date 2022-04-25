@@ -11,10 +11,13 @@
 
 int get_number_of_files_in_directory(char *directory)
 {
-    DIR *dir = opendir(directory);
+    DIR *dir = NULL;
     struct dirent *file;
     int nb_files = 0;
 
+    if (directory == NULL)
+        return (0);
+    dir = opendir(directory);
     if (dir == NULL)
         return (0);
     while ((file = readdir(dir)) != NULL) {
@@ -27,14 +30,22 @@ int get_number_of_files_in_directory(char *directory)
 
 char **get_files_from_directory(char *directory)
 {
-    DIR *dir = opendir(directory);
+    DIR *dir = NULL;
     struct dirent *file;
     int nb_of_files = get_number_of_files_in_directory(directory);
-    char **files = my_calloc(nb_of_files + 1, sizeof(*files));
+    char **files = NULL;
     int i = 0;
 
+    if (directory == NULL)
+        return (NULL);
+    dir = opendir(directory);
     if (dir == NULL || nb_of_files == 0)
         return (NULL);
+    files = my_calloc(nb_of_files + 1, sizeof(*files));
+    if (files == NULL) {
+        closedir(dir);
+        return (NULL);
+    }
     while ((file = readdir(dir)) != NULL) {
         if (file->d_name[0] != '.' && file->d_type == DT_REG) {
             files[i] = my_calloc(my_strlen(directory) + 2 +

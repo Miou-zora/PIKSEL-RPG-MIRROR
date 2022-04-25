@@ -33,6 +33,7 @@ TEST_FONC	=	tests/elementary/test_freen.c	\
 				tests/load_management/test_load_sprite_data.c	\
 				tests/load_management/test_destroy_sprite_data.c	\
 				tests/load_management/test_load_armor.c	\
+				tests/load_management/test_load_all_armors.c	\
 				tests/elementary/test_get_file.c		\
 				tests/elementary/test_get_number_of_files_in_directory.c	\
 				tests/elementary/test_get_files_from_directory.c
