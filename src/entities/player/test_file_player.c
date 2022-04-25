@@ -18,6 +18,36 @@ void display(player_t *player)
     sfRenderWindow_drawSprite(player->window, player->iddle->sprite_data->sprite, NULL);
 }
 
+void create_sprite_player_walk(player_t *player)
+{
+    player->iddle->sprite_data->sprite = sfSprite_create();
+    player->iddle->sprite_data->texture = sfTexture_createFromFile("assets/player/Stick walk.png", NULL);
+    player->iddle->sprite_data->scale = (sfVector2f){4, 4};
+    player->iddle->sprite_data->rect = (sfIntRect){0, 0, 48, 48};
+    sfSprite_setTexture(player->iddle->sprite_data->sprite, player->iddle->sprite_data->texture, sfTrue);
+    sfSprite_setScale(player->iddle->sprite_data->sprite, player->iddle->sprite_data->scale);
+    sfSprite_setTextureRect(player->iddle->sprite_data->sprite, player->iddle->sprite_data->rect);
+    player->iddle->number_image = 6;
+    player->iddle->actual_image = (sfVector2i){0, 0};
+    player->iddle->nbr_image_xy = (sfVector2i){6, 1};
+    player->iddle->size_image = (sfVector2f){48, 48};
+}
+
+void create_sprite_player_run(player_t *player)
+{
+    player->iddle->sprite_data->sprite = sfSprite_create();
+    player->iddle->sprite_data->texture = sfTexture_createFromFile("assets/player/Stick run.png", NULL);
+    player->iddle->sprite_data->scale = (sfVector2f){4, 4};
+    player->iddle->sprite_data->rect = (sfIntRect){0, 0, 48, 48};
+    sfSprite_setTexture(player->iddle->sprite_data->sprite, player->iddle->sprite_data->texture, sfTrue);
+    sfSprite_setScale(player->iddle->sprite_data->sprite, player->iddle->sprite_data->scale);
+    sfSprite_setTextureRect(player->iddle->sprite_data->sprite, player->iddle->sprite_data->rect);
+    player->iddle->number_image = 12;
+    player->iddle->actual_image = (sfVector2i){0, 0};
+    player->iddle->nbr_image_xy = (sfVector2i){6, 1};
+    player->iddle->size_image = (sfVector2f){48, 48};
+}
+
 void create_sprite_player_iddle(player_t *player)
 {
     player->iddle->sprite_data->sprite = sfSprite_create();

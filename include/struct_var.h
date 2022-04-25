@@ -12,7 +12,7 @@
 #include <SFML/System.h>
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
-#include "../lib/my/include/my.h"
+#include "stdbool.h"
 
 /************************** global ***********************************/
 
@@ -85,6 +85,10 @@ char *get_file(char *path);
 char **get_data_from_file(char *path);
 void freen(void *ptr);
 int put_str_error(char *str);
+int get_number_of_files_in_directory(char *directory, char *expected_extension);
+char **get_files_from_directory(char *directory, char *expected_extension);
+void freen_array(void *array);
+bool verif_extension(char *filename, char *expected_extension);
 
 //* armor
 
@@ -92,9 +96,14 @@ armor_t *create_armor(void);
 armor_t *load_armor(char *path);
 void destroy_armor(armor_t **armor);
 armor_t *fill_armor(armor_t *armor, char **data);
+armor_t **create_all_armors(char **all_files);
+armor_t **fill_all_armors(armor_t **armors, char **all_files);
+void destroy_all_armors(armor_t ***armors);
+armor_t **load_all_armors(char *filepath);
+void print_armor(armor_t *armor);
 
 //* sprite_data
 
 void destroy_sprite_data(sprite_data_t **sprite_data);
-sprite_data_t *load_sprite_data(const char *filename);
+sprite_data_t *load_sprite_data(char *filename);
 sprite_data_t *create_sprite_data(void);

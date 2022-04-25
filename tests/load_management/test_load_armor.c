@@ -14,6 +14,12 @@ Test(load_armor, casual_armor_loading)
 
     cr_assert_not_null(armor);
     cr_assert_str_eq(armor->name, "common_helmet");
+    cr_assert_eq(armor->id, 1);
+    cr_assert_eq(armor->type_armor, HELMET);
+    cr_assert_eq(armor->type_bonus_basic, HEALTH);
+    cr_assert_eq(armor->rarity, 5);
+    cr_assert_eq(armor->value_bonus, 10);
+    cr_assert_not_null(armor->sprite_data);
     destroy_armor(&armor);
 };
 
