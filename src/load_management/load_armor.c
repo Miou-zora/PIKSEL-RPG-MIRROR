@@ -15,6 +15,7 @@ armor_t *load_armor(char *path)
 
     if (data == NULL || armor == NULL) {
         if (data != NULL) {
+            freen(&(*data));
             freen(&data);
         }
         if (armor != NULL) {
@@ -23,8 +24,11 @@ armor_t *load_armor(char *path)
         return (NULL);
     }
     if (fill_armor(armor, data) == NULL) {
+        freen(&(*data));
         freen(&data);
         freen(&armor);
     }
+    freen(&(*data));
+    freen(&data);
     return (armor);
 }
