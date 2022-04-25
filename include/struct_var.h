@@ -12,6 +12,7 @@
 #include <SFML/System.h>
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
+#include "stdbool.h"
 
 /************************** global ***********************************/
 
@@ -74,9 +75,10 @@ char *get_file(char *path);
 char **get_data_from_file(char *path);
 void freen(void *ptr);
 int put_str_error(char *str);
-int get_number_of_files_in_directory(char *directory);
-char **get_files_from_directory(char *directory);
+int get_number_of_files_in_directory(char *directory, char *expected_extension);
+char **get_files_from_directory(char *directory, char *expected_extension);
 void freen_array(void *array);
+bool verif_extension(char *filename, char *expected_extension);
 
 //* armor
 

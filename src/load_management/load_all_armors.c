@@ -10,7 +10,7 @@
 
 armor_t **load_all_armors(char *filepath)
 {
-    char **all_files = get_files_from_directory(filepath);
+    char **all_files = get_files_from_directory(filepath, ".arm");
     armor_t **all_armors = create_all_armors(all_files);
 
     if (all_files == NULL || all_armors == NULL) {

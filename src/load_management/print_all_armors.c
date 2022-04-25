@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** PIKSEL-RPG-MIRROR
 ** File description:
-** print_armor
+** print_all_armors
 */
 
 #include "struct_var.h"
@@ -74,5 +74,12 @@ void print_armor(armor_t *armor)
         my_printf("\tSprite: \033[32mloaded\033[39m\n");
     } else {
         my_printf("\tSprite: \033[31munloaded\033[39m\n");
+    }
+}
+
+void print_all_armors(armor_t **armors)
+{
+    for (int i = 0; armors[i]; i++) {
+        print_armor(armors[i]);
     }
 }
