@@ -30,6 +30,7 @@ typedef struct armor_s armor_t;
 typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
+typedef struct player_s player_t;
 
 /************************** struct ***********************************/
 
@@ -58,6 +59,15 @@ struct animator_s {
     sfVector2f size_image;
     sprite_data_t *sprite_data;
     clock_data_t *clock;
+};
+
+struct player_s {
+    sfRenderWindow *window;
+    sfEvent event;
+    sfVideoMode mode;
+    animator_t *run;
+    animator_t *walk;
+    animator_t *iddle;
 };
 
 struct clock_data_s {
