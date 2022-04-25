@@ -112,3 +112,8 @@ sprite_data_t *create_sprite_data(void);
 
 animator_t *create_animator(void);
 void destroy_animator(animator_t **animator);
+
+//* clock_data
+
+clock_data_t *create_clock_data(void);
+void destroy_clock_data(clock_data_t **clock_data);

@@ -29,6 +29,8 @@ SRC_LOAD_MANAGEMENT =	src/load_management/create_armor.c					\
 						src/load_management/print_all_armors.c				\
 						src/load_management/create_animator.c				\
 						src/load_management/destroy_animator.c				\
+						src/load_management/create_clock_data.c				\
+						src/load_management/destroy_clock_data.c			\
 
 SRC =					$(SRC_ELEMENTARY)									\
 						$(SRC_LOAD_MANAGEMENT)								\
