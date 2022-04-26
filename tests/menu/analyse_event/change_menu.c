@@ -7,30 +7,55 @@
 
 #include "rpg.h"
 
-void change_menu(sfRectangleShape *hitbox, sfEvent *event)
+int game(scene_t *scene)
 {
-    if (event->key.code == sfKeyDown) {
-        my_putstr("BAS");
-        sfRectangleShape_move(hitbox, (sfVector2f){0, 250});
+    sfRenderWindow_display(scene->window);
+    my_putstr("game\n");
+    return (0);
+}
+
+int settings(scene_t *scene)
+{
+    scene_t *new_scene = NULL;
+    if(free_scene(scene) == 84)
+        return (84);
+    if (initialize_settings(&(new_scene), scene) == 84)
+        return (84);
+    *scene = *new_scene;
+    if (scene == NULL)
+        return (84);
+    my_putstr("settings\n");
+    return (0);
+}
+
+int quit(scene_t *scene)
+{
+    sfRenderWindow_close(scene->window);
+    return (0);
+}
+
+int change_menu(sfEvent *event, scene_t *scene)
+{
+    int(*functions_menu[3])(scene_t *scene) = {game, settings, quit};
+
+    if ((event->key.code == sfKeyDown || event->key.code == sfKeyS) &&
+    scene->select_zone->current_pos != scene->select_zone->nb_of_poses - 1) {
+        scene->select_zone->current_pos++;
+        sfRectangleShape_setPosition(scene->select_zone->hitbox,
+        scene->select_zone->positions[scene->select_zone->current_pos]);
     }
-    // sfVector2f **positions = malloc(sizeof(sfVector2f *) * 3);
-    // for (int i = 0; i < 3; i++) {
-    //     positions[i] = malloc(sizeof(sfVector2f) * 2);
-    // }
-    // positions[0][0] = (sfVector2f){400, 310};
-    // positions[0][1] = (sfVector2f){1350, 440};
-    // positions[1][0] = (sfVector2f){380, 560};
-    // positions[1][1] = (sfVector2f){1570, 690};
-    // positions[2][0] = (sfVector2f){370, 800};
-    // positions[2][1] = (sfVector2f){1400, 930};
-    // sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(window);
-    // my_putstr("pos x: ");
-    // my_put_nbr(mouse_pos.x);
-    // my_putstr("pos y: ");
-    // my_put_nbr(mouse_pos.y);
-    // my_putchar('\n');
-    // if (mouse_pos.x > positions[0][0].x && mouse_pos.x < positions[0][1].x &&
-    // mouse_pos.y > positions[0][0].y && mouse_pos.y < positions[0][1].y)
-    //     my_putstr("salut mec");
-    
+    if ((event->key.code == sfKeyUp || event->key.code == sfKeyZ) &&
+    scene->select_zone->current_pos != 0) {
+        scene->select_zone->current_pos--;
+        sfRectangleShape_setPosition(scene->select_zone->hitbox,
+        scene->select_zone->positions[scene->select_zone->current_pos]);
+    }
+    if (event->key.code == sfKeyEnter && my_strcmp(scene->zone_name, "menu") == 0) {
+        if (functions_menu[scene->select_zone->current_pos](scene) == 84)
+            return (84);
+    }
+    if (my_strcmp(scene->zone_name, "settings") == 0) {
+        handle_settings(scene, event);
+    }
+    return (0);
 }

@@ -7,9 +7,9 @@
 
 #include "rpg.h"
 
-int initialize_clock(my_clock_t **clock)
+int initialize_clock(clock_data_t **clock)
 {
-    (*clock) = malloc(sizeof(my_clock_t));
+    (*clock) = malloc(sizeof(clock_data_t));
     if ((*clock) == NULL)
         return (84);
     (*clock)->clocksfInt64 = sfClock_create();

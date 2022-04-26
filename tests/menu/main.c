@@ -26,23 +26,24 @@
 //     return (0);
 // }
 
-void analyse_events(sfEvent *event, sfRenderWindow *window, sfRectangleShape *hitbox)
+int analyse_events(sfEvent *event, scene_t *scene)
 {
     if (event->type == sfEvtClosed) {
-        sfRenderWindow_close(window);
+        sfRenderWindow_close(scene->window);
     }
     if (event->type == sfEvtKeyPressed)
-        change_menu(hitbox, event);
-    return;
+        if (change_menu(event, scene) == 84)
+            return (84);
+    return (0);
 }
 
 int my_rpg(void)
 {
     scene_t *menu;
     sfEvent event;
-    my_clock_t *principal_clock;
+    clock_data_t *principal_clock;
 
-    if (initialize_scene(&menu) == 84)
+    if (initialize_scene(&menu, "menu", 3) == 84)
         return (84);
     if (initialize_clock(&principal_clock) == 84)
         return (84);
@@ -56,7 +57,7 @@ int my_rpg(void)
             principal_clock->elapsed_time -= 10000;
             // set_mouse_cursor(game);
             while (sfRenderWindow_pollEvent(menu->window, &event))
-                analyse_events(&event, menu->window, menu->hitbox);
+                analyse_events(&event, menu);
             sfRenderWindow_clear(menu->window, sfBlack);
             display(menu);
         }
@@ -65,7 +66,7 @@ int my_rpg(void)
     return (0);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
     if (my_rpg() == 84)
         return (84);

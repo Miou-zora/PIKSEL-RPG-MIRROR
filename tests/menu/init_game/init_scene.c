@@ -7,18 +7,43 @@
 
 #include "rpg.h"
 
-sfRectangleShape *initialize_hitbox(void)
+sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones)
 {
-    sfRectangleShape *rect = sfRectangleShape_create();
-    sfRectangleShape_setPosition(rect, (sfVector2f){380, 295});
-    sfRectangleShape_setOutlineColor(rect, sfGreen);
-    sfRectangleShape_setOutlineThickness(rect, 4);
-    sfRectangleShape_setFillColor(rect, sfTransparent);
-    sfRectangleShape_setSize(rect, (sfVector2f){1200, 135});
-    return (rect);
+    int pos_in_buffer = 0;
+    int number = 0;
+    sfVector2f *positions = malloc(sizeof(sfVector2f) * nb_of_zones);
+
+    for (int i = 0; i < nb_of_zones; i++) {
+        number = my_getnbr(&positions_buffer[pos_in_buffer]);
+        positions_buffer += get_nbrlen(number) + 1;
+        my_put_nbr(number);
+        my_putchar(' ');
+        positions[i].x = number;
+        number = my_getnbr(&positions_buffer[pos_in_buffer]);
+        positions_buffer += get_nbrlen(number) + 1;
+        positions[i].y = number;
+        my_put_nbr(number);
+        my_putchar('\n');
+    }
+    return (positions);
 }
 
-int initialize_scene(scene_t **scene)
+void initialize_hitbox(selection_zone_t **select_zone, char *positions_buffer, int nb_of_zones)
+{
+    (*select_zone) = malloc(sizeof(selection_zone_t));
+    (*select_zone)->nb_of_poses = nb_of_zones;
+    (*select_zone)->positions = initialize_positions(positions_buffer, nb_of_zones);
+    (*select_zone)->current_pos = 0;
+    (*select_zone)->hitbox = sfRectangleShape_create();
+    sfRectangleShape_setPosition((*select_zone)->hitbox,
+    (*select_zone)->positions[0]);
+    sfRectangleShape_setOutlineColor((*select_zone)->hitbox, sfGreen);
+    sfRectangleShape_setOutlineThickness((*select_zone)->hitbox, 4);
+    sfRectangleShape_setFillColor((*select_zone)->hitbox, sfTransparent);
+    sfRectangleShape_setSize((*select_zone)->hitbox, (sfVector2f){1220, 135});
+}
+
+int initialize_scene(scene_t **scene, char *zone_name, int nb_of_zones)
 {
     (*scene) = malloc(sizeof(scene_t));
     if ((*scene) == NULL)
@@ -28,6 +53,9 @@ int initialize_scene(scene_t **scene)
     if (initialize_sprite_data(&((*scene)->background),
     "assets/menu/menu.png", (sfVector2f){8, 8}, (sfVector2f){0, 0}) == 84)
         return (84);
-    (*scene)->hitbox = initialize_hitbox();
+    initialize_hitbox(&((*scene)->select_zone), "365 295 365 535 365 775",
+    nb_of_zones);
+    (*scene)->zone_name = zone_name;
+    // my_put_nbr((*scene)->select_zone->current_pos);
     return (0);
 }

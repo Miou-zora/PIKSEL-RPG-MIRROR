@@ -17,10 +17,11 @@ sfVector2f scale, sfVector2f position)
     (*sprite_data)->texture = sfTexture_createFromFile(path_to_image, NULL);
     if ((*sprite_data)->texture == NULL)
         return (84);
-    (*sprite_data)->position = position;
+    (*sprite_data)->pos = position;
     (*sprite_data)->scale = scale;
     sfSprite_setScale((*sprite_data)->sprite, (*sprite_data)->scale);
-    sfSprite_setPosition((*sprite_data)->sprite, (*sprite_data)->position);
-    sfSprite_setTexture((*sprite_data)->sprite, (*sprite_data)->texture, sfFalse);
+    sfSprite_setPosition((*sprite_data)->sprite, (*sprite_data)->pos);
+    sfSprite_setTexture((*sprite_data)->sprite,
+    (*sprite_data)->texture, sfFalse);
     return (0);
 }
