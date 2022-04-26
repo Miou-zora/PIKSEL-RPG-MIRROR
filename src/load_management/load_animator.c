@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 animator_t *load_animator(char *path)
 {

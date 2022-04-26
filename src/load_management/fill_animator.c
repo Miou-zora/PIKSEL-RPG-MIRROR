@@ -62,6 +62,20 @@ bool fill_animator_clock(animator_t *animator, char *data)
     return (false);
 }
 
+bool fill_animator_nbr_image(animator_t *animator, char *data)
+{
+    int nbr_image = my_getnbr(data);
+
+    if (animator == NULL)
+        return (true);
+    if (nbr_image <= 0) {
+        return (true);
+    } else {
+        animator->number_image = nbr_image;
+    }
+    return (false);
+}
+
 animator_t *fill_animator(animator_t *animator, char **data)
 {
     bool error = false;
@@ -73,7 +87,8 @@ animator_t *fill_animator(animator_t *animator, char **data)
         error |= fill_animator_clock(animator, data[0]);
         error |= fill_animator_nbr_image_xy(animator, data[1]);
         error |= fill_animator_size_image(animator, data[3]);
-        if (error) {
+        error |= fill_animator_nbr_image(animator, data[2]);
+        if (error || animator->sprite_data == NULL) {
             destroy_animator(&animator);
         }
     }
