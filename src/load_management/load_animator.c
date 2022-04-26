@@ -9,17 +9,25 @@
 
 animator_t *load_animator(char *path)
 {
-    animator_t *armor = create_animator();
+    animator_t *animator = create_animator();
     char **data = get_data_from_file(path);
 
-    if (data == NULL || armor == NULL) {
+    if (data == NULL || animator == NULL) {
         if (data != NULL) {
             freen(&(*data));
             freen(&data);
         }
-        if (armor != NULL) {
-            destroy_animator(&armor);
+        if (animator != NULL) {
+            destroy_animator(&animator);
         }
         return (NULL);
     }
+    if (fill_animator(animator, data) == NULL) {
+        freen(&(*data));
+        freen(&data);
+        freen(&animator);
+    }
+    freen(&(*data));
+    freen(&data);
+    return (animator);
 }

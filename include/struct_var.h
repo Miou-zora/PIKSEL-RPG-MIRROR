@@ -74,7 +74,7 @@ struct clock_data_s {
     sfClock *clocksfInt64;
     sfInt64 elapsed_time;
     sfTime currElapsedTime;
-    int time_between_each_actualization;
+    int framerate;
 };
 
 /************************** functions ***********************************/
@@ -112,6 +112,7 @@ sprite_data_t *create_sprite_data(void);
 
 animator_t *create_animator(void);
 void destroy_animator(animator_t **animator);
+animator_t *fill_animator(animator_t *animator, char **data);
 
 //* clock_data
 
