@@ -5,4 +5,4 @@ type_bonus_basic (health, regeneration, power, speed, armor, charisma)
 rarity (number 1 for ultracommon and 100+ for rarely)
 number_bonus
 path asset in inventory
-path assets for animation
+path assets for animator script

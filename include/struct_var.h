@@ -39,7 +39,7 @@ struct armor_s {
     int id;
     enum types_armor type_armor;
     enum types_bonus_basic type_bonus_basic;
-    float rarity;
+    int rarity;
     int value_bonus;
     sprite_data_t *sprite_data;
 };
@@ -58,7 +58,7 @@ struct animator_s {
     sfVector2i nbr_image_xy;
     sfVector2f size_image;
     sprite_data_t *sprite_data;
-    clock_data_t *clock;
+    clock_data_t *clock_data;
 };
 
 struct player_s {
@@ -74,7 +74,7 @@ struct clock_data_s {
     sfClock *clocksfInt64;
     sfInt64 elapsed_time;
     sfTime currElapsedTime;
-    int time_between_each_actualization;
+    int framerate;
 };
 
 /************************** functions ***********************************/
@@ -107,3 +107,14 @@ void print_armor(armor_t *armor);
 void destroy_sprite_data(sprite_data_t **sprite_data);
 sprite_data_t *load_sprite_data(char *filename);
 sprite_data_t *create_sprite_data(void);
+
+//* animator
+
+animator_t *create_animator(void);
+void destroy_animator(animator_t **animator);
+animator_t *fill_animator(animator_t *animator, char **data);
+
+//* clock_data
+
+clock_data_t *create_clock_data(void);
+void destroy_clock_data(clock_data_t **clock_data);

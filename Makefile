@@ -5,39 +5,48 @@
 ## Makefile
 ##
 
-MAIN 		=	src/main.c
+MAIN =					src/main.c
 
-SRC 		=	src/elementary/get_file.c			\
-				src/elementary/get_data_from_file.c	\
-				src/elementary/freen.c				\
-				src/elementary/put_str_error.c		\
-				src/load_management/create_armor.c	\
-				src/load_management/fill_armor.c	\
-				src/load_management/destroy_armor.c	\
-				src/load_management/load_armor.c	\
-				src/load_management/create_sprite_data.c	\
-				src/load_management/destroy_sprite_data.c	\
-				src/load_management/load_sprite_data.c		\
-				src/elementary/get_files_from_directory.c	\
-				src/load_management/load_all_armors.c		\
-				src/elementary/freen_array.c				\
-				src/elementary/verif_extension.c			\
-				src/load_management/fill_all_armors.c	\
-				src/load_management/destroy_all_armors.c	\
-				src/load_management/create_all_armors.c	\
-				src/load_management/print_all_armors.c	\
+SRC_ELEMENTARY =		src/elementary/get_file.c							\
+						src/elementary/get_data_from_file.c					\
+						src/elementary/freen.c								\
+						src/elementary/put_str_error.c						\
+						src/elementary/get_files_from_directory.c			\
+						src/elementary/freen_array.c						\
+						src/elementary/verif_extension.c					\
 
-TEST_FONC	=	tests/elementary/test_freen.c	\
-				tests/elementary/test_put_str_error.c	\
-				tests/load_management/test_create_armor.c	\
-				tests/load_management/test_create_sprite_data.c	\
-				tests/load_management/test_load_sprite_data.c	\
-				tests/load_management/test_destroy_sprite_data.c	\
-				tests/load_management/test_load_armor.c	\
-				tests/load_management/test_load_all_armors.c	\
-				tests/elementary/test_get_file.c		\
+SRC_LOAD_MANAGEMENT =	src/load_management/create_armor.c					\
+						src/load_management/fill_armor.c					\
+						src/load_management/destroy_armor.c					\
+						src/load_management/load_armor.c					\
+						src/load_management/create_sprite_data.c			\
+						src/load_management/destroy_sprite_data.c			\
+						src/load_management/load_sprite_data.c				\
+						src/load_management/load_all_armors.c				\
+						src/load_management/fill_all_armors.c				\
+						src/load_management/destroy_all_armors.c			\
+						src/load_management/create_all_armors.c				\
+						src/load_management/print_all_armors.c				\
+						src/load_management/create_animator.c				\
+						src/load_management/destroy_animator.c				\
+						src/load_management/create_clock_data.c				\
+						src/load_management/destroy_clock_data.c			\
+						src/load_management/fill_animator.c					\
+
+SRC =					$(SRC_ELEMENTARY)									\
+						$(SRC_LOAD_MANAGEMENT)								\
+
+TEST_FONC =		tests/elementary/test_freen.c								\
+				tests/elementary/test_put_str_error.c						\
+				tests/load_management/test_create_armor.c					\
+				tests/load_management/test_create_sprite_data.c				\
+				tests/load_management/test_load_sprite_data.c				\
+				tests/load_management/test_destroy_sprite_data.c			\
+				tests/load_management/test_load_armor.c						\
+				tests/load_management/test_load_all_armors.c				\
+				tests/elementary/test_get_file.c							\
 				tests/elementary/test_get_number_of_files_in_directory.c	\
-				tests/elementary/test_get_files_from_directory.c
+				tests/elementary/test_get_files_from_directory.c			\
 
 MAIN_DEBUG	=	src/temp_test.c
 
