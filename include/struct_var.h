@@ -34,6 +34,8 @@ typedef struct clock_data_s clock_data_t;
 typedef struct ennemy_s ennemy_t;
 typedef struct npc_s npc_t;
 typedef struct dialogues_s dialogues_t;
+typedef struct ennemy_sprite_s ennemy_sprite_t; 
+typedef struct stat_s stat_t;
 
 /************************** struct ***********************************/
 
@@ -54,15 +56,21 @@ struct npc_s {
     int index;
 };
 
-struct ennemy_s {
-    enum types_ennemy type_ennemy;
-    char *name;
-    int id;
+struct stat_s {
     int health;
     int armor;
     int power;
     int speed;
+};
+
+struct ennemy_s {
+    enum types_ennemy type_ennemy;
+    char *name;
+    int id;
+    stat_t *stat;
     sprite_data_t *sprite_data;
+    int max_left;
+    sfClock *clock;
 };
 
 struct armor_s {
@@ -102,7 +110,9 @@ struct clock_data_s {
 typedef struct game {
     int click[2];
     sfRenderWindow *window;
-    sprite_data_t *sprite;
+    ennemy_t *ennemy;
+    int distance[2];
+    sfClock *clock;
 }game_t;
 
 /************************** functions ***********************************/
