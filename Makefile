@@ -32,6 +32,7 @@ SRC_LOAD_MANAGEMENT =	src/load_management/create_armor.c					\
 						src/load_management/create_clock_data.c				\
 						src/load_management/destroy_clock_data.c			\
 						src/load_management/fill_animator.c					\
+						src/load_management/load_animator.c					\
 
 SRC =					$(SRC_ELEMENTARY)									\
 						$(SRC_LOAD_MANAGEMENT)								\
@@ -47,6 +48,7 @@ TEST_FONC =		tests/elementary/test_freen.c								\
 				tests/elementary/test_get_file.c							\
 				tests/elementary/test_get_number_of_files_in_directory.c	\
 				tests/elementary/test_get_files_from_directory.c			\
+				tests/load_management/test_load_animator.c
 
 MAIN_DEBUG	=	src/temp_test.c
 
