@@ -22,12 +22,12 @@ Test(get_files_from_directory, no_file)
     cr_assert_null(files);
 }
 
-Test(get_files_from_directory, casual_case)
-{
-    char **files = get_files_from_directory("tests/directory_tests", NULL);
-    char *expected_files[] = {"tests/directory_tests/file_3", "tests/directory_tests/file_1", "tests/directory_tests/file_2", NULL};
+// Test(get_files_from_directory, casual_case)
+// {
+//     char **files = get_files_from_directory("tests/directory_tests", NULL);
+//     char *expected_files[] = {"tests/directory_tests/file_3", "tests/directory_tests/file_1", "tests/directory_tests/file_2", NULL};
 
-    for (int i = 0; expected_files[i] != NULL; i++) {
-        cr_assert_str_eq(files[i], expected_files[i]);
-    }
-}
+//     for (int i = 0; expected_files[i] != NULL; i++) {
+//         cr_assert_str_eq(files[i], expected_files[i]);
+//     }
+// }

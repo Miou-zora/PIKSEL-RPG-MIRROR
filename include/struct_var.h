@@ -64,10 +64,21 @@ struct animator_s {
 struct player_s {
     sfRenderWindow *window;
     sfEvent event;
+    sfClock *clock_player;
+    sfTime time_player;
+    float seconds_player;
+    sfClock *clock_anim;
+    sfTime time_anim;
+    float seconds_anim;
     sfVideoMode mode;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
+    int player_mode;
+    bool move_up;
+    bool move_down;
+    bool move_left;
+    bool move_right;
 };
 
 struct clock_data_s {

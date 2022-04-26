@@ -50,7 +50,7 @@ CC			=	gcc
 
 TEST_BINARY	=	unit_tests
 
-TEST_PLAYER =	src/entities/player/test_file_player.c    \
+TEST_PLAYER =	tests/tests_file/test_file_player.c    \
 
 CFLAGS		=	-Wall -Wextra -Wshadow -Werror -I./include -lcsfml-audio \
 				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
