@@ -24,11 +24,13 @@ sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones)
     return (positions);
 }
 
-void initialize_hitbox(selection_zone_t **select_zone, char *positions_buffer, int nb_of_zones)
+void initialize_hitbox(selection_zone_t **select_zone,
+char *positions_buffer, int nb_of_zones)
 {
     (*select_zone) = malloc(sizeof(selection_zone_t));
     (*select_zone)->nb_of_poses = nb_of_zones;
-    (*select_zone)->positions = initialize_positions(positions_buffer, nb_of_zones);
+    (*select_zone)->positions =
+    initialize_positions(positions_buffer, nb_of_zones);
     (*select_zone)->current_pos = 0;
     (*select_zone)->hitbox = sfRectangleShape_create();
     sfRectangleShape_setPosition((*select_zone)->hitbox,

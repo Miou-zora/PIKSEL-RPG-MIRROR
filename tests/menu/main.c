@@ -8,24 +8,6 @@
 #include "my.h"
 #include "rpg.h"
 
-// int my_rpg(void)
-// {
-//     game_t *game = malloc(sizeof(game_t));
-
-//     if (initialize_var(game) == 84)
-//         return (84);
-//     while (sfRenderWindow_isOpen(game->window)) {
-//         display(game);
-//         set_mouse_cursor(game);
-//         sfRenderWindow_display(game->window);
-//         while (sfRenderWindow_pollEvent(game->window, game->event))
-//             analyse_event(game);
-//         sfRenderWindow_clear(game->window, sfBlack);
-//     }
-//     free_all(game);
-//     return (0);
-// }
-
 int analyse_events(sfEvent *event, scene_t *scene, settings_t **settings)
 {
     if (event->type == sfEvtClosed) {
@@ -35,6 +17,21 @@ int analyse_events(sfEvent *event, scene_t *scene, settings_t **settings)
         if (change_menu(event, scene, &(*settings)) == 84)
             return (84);
     return (0);
+}
+
+void update(scene_t *menu, settings_t *settings, sfEvent event)
+{
+    while (sfRenderWindow_pollEvent(menu->window, &event))
+        analyse_events(&event, menu, &settings);
+    sfRenderWindow_clear(menu->window, sfBlack);
+}
+
+void update_main_clock(clock_data_t *principal_clock)
+{
+    principal_clock->currElapsedTime =
+    sfClock_restart(principal_clock->clocksfInt64);
+    principal_clock->elapsed_time +=
+    principal_clock->currElapsedTime.microseconds;
 }
 
 int my_rpg(void)
@@ -50,22 +47,14 @@ int my_rpg(void)
         return (84);
     if (initialize_settings_values(&settings, &menu) == 84)
         return (84);
-    sfRenderWindow_display(menu->window);
     while (sfRenderWindow_isOpen(menu->window)) {
-        principal_clock->currElapsedTime =
-        sfClock_restart(principal_clock->clocksfInt64);
-        principal_clock->elapsed_time +=
-        principal_clock->currElapsedTime.microseconds;
+        update_main_clock(principal_clock);
         while (principal_clock->elapsed_time > 10000) {
             principal_clock->elapsed_time -= 10000;
-            // set_mouse_cursor(game);
-            while (sfRenderWindow_pollEvent(menu->window, &event))
-                analyse_events(&event, menu, &settings);
-            sfRenderWindow_clear(menu->window, sfBlack);
+            update(menu, settings, event);
             display(menu);
         }
     }
-    // free_all(game);
     return (0);
 }
 

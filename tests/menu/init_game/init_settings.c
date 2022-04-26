@@ -35,7 +35,7 @@ void initialize_settings_rectangle_shapes(settings_infos_t *settings_infos)
         sfRectangleShape_setOutlineColor
         (settings_infos->fill_rectangles[i],
         sfColor_fromRGB((sfUint8)52, (sfUint8)201, (sfUint8)306));
-        sfRectangleShape_setSize(settings_infos->fill_rectangles[i], 
+        sfRectangleShape_setSize(settings_infos->fill_rectangles[i],
         settings_infos->rectangles_sizes[i * 2]);
     }
 }

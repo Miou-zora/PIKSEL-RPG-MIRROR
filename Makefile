@@ -35,6 +35,8 @@ TESTS_MENU =	tests/menu/main.c \
 				tests/menu/init_game/init_settings.c \
 				tests/menu/free_game/free_scene.c \
 				tests/menu/analyse_event/handle_settings.c \
+				tests/menu/analyse_event/handle_settings_functions.c \
+				tests/menu/analyse_event/handle_menu_functions.c \
 
 MAIN 		=	src/main.c
 
