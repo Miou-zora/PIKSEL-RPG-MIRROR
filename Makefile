@@ -5,7 +5,38 @@
 ## Makefile
 ##
 
-MAIN =					src/main.c
+SRC 		=	src/free.c \
+				src/display.c \
+				src/set_mouse_cursor.c \
+				src/init_game/init_cursor.c \
+				src/init_game/init_window.c \
+				src/init_game/init_game_end.c \
+				src/init_game/init_how_to_play.c \
+				src/init_game/init_intro.c \
+				src/init_game/init_menu.c \
+				src/init_game/init_options.c \
+				src/init_game/init_pause.c \
+				src/init_game/init_rpg.c \
+				src/init_game/init_sound.c \
+				src/init_game/init_music.c \
+				src/init_game/init_sprite.c \
+				src/init_game/init_clock.c \
+				src/analyse_event/change_menu.c \
+
+TESTS_MENU =	tests/menu/main.c \
+				tests/menu/analyse_event/event.c \
+				tests/menu/init_game/init_scene.c \
+				tests/menu/init_game/init_clock.c \
+				tests/menu/init_game/init_sprite.c \
+				tests/menu/init_game/init_window.c \
+				tests/menu/analyse_event/change_menu.c \
+				tests/menu/analyse_event/event.c \
+				tests/menu/display.c \
+				tests/menu/init_game/init_settings.c \
+				tests/menu/free_game/free_scene.c \
+				tests/menu/analyse_event/handle_settings.c \
+
+MAIN 		=	src/main.c
 
 SRC_ELEMENTARY =		src/elementary/get_file.c							\
 						src/elementary/get_data_from_file.c					\
@@ -92,6 +123,11 @@ make_lib:
 
 debug:		CFLAGS += -g
 debug:		re
+
+tests_menu:		make_lib $(OBJ_SRC)
+				@$(CC) $(OBJ_SRC) $(TESTS_MENU) $(CFLAGS) -o "tests_menu" $(LFLAGS)
+				@printf "\033[32m[Message]\033[39m Compilation de tests_menu \
+				réussi\n"
 
 clean:
 			@$(RM) $(OBJ_SRC)

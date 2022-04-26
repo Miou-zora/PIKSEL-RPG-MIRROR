@@ -6,13 +6,12 @@
 */
 
 #pragma once
-
 #include <SFML/Window.h>
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
-#include "stdbool.h"
+#include <stdbool.h>
 
 /************************** global ***********************************/
 
@@ -30,6 +29,9 @@ typedef struct armor_s armor_t;
 typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
+typedef struct scene_s scene_t;
+typedef struct selection_zone_s selection_zone_t;
+typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
 
 /************************** struct ***********************************/
@@ -75,6 +77,30 @@ struct clock_data_s {
     sfInt64 elapsed_time;
     sfTime currElapsedTime;
     int framerate;
+};
+
+struct selection_zone_s {
+    sfRectangleShape *hitbox;
+    sfVector2f *positions;
+    int current_pos;
+    int nb_of_poses;
+};
+
+struct settings_infos_s {
+    sfRectangleShape **fill_rectangles;
+    sfVector2f *rectangles_positions;
+    sfVector2f *rectangles_sizes;
+    bool sound;
+    bool music;
+    int fps;
+};
+
+struct scene_s {
+    sfRenderWindow *window;
+    sprite_data_t *background;
+    selection_zone_t *select_zone;
+    settings_infos_t *settings;
+    char *zone_name;
 };
 
 /************************** functions ***********************************/

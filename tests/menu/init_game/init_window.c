@@ -21,8 +21,8 @@
 int initialize_window(sfRenderWindow **window)
 {
     sfVideoMode mode = {1920, 1080, 32};
-    (*window) = sfRenderWindow_create(mode, "my_defender", sfResize |
-    sfClose, NULL);
+    (*window) = sfRenderWindow_create(mode,
+    "my_rpg", sfResize | sfClose, NULL);
     if ((*window) == NULL)
         return (84);
     return (0);
