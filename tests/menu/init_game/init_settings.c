@@ -14,7 +14,7 @@ int initialize_settings_values(settings_t **settings, scene_t **scene)
         return (84);
     (*scene)->settings = malloc(sizeof(settings_infos_t));
     (*settings)->fps = 60;
-    (*settings)->sound = false;
+    (*settings)->sound = true;
     (*settings)->music = true;
     (*scene)->settings->fps = (*settings)->fps;
     (*scene)->settings->sound = (*settings)->sound;

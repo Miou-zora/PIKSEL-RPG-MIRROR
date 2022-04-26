@@ -28,9 +28,6 @@
 
 int analyse_events(sfEvent *event, scene_t *scene, settings_t **settings)
 {
-    my_putstr("anayse_events : ");
-    my_put_nbr((*settings)->fps);
-    my_putchar('\n');
     if (event->type == sfEvtClosed) {
         sfRenderWindow_close(scene->window);
     }

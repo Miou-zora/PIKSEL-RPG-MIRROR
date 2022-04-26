@@ -79,25 +79,14 @@ void handle_fps(settings_t *settings, sfEvent *event)
     }
 }
 
-void handle_quit(scene_t *scene, sfEvent *event)
+void handle_quit(scene_t *scene)
 {
     scene_t *new_scene = NULL;
 
-    if (event->key.code == sfKeyEnter) {
-        free_scene(scene);
-        initialize_scene(&(new_scene), "menu", 3, false);
-        new_scene->window = scene->window;
-        // new_scene->settings = malloc(sizeof(settings_infos_t));
-        // my_putstr("coucou");
-        // my_put_nbr(scene->settings->fps);
-        // my_putstr("merguez");
-        // new_scene->settings->fps = scene->settings->fps;
-        // my_putstr("merguez");
-        // new_scene->settings->sound = scene->settings->sound;
-        // new_scene->settings->music = scene->settings->music;
-        // my_putstr("salut");
-        *scene = *new_scene;
-    }
+    free_scene(scene);
+    initialize_scene(&(new_scene), "menu", 3, false);
+    new_scene->window = scene->window;
+    *scene = *new_scene;
 }
 
 void handle_settings(scene_t **scene, sfEvent *event, settings_t *settings_struct)
@@ -105,9 +94,11 @@ void handle_settings(scene_t **scene, sfEvent *event, settings_t *settings_struc
     void(*settings[3])(settings_t *settings,
     sfEvent *event) =
     {handle_sound, handle_music, handle_fps};
-    my_putstr("handle_settings salut : ");
-    my_put_nbr(settings_struct->fps);
-    my_putstr("\n");
+
+    if (event->key.code == sfKeyEscape) {
+        my_putstr("coucou");
+        handle_quit((*scene));
+    }
     if ((*scene)->select_zone->current_pos == 3)
         sfRectangleShape_setSize((*scene)->select_zone->hitbox,
         (sfVector2f){190, 170});
@@ -116,11 +107,12 @@ void handle_settings(scene_t **scene, sfEvent *event, settings_t *settings_struc
         (sfVector2f){1220, 135});
     if ((*scene)->select_zone->current_pos <
     (*scene)->select_zone->nb_of_poses - 1) {
-        my_putstr("EHOHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
         settings[(*scene)->select_zone->current_pos](settings_struct,
         event);
-    } else
-        handle_quit((*scene), event);
+    } else if (event->key.code == sfKeyEnter ||
+    event->key.code == sfKeySpace) {
+        handle_quit((*scene));
+    }
     if (my_strcmp((*scene)->zone_name, "settings") == 0)
             modify_display_of_settings(settings_struct, (*scene));
 }
