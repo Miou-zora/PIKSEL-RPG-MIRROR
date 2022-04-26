@@ -101,6 +101,7 @@ armor_t **fill_all_armors(armor_t **armors, char **all_files);
 void destroy_all_armors(armor_t ***armors);
 armor_t **load_all_armors(char *filepath);
 void print_armor(armor_t *armor);
+void print_all_armors(armor_t **armors);
 
 //* sprite_data
 
