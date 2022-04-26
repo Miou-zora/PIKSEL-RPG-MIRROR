@@ -22,6 +22,24 @@ int initialize_settings_values(settings_t **settings, scene_t **scene)
     return (0);
 }
 
+void initialize_settings_rectangle_shapes(settings_infos_t *settings_infos)
+{
+    for (int i = 0; i < 3; i++) {
+        settings_infos->fill_rectangles[i] = sfRectangleShape_create();
+        sfRectangleShape_setPosition(settings_infos->fill_rectangles[i],
+        settings_infos->rectangles_positions[i * 2]);
+        sfRectangleShape_setFillColor(settings_infos->fill_rectangles[i],
+        sfTransparent);
+        sfRectangleShape_setOutlineThickness
+        (settings_infos->fill_rectangles[i], 6);
+        sfRectangleShape_setOutlineColor
+        (settings_infos->fill_rectangles[i],
+        sfColor_fromRGB((sfUint8)52, (sfUint8)201, (sfUint8)306));
+        sfRectangleShape_setSize(settings_infos->fill_rectangles[i], 
+        settings_infos->rectangles_sizes[i * 2]);
+    }
+}
+
 int initialize_settings_rectangles(settings_infos_t **settings_infos)
 {
     (*settings_infos) = malloc(sizeof(settings_infos_t));
@@ -34,20 +52,7 @@ int initialize_settings_rectangles(settings_infos_t **settings_infos)
     ("1100 295 1340 295 1100 535 1340 535 1100 775 1250 775 1400 775", 7);
     (*settings_infos)->rectangles_sizes = initialize_positions
     ("220 135 245 135 220 135 245 135 140 135 140 135 185 135", 7);
-    for (int i = 0; i < 3; i++) {
-        (*settings_infos)->fill_rectangles[i] = sfRectangleShape_create();
-        sfRectangleShape_setPosition((*settings_infos)->fill_rectangles[i],
-        (*settings_infos)->rectangles_positions[i * 2]);
-        sfRectangleShape_setFillColor((*settings_infos)->fill_rectangles[i],
-        sfTransparent);
-        sfRectangleShape_setOutlineThickness
-        ((*settings_infos)->fill_rectangles[i], 6);
-        sfRectangleShape_setOutlineColor
-        ((*settings_infos)->fill_rectangles[i],
-        sfColor_fromRGB((sfUint8)52, (sfUint8)201, (sfUint8)306));
-        sfRectangleShape_setSize((*settings_infos)->fill_rectangles[i], 
-        (*settings_infos)->rectangles_sizes[i * 2]);
-    }
+    initialize_settings_rectangle_shapes((*settings_infos));
     return (0);
 }
 

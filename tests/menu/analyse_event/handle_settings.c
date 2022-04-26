@@ -39,9 +39,9 @@ void modify_display_of_settings(settings_t *settings, scene_t *scene)
 
 void handle_sound(settings_t *settings, sfEvent *event)
 {
-    if (event->key.code == sfKeyRight)
+    if (event->key.code == sfKeyRight || event->key.code == sfKeyD)
         settings->sound = false;
-    if (event->key.code == sfKeyLeft)
+    if (event->key.code == sfKeyLeft || event->key.code == sfKeyQ)
         settings->sound = true;
     if (event->key.code == sfKeySpace || event->key.code == sfKeyEnter) {
         if (settings->sound == false)
@@ -53,9 +53,9 @@ void handle_sound(settings_t *settings, sfEvent *event)
 
 void handle_music(settings_t *settings, sfEvent *event)
 {
-    if (event->key.code == sfKeyRight)
+    if (event->key.code == sfKeyRight || event->key.code == sfKeyD)
         settings->music = false;
-    if (event->key.code == sfKeyLeft)
+    if (event->key.code == sfKeyLeft || event->key.code == sfKeyQ)
         settings->music = true;
     if (event->key.code == sfKeySpace || event->key.code == sfKeyEnter) {
         if (settings->music == false)
@@ -67,9 +67,11 @@ void handle_music(settings_t *settings, sfEvent *event)
 
 void handle_fps(settings_t *settings, sfEvent *event)
 {
-    if (event->key.code == sfKeyRight && settings->fps < 120)
+    if ((event->key.code == sfKeyRight || event->key.code == sfKeyD)
+    && settings->fps < 120)
         settings->fps *= 2;
-    if (event->key.code == sfKeyLeft && settings->fps > 30)
+    if ((event->key.code == sfKeyLeft || event->key.code == sfKeyQ)
+    && settings->fps > 30)
         settings->fps /= 2;
     if (event->key.code == sfKeySpace || event->key.code == sfKeyEnter) {
         if (settings->fps < 120)
