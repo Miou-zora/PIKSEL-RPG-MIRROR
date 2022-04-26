@@ -100,7 +100,7 @@ struct clock_data_s {
 };
 
 typedef struct game {
-    int pos[2];
+    int click[2];
     sfRenderWindow *window;
     sprite_data_t *sprite;
 }game_t;

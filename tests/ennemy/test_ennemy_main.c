@@ -24,8 +24,8 @@ int initialize_var(game_t *game)
 {
     game->window = sfRenderWindow_create((sfVideoMode){1080, 1920, 32},
     "ennemy_test", sfResize | sfClose, NULL);
-    game->pos[0] = 0;
-    game->pos[1] = 0;
+    game->click[0] = 0;
+    game->click[1] = 0;
     init_sprite(game);
     return (0);
 }
@@ -39,8 +39,8 @@ void display(game_t *game)
 
 void manage_mouse_click(sfMouseButtonEvent mouseButton, game_t *game)
 {
-    game->pos[0] = mouseButton.x;
-    game->pos[1] = mouseButton.y;
+    game->click[0] = mouseButton.x;
+    game->click[1] = mouseButton.y;
 }
 
 
@@ -54,9 +54,17 @@ void analyse_event(sfEvent event, game_t *game)
     return;
 }
 
-void move_ennemy(game_t *game) {
-    game->pos[0] += 1;
-    return;
+sprite_data_t *move_ennemy(sprite_data_t *sprite, int click[2]) {
+    if (sprite->pos.x < click[0] - (click[0] / 60) * 1.5)
+        sprite->pos.x += click[0] / 60 ;
+    else if (sprite->pos.x > click[0] + (click[0] / 60) * 1.5)
+        sprite->pos.x -= click[0] / 60 ;
+    if (sprite->pos.y < click[1] - (click[1] / 80) * 1.5)
+        sprite->pos.y += click[1] / 80;
+    else if (sprite->pos.y > click[1] + (click[1] / 80) * 1.5)
+        sprite->pos.y -= click[1] / 80;
+    sfSprite_setPosition(sprite->sprite, sprite->pos);
+    return (sprite);
 }
 
 int main(void)
@@ -74,10 +82,10 @@ int main(void)
     while (sfRenderWindow_isOpen(game->window)) {
         display(game);
         sfRenderWindow_display(game->window);
-        move_ennemy(game);
+        game->sprite = move_ennemy(game->sprite, game->click);
         while (sfRenderWindow_pollEvent(game->window, &event))
             analyse_event(event, game);
         sfRenderWindow_clear(game->window, sfBlack);
-        my_printf("x = %i, y = %i\n", game->pos[0], game->pos[1]);
+        my_printf("x = %i, y = %i\n", game->click[0], game->click[1]);
     }
 }
