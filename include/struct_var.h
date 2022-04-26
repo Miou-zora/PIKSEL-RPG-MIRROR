@@ -19,6 +19,7 @@
 
 /************************** enum ***********************************/
 
+enum types_weapon {SWORD = 1, SPEAR, GLOVES, GUN};
 enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
@@ -26,6 +27,7 @@ POWER, ARMOR, SPEED, CHARISMA};
 /************************** typedef ***********************************/
 
 typedef struct armor_s armor_t;
+typedef struct weapon_s weapon_t;
 typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
@@ -43,6 +45,15 @@ struct armor_s {
     enum types_bonus_basic type_bonus_basic;
     int rarity;
     int value_bonus;
+    sprite_data_t *sprite_data;
+};
+
+struct weapon_s {
+    char *name;
+    int id;
+    enum types_weapon type_weapon;
+    int rarity;
+    int damage;
     sprite_data_t *sprite_data;
 };
 
@@ -128,6 +139,13 @@ void destroy_all_armors(armor_t ***armors);
 armor_t **load_all_armors(char *filepath);
 void print_armor(armor_t *armor);
 void print_all_armors(armor_t **armors);
+
+//* weapon
+
+void destroy_weapon(weapon_t **weapon);
+weapon_t *create_weapon(void);
+weapon_t *load_weapon(char *filepath);
+weapon_t *fill_weapon(weapon_t *weapon, char **data);
 
 //* sprite_data
 
