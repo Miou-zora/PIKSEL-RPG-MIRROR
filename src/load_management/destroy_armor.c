@@ -12,11 +12,11 @@ void destroy_armor(armor_t **armor)
 {
     if (*armor) {
         if ((*armor)->name) {
-            freen((void **)&((*armor)->name));
+            freen(&((*armor)->name));
         }
         if ((*armor)->sprite_data) {
             destroy_sprite_data(&((*armor)->sprite_data));
         }
-        freen((void **)armor);
+        freen(armor);
     }
 }
