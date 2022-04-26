@@ -14,6 +14,7 @@ int free_scene(scene_t *scene)
     free(scene->background);
     free(scene->select_zone->positions);
     sfRectangleShape_destroy(scene->select_zone->hitbox);
+    scene->zone_name = NULL;
     free(scene->select_zone);
     return (0);
 }

@@ -33,6 +33,7 @@ typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
+typedef struct settings_s settings_t;
 
 /************************** struct ***********************************/
 
@@ -100,7 +101,14 @@ struct scene_s {
     sprite_data_t *background;
     selection_zone_t *select_zone;
     settings_infos_t *settings;
+    // settings_t *settings;
     char *zone_name;
+};
+
+struct settings_s {
+    bool sound;
+    bool music;
+    int fps;
 };
 
 /************************** functions ***********************************/

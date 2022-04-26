@@ -16,14 +16,10 @@ sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones)
     for (int i = 0; i < nb_of_zones; i++) {
         number = my_getnbr(&positions_buffer[pos_in_buffer]);
         positions_buffer += get_nbrlen(number) + 1;
-        my_put_nbr(number);
-        my_putchar(' ');
         positions[i].x = number;
         number = my_getnbr(&positions_buffer[pos_in_buffer]);
         positions_buffer += get_nbrlen(number) + 1;
         positions[i].y = number;
-        my_put_nbr(number);
-        my_putchar('\n');
     }
     return (positions);
 }
@@ -43,19 +39,21 @@ void initialize_hitbox(selection_zone_t **select_zone, char *positions_buffer, i
     sfRectangleShape_setSize((*select_zone)->hitbox, (sfVector2f){1220, 135});
 }
 
-int initialize_scene(scene_t **scene, char *zone_name, int nb_of_zones)
+int initialize_scene(scene_t **scene, char *zone_name,
+int nb_of_zones, bool new_window)
 {
     (*scene) = malloc(sizeof(scene_t));
     if ((*scene) == NULL)
         return (84);
-    if (initialize_window(&((*scene)->window)) == 84)
-        return (84);
+    if (new_window == true) {
+        if (initialize_window(&((*scene)->window)) == 84)
+            return (84);
+    }
     if (initialize_sprite_data(&((*scene)->background),
     "assets/menu/menu.png", (sfVector2f){8, 8}, (sfVector2f){0, 0}) == 84)
         return (84);
     initialize_hitbox(&((*scene)->select_zone), "365 295 365 535 365 775",
     nb_of_zones);
     (*scene)->zone_name = zone_name;
-    // my_put_nbr((*scene)->select_zone->current_pos);
     return (0);
 }

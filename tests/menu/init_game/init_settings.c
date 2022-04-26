@@ -7,6 +7,21 @@
 
 #include "rpg.h"
 
+int initialize_settings_values(settings_t **settings, scene_t **scene)
+{
+    (*settings) = malloc(sizeof(settings_t));
+    if ((*settings) == NULL)
+        return (84);
+    (*scene)->settings = malloc(sizeof(settings_infos_t));
+    (*settings)->fps = 60;
+    (*settings)->sound = false;
+    (*settings)->music = true;
+    (*scene)->settings->fps = (*settings)->fps;
+    (*scene)->settings->sound = (*settings)->sound;
+    (*scene)->settings->music = (*settings)->music;
+    return (0);
+}
+
 int initialize_settings_rectangles(settings_infos_t **settings_infos)
 {
     (*settings_infos) = malloc(sizeof(settings_infos_t));
@@ -56,7 +71,7 @@ int initialize_settings(scene_t **settings_scene, scene_t *old_scene)
         return (84);
     (*settings_scene)->window = old_scene->window;
     initialize_hitbox(&((*settings_scene)->select_zone),
-    "365 295 365 535 365 775 50 50", 4);
+    "365 295 365 535 365 775 90 830", 4);
     (*settings_scene)->zone_name = "settings";
     (*settings_scene)->select_zone->current_pos = 0;
     initialize_settings_rectangles(&((*settings_scene))->settings);

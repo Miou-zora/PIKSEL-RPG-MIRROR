@@ -34,7 +34,7 @@ int quit(scene_t *scene)
     return (0);
 }
 
-int change_menu(sfEvent *event, scene_t *scene)
+int change_menu(sfEvent *event, scene_t *scene, settings_t **settings_struct)
 {
     int(*functions_menu[3])(scene_t *scene) = {game, settings, quit};
 
@@ -55,7 +55,7 @@ int change_menu(sfEvent *event, scene_t *scene)
             return (84);
     }
     if (my_strcmp(scene->zone_name, "settings") == 0) {
-        handle_settings(scene, event);
+        handle_settings(&scene, event, (*settings_struct));
     }
     return (0);
 }
