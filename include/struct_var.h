@@ -74,6 +74,8 @@ struct player_s {
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
+    bool player_walk;
+    bool player_run;
     int player_mode;
     bool move_up;
     bool move_down;

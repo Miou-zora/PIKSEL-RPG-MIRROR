@@ -10,15 +10,23 @@
 #include "my.h"
 #include <stdio.h>
 
+int detect_if_key_pressed(player_t *player)
+{
+    if (player->move_up == false && player->move_down == false &&
+    player->move_left == false && player->move_right == false)
+        return (1);
+    return (0);
+}
+
 /////// DISPLAY SPRITE ///////
 
 void display(player_t *player)
 {
-    if (player->player_mode == 0)
+    if (detect_if_key_pressed(player) == 1)
         sfRenderWindow_drawSprite(player->window, player->iddle->sprite_data->sprite, NULL);
-    if (player->player_mode == 1)
+    if (player->player_mode == 1 && detect_if_key_pressed(player) == 0)
         sfRenderWindow_drawSprite(player->window, player->walk->sprite_data->sprite, NULL);
-    if (player->player_mode == 2)
+    if (player->player_mode == 2 && detect_if_key_pressed(player) == 0)
         sfRenderWindow_drawSprite(player->window, player->run->sprite_data->sprite, NULL);
 }
 
@@ -60,16 +68,15 @@ void player_animation_iddle(player_t *player)
 void clock_animation_player(player_t *player)
 {
     player->time_anim = sfClock_getElapsedTime(player->clock_anim);
-    player->seconds_anim = player->time_anim.microseconds;
-    sfClock_restart(player->clock_anim);
-    if (player->player_mode == 0)
-        player_animation_iddle(player);
-    if (player->player_mode == 1)
-        player_animation_walk(player);
-    if (player->player_mode == 2)
-        player_animation_run(player);
-    while (player->seconds_anim > 1000000.0) {
-        player->seconds_anim -= 1000000.0;
+    player->seconds_anim = player->time_anim.microseconds / 1000000.0;
+    if (player->seconds_anim > 0.08) {
+        if (detect_if_key_pressed(player) == 1)
+            player_animation_iddle(player);
+        if (player->player_mode == 1 && detect_if_key_pressed(player) == 0)
+            player_animation_walk(player);
+        if (player->player_mode == 2 && detect_if_key_pressed(player) == 0)
+            player_animation_run(player);
+        sfClock_restart(player->clock_anim);
     }
 }
 
@@ -77,27 +84,48 @@ void clock_animation_player(player_t *player)
 
 void update_position(player_t *player)
 {
-    sfSprite_getPosition(player->iddle->sprite_data->sprite);
-    sfSprite_setPosition(player->iddle->sprite_data->sprite,
-    player->walk->sprite_data->pos);
-    sfSprite_getPosition(player->walk->sprite_data->sprite);
-    sfSprite_setPosition(player->walk->sprite_data->sprite,
-    player->walk->sprite_data->pos);
-    sfSprite_getPosition(player->run->sprite_data->sprite);
-    sfSprite_setPosition(player->run->sprite_data->sprite,
-    player->walk->sprite_data->pos);
+    if (player->player_mode == 1) {
+        sfSprite_getPosition(player->iddle->sprite_data->sprite);
+        sfSprite_getPosition(player->walk->sprite_data->sprite);
+        sfSprite_getPosition(player->run->sprite_data->sprite);
+        sfSprite_setPosition(player->iddle->sprite_data->sprite,
+        player->walk->sprite_data->pos);
+        sfSprite_setPosition(player->run->sprite_data->sprite,
+        player->walk->sprite_data->pos);
+    }
+    if (player->player_mode == 2) {
+        sfSprite_getPosition(player->iddle->sprite_data->sprite);
+        sfSprite_getPosition(player->walk->sprite_data->sprite);
+        sfSprite_getPosition(player->run->sprite_data->sprite);
+        sfSprite_setPosition(player->iddle->sprite_data->sprite,
+        player->run->sprite_data->pos);
+        sfSprite_setPosition(player->run->sprite_data->sprite,
+        player->run->sprite_data->pos);
+    }
 }
 
-void move_player(player_t *player)
+void move_player_walk(player_t *player)
 {
-    if (player->move_up)
+    if (player->move_up == true && player->player_mode == 1)
         player->walk->sprite_data->pos.y -= 0.5;
-    if (player->move_down)
+    if (player->move_down == true && player->player_mode == 1)
         player->walk->sprite_data->pos.y += 0.5;
-    if (player->move_left)
+    if (player->move_left == true && player->player_mode == 1)
         player->walk->sprite_data->pos.x += 0.5;
-    if (player->move_right)
+    if (player->move_right == true && player->player_mode == 1)
         player->walk->sprite_data->pos.x -= 0.5;
+}
+
+void move_player_run(player_t *player)
+{
+    if (player->move_up == true && player->player_mode == 2)
+        player->run->sprite_data->pos.y -= 1.5;
+    if (player->move_down == true && player->player_mode == 2)
+        player->run->sprite_data->pos.y += 1.5;
+    if (player->move_left == true && player->player_mode == 2)
+        player->run->sprite_data->pos.x += 1.5;
+    if (player->move_right == true && player->player_mode == 2)
+        player->run->sprite_data->pos.x -= 1.5;
 }
 
 void clock_player(player_t *player)
@@ -105,7 +133,8 @@ void clock_player(player_t *player)
     player->time_player = sfClock_getElapsedTime(player->clock_player);
     player->seconds_player = player->time_player.microseconds;
     sfClock_restart(player->clock_player);
-    move_player(player);
+    move_player_walk(player);
+    move_player_run(player);
     update_position(player);
     while (player->seconds_player > 1000000.0) {
         player->seconds_player -= 1000000.0;
@@ -183,7 +212,6 @@ void create_sprite_player(player_t *player)
 void key_released(player_t *player)
 {
     if (player->event.type == sfEvtKeyReleased) {
-        player->player_mode = 0;
         player->move_up = false;
         player->move_down = false;
         player->move_left = false;
@@ -191,22 +219,35 @@ void key_released(player_t *player)
     }
 }
 
+void key_run(player_t *player)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyLShift) && (player->player_mode == 1))
+        player->player_mode = 2;
+    else if (sfKeyboard_isKeyPressed(sfKeyLShift) && (player->player_mode == 2))
+        player->player_mode = 1;
+
+    if (player->player_mode == 2) {
+        player->player_walk = false;
+        player->player_run = true;
+    } else if (player->player_mode == 1) {
+        player->player_walk = true;
+        player->player_run = false;
+    }
+}
+
 void detect_key(player_t *player)
 {
+    key_run(player);
     if (player->event.key.code == sfKeyZ) {
-        player->player_mode = 1;
         player->move_up = true;
     }
     if (player->event.key.code == sfKeyS) {
-        player->player_mode = 1;
         player->move_down = true;
     }
     if (player->event.key.code == sfKeyD) {
-        player->player_mode = 1;
         player->move_left = true;
     }
     if (player->event.key.code == sfKeyQ) {
-        player->player_mode = 1;
         player->move_right = true;
     }
     key_released(player);
@@ -233,7 +274,9 @@ int my_rpg(void)
     sfVideoMode mode = {1920, 1080, 32};
     player->clock_player= sfClock_create();
     player->clock_anim = sfClock_create();
-    player->player_mode = 0;
+    player->player_walk = false;
+    player->player_run = false;
+    player->player_mode = 1;
 
     player->window = sfRenderWindow_create(mode, "PIKSEL", sfClose | sfResize, NULL);
     player->iddle = animator_iddle;
