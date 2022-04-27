@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 void destroy_weapon(weapon_t **weapon)
 {

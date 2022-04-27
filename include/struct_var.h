@@ -62,6 +62,7 @@ struct npc_s {
 };
 
 struct stat_s {
+    int actual_life;
     int health;
     int armor;
     int power;
@@ -74,8 +75,9 @@ struct ennemy_s {
     int id;
     stat_t *stat;
     sprite_data_t *sprite_data;
+    animator_t *animator_standing;
+    animator_t *animator_moving;
     int max_left;
-    sfClock *clock;
 };
 
 struct armor_s {
@@ -201,6 +203,12 @@ void destroy_weapon(weapon_t **weapon);
 weapon_t *create_weapon(void);
 weapon_t *load_weapon(char *filepath);
 weapon_t *fill_weapon(weapon_t *weapon, char **data);
+weapon_t **create_all_weapons(char **all_files);
+weapon_t **fill_all_weapons(weapon_t **weapons, char **all_files);
+weapon_t **load_all_weapons(char *path);
+void destroy_all_weapons(weapon_t ***weapon);
+void print_all_weapons(weapon_t **weapons);
+void print_weapon(weapon_t *weapon);
 
 //* sprite_data
 
