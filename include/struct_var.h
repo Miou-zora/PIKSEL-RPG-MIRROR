@@ -23,6 +23,7 @@ enum types_weapon {SWORD = 1, SPEAR, GLOVES, GUN};
 enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
+enum types_ennemy {MOB = 1, MINI_BOSS, BOSS};
 
 /************************** typedef ***********************************/
 
@@ -31,12 +32,51 @@ typedef struct weapon_s weapon_t;
 typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
+typedef struct ennemy_s ennemy_t;
+typedef struct npc_s npc_t;
+typedef struct dialogues_s dialogues_t;
+typedef struct ennemy_sprite_s ennemy_sprite_t; 
+typedef struct stat_s stat_t;
 typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
 
 /************************** struct ***********************************/
+
+struct dialogues_s {
+    char *text;
+    bool text_changed;
+    dialogues_t *changed_text;
+    bool binary_reponse;
+    dialogues_t **next;
+    //struct quest *quest_add;
+};
+
+struct npc_s {
+    char *name;
+    sprite_data_t *sprite_data;
+    int postion[2];
+    struct dialogues *dialogue;
+    int index;
+};
+
+struct stat_s {
+    int health;
+    int armor;
+    int power;
+    int speed;
+};
+
+struct ennemy_s {
+    enum types_ennemy type_ennemy;
+    char *name;
+    int id;
+    stat_t *stat;
+    sprite_data_t *sprite_data;
+    int max_left;
+    sfClock *clock;
+};
 
 struct armor_s {
     char *name;
@@ -114,6 +154,14 @@ struct scene_s {
     char *zone_name;
 };
 
+typedef struct game {
+    int click[2];
+    sfRenderWindow *window;
+    ennemy_t *ennemy;
+    int distance[2];
+    sfClock *clock;
+}game_t;
+
 /************************** functions ***********************************/
 
 //* elementary
@@ -126,6 +174,13 @@ int get_number_of_files_in_directory(char *directory, char *expected_extension);
 char **get_files_from_directory(char *directory, char *expected_extension);
 void freen_array(void *array);
 bool verif_extension(char *filename, char *expected_extension);
+
+//*ennemy
+
+ennemy_t *create_ennemy(void);
+void destroy_ennemy(ennemy_t **ennemy);
+ennemy_t *fill_ennemy(ennemy_t *ennemy, char **data);
+ennemy_t *load_ennemy(char *path);
 
 //* armor
 

@@ -22,6 +22,21 @@ SRC 		=	src/free.c \
 				src/init_game/init_sprite.c \
 				src/init_game/init_clock.c \
 				src/analyse_event/change_menu.c \
+				src/elementary/get_file.c			\
+				src/elementary/get_data_from_file.c	\
+				src/elementary/freen.c				\
+				src/elementary/put_str_error.c		\
+				src/load_management/create_armor.c	\
+				src/load_management/fill_armor.c	\
+				src/load_management/destroy_armor.c	\
+				src/load_management/load_armor.c	\
+				src/load_management/create_sprite_data.c	\
+				src/load_management/destroy_sprite_data.c	\
+				src/load_management/load_sprite_data.c		\
+				src/ennemy/create_ennemy.c 		\
+				src/ennemy/destroy_ennemy.c 	\
+				src/ennemy/fill_ennemy.c 	\
+				src/ennemy/load_ennemy.c 	\
 
 TESTS_MENU =	tests/menu/main.c \
 				tests/menu/analyse_event/event.c \
@@ -37,6 +52,7 @@ TESTS_MENU =	tests/menu/main.c \
 				tests/menu/analyse_event/handle_settings.c \
 
 MAIN 		=	src/main.c
+
 
 SRC_ELEMENTARY =		src/elementary/get_file.c							\
 						src/elementary/get_data_from_file.c					\
@@ -85,6 +101,8 @@ TEST_FONC =		tests/elementary/test_freen.c								\
 				tests/elementary/test_get_files_from_directory.c			\
 				tests/load_management/test_load_animator.c					\
 				tests/load_management/test_load_weapon.c
+
+TEST_ENNEMY = 	tests/ennemy/test_ennemy_main.c	\
 
 MAIN_DEBUG	=	src/temp_test.c
 
@@ -151,6 +169,9 @@ tests_run:		tclean $(NAME)
 			gcovr -e tests
 			gcovr -e tests -bu
 
+tests_ennemy: 	make_lib $(OBJ_SRC)
+			@$(CC) $(OBJ_SRC) $(TEST_ENNEMY) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
+			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy \
 tests_player:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_player" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_player \
