@@ -12,13 +12,10 @@ int initialize_settings_values(settings_t **settings, scene_t **scene)
     (*settings) = malloc(sizeof(settings_t));
     if ((*settings) == NULL)
         return (84);
-    (*scene)->settings = malloc(sizeof(settings_infos_t));
+    my_putstr((*scene)->zone_name);
     (*settings)->fps = 60;
     (*settings)->sound = true;
     (*settings)->music = true;
-    (*scene)->settings->fps = (*settings)->fps;
-    (*scene)->settings->sound = (*settings)->sound;
-    (*scene)->settings->music = (*settings)->music;
     return (0);
 }
 
@@ -56,13 +53,6 @@ int initialize_settings_rectangles(settings_infos_t **settings_infos)
     return (0);
 }
 
-void initialize_settings_infos(settings_infos_t **settings)
-{
-    (*settings)->fps = 30;
-    (*settings)->music = true;
-    (*settings)->sound = false;
-}
-
 int initialize_settings(scene_t **settings_scene, scene_t *old_scene)
 {
     sfRenderWindow_clear(old_scene->window, sfBlack);
@@ -80,6 +70,5 @@ int initialize_settings(scene_t **settings_scene, scene_t *old_scene)
     (*settings_scene)->zone_name = "settings";
     (*settings_scene)->select_zone->current_pos = 0;
     initialize_settings_rectangles(&((*settings_scene))->settings);
-    initialize_settings_infos(&((*settings_scene)->settings));
     return (0);
 }

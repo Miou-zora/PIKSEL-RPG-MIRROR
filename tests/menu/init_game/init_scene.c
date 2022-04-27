@@ -57,5 +57,6 @@ int nb_of_zones, bool new_window)
     initialize_hitbox(&((*scene)->select_zone), "365 295 365 535 365 775",
     nb_of_zones);
     (*scene)->zone_name = zone_name;
+    (*scene)->settings = NULL;
     return (0);
 }

@@ -55,6 +55,8 @@ int my_rpg(void)
             display(menu);
         }
     }
+    my_putstr("coucou");
+    free_game(menu, settings, principal_clock);
     return (0);
 }
 

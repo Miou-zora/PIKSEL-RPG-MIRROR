@@ -60,3 +60,5 @@ int go_to_good_menu(scene_t *scene, settings_t *settings_struct);
 /**************************free functions************************************/
 
 int free_scene(scene_t *scene);
+void free_game(scene_t *scene, settings_t *settings, clock_data_t *clock);
+void free_settings(settings_infos_t *settings);

@@ -55,6 +55,8 @@ void handle_quit(scene_t *scene)
 {
     scene_t *new_scene = NULL;
 
+    free_settings(scene->settings);
+    free(scene->settings);
     free_scene(scene);
     initialize_scene(&(new_scene), "menu", 3, false);
     new_scene->window = scene->window;

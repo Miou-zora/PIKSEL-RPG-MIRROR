@@ -91,9 +91,6 @@ struct settings_infos_s {
     sfRectangleShape **fill_rectangles;
     sfVector2f *rectangles_positions;
     sfVector2f *rectangles_sizes;
-    bool sound;
-    bool music;
-    int fps;
 };
 
 struct scene_s {
