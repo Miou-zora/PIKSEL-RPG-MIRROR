@@ -18,7 +18,7 @@
 #include "struct_var.h"
 
 
-void display(scene_t *scene);
+//void display(scene_t *scene);
 // void free_all(game_t *game);
 int my_rpg(void);
 // void set_mouse_cursor(game_t *game);
@@ -46,6 +46,7 @@ sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones);
 
 /************************set event fonctions*********************************/
 
+void analyse_event(sfEvent event, game_t *game);
 int change_menu(sfEvent *event, scene_t *scene);
 void handle_settings(scene_t *scene, sfEvent *event);
 
