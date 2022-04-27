@@ -7,10 +7,16 @@
 
 #include "rpg.h"
 
-int game(scene_t *scene)
+int game(scene_t *scene, text_zone_t **text_zone)
 {
-    sfRenderWindow_display(scene->window);
-    my_putstr("game\n");
+    scene_t *new_scene = NULL;
+
+    if (free_scene(scene) == 84)
+        return (84);
+    if (initialize_game(&(new_scene), scene) == 84)
+        return (84);
+    *scene = *new_scene;
+    create_text_zone(&(scene), text_zone, "coucou je suis le texte");
     return (0);
 }
 
@@ -39,13 +45,16 @@ int quit(scene_t *scene)
     return (0);
 }
 
-int go_to_good_menu(scene_t *scene, settings_t *settings_struct)
+int go_to_good_menu(scene_t *scene,
+settings_t *settings_struct, text_zone_t **text_zone)
 {
-    if (scene->select_zone->current_pos == 0)
-        game(scene);
-    if (scene->select_zone->current_pos == 1)
+    if (scene->select_zone->current_pos == 0) {
+        return (game(scene, text_zone));
+    }
+    if (scene->select_zone->current_pos == 1) {
         if (settings(scene, settings_struct) == 84)
             return (84);
+    }
     if (scene->select_zone->current_pos == 2)
         quit(scene);
     return (0);

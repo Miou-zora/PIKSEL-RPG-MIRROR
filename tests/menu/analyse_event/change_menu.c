@@ -8,7 +8,7 @@
 #include "rpg.h"
 
 int handle_keyboard_inputs(sfEvent *event,
-scene_t *scene, settings_t **settings_struct)
+scene_t *scene, settings_t **settings_struct, text_zone_t **text_zone)
 {
     if ((event->key.code == sfKeyDown || event->key.code == sfKeyS) &&
     scene->select_zone->current_pos != scene->select_zone->nb_of_poses - 1) {
@@ -25,15 +25,17 @@ scene_t *scene, settings_t **settings_struct)
     if ((event->key.code == sfKeyEnter || event->key.code == sfKeySpace)
     && my_strcmp(scene->zone_name, "menu")
     == 0) {
-        if (go_to_good_menu(scene, (*settings_struct)) == 84)
+        if (go_to_good_menu(scene, (*settings_struct), text_zone) == 84)
             return (84);
     }
     return (0);
 }
 
-int change_menu(sfEvent *event, scene_t *scene, settings_t **settings_struct)
+int change_menu(sfEvent *event, scene_t *scene,
+settings_t **settings_struct, text_zone_t **text_zone)
 {
-    if (handle_keyboard_inputs(event, scene, settings_struct) == 84)
+    my_putstr("salut");
+    if (handle_keyboard_inputs(event, scene, settings_struct, text_zone) == 84)
         return (84);
     if (my_strcmp(scene->zone_name, "settings") == 0) {
         handle_settings(&scene, event, (*settings_struct));

@@ -8,21 +8,23 @@
 #include "my.h"
 #include "rpg.h"
 
-int analyse_events(sfEvent *event, scene_t *scene, settings_t **settings)
+int analyse_events(sfEvent *event, scene_t *scene, settings_t **settings, text_zone_t **text_zone)
 {
     if (event->type == sfEvtClosed) {
         sfRenderWindow_close(scene->window);
     }
-    if (event->type == sfEvtKeyPressed)
-        if (change_menu(event, scene, &(*settings)) == 84)
+    if (event->type == sfEvtKeyPressed && (my_strcmp(scene->zone_name, "menu")
+    == 0 || my_strcmp(scene->zone_name, "settings") == 0))
+        if (change_menu(event, scene, &(*settings), text_zone) == 84)
             return (84);
     return (0);
 }
 
-void update(scene_t *menu, settings_t *settings, sfEvent event)
+void update(scene_t *menu, settings_t *settings,
+sfEvent event, text_zone_t **text_zone)
 {
     while (sfRenderWindow_pollEvent(menu->window, &event))
-        analyse_events(&event, menu, &settings);
+        analyse_events(&event, menu, &settings, text_zone);
     sfRenderWindow_clear(menu->window, sfBlack);
 }
 
@@ -40,6 +42,7 @@ int my_rpg(void)
     sfEvent event;
     clock_data_t *principal_clock;
     settings_t *settings;
+    text_zone_t *text_zone;
 
     if (initialize_scene(&menu, "menu", 3, true) == 84)
         return (84);
@@ -51,8 +54,8 @@ int my_rpg(void)
         update_main_clock(principal_clock);
         while (principal_clock->elapsed_time > 10000) {
             principal_clock->elapsed_time -= 10000;
-            update(menu, settings, event);
-            display(menu);
+            update(menu, settings, event, &text_zone);
+            display(menu, text_zone);
         }
     }
     my_putstr("coucou");
