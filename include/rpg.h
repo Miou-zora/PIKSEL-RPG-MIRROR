@@ -59,6 +59,7 @@ void handle_music(settings_t *settings, sfEvent *event);
 void handle_quit(scene_t *scene);
 int go_to_good_menu(scene_t *scene,
 settings_t *settings_struct, text_zone_t **text_zone);
+void analyse_event(sfEvent event, game_t *game);
 
 /**************************free functions************************************/
 
@@ -68,6 +69,5 @@ void free_settings(settings_infos_t *settings);
 
 /************************text zone functions*********************************/
 
-void create_text_zone(scene_t **scene,
-text_zone_t **text_zone, char *text_string);
+void create_text_zone(text_zone_t **text_zone, char *text_string);
 void display_text_zone(sfRenderWindow *window, text_zone_t *text_zone);

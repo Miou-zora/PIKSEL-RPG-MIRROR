@@ -26,6 +26,7 @@ sfEvent event, text_zone_t **text_zone)
     while (sfRenderWindow_pollEvent(menu->window, &event))
         analyse_events(&event, menu, &settings, text_zone);
     sfRenderWindow_clear(menu->window, sfBlack);
+    // display_one_more_char(text_zone);
 }
 
 void update_main_clock(clock_data_t *principal_clock)
@@ -58,7 +59,6 @@ int my_rpg(void)
             display(menu, text_zone);
         }
     }
-    my_putstr("coucou");
     free_game(menu, settings, principal_clock);
     return (0);
 }
