@@ -18,7 +18,11 @@
 #include "struct_var.h"
 
 
+<<<<<<< HEAD
 void display(scene_t *scene, text_zone_t *text_zone);
+=======
+//void display(scene_t *scene);
+>>>>>>> cae98e380a0e684a6e9c5ef0b7b92989843a2ee7
 // void free_all(game_t *game);
 int my_rpg(void);
 // void set_mouse_cursor(game_t *game);
