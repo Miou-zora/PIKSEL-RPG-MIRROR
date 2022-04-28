@@ -18,6 +18,7 @@
 #include "struct_var.h"
 
 void display(scene_t *scene, text_zone_t *text_zone);
+void update_clock(clock_data_t *clock);
 // void free_all(game_t *game);
 int my_rpg(void);
 // void set_mouse_cursor(game_t *game);
