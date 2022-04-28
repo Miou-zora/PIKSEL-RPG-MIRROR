@@ -7,7 +7,11 @@
 
 #include "rpg.h"
 
-// void display_one_more_char(text_zone_t **text_zone)
-// {
-
-// }
+void display_one_more_char(text_zone_t **text_zone)
+{
+    (*text_zone)->current_string = my_strncpy((*text_zone)->current_string,
+    (*text_zone)->text_string, (*text_zone)->which_character);
+    if ((*text_zone)->which_character < my_strlen((*text_zone)->text_string))
+        (*text_zone)->which_character++;
+    sfText_setString((*text_zone)->text, (*text_zone)->current_string);
+}

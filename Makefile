@@ -57,6 +57,7 @@ TESTS_MENU =	tests/menu/main.c \
 				tests/menu/init_game/init_game.c \
 				tests/menu/text_zones/handle_texts_zones.c \
 				tests/menu/text_zones/display_text_zone.c \
+				tests/menu/text_zones/display_one_more_char.c \
 
 MAIN 		=	src/main.c
 

@@ -25,7 +25,7 @@ void create_text_zone(text_zone_t **text_zone, char *text_string)
     sfSprite_setPosition((*text_zone)->sprite_zone, (sfVector2f){120, 450});
     sfSprite_setScale((*text_zone)->sprite_zone, (sfVector2f){7, 7});
     sfText_setFont((*text_zone)->text, (*text_zone)->font);
-    sfText_setString((*text_zone)->text, (*text_zone)->text_string);
+    sfText_setString((*text_zone)->text, (*text_zone)->current_string);
     sfText_setColor((*text_zone)->text, sfBlack);
     sfText_setPosition((*text_zone)->text, (sfVector2f){150, 750});
     (*text_zone)->which_character = 0;

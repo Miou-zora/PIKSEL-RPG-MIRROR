@@ -26,7 +26,8 @@ sfEvent event, text_zone_t **text_zone)
     while (sfRenderWindow_pollEvent(menu->window, &event))
         analyse_events(&event, menu, &settings, text_zone);
     sfRenderWindow_clear(menu->window, sfBlack);
-    // display_one_more_char(text_zone);
+    if (my_strcmp(menu->zone_name, "game") == 0)
+        display_one_more_char(text_zone);
 }
 
 void update_main_clock(clock_data_t *principal_clock)
