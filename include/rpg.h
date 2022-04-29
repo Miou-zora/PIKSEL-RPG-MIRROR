@@ -72,3 +72,4 @@ void free_settings(settings_infos_t *settings);
 int create_text_zone(text_zone_t **text_zone, char *text_string);
 void display_text_zone(sfRenderWindow *window, text_zone_t *text_zone);
 void display_one_more_char(text_zone_t **text_zone);
+void free_text_zone(text_zone_t *text_zone);

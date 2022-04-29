@@ -71,6 +71,9 @@ int my_rpg(void)
             display(menu, text_zone);
         }
     }
+    if (my_strcmp(menu->zone_name, "game") == 0) {
+        free_text_zone(text_zone);
+    }
     free_game(menu, settings, principal_clock);
     return (0);
 }
