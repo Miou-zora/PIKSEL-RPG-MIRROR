@@ -16,7 +16,7 @@ int game(scene_t *scene, text_zone_t **text_zone)
     if (initialize_game(&(new_scene), scene) == 84)
         return (84);
     *scene = *new_scene;
-    if (create_text_zone(text_zone, "salut  mec  comment  ca  va  mathis  coucou  coucou  regarde  je  peux  changer  de  ligne  je  sais  pas  quoi  ecrire  je  veux  juste  tester  si  le  retoiur  a  la  ligne  fonctionne  bien  et  mainteant  que  je  sais  que  ca  fonctionne  pour  une  ligne  je  veux  tester  pour  deux  et  meme  pour  trois  lignes  pourqoi  pas  si  ca  se  trouve  ca  ne  fonctionne  pas  comme  je  veux") == 84)
+    if (create_text_zone(text_zone, "coucou test") == 84)
         return (84);
     if (initialize_clock(&((*text_zone)->text_clock)) == 84)
         return (84);

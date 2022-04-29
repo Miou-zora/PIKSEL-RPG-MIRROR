@@ -26,8 +26,8 @@ sfEvent *event, text_zone_t **text_zone)
 {
     while (sfRenderWindow_pollEvent(menu->window, event)) {
         analyse_events(event, menu, &settings, text_zone);
-        if (event->type == sfEvtKeyPressed && event->key.code == sfKeySpace) {
-            my_putstr("coucou");
+        if (event->type == sfEvtKeyPressed && event->key.code == sfKeySpace
+        && my_strcmp(menu->zone_name, "game") == 0) {
             (*text_zone)->enter_is_pressed = true;
         }
     }
