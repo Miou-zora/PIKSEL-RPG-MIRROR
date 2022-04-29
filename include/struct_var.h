@@ -81,6 +81,7 @@ struct player_s {
     bool move_down;
     bool move_left;
     bool move_right;
+    sfVector2f pos;
 };
 
 struct clock_data_s {

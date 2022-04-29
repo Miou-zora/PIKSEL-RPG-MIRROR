@@ -60,9 +60,10 @@ void player_animation_iddle(player_t *player)
     player->iddle->sprite_data->rect.left += 48;
     if (player->iddle->sprite_data->rect.left == 288)
         player->iddle->sprite_data->rect.left = 0;
-    sfSprite_getTextureRect(player->iddle->sprite_data->sprite);
     sfSprite_setTextureRect(player->iddle->sprite_data->sprite,
     player->iddle->sprite_data->rect);
+    sfSprite_setPosition(player->iddle->sprite_data->sprite,
+    player->iddle->sprite_data->pos);
 }
 
 void clock_animation_player(player_t *player)
@@ -84,48 +85,33 @@ void clock_animation_player(player_t *player)
 
 void update_position(player_t *player)
 {
-    if (player->player_mode == 1) {
-        sfSprite_getPosition(player->iddle->sprite_data->sprite);
-        sfSprite_getPosition(player->walk->sprite_data->sprite);
-        sfSprite_getPosition(player->run->sprite_data->sprite);
-        sfSprite_setPosition(player->iddle->sprite_data->sprite,
-        player->walk->sprite_data->pos);
-        sfSprite_setPosition(player->run->sprite_data->sprite,
-        player->walk->sprite_data->pos);
-    }
-    if (player->player_mode == 2) {
-        sfSprite_getPosition(player->iddle->sprite_data->sprite);
-        sfSprite_getPosition(player->walk->sprite_data->sprite);
-        sfSprite_getPosition(player->run->sprite_data->sprite);
-        sfSprite_setPosition(player->iddle->sprite_data->sprite,
-        player->run->sprite_data->pos);
-        sfSprite_setPosition(player->run->sprite_data->sprite,
-        player->run->sprite_data->pos);
-    }
+    sfSprite_setPosition(player->run->sprite_data->sprite, player->pos);
+    sfSprite_setPosition(player->walk->sprite_data->sprite, player->pos);
+    sfSprite_setPosition(player->iddle->sprite_data->sprite, player->pos);
 }
 
 void move_player_walk(player_t *player)
 {
     if (player->move_up == true && player->player_mode == 1)
-        player->walk->sprite_data->pos.y -= 0.5;
+        player->pos.y -= 0.5;
     if (player->move_down == true && player->player_mode == 1)
-        player->walk->sprite_data->pos.y += 0.5;
+        player->pos.y += 0.5;
     if (player->move_left == true && player->player_mode == 1)
-        player->walk->sprite_data->pos.x += 0.5;
+        player->pos.x += 0.5;
     if (player->move_right == true && player->player_mode == 1)
-        player->walk->sprite_data->pos.x -= 0.5;
+        player->pos.x -= 0.5;
 }
 
 void move_player_run(player_t *player)
 {
     if (player->move_up == true && player->player_mode == 2)
-        player->run->sprite_data->pos.y -= 1.5;
+        player->pos.y -= 1.5;
     if (player->move_down == true && player->player_mode == 2)
-        player->run->sprite_data->pos.y += 1.5;
+        player->pos.y += 1.5;
     if (player->move_left == true && player->player_mode == 2)
-        player->run->sprite_data->pos.x += 1.5;
+        player->pos.x += 1.5;
     if (player->move_right == true && player->player_mode == 2)
-        player->run->sprite_data->pos.x -= 1.5;
+        player->pos.x -= 1.5;
 }
 
 void clock_player(player_t *player)
@@ -285,6 +271,7 @@ int my_rpg(void)
     player->walk->sprite_data = sprite_data_walk;
     player->run = animator_run;
     player->run->sprite_data = sprite_data_run;
+    player->pos = (sfVector2f){0, 0};
     create_sprite_player(player);
     while (sfRenderWindow_isOpen(player->window)) {
         while (sfRenderWindow_pollEvent(player->window, &player->event))
