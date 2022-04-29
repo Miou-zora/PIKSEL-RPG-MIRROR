@@ -53,6 +53,8 @@ TESTS_MENU =	tests/menu/main.c \
 
 MAIN 		=	src/main.c
 
+MAIN_TEST_ANIMATION =	tests/test_main_animation.c
+
 
 SRC_ELEMENTARY =		src/elementary/get_file.c							\
 						src/elementary/get_data_from_file.c					\
@@ -176,10 +178,16 @@ tests_run:		tclean $(NAME)
 
 tests_ennemy: 	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_ENNEMY) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy \
+			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy
+
 tests_player:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_player" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_player \
+			réussi\n"
+
+tests_animation: make_lib $(OBJ_SRC)
+			@$(CC) $(OBJ_SRC) $(MAIN_TEST_ANIMATION) $(CFLAGS) -o "tests_animation" $(LFLAGS)
+			@printf "\033[32m[Message]\033[39m Compilation de tests_animation \
 			réussi\n"
 
 tclean:

@@ -12,8 +12,8 @@
 bool fill_animator_size_image(animator_t *animator, char *data)
 {
     char **values = data_to_array_str(data, "/");
-    char x = 0;
-    char y = 0;
+    int x = 0;
+    int y = 0;
 
     if (values == NULL || get_len_array(values) != 2 || animator == NULL) {
         return (true);
@@ -57,7 +57,7 @@ bool fill_animator_clock(animator_t *animator, char *data)
     if (animator->clock_data == NULL || framerate <= 0) {
         return (true);
     } else {
-        animator->clock_data->framerate = my_getnbr(data);
+        animator->clock_data->framerate = 1000000 / my_getnbr(data);
     }
     return (false);
 }
@@ -84,12 +84,22 @@ animator_t *fill_animator(animator_t *animator, char **data)
         return (NULL);
     } else {
         animator->sprite_data = load_sprite_data(data[4]);
+        if (!error)
+            my_printf("%s\n", "animator loaded");
         error |= fill_animator_clock(animator, data[0]);
+        if (!error)
+            my_printf("%s\n", "animator loaded");
         error |= fill_animator_nbr_image_xy(animator, data[1]);
+        if (!error)
+            my_printf("%s\n", "animator loaded");
         error |= fill_animator_size_image(animator, data[3]);
+        if (!error)
+            my_printf("%s\n", "animator loaded");
         error |= fill_animator_nbr_image(animator, data[2]);
+        if (!error)
+            my_printf("%s\n", "animator loaded");
         if (error || animator->sprite_data == NULL) {
-            destroy_animator(&animator);
+            return(NULL);
         }
     }
     return (animator);
