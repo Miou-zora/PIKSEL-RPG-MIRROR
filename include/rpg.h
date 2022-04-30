@@ -17,26 +17,17 @@
 #include <stdlib.h>
 #include "struct_var.h"
 
+/***********************init fonctions player********************************/
 
-void display(game_t *game);
-void free_all(game_t *game);
-int my_rpg(void);
-void set_mouse_cursor(game_t *game);
-
-/**************************init fonctions***********************************/
-
-int initialize_var(game_t *game);
-int initialize_cursor(game_t *game);
-int initialize_game_end(game_t *game);
-int initialize_how_to_play(game_t *game);
-int initialize_intro(game_t *game);
-int initialize_menu(game_t *game);
-int initialize_options(game_t *game);
-int initialize_pause(game_t *game);
-int initialize_window(game_t *game);
-int initialize_sound(game_t *game);
-int initialize_music(game_t *game);
-
-/************************set event fonctions*********************************/
-
-void analyse_event(game_t *game);
+void clock_animation_player(player_t *player);
+void clock_player(player_t *player);
+void create_sprite_player(player_t *player);
+void display(player_t *player);
+int detect_if_key_pressed(player_t *player);
+void analyse_events(player_t *player);
+void move_player_walk(player_t *player);
+void move_player_run(player_t *player);
+void player_animation_iddle(player_t *player);
+void player_animation_walk(player_t *player);
+void player_animation_run(player_t *player);
+void update_position(player_t *player);

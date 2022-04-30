@@ -61,7 +61,15 @@ CC			=	gcc
 
 TEST_BINARY	=	unit_tests
 
-TEST_PLAYER =	tests/tests_file/test_file_player.c    \
+TEST_PLAYER =	tests/tests_file/main_loop.c					\
+				tests/tests_file/clock_player.c					\
+				tests/tests_file/create_sprites_player.c		\
+				tests/tests_file/detect_key.c					\
+				tests/tests_file/display_sprite.c				\
+				tests/tests_file/events.c						\
+				tests/tests_file/move_player.c					\
+				tests/tests_file/player_animation.c				\
+				tests/tests_file/player_position.c				\
 
 CFLAGS		=	-Wall -Wextra -Wshadow -Werror -I./include -lcsfml-audio \
 				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
