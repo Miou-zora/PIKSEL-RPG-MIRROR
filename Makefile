@@ -124,6 +124,9 @@ TEST_PLAYER =	src/entities/player/test_file_player.c    \
 CFLAGS		=	-Wall -Wextra -Wshadow -Werror -I./include -lcsfml-audio \
 				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
 
+CFLAGS_MENU		=	-Wall -Wextra -Wshadow -Werror -I./tests/menu/include -lcsfml-audio \
+				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
+
 TESTS_FLAGS	=	--coverage -lcriterion
 
 LFLAGS		=	-L./lib -lmy
@@ -152,7 +155,7 @@ debug:		CFLAGS += -g
 debug:		re
 
 tests_menu:		make_lib $(OBJ_SRC)
-				@$(CC) $(OBJ_SRC) $(TESTS_MENU) $(CFLAGS) -o "tests_menu" $(LFLAGS) -g
+				@$(CC) $(OBJ_SRC) $(TESTS_MENU) $(CFLAGS_MENU) -o "tests_menu" $(LFLAGS) -g
 				@printf "\033[32m[Message]\033[39m Compilation de tests_menu \
 				réussi\n"
 
