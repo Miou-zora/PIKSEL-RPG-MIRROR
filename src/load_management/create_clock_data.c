@@ -13,8 +13,8 @@ clock_data_t *create_clock_data(void)
     clock_data_t *clock_data = malloc(sizeof(*clock_data));
 
     clock_data->clocksfInt64 = sfClock_create();
-    clock_data->elapsed_time = 0;
-    clock_data->currElapsedTime = (sfTime){0};
-    clock_data->framerate = 0;
+    clock_data->elapsed_time = NOT_SET;
+    clock_data->currElapsedTime = (sfTime){NOT_SET};
+    clock_data->framerate = NOT_SET;
     return (clock_data);
 }

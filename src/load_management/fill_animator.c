@@ -12,8 +12,8 @@
 bool fill_animator_size_image(animator_t *animator, char *data)
 {
     char **values = data_to_array_str(data, "/");
-    char x = 0;
-    char y = 0;
+    int x = 0;
+    int y = 0;
 
     if (values == NULL || get_len_array(values) != 2 || animator == NULL) {
         return (true);
@@ -57,7 +57,7 @@ bool fill_animator_clock(animator_t *animator, char *data)
     if (animator->clock_data == NULL || framerate <= 0) {
         return (true);
     } else {
-        animator->clock_data->framerate = my_getnbr(data);
+        animator->clock_data->framerate = 1000000 / my_getnbr(data);
     }
     return (false);
 }
@@ -89,8 +89,10 @@ animator_t *fill_animator(animator_t *animator, char **data)
         error |= fill_animator_size_image(animator, data[3]);
         error |= fill_animator_nbr_image(animator, data[2]);
         if (error || animator->sprite_data == NULL) {
-            destroy_animator(&animator);
+            return(NULL);
         }
+        animator->sprite_data->rect.height = animator->size_image.y;
+        animator->sprite_data->rect.width = animator->size_image.x;
     }
     return (animator);
 }
