@@ -44,15 +44,6 @@ typedef struct text_zone_s text_zone_t;
 
 /************************** struct ***********************************/
 
-struct dialogues_s {
-    char *text;
-    bool text_changed;
-    dialogues_t *changed_text;
-    bool binary_reponse;
-    dialogues_t **next;
-    //struct quest *quest_add;
-};
-
 struct npc_s {
     char *name;
     sprite_data_t *sprite_data;
@@ -148,14 +139,20 @@ struct settings_s {
     int fps;
 };
 
+struct dialogues_s {
+    text_zone_t *text_zone;
+    bool binary_reponse;
+    dialogues_t **next;
+    //struct quest *quest_add;
+};
+
 struct text_zone_s {
     sfText *text;
     sfFont *font;
     char *text_string;
     char *current_string;
     int which_character;
-    sfSprite *sprite_zone;
-    sfTexture *texture_zone;
+    sprite_data_t *text_zone_sprite;
     clock_data_t *text_clock;
     bool enter_is_pressed;
 };

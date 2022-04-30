@@ -31,19 +31,9 @@ int set_text_strings(text_zone_t **text_zone, char *text_string)
 
 int set_text_zone_variables(text_zone_t **text_zone)
 {
-    (*text_zone)->sprite_zone = sfSprite_create();
-    if ((*text_zone)->sprite_zone == NULL) {
-        return (84);
-    }
-    (*text_zone)->texture_zone =
-    sfTexture_createFromFile("assets/text_zone/text_zone.png", NULL);
-    if ((*text_zone)->texture_zone == NULL) {
-        return (84);
-    }
-    sfSprite_setTexture((*text_zone)->sprite_zone,
-    (*text_zone)->texture_zone, sfFalse);
-    sfSprite_setPosition((*text_zone)->sprite_zone, (sfVector2f){120, 450});
-    sfSprite_setScale((*text_zone)->sprite_zone, (sfVector2f){7, 7});
+    initialize_sprite_data(&((*text_zone)->text_zone_sprite),
+    "assets/text_zone/text_zone.png", (sfVector2f){7, 7},
+    (sfVector2f){120, 450});
     sfText_setFont((*text_zone)->text, (*text_zone)->font);
     sfText_setString((*text_zone)->text, (*text_zone)->current_string);
     sfText_setColor((*text_zone)->text, sfBlack);
@@ -73,5 +63,36 @@ int create_text_zone(text_zone_t **text_zone, char *text_string)
         return (84);
     (*text_zone)->which_character = 0;
     (*text_zone)->enter_is_pressed = false;
+    return (0);
+}
+
+int create_dialogue_bubble(dialogues_t **bubble, char *string)
+{
+    my_putchar('a');
+    (*bubble) = malloc(sizeof(dialogues_t));
+    my_putchar('b');
+    if ((*bubble) == NULL)
+        return (84);
+    my_putchar('c');
+    if (create_text_zone(&((*bubble)->text_zone), string) == 84) {
+        return (84);
+    }
+    my_putchar('d');
+    if (initialize_clock(&((*bubble)->text_zone->text_clock)) == 84) {
+        return (84);
+    }
+    my_putchar('e');
+    return (0);
+}
+
+int create_dialogue_list(dialogues_t **dialogue)
+{
+    if (create_dialogue_bubble(dialogue, "coucou mec") == 84)
+        return (84);
+    (*dialogue)->next = malloc(sizeof(dialogues_t *) * 2);
+    if (create_dialogue_bubble(&((*dialogue)->next[0]), "salut mec") == 84)
+        return (84);
+    if (create_dialogue_bubble(&((*dialogue)->next[1]), "prout mec") == 84)
+        return (84);
     return (0);
 }
