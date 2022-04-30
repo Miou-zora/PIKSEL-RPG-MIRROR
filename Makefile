@@ -88,42 +88,60 @@ SRC_ELEMENTARY =		src/elementary/get_file.c							\
 						src/elementary/freen_array.c						\
 						src/elementary/verif_extension.c					\
 
-SRC_LOAD_MANAGEMENT =	src/load_management/create_armor.c					\
-						src/load_management/fill_armor.c					\
-						src/load_management/destroy_armor.c					\
-						src/load_management/load_armor.c					\
-						src/load_management/create_sprite_data.c			\
-						src/load_management/destroy_sprite_data.c			\
-						src/load_management/load_sprite_data.c				\
-						src/load_management/load_all_armors.c				\
-						src/load_management/fill_all_armors.c				\
-						src/load_management/destroy_all_armors.c			\
-						src/load_management/create_all_armors.c				\
-						src/load_management/print_all_armors.c				\
-						src/load_management/create_animator.c				\
-						src/load_management/destroy_animator.c				\
-						src/load_management/create_clock_data.c				\
-						src/load_management/destroy_clock_data.c			\
-						src/load_management/fill_animator.c					\
-						src/load_management/load_animator.c					\
-						src/load_management/load_weapon.c					\
-						src/load_management/create_weapon.c					\
-						src/load_management/destroy_weapon.c				\
-						src/load_management/fill_weapon.c					\
-						src/load_management/load_all_weapons.c				\
-						src/load_management/fill_all_weapons.c				\
-						src/load_management/destroy_all_weapons.c			\
-						src/load_management/create_all_weapons.c			\
-						src/load_management/print_all_weapons.c				\
-						src/load_management/update_clock_data.c				\
-						src/load_management/drain_clock_data.c				\
-						src/load_management/increment_animator_image_pos.c	\
-						src/load_management/refresh_animator.c				\
-						src/load_management/update_animator.c				\
-						src/load_management/set_framerate_clock_data.c		\
+PATH_CLOCK_DATA =		src/elementary/clock
+
+SRC_CLOCK =				$(PATH_CLOCK_DATA)/create_clock_data.c				\
+						$(PATH_CLOCK_DATA)/destroy_clock_data.c				\
+						$(PATH_CLOCK_DATA)/update_clock_data.c				\
+						$(PATH_CLOCK_DATA)/drain_clock_data.c				\
+						$(PATH_CLOCK_DATA)/set_framerate_clock_data.c		\
+
+PATH_ARMOR =			src/items/armor
+
+SRC_ARMOR =				$(PATH_ARMOR)/create_armor.c						\
+						$(PATH_ARMOR)/fill_armor.c							\
+						$(PATH_ARMOR)/destroy_armor.c						\
+						$(PATH_ARMOR)/load_armor.c							\
+						$(PATH_ARMOR)/create_all_armors.c					\
+						$(PATH_ARMOR)/destroy_all_armors.c					\
+						$(PATH_ARMOR)/load_all_armors.c						\
+						$(PATH_ARMOR)/fill_all_armors.c						\
+						$(PATH_ARMOR)/print_all_armors.c					\
+
+PATH_WEAPON =			src/items/weapon
+
+SRC_WEAPON =			$(PATH_WEAPON)/create_weapon.c						\
+						$(PATH_WEAPON)/fill_weapon.c						\
+						$(PATH_WEAPON)/destroy_weapon.c						\
+						$(PATH_WEAPON)/load_weapon.c						\
+						$(PATH_WEAPON)/create_all_weapons.c					\
+						$(PATH_WEAPON)/destroy_all_weapons.c				\
+						$(PATH_WEAPON)/load_all_weapons.c					\
+						$(PATH_WEAPON)/fill_all_weapons.c					\
+						$(PATH_WEAPON)/print_all_weapons.c					\
+
+PATH_SPRITE_DATA =		src/sprite_data
+
+SRC_SPRITE_DATA =		$(PATH_SPRITE_DATA)/create_sprite_data.c			\
+						$(PATH_SPRITE_DATA)/destroy_sprite_data.c			\
+						$(PATH_SPRITE_DATA)/load_sprite_data.c				\
+
+PATH_ANIMATOR =			src/animator
+
+SRC_ANIMATOR =			$(PATH_ANIMATOR)/create_animator.c					\
+						$(PATH_ANIMATOR)/destroy_animator.c					\
+						$(PATH_ANIMATOR)/load_animator.c					\
+						$(PATH_ANIMATOR)/fill_animator.c					\
+						$(PATH_ANIMATOR)/increment_animator_image_pos.c		\
+						$(PATH_ANIMATOR)/refresh_animator.c					\
+						$(PATH_ANIMATOR)/update_animator.c					\
 
 SRC =					$(SRC_ELEMENTARY)									\
-						$(SRC_LOAD_MANAGEMENT)								\
+						$(SRC_WEAPON)										\
+						$(SRC_ARMOR)										\
+						$(SRC_SPRITE_DATA)									\
+						$(SRC_ANIMATOR)										\
+						$(SRC_CLOCK)										\
 
 TEST_FONC =		tests/elementary/test_freen.c								\
 				tests/elementary/test_put_str_error.c						\
