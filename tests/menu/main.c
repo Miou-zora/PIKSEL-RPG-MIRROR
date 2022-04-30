@@ -8,7 +8,8 @@
 #include "my.h"
 #include "rpg.h"
 
-int analyse_events(sfEvent *event, scene_t *scene, settings_t **settings, text_zone_t **text_zone)
+int analyse_events(sfEvent *event, scene_t *scene,
+settings_t **settings, text_zone_t **text_zone)
 {
     if (event->type == sfEvtClosed) {
         sfRenderWindow_close(scene->window);
@@ -21,19 +22,29 @@ int analyse_events(sfEvent *event, scene_t *scene, settings_t **settings, text_z
 }
 
 void update(scene_t *menu, settings_t *settings,
-sfEvent event, text_zone_t **text_zone)
+sfEvent *event, text_zone_t **text_zone)
 {
-    while (sfRenderWindow_pollEvent(menu->window, &event))
-        analyse_events(&event, menu, &settings, text_zone);
+    while (sfRenderWindow_pollEvent(menu->window, event)) {
+        analyse_events(event, menu, &settings, text_zone);
+        if (event->type == sfEvtKeyPressed && event->key.code == sfKeySpace
+        && my_strcmp(menu->zone_name, "game") == 0) {
+            (*text_zone)->enter_is_pressed = true;
+        }
+    }
     sfRenderWindow_clear(menu->window, sfBlack);
+    if (my_strcmp(menu->zone_name, "game") == 0 &&
+    (*text_zone)->text_clock->elapsed_time > 50000) {
+        display_one_more_char(text_zone);
+        (*text_zone)->text_clock->elapsed_time -= 50000;
+    }
 }
 
-void update_main_clock(clock_data_t *principal_clock)
+void update_clock(clock_data_t *clock)
 {
-    principal_clock->currElapsedTime =
-    sfClock_restart(principal_clock->clocksfInt64);
-    principal_clock->elapsed_time +=
-    principal_clock->currElapsedTime.microseconds;
+    clock->currElapsedTime =
+    sfClock_restart(clock->clocksfInt64);
+    clock->elapsed_time +=
+    clock->currElapsedTime.microseconds;
 }
 
 int my_rpg(void)
@@ -51,14 +62,18 @@ int my_rpg(void)
     if (initialize_settings_values(&settings, &menu) == 84)
         return (84);
     while (sfRenderWindow_isOpen(menu->window)) {
-        update_main_clock(principal_clock);
+        update_clock(principal_clock);
+        if (my_strcmp(menu->zone_name, "game") == 0)
+            update_clock(text_zone->text_clock);
         while (principal_clock->elapsed_time > 10000) {
             principal_clock->elapsed_time -= 10000;
-            update(menu, settings, event, &text_zone);
+            update(menu, settings, &event, &text_zone);
             display(menu, text_zone);
         }
     }
-    my_putstr("coucou");
+    if (my_strcmp(menu->zone_name, "game") == 0) {
+        free_text_zone(text_zone);
+    }
     free_game(menu, settings, principal_clock);
     return (0);
 }

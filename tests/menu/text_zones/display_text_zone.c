@@ -9,5 +9,6 @@
 
 void display_text_zone(sfRenderWindow *window, text_zone_t *text_zone)
 {
+    sfRenderWindow_drawSprite(window, text_zone->sprite_zone, NULL);
     sfRenderWindow_drawText(window, text_zone->text, NULL);
 }

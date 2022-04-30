@@ -16,7 +16,10 @@ int game(scene_t *scene, text_zone_t **text_zone)
     if (initialize_game(&(new_scene), scene) == 84)
         return (84);
     *scene = *new_scene;
-    create_text_zone(&(scene), text_zone, "coucou je suis le texte");
+    if (create_text_zone(text_zone, "coucou  mathis  comment  ca  va  dans  la  vie") == 84)
+        return (84);
+    if (initialize_clock(&((*text_zone)->text_clock)) == 84)
+        return (84);
     return (0);
 }
 

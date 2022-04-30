@@ -152,7 +152,12 @@ struct text_zone_s {
     sfText *text;
     sfFont *font;
     char *text_string;
-    sfRectangleShape *zone;
+    char *current_string;
+    int which_character;
+    sfSprite *sprite_zone;
+    sfTexture *texture_zone;
+    clock_data_t *text_clock;
+    bool enter_is_pressed;
 };
 
 typedef struct game {
