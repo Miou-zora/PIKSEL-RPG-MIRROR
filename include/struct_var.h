@@ -228,6 +228,7 @@ void update_animator(animator_t *animator);
 
 //* clock_data
 
+void set_framerate_clock_data(clock_data_t *clock, int framerate);
 clock_data_t *create_clock_data(void);
 void drain_clock_data(clock_data_t *clock);
 bool update_clock_data(clock_data_t *clock);

@@ -25,13 +25,6 @@ int event_handler(sfEvent *event, sfRenderWindow *window)
     return (0);
 }
 
-void set_framerate_clock_data(clock_data_t *clock, int framerate)
-{
-    if (clock == NULL)
-        return;
-    clock->framerate = framerate;
-}
-
 int main()
 {
     sfRenderWindow *window = NULL;
@@ -48,11 +41,11 @@ int main()
     if (initialize_window(&window) == 84)
         return (84);
     while (sfRenderWindow_isOpen(window)) {
-        while (sfRenderWindow_pollEvent(window, &event))
-            event_handler(&event, window);
-        update_animator(animator_test);
         drain_clock_data(main_display_clock);
         while (update_clock_data(main_display_clock)) {
+            while (sfRenderWindow_pollEvent(window, &event))
+                event_handler(&event, window);
+            update_animator(animator_test);
             sfRenderWindow_clear(window, sfBlack);
             sfRenderWindow_drawSprite(window, animator_test->sprite_data->sprite, NULL);
             sfRenderWindow_display(window);
