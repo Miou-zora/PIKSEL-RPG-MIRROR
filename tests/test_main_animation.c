@@ -11,7 +11,7 @@
 int initialize_window(sfRenderWindow **window)
 {
     sfVideoMode mode = {700, 700, 32};
-    (*window) = sfRenderWindow_create(mode, "my_defender", sfClose, NULL);
+    (*window) = sfRenderWindow_create(mode, "piksel", sfClose, NULL);
     if ((*window) == NULL)
         return (84);
     return (0);
