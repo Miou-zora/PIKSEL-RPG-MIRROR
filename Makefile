@@ -91,6 +91,7 @@ SRC_LOAD_MANAGEMENT =	src/load_management/create_armor.c					\
 						src/load_management/destroy_all_weapons.c			\
 						src/load_management/create_all_weapons.c			\
 						src/load_management/print_all_weapons.c				\
+						src/load_management/update_clock_data.c				\
 
 SRC =					$(SRC_ELEMENTARY)									\
 						$(SRC_LOAD_MANAGEMENT)								\
