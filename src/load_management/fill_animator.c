@@ -84,23 +84,15 @@ animator_t *fill_animator(animator_t *animator, char **data)
         return (NULL);
     } else {
         animator->sprite_data = load_sprite_data(data[4]);
-        if (!error)
-            my_printf("%s\n", "animator loaded");
         error |= fill_animator_clock(animator, data[0]);
-        if (!error)
-            my_printf("%s\n", "animator loaded");
         error |= fill_animator_nbr_image_xy(animator, data[1]);
-        if (!error)
-            my_printf("%s\n", "animator loaded");
         error |= fill_animator_size_image(animator, data[3]);
-        if (!error)
-            my_printf("%s\n", "animator loaded");
         error |= fill_animator_nbr_image(animator, data[2]);
-        if (!error)
-            my_printf("%s\n", "animator loaded");
         if (error || animator->sprite_data == NULL) {
             return(NULL);
         }
+        animator->sprite_data->rect.height = animator->size_image.y;
+        animator->sprite_data->rect.width = animator->size_image.x;
     }
     return (animator);
 }
