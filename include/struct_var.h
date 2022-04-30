@@ -39,6 +39,8 @@ typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
+typedef struct background_s background_t;
+typedef struct forest_s forest_t;
 
 /************************** struct ***********************************/
 
@@ -143,10 +145,22 @@ struct scene_s {
     char *zone_name;
 };
 
+struct forest_s {
+    sprite_data_t *sprite;
+};
+
+struct background_s {
+    forest_t *forest[2];
+    //town_t *town[2];
+    //laboratory_t *laboratory[2];
+    //bedroom_t *bedroom;
+};
+
 typedef struct game {
     int click[2];
     sfRenderWindow *window;
     ennemy_t *ennemy;
+    background_t *background;
     int distance[2];
     sfClock *clock;
 }game_t;

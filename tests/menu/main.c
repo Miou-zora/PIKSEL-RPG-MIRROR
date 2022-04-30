@@ -8,6 +8,8 @@
 #include "my.h"
 #include "rpg.h"
 
+void display(scene_t *scene);
+
 // int my_rpg(void)
 // {
 //     game_t *game = malloc(sizeof(game_t));
