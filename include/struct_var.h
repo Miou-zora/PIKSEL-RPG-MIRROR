@@ -31,6 +31,7 @@ typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
 typedef struct player_s player_t;
+typedef struct clock_player_s clock_player_t;
 
 /************************** struct ***********************************/
 
@@ -64,13 +65,9 @@ struct animator_s {
 struct player_s {
     sfRenderWindow *window;
     sfEvent event;
-    sfClock *clock_player;
-    sfTime time_player;
-    float seconds_player;
-    sfClock *clock_anim;
-    sfTime time_anim;
-    float seconds_anim;
     sfVideoMode mode;
+    clock_player_t *anim;
+    clock_player_t *player;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
@@ -82,6 +79,12 @@ struct player_s {
     bool move_left;
     bool move_right;
     sfVector2f pos;
+};
+
+struct clock_player_s {
+    sfClock *clock;
+    sfTime time;
+    float seconds;
 };
 
 struct clock_data_s {

@@ -60,24 +60,23 @@ void player_animation_iddle(player_t *player)
     player->iddle->sprite_data->rect.left += 48;
     if (player->iddle->sprite_data->rect.left == 288)
         player->iddle->sprite_data->rect.left = 0;
+    sfSprite_getTextureRect(player->iddle->sprite_data->sprite);
     sfSprite_setTextureRect(player->iddle->sprite_data->sprite,
     player->iddle->sprite_data->rect);
-    sfSprite_setPosition(player->iddle->sprite_data->sprite,
-    player->iddle->sprite_data->pos);
 }
 
 void clock_animation_player(player_t *player)
 {
-    player->time_anim = sfClock_getElapsedTime(player->clock_anim);
-    player->seconds_anim = player->time_anim.microseconds / 1000000.0;
-    if (player->seconds_anim > 0.08) {
+    player->anim->time = sfClock_getElapsedTime(player->anim->clock);
+    player->anim->seconds = player->anim->time.microseconds / 1000000.0;
+    if (player->anim->seconds > 0.08) {
         if (detect_if_key_pressed(player) == 1)
             player_animation_iddle(player);
         if (player->player_mode == 1 && detect_if_key_pressed(player) == 0)
             player_animation_walk(player);
         if (player->player_mode == 2 && detect_if_key_pressed(player) == 0)
             player_animation_run(player);
-        sfClock_restart(player->clock_anim);
+        sfClock_restart(player->anim->clock);
     }
 }
 
@@ -105,25 +104,25 @@ void move_player_walk(player_t *player)
 void move_player_run(player_t *player)
 {
     if (player->move_up == true && player->player_mode == 2)
-        player->pos.y -= 1.5;
+        player->pos.y -= 1;
     if (player->move_down == true && player->player_mode == 2)
-        player->pos.y += 1.5;
+        player->pos.y += 1;
     if (player->move_left == true && player->player_mode == 2)
-        player->pos.x += 1.5;
+        player->pos.x += 1;
     if (player->move_right == true && player->player_mode == 2)
-        player->pos.x -= 1.5;
+        player->pos.x -= 1;
 }
 
 void clock_player(player_t *player)
 {
-    player->time_player = sfClock_getElapsedTime(player->clock_player);
-    player->seconds_player = player->time_player.microseconds;
-    sfClock_restart(player->clock_player);
+    player->player->time = sfClock_getElapsedTime(player->player->clock);
+    player->player->seconds = player->player->time.microseconds;
+    sfClock_restart(player->player->clock);
     move_player_walk(player);
     move_player_run(player);
     update_position(player);
-    while (player->seconds_player > 1000000.0) {
-        player->seconds_player -= 1000000.0;
+    while (player->player->seconds > 1000000.0) {
+        player->player->seconds -= 1000000.0;
     }
 }
 
@@ -195,21 +194,11 @@ void create_sprite_player(player_t *player)
 
 /////// EVENTS ///////
 
-void key_released(player_t *player)
-{
-    if (player->event.type == sfEvtKeyReleased) {
-        player->move_up = false;
-        player->move_down = false;
-        player->move_left = false;
-        player->move_right = false;
-    }
-}
-
 void key_run(player_t *player)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyLShift) && (player->player_mode == 1))
+    if (sfKeyboard_isKeyPressed(sfKeyLShift))
         player->player_mode = 2;
-    else if (sfKeyboard_isKeyPressed(sfKeyLShift) && (player->player_mode == 2))
+    else
         player->player_mode = 1;
 
     if (player->player_mode == 2) {
@@ -224,19 +213,32 @@ void key_run(player_t *player)
 void detect_key(player_t *player)
 {
     key_run(player);
-    if (player->event.key.code == sfKeyZ) {
+    if (sfKeyboard_isKeyPressed(sfKeyZ))
         player->move_up = true;
-    }
-    if (player->event.key.code == sfKeyS) {
+    else
+        player->move_up = false;
+    if (sfKeyboard_isKeyPressed(sfKeyS))
         player->move_down = true;
-    }
-    if (player->event.key.code == sfKeyD) {
+    else
+        player->move_down = false;
+    if (sfKeyboard_isKeyPressed(sfKeyD)) {
         player->move_left = true;
-    }
-    if (player->event.key.code == sfKeyQ) {
+        if (player->player_mode == 1)
+            player->walk->sprite_data->scale = (sfVector2f){4, 4};
+        else if (player->player_mode == 2)
+            player->run->sprite_data->scale = (sfVector2f){4, 4};
+    } else
+        player->move_left = false;
+    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
         player->move_right = true;
-    }
-    key_released(player);
+        if (player->player_mode == 1)
+            player->walk->sprite_data->scale = (sfVector2f){-4, 4};
+        else if (player->player_mode == 2)
+            player->run->sprite_data->scale = (sfVector2f){-4, 4};
+    } else
+        player->move_right = false;
+    sfSprite_setScale(player->walk->sprite_data->sprite, player->walk->sprite_data->scale);
+    sfSprite_setScale(player->run->sprite_data->sprite, player->run->sprite_data->scale);
 }
 
 void analyse_events(player_t *player)
@@ -257,12 +259,9 @@ int my_rpg(void)
     sprite_data_t *sprite_data_iddle = malloc(sizeof(sprite_data_t));
     sprite_data_t *sprite_data_walk = malloc(sizeof(sprite_data_t));
     sprite_data_t *sprite_data_run = malloc(sizeof(sprite_data_t));
+    clock_player_t *struct_clock_player = malloc(sizeof(clock_player_t));
+    clock_player_t *struct_clock_animator = malloc(sizeof(clock_player_t));
     sfVideoMode mode = {1920, 1080, 32};
-    player->clock_player= sfClock_create();
-    player->clock_anim = sfClock_create();
-    player->player_walk = false;
-    player->player_run = false;
-    player->player_mode = 1;
 
     player->window = sfRenderWindow_create(mode, "PIKSEL", sfClose | sfResize, NULL);
     player->iddle = animator_iddle;
@@ -271,7 +270,16 @@ int my_rpg(void)
     player->walk->sprite_data = sprite_data_walk;
     player->run = animator_run;
     player->run->sprite_data = sprite_data_run;
+    player->player = struct_clock_player;
+    player->anim = struct_clock_animator;
+
+    player->player->clock = sfClock_create();
+    player->anim->clock = sfClock_create();
+    player->player_walk = false;
+    player->player_run = false;
+    player->player_mode = 1;
     player->pos = (sfVector2f){0, 0};
+
     create_sprite_player(player);
     while (sfRenderWindow_isOpen(player->window)) {
         while (sfRenderWindow_pollEvent(player->window, &player->event))
