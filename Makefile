@@ -5,7 +5,6 @@
 ## Makefile
 ##
 
-<<<<<<< HEAD
 SRC 		=			src/free.c \
 						src/display.c \
 						src/set_mouse_cursor.c \
