@@ -39,6 +39,8 @@ typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
+typedef struct settings_s settings_t;
+typedef struct text_zone_s text_zone_t;
 
 /************************** struct ***********************************/
 
@@ -130,9 +132,6 @@ struct settings_infos_s {
     sfRectangleShape **fill_rectangles;
     sfVector2f *rectangles_positions;
     sfVector2f *rectangles_sizes;
-    bool sound;
-    bool music;
-    int fps;
 };
 
 struct scene_s {
@@ -141,6 +140,19 @@ struct scene_s {
     selection_zone_t *select_zone;
     settings_infos_t *settings;
     char *zone_name;
+};
+
+struct settings_s {
+    bool sound;
+    bool music;
+    int fps;
+};
+
+struct text_zone_s {
+    sfText *text;
+    sfFont *font;
+    char *text_string;
+    sfRectangleShape *zone;
 };
 
 typedef struct game {
