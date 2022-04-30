@@ -50,6 +50,15 @@ TESTS_MENU =	tests/menu/main.c \
 				tests/menu/init_game/init_settings.c \
 				tests/menu/free_game/free_scene.c \
 				tests/menu/analyse_event/handle_settings.c \
+				tests/menu/analyse_event/handle_settings_functions.c \
+				tests/menu/analyse_event/handle_menu_functions.c \
+				tests/menu/free_game/free_game.c \
+				tests/menu/free_game/free_settings.c \
+				tests/menu/init_game/init_game.c \
+				tests/menu/text_zones/handle_texts_zones.c \
+				tests/menu/text_zones/display_text_zone.c \
+				tests/menu/text_zones/display_one_more_char.c \
+				tests/menu/text_zones/free_text_zone.c \
 
 MAIN 		=	src/main.c
 
@@ -145,7 +154,7 @@ debug:		CFLAGS += -g
 debug:		re
 
 tests_menu:		make_lib $(OBJ_SRC)
-				@$(CC) $(OBJ_SRC) $(TESTS_MENU) $(CFLAGS) -o "tests_menu" $(LFLAGS)
+				@$(CC) $(OBJ_SRC) $(TESTS_MENU) $(CFLAGS) -o "tests_menu" $(LFLAGS) -g
 				@printf "\033[32m[Message]\033[39m Compilation de tests_menu \
 				réussi\n"
 

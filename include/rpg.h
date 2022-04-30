@@ -17,8 +17,8 @@
 #include <stdlib.h>
 #include "struct_var.h"
 
-
-//void display(scene_t *scene);
+void display(scene_t *scene, text_zone_t *text_zone);
+void update_clock(clock_data_t *clock);
 // void free_all(game_t *game);
 int my_rpg(void);
 // void set_mouse_cursor(game_t *game);
@@ -36,20 +36,41 @@ int my_rpg(void);
 int initialize_window(sfRenderWindow **window);
 // int initialize_sound(game_t *game);
 // int initialize_music(game_t *game);
-int initialize_scene(scene_t **scene, char *zone_name, int nb_of_zones);
+int initialize_scene(scene_t **scene, char *zone_name, int nb_of_zones,
+bool new_window);
 int initialize_sprite_data(sprite_data_t **sprite_data, char *path_to_image,
 sfVector2f scale, sfVector2f position);
 int initialize_clock(clock_data_t **clock);
 int initialize_settings(scene_t **new_scene, scene_t *old_scene);
-void initialize_hitbox(selection_zone_t **select_zone, char *pos_file, int nb_of_zones);
+void initialize_hitbox(selection_zone_t **select_zone,
+char *pos_file, int nb_of_zones);
 sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones);
+int initialize_settings_values(settings_t **settings, scene_t **scene);
+int initialize_game(scene_t **game_scene, scene_t *old_scene);
 
 /************************set event fonctions*********************************/
 
+int change_menu(sfEvent *event, scene_t *scene,
+settings_t **settings, text_zone_t **text_zone);
+void handle_settings(scene_t **scene, sfEvent *event, settings_t *settings);
+void handle_fps(settings_t *settings, sfEvent *event);
+void handle_sound(settings_t *settings, sfEvent *event);
+void handle_music(settings_t *settings, sfEvent *event);
+void handle_quit(scene_t *scene);
+int go_to_good_menu(scene_t *scene,
+settings_t *settings_struct, text_zone_t **text_zone);
 void analyse_event(sfEvent event, game_t *game);
-int change_menu(sfEvent *event, scene_t *scene);
-void handle_settings(scene_t *scene, sfEvent *event);
 
 /**************************free functions************************************/
 
 int free_scene(scene_t *scene);
+void free_game(scene_t *scene, settings_t *settings, clock_data_t *clock);
+void free_settings(settings_infos_t *settings);
+
+/************************text zone functions*********************************/
+
+void create_text_zone(scene_t **scene,
+text_zone_t **text_zone, char *text_string);
+void display_text_zone(sfRenderWindow *window, text_zone_t *text_zone);
+void display_one_more_char(text_zone_t **text_zone);
+void free_text_zone(text_zone_t *text_zone);
