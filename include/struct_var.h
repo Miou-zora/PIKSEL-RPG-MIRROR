@@ -226,5 +226,6 @@ animator_t *fill_animator(animator_t *animator, char **data);
 //* clock_data
 
 clock_data_t *create_clock_data(void);
+void drain_clock_data(clock_data_t *clock);
 bool update_clock_data(clock_data_t *clock);
 void destroy_clock_data(clock_data_t **clock_data);
