@@ -221,6 +221,7 @@ sprite_data_t *create_sprite_data(void);
 animator_t *create_animator(void);
 void destroy_animator(animator_t **animator);
 animator_t *load_animator(char *path);
+void increment_animator_image_pos(animator_t *animator);
 animator_t *fill_animator(animator_t *animator, char **data);
 
 //* clock_data
