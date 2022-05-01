@@ -85,14 +85,37 @@ int create_dialogue_bubble(dialogues_t **bubble, char *string)
     return (0);
 }
 
-int create_dialogue_list(dialogues_t **dialogue)
+int create_each_bubble_of_monologue(dialogues_t **dialogue,
+char **bubbles, int i)
 {
-    if (create_dialogue_bubble(dialogue, "coucou mec") == 84)
+    (*dialogue)->next = malloc(sizeof(dialogues_t *) * 1);
+    if ((*dialogue)->next == NULL)
         return (84);
-    (*dialogue)->next = malloc(sizeof(dialogues_t *) * 2);
-    if (create_dialogue_bubble(&((*dialogue)->next[0]), "salut mec") == 84)
+    if (create_dialogue_bubble(&((*dialogue)->next[0]), bubbles[i]) == 84)
         return (84);
-    if (create_dialogue_bubble(&((*dialogue)->next[1]), "prout mec") == 84)
-        return (84);
+    if (bubbles[i + 1] != NULL)
+        create_each_bubble_of_monologue(&((*dialogue)->next[0]), bubbles, i + 1);
     return (0);
+}
+
+int create_dialogue_list(dialogues_t **dialogue, char *path_to_file,
+int question_or_monologue)
+{
+    char **bubbles = get_data_from_file(path_to_file);
+    if (create_dialogue_bubble(dialogue, bubbles[0]) == 84)
+        return (84);
+    if (question_or_monologue == 0) {
+        (*dialogue)->next = malloc(sizeof(dialogues_t *) * 2);
+        if ((*dialogue)->next == NULL)
+            return (84);
+        if (create_dialogue_bubble(&((*dialogue)->next[0]), bubbles[1]) == 84)
+            return (84);
+        if (create_dialogue_bubble(&((*dialogue)->next[1]), bubbles[2]) == 84)
+            return (84);
+        return (0);
+    } else {
+        if (create_each_bubble_of_monologue(dialogue, bubbles, 1) == 84)
+            return (84);
+        return (0);
+    }
 }

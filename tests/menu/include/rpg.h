@@ -77,5 +77,6 @@ void free_text_zone(text_zone_t *text_zone);
 
 /*************************dialogue functions*********************************/
 
-int create_dialogue_list(dialogues_t **dialogue);
+int create_dialogue_list(dialogues_t **dialogue, char *path_to_file,
+int question_or_monologue);
 int create_dialogue_bubble(dialogues_t **bubble, char *string);

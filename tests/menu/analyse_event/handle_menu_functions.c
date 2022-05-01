@@ -16,7 +16,7 @@ int game(scene_t *scene, dialogues_t **dialogue)
     if (initialize_game(&(new_scene), scene) == 84)
         return (84);
     *scene = *new_scene;
-    if (create_dialogue_list(dialogue) == 84)
+    if (create_dialogue_list(dialogue, "tests/menu/coucou", 1) == 84)
         return (84);
     return (0);
 }
