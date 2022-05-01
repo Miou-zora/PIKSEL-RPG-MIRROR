@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-int game(scene_t *scene, text_zone_t **text_zone)
+int game(scene_t *scene, dialogues_t **dialogue)
 {
     scene_t *new_scene = NULL;
 
@@ -16,9 +16,7 @@ int game(scene_t *scene, text_zone_t **text_zone)
     if (initialize_game(&(new_scene), scene) == 84)
         return (84);
     *scene = *new_scene;
-    if (create_text_zone(text_zone, "coucou  mathis  comment  ca  va  dans  la  vie") == 84)
-        return (84);
-    if (initialize_clock(&((*text_zone)->text_clock)) == 84)
+    if (create_dialogue_list(dialogue, "tests/menu/coucou", 1) == 84)
         return (84);
     return (0);
 }
@@ -49,10 +47,10 @@ int quit(scene_t *scene)
 }
 
 int go_to_good_menu(scene_t *scene,
-settings_t *settings_struct, text_zone_t **text_zone)
+settings_t *settings_struct, dialogues_t **dialogue)
 {
     if (scene->select_zone->current_pos == 0) {
-        return (game(scene, text_zone));
+        return (game(scene, dialogue));
     }
     if (scene->select_zone->current_pos == 1) {
         if (settings(scene, settings_struct) == 84)

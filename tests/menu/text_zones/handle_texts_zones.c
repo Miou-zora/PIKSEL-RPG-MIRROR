@@ -7,43 +7,37 @@
 
 #include "rpg.h"
 
+void add_return_to_the_line(text_zone_t **text_zone, char *text_string, int i)
+{
+    for (; text_string[i] != '\0'; i++) {
+        if (text_string[i] == ' ') {
+            (*text_zone)->text_string[i] = '\n';
+            return;
+        }
+    }
+}
+
 int set_text_strings(text_zone_t **text_zone, char *text_string)
 {
-    (*text_zone)->current_string =
-    malloc(sizeof(char) * (my_strlen(text_string) + 1));
+    (*text_zone)->current_string = my_calloc(1, (my_strlen(text_string) + 1));
     if ((*text_zone)->current_string == NULL)
         return (84);
     (*text_zone)->current_string[0] = '\0';
-    (*text_zone)->text_string =
-    malloc(sizeof(char) * (my_strlen(text_string) + 1));
+    (*text_zone)->text_string = my_calloc(1, (my_strlen(text_string) + 1));
     (*text_zone)->text_string = my_strdup(text_string);
-    for (int i = 110; text_string[i] != '\0'; i++) {
-        for (; text_string[i] != '\0'; i++) {
-            if (text_string[i] == ' ') {
-                (*text_zone)->text_string[i] = '\n';
-                break;
-            }
-        }
-        i+= 115;
+    if (my_strlen(text_string) < 110)
+        return (0);
+    for (int i = 110; text_string[i] != '\0'; i+= 115) {
+        add_return_to_the_line(text_zone, text_string, i);
     }
     return (0);
 }
 
 int set_text_zone_variables(text_zone_t **text_zone)
 {
-    (*text_zone)->sprite_zone = sfSprite_create();
-    if ((*text_zone)->sprite_zone == NULL) {
-        return (84);
-    }
-    (*text_zone)->texture_zone =
-    sfTexture_createFromFile("assets/text_zone/text_zone.png", NULL);
-    if ((*text_zone)->texture_zone == NULL) {
-        return (84);
-    }
-    sfSprite_setTexture((*text_zone)->sprite_zone,
-    (*text_zone)->texture_zone, sfFalse);
-    sfSprite_setPosition((*text_zone)->sprite_zone, (sfVector2f){120, 450});
-    sfSprite_setScale((*text_zone)->sprite_zone, (sfVector2f){7, 7});
+    initialize_sprite_data(&((*text_zone)->text_zone_sprite),
+    "assets/text_zone/text_zone.png", (sfVector2f){7, 7},
+    (sfVector2f){120, 450});
     sfText_setFont((*text_zone)->text, (*text_zone)->font);
     sfText_setString((*text_zone)->text, (*text_zone)->current_string);
     sfText_setColor((*text_zone)->text, sfBlack);
@@ -74,4 +68,12 @@ int create_text_zone(text_zone_t **text_zone, char *text_string)
     (*text_zone)->which_character = 0;
     (*text_zone)->enter_is_pressed = false;
     return (0);
+}
+
+void free_bubbles_text(char **bubbles)
+{
+    for (int i = 0; bubbles[i] != NULL; i++) {
+        free(bubbles[i]);
+    }
+    free(bubbles);
 }

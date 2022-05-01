@@ -8,94 +8,27 @@
 #include "my.h"
 #include "rpg.h"
 
-void display(scene_t *scene, text_zone_t *text_zone);
-int change_menu(sfEvent *event, scene_t *scene,
-settings_t **settings_struct, text_zone_t **text_zone);
-
-// int my_rpg(void)
-// {
-//     game_t *game = malloc(sizeof(game_t));
-
-//     if (initialize_var(game) == 84)
-//         return (84);
-//     while (sfRenderWindow_isOpen(game->window)) {
-//         display(game);
-//         set_mouse_cursor(game);
-//         sfRenderWindow_display(game->window);
-//         while (sfRenderWindow_pollEvent(game->window, game->event))
-//             analyse_event(game);
-//         sfRenderWindow_clear(game->window, sfBlack);
-//     }
-//     free_all(game);
-//     return (0);
-// }
-
-int analyse_events(sfEvent *event, scene_t *scene)
-{
-    if (event->type == sfEvtClosed) {
-        sfRenderWindow_close(scene->window);
-    }
-    if (event->type == sfEvtKeyPressed && (my_strcmp(scene->zone_name, "menu")
-    == 0 || my_strcmp(scene->zone_name, "settings") == 0))
-        if (change_menu(event, scene, &(*settings), text_zone) == 84)
-            return (84);
-    return (0);
-}
-
-void update(scene_t *menu, settings_t *settings,
-sfEvent *event, text_zone_t **text_zone)
-{
-    while (sfRenderWindow_pollEvent(menu->window, event)) {
-        analyse_events(event, menu, &settings, text_zone);
-        if (event->type == sfEvtKeyPressed && event->key.code == sfKeySpace
-        && my_strcmp(menu->zone_name, "game") == 0) {
-            (*text_zone)->enter_is_pressed = true;
-        }
-    }
-    sfRenderWindow_clear(menu->window, sfBlack);
-    if (my_strcmp(menu->zone_name, "game") == 0 &&
-    (*text_zone)->text_clock->elapsed_time > 50000) {
-        display_one_more_char(text_zone);
-        (*text_zone)->text_clock->elapsed_time -= 50000;
-    }
-}
-
-void update_clock(clock_data_t *clock)
-{
-    clock->currElapsedTime =
-    sfClock_restart(clock->clocksfInt64);
-    clock->elapsed_time +=
-    clock->currElapsedTime.microseconds;
-}
-
 int my_rpg(void)
 {
     scene_t *menu;
     sfEvent event;
     clock_data_t *principal_clock;
     settings_t *settings;
-    text_zone_t *text_zone;
+    dialogues_t *dialogue;
 
-    if (initialize_scene(&menu, "menu", 3, true) == 84)
-        return (84);
-    if (initialize_clock(&principal_clock) == 84)
-        return (84);
-    if (initialize_settings_values(&settings, &menu) == 84)
+    if (initialize_structures(&menu, &principal_clock, &settings) == 84)
         return (84);
     while (sfRenderWindow_isOpen(menu->window)) {
         update_clock(principal_clock);
         if (my_strcmp(menu->zone_name, "game") == 0)
-            update_clock(text_zone->text_clock);
+            update_clock(dialogue->text_zone->text_clock);
         while (principal_clock->elapsed_time > 10000) {
             principal_clock->elapsed_time -= 10000;
-            update(menu, settings, &event, &text_zone);
-            display(menu, text_zone);
+            update(menu, settings, &event, &dialogue);
+            display(menu, dialogue);
         }
     }
-    if (my_strcmp(menu->zone_name, "game") == 0) {
-        free_text_zone(text_zone);
-    }
-    free_game(menu, settings, principal_clock);
+    free_game(menu, settings, principal_clock, dialogue);
     return (0);
 }
 

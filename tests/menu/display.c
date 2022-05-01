@@ -8,7 +8,7 @@
 #include "my.h"
 #include "rpg.h"
 
-void display(scene_t *scene, text_zone_t *text_zone)
+void display(scene_t *scene, dialogues_t *dialogue)
 {
     sfRenderWindow_drawSprite(scene->window,
     scene->background->sprite, NULL);
@@ -26,7 +26,7 @@ void display(scene_t *scene, text_zone_t *text_zone)
         }
     }
     if (my_strcmp(scene->zone_name, "game") == 0) {
-        display_text_zone(scene->window, text_zone);
+        display_text_zone(scene->window, dialogue->text_zone);
     }
     sfRenderWindow_display(scene->window);
     return;

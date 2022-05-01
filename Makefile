@@ -66,6 +66,7 @@ TESTS_MENU =	tests/menu/main.c \
 				tests/menu/analyse_event/change_menu.c \
 				tests/menu/analyse_event/event.c \
 				tests/menu/display.c \
+				tests/menu/update.c \
 				tests/menu/init_game/init_settings.c \
 				tests/menu/free_game/free_scene.c \
 				tests/menu/analyse_event/handle_settings.c \
@@ -78,6 +79,8 @@ TESTS_MENU =	tests/menu/main.c \
 				tests/menu/text_zones/display_text_zone.c \
 				tests/menu/text_zones/display_one_more_char.c \
 				tests/menu/text_zones/free_text_zone.c \
+				tests/menu/text_zones/free_dialogue.c \
+				tests/menu/text_zones/create_dialogue.c \
 
 
 SRC_ELEMENTARY =		src/elementary/get_file.c							\
