@@ -24,6 +24,9 @@ enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
 enum types_ennemy {MOB = 1, MINI_BOSS, BOSS};
+enum deph_background {FRONTGROUND = 0, MIDGROUND, BACKGROUND};
+enum scene_background_t {ROOM = 0, CITY, CITY_FOREST, FOREST,
+FOREST_LABO, LABO};
 
 /************************** typedef ***********************************/
 
@@ -41,6 +44,11 @@ typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
+typedef struct background_s background_t;
+typedef struct forest_s forest_t;
+typedef struct town_s town_t;
+typedef struct laboratory_s laboratory_t;
+typedef struct bedroom_s bedroom_t;
 typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 
@@ -155,6 +163,29 @@ struct scene_s {
     char *zone_name;
 };
 
+struct forest_s {
+    sprite_data_t *sprite;
+};
+
+struct town_s {
+    sprite_data_t *sprite;
+};
+
+struct bedroom_s {
+    sprite_data_t *sprite;
+};
+
+struct laboratory_s {
+    sprite_data_t *sprite;
+};
+
+struct background_s {
+    forest_t *forest[2];
+    town_t *town[2];
+    laboratory_t *laboratory;
+    bedroom_t *bedroom;
+};
+
 struct settings_s {
     bool sound;
     bool music;
@@ -177,6 +208,8 @@ typedef struct game {
     int click[2];
     sfRenderWindow *window;
     ennemy_t *ennemy;
+    background_t *background;
+    enum scene_background_t scene_background;
     int distance[2];
     sfClock *clock;
 }game_t;

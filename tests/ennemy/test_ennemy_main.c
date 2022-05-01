@@ -23,7 +23,7 @@ void init_sprite(game_t *game)
     game->ennemy->sprite_data->rect = (sfIntRect){0, 0, 145, 115};
 }
 
-int initialize_var(game_t *game)
+int create_init_game(game_t *game)
 {
     game->window = sfRenderWindow_create((sfVideoMode){1080, 1920, 32},
     "ennemy_test", sfResize | sfClose, NULL);
@@ -33,12 +33,19 @@ int initialize_var(game_t *game)
     game->distance[1] = 1;
     init_sprite(game);
     game->clock = sfClock_create();
+    sfSprite_setPosition(game->ennemy->sprite_data->sprite,
+    game->ennemy->sprite_data->pos);
+    sfSprite_setTexture(game->ennemy->sprite_data->sprite,
+    game->ennemy->sprite_data->texture, sfTrue);
+    sfSprite_setTextureRect(game->ennemy->sprite_data->sprite,
+    game->ennemy->sprite_data->rect);
+    sfSprite_scale(game->ennemy->sprite_data->sprite,
+    game->ennemy->sprite_data->scale);
     return (0);
 }
 
 void display(game_t *game)
 {
-    
     sfRenderWindow_drawSprite(game->window, game->ennemy->sprite_data->sprite, NULL);
     return;
 }
@@ -66,7 +73,6 @@ ennemy_t *move_texture(ennemy_t *ennemy, int left, int height, sfClock *clock)
 {
     int time = sfClock_getElapsedTime(clock).microseconds;
 
-    
     if (time > 100000) {
         ennemy->sprite_data->rect.top = height;
         if (ennemy->max_left >= ennemy->sprite_data->rect.left + left) {
@@ -109,16 +115,8 @@ int main(void)
     sfEvent event;
     game_t *game = malloc(sizeof(game_t));
 
-    if (initialize_var(game) == 84)
+    if (create_init_game(game) == 84)
         return (84);
-    sfSprite_setPosition(game->ennemy->sprite_data->sprite,
-    game->ennemy->sprite_data->pos);
-    sfSprite_setTexture(game->ennemy->sprite_data->sprite,
-    game->ennemy->sprite_data->texture, sfTrue);
-    sfSprite_setTextureRect(game->ennemy->sprite_data->sprite,
-    game->ennemy->sprite_data->rect);
-    sfSprite_scale(game->ennemy->sprite_data->sprite,
-    game->ennemy->sprite_data->scale);
     sfRenderWindow_setFramerateLimit(game->window, 60);
     while (sfRenderWindow_isOpen(game->window)) {
         display(game);

@@ -159,6 +159,8 @@ TEST_FONC =		tests/elementary/test_freen.c								\
 
 TEST_ENNEMY = 	tests/ennemy/test_ennemy_main.c	\
 
+TEST_BACKGROUND = 	tests/background/test_background_main.c \
+
 MAIN_DEBUG	=	src/temp_test.c
 
 OBJ_SRC		=	$(SRC:%.c=%.o)
@@ -229,18 +231,17 @@ tests_run:		tclean $(NAME)
 
 tests_ennemy: 	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_ENNEMY) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy
+			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy"
 
 tests_player:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_player" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_player \
 			réussi\n"
 
-tests_animation: make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(MAIN_TEST_ANIMATION) $(CFLAGS) -o \
-			$(BINARY_TEST_ANIMATION) $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de %s \
-			réussi\n" $(BINARY_TEST_ANIMATION)
+tests_background:	make_lib $(OBJ_SRC)
+			@$(CC) $(OBJ_SRC) $(TEST_BACKGROUND) $(CFLAGS) -o "tests_background" $(LFLAGS)
+			@printf "\033[32m[Message]\033[39m Compilation de tests_background \
+			réussi\n"
 
 tclean:
 			@$(RM) tests/*.gcda

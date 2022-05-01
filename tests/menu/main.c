@@ -8,8 +8,29 @@
 #include "my.h"
 #include "rpg.h"
 
-int analyse_events(sfEvent *event, scene_t *scene,
-settings_t **settings, text_zone_t **text_zone)
+void display(scene_t *scene, text_zone_t *text_zone);
+int change_menu(sfEvent *event, scene_t *scene,
+settings_t **settings_struct, text_zone_t **text_zone);
+
+// int my_rpg(void)
+// {
+//     game_t *game = malloc(sizeof(game_t));
+
+//     if (initialize_var(game) == 84)
+//         return (84);
+//     while (sfRenderWindow_isOpen(game->window)) {
+//         display(game);
+//         set_mouse_cursor(game);
+//         sfRenderWindow_display(game->window);
+//         while (sfRenderWindow_pollEvent(game->window, game->event))
+//             analyse_event(game);
+//         sfRenderWindow_clear(game->window, sfBlack);
+//     }
+//     free_all(game);
+//     return (0);
+// }
+
+int analyse_events(sfEvent *event, scene_t *scene)
 {
     if (event->type == sfEvtClosed) {
         sfRenderWindow_close(scene->window);
