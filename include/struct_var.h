@@ -234,7 +234,7 @@ struct text_zone_s {
 typedef struct game {
     int click[2];
     sfRenderWindow *window;
-    ennemy_t *enemy;
+    enemy_t *enemy;
     background_t *background;
     enum scene_background_t scene_background;
     int distance[2];
