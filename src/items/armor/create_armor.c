@@ -14,11 +14,11 @@ armor_t *create_armor(void)
 
     if (armor) {
         armor->name = NULL;
-        armor->id = 0;
+        armor->id = NOT_SET;
         armor->type_armor = NOT_SET;
         armor->type_bonus_basic = NOT_SET;
-        armor->rarity = 0;
-        armor->value_bonus = 0;
+        armor->rarity = NOT_SET;
+        armor->value_bonus = NOT_SET;
         armor->sprite_data = NULL;
     }
     return (armor);

@@ -19,36 +19,26 @@
 
 /************************** enum ***********************************/
 
-enum types_weapon {SWORD = 1, SPEAR, GLOVES, GUN};
 enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
 enum types_ennemy {MOB = 1, MINI_BOSS, BOSS};
-enum deph_background {FRONTGROUND = 0, MIDGROUND, BACKGROUND};
-enum scene_background_t {ROOM = 0, CITY, CITY_FOREST, FOREST,
-FOREST_LABO, LABO};
 
 /************************** typedef ***********************************/
 
 typedef struct armor_s armor_t;
-typedef struct weapon_s weapon_t;
 typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
 typedef struct ennemy_s ennemy_t;
 typedef struct npc_s npc_t;
 typedef struct dialogues_s dialogues_t;
-typedef struct ennemy_sprite_s ennemy_sprite_t;
+typedef struct ennemy_sprite_s ennemy_sprite_t; 
 typedef struct stat_s stat_t;
 typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
-typedef struct background_s background_t;
-typedef struct forest_s forest_t;
-typedef struct town_s town_t;
-typedef struct laboratory_s laboratory_t;
-typedef struct bedroom_s bedroom_t;
 typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 
@@ -72,7 +62,6 @@ struct npc_s {
 };
 
 struct stat_s {
-    int actual_life;
     int health;
     int armor;
     int power;
@@ -85,9 +74,8 @@ struct ennemy_s {
     int id;
     stat_t *stat;
     sprite_data_t *sprite_data;
-    animator_t *animator_standing;
-    animator_t *animator_moving;
     int max_left;
+    sfClock *clock;
 };
 
 struct armor_s {
@@ -97,15 +85,6 @@ struct armor_s {
     enum types_bonus_basic type_bonus_basic;
     int rarity;
     int value_bonus;
-    sprite_data_t *sprite_data;
-};
-
-struct weapon_s {
-    char *name;
-    int id;
-    enum types_weapon type_weapon;
-    int rarity;
-    int damage;
     sprite_data_t *sprite_data;
 };
 
@@ -163,29 +142,6 @@ struct scene_s {
     char *zone_name;
 };
 
-struct forest_s {
-    sprite_data_t *sprite;
-};
-
-struct town_s {
-    sprite_data_t *sprite;
-};
-
-struct bedroom_s {
-    sprite_data_t *sprite;
-};
-
-struct laboratory_s {
-    sprite_data_t *sprite;
-};
-
-struct background_s {
-    forest_t *forest[2];
-    town_t *town[2];
-    laboratory_t *laboratory;
-    bedroom_t *bedroom;
-};
-
 struct settings_s {
     bool sound;
     bool music;
@@ -208,8 +164,6 @@ typedef struct game {
     int click[2];
     sfRenderWindow *window;
     ennemy_t *ennemy;
-    background_t *background;
-    enum scene_background_t scene_background;
     int distance[2];
     sfClock *clock;
 }game_t;
@@ -245,20 +199,6 @@ armor_t **fill_all_armors(armor_t **armors, char **all_files);
 void destroy_all_armors(armor_t ***armors);
 armor_t **load_all_armors(char *filepath);
 void print_armor(armor_t *armor);
-void print_all_armors(armor_t **armors);
-
-//* weapon
-
-void destroy_weapon(weapon_t **weapon);
-weapon_t *create_weapon(void);
-weapon_t *load_weapon(char *filepath);
-weapon_t *fill_weapon(weapon_t *weapon, char **data);
-weapon_t **create_all_weapons(char **all_files);
-weapon_t **fill_all_weapons(weapon_t **weapons, char **all_files);
-weapon_t **load_all_weapons(char *path);
-void destroy_all_weapons(weapon_t ***weapon);
-void print_all_weapons(weapon_t **weapons);
-void print_weapon(weapon_t *weapon);
 
 //* sprite_data
 
@@ -269,17 +209,11 @@ sprite_data_t *create_sprite_data(void);
 //* animator
 
 animator_t *create_animator(void);
-void refresh_animator(animator_t *animator);
 void destroy_animator(animator_t **animator);
 animator_t *load_animator(char *path);
-void increment_animator_image_pos(animator_t *animator);
 animator_t *fill_animator(animator_t *animator, char **data);
-void update_animator(animator_t *animator);
 
 //* clock_data
 
-void set_framerate_clock_data(clock_data_t *clock, int framerate);
 clock_data_t *create_clock_data(void);
-void drain_clock_data(clock_data_t *clock);
-bool update_clock_data(clock_data_t *clock);
 void destroy_clock_data(clock_data_t **clock_data);
