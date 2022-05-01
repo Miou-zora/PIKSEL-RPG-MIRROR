@@ -12,6 +12,7 @@
 #include <SFML/System.h>
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
+#include "struct_var.h"
 
 /***********************init fonctions player********************************/
 
