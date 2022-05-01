@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include "struct_var.h"
 
-void display(scene_t *scene, text_zone_t *text_zone);
+//void display(scene_t *scene, text_zone_t *text_zone);
 void update_clock(clock_data_t *clock);
 // void free_all(game_t *game);
 int my_rpg(void);
@@ -59,7 +59,7 @@ void handle_music(settings_t *settings, sfEvent *event);
 void handle_quit(scene_t *scene);
 int go_to_good_menu(scene_t *scene,
 settings_t *settings_struct, text_zone_t **text_zone);
-void analyse_event(sfEvent event, game_t *game);
+//void analyse_event(sfEvent event, game_t *game);
 
 /**************************free functions************************************/
 

@@ -8,10 +8,10 @@
 #include "struct_var.h"
 #include <stdlib.h>
 
-void create_animator()
+/*void create_animator()
 {
     
-}
+}*/
 
 void display(player_t *player)
 {
@@ -81,7 +81,7 @@ int my_rpg(void)
     player_t *player = malloc(sizeof(player_t));
     animator_t *animator = malloc(sizeof(animator_t));
     sprite_data_t *sprite_data = malloc(sizeof(sprite_data_t));
-    sfVideoMode mode = {1920, 1080, 32};
+    sfVideoMode mode = {1080, 1920, 32};
 
     player->window = sfRenderWindow_create(mode, "PIKSEL", sfClose | sfResize, NULL);
     player->iddle = animator;

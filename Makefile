@@ -108,7 +108,7 @@ TEST_FONC =		tests/elementary/test_freen.c								\
 
 TEST_ENNEMY = 	tests/ennemy/test_ennemy_main.c	\
 
-TEST_BACKGROUND = test/background/test_background_main.c \
+TEST_BACKGROUND = 	tests/background/test_background_main.c \
 
 MAIN_DEBUG	=	src/temp_test.c
 
@@ -181,12 +181,12 @@ tests_ennemy: 	make_lib $(OBJ_SRC)
 
 tests_player:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_player" $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de tests_player"
+			@printf "\033[32m[Message]\033[39m Compilation de tests_player \
 			réussi\n"
 
 tests_background:	make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_background" $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de tests_background"
+			@$(CC) $(OBJ_SRC) $(TEST_BACKGROUND) $(CFLAGS) -o "tests_background" $(LFLAGS)
+			@printf "\033[32m[Message]\033[39m Compilation de tests_background \
 			réussi\n"
 
 tclean:

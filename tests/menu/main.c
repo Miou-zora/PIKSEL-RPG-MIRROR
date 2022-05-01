@@ -8,7 +8,9 @@
 #include "my.h"
 #include "rpg.h"
 
-void display(scene_t *scene);
+void display(scene_t *scene, text_zone_t *text_zone);
+int change_menu(sfEvent *event, scene_t *scene,
+settings_t **settings_struct, text_zone_t **text_zone);
 
 // int my_rpg(void)
 // {
