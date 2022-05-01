@@ -78,6 +78,7 @@ TESTS_MENU =	tests/menu/main.c \
 				tests/menu/text_zones/display_text_zone.c \
 				tests/menu/text_zones/display_one_more_char.c \
 				tests/menu/text_zones/free_text_zone.c \
+				tests/menu/text_zones/free_dialogue.c \
 
 
 SRC_ELEMENTARY =		src/elementary/get_file.c							\

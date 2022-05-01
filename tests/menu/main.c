@@ -33,12 +33,14 @@ sfEvent *event, dialogues_t **dialogue)
         if (event->type == sfEvtKeyPressed && event->key.code == sfKeyUp
         && my_strcmp(menu->zone_name, "game") == 0 &&
         (*dialogue)->next != NULL) {
+            free_text_zone((*dialogue)->text_zone);
             (*dialogue) = (*dialogue)->next[0];
             sfClock_restart((*dialogue)->text_zone->text_clock->clocksfInt64);
         }
         if (event->type == sfEvtKeyPressed && event->key.code == sfKeyDown
         && my_strcmp(menu->zone_name, "game") == 0 &&
         (*dialogue)->next != NULL && (*dialogue)->next[1] != NULL) {
+            free_text_zone((*dialogue)->text_zone);
             (*dialogue) = (*dialogue)->next[1];
             sfClock_restart((*dialogue)->text_zone->text_clock->clocksfInt64);
         }
@@ -83,9 +85,9 @@ int my_rpg(void)
             display(menu, dialogue);
         }
     }
-    // if (my_strcmp(menu->zone_name, "game") == 0) {
-    //     free_text_zone(text_zone);
-    // }
+    if (my_strcmp(menu->zone_name, "game") == 0) {
+        free_dialogue(&dialogue);
+    }
     free_game(menu, settings, principal_clock);
     return (0);
 }

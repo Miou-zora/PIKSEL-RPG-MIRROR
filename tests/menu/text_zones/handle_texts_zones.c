@@ -9,14 +9,14 @@
 
 int set_text_strings(text_zone_t **text_zone, char *text_string)
 {
-    (*text_zone)->current_string =
-    malloc(sizeof(char) * (my_strlen(text_string) + 1));
+    (*text_zone)->current_string = my_calloc(1, (my_strlen(text_string) + 1));
     if ((*text_zone)->current_string == NULL)
         return (84);
     (*text_zone)->current_string[0] = '\0';
-    (*text_zone)->text_string =
-    malloc(sizeof(char) * (my_strlen(text_string) + 1));
+    (*text_zone)->text_string = my_calloc(1, (my_strlen(text_string) + 1));
     (*text_zone)->text_string = my_strdup(text_string);
+    if (my_strlen(text_string) < 110)
+        return (0);
     for (int i = 110; text_string[i] != '\0'; i++) {
         for (; text_string[i] != '\0'; i++) {
             if (text_string[i] == ' ') {
@@ -68,20 +68,15 @@ int create_text_zone(text_zone_t **text_zone, char *text_string)
 
 int create_dialogue_bubble(dialogues_t **bubble, char *string)
 {
-    my_putchar('a');
     (*bubble) = malloc(sizeof(dialogues_t));
-    my_putchar('b');
     if ((*bubble) == NULL)
         return (84);
-    my_putchar('c');
     if (create_text_zone(&((*bubble)->text_zone), string) == 84) {
         return (84);
     }
-    my_putchar('d');
     if (initialize_clock(&((*bubble)->text_zone->text_clock)) == 84) {
         return (84);
     }
-    my_putchar('e');
     return (0);
 }
 
@@ -100,6 +95,14 @@ char **bubbles, int i)
     return (0);
 }
 
+void free_bubbles_text(char **bubbles)
+{
+    for (int i = 0; bubbles[i] != NULL; i++) {
+        free(bubbles[i]);
+    }
+    free(bubbles);
+}
+
 int create_dialogue_list(dialogues_t **dialogue, char *path_to_file,
 int question_or_monologue)
 {
@@ -116,6 +119,7 @@ int question_or_monologue)
         if (create_dialogue_bubble(&((*dialogue)->next[1]), bubbles[2]) == 84)
             return (84);
         (*dialogue)->next[1]->next = NULL;
+        free_bubbles_text(bubbles);
         return (0);
     } else {
         if (create_each_bubble_of_monologue(dialogue, bubbles, 1) == 84)
