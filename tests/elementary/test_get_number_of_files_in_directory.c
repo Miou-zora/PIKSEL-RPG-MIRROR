@@ -10,7 +10,7 @@
 
 Test(get_number_of_files_in_directory, no_file)
 {
-    int nb_of_files = get_number_of_files_in_directory("tests", NULL);
+    int nb_of_files = get_number_of_files_in_directory("tests/directory_tests/sheesh", NULL);
 
     cr_assert_eq(nb_of_files, 0);
 }
