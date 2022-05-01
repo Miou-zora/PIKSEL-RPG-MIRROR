@@ -60,7 +60,7 @@ void detect_key(player_t *player)
 
 void player_attack(player_t *player)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyEnter) && player->sword->sprite_data->rect.left != 576) {
+    if (sfKeyboard_isKeyPressed(sfKeyEnter)) {
         player->player_walk = false;
         player->player_run = false;
         player->move_up = false;
@@ -68,8 +68,7 @@ void player_attack(player_t *player)
         player->move_left = false;
         player->move_right = false;
         player->attack = true;
-    } else
-        player->attack = false;
+    }
 }
 
 void select_weapon(player_t *player)
