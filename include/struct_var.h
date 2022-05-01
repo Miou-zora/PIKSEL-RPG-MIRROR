@@ -44,6 +44,7 @@ typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
+typedef struct clock_player_s clock_player_t;
 typedef struct background_s background_t;
 typedef struct forest_s forest_t;
 typedef struct town_s town_t;
@@ -130,9 +131,36 @@ struct player_s {
     sfRenderWindow *window;
     sfEvent event;
     sfVideoMode mode;
+    clock_player_t *anim;
+    clock_player_t *player;
+    clock_player_t *c_sword;
+    clock_player_t *c_punch;
+    clock_player_t *c_gun;
+    clock_player_t *c_spear;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
+    animator_t *sword;
+    animator_t *gun;
+    animator_t *spear;
+    animator_t *punch;
+    sfVector2f pos;
+    int player_mode;
+    bool player_walk;
+    bool player_run;
+    bool move_up;
+    bool move_down;
+    bool move_left;
+    bool move_right;
+    bool attack;
+    bool direction;
+    int weapon;
+};
+
+struct clock_player_s {
+    sfClock *clock;
+    sfTime time;
+    float seconds;
 };
 
 struct clock_data_s {
