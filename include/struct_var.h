@@ -234,13 +234,9 @@ struct text_zone_s {
 typedef struct game {
     int click[2];
     sfRenderWindow *window;
-<<<<<<< HEAD
-    enemy_t *enemy;
-=======
-    ennemy_t *ennemy;
+    ennemy_t *enemy;
     background_t *background;
     enum scene_background_t scene_background;
->>>>>>> origin/main
     int distance[2];
     sfClock *clock;
 }game_t;
