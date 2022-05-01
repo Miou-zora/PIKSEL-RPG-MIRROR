@@ -33,7 +33,7 @@ typedef struct clock_data_s clock_data_t;
 typedef struct ennemy_s ennemy_t;
 typedef struct npc_s npc_t;
 typedef struct dialogues_s dialogues_t;
-typedef struct ennemy_sprite_s ennemy_sprite_t; 
+typedef struct ennemy_sprite_s ennemy_sprite_t;
 typedef struct stat_s stat_t;
 typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;

@@ -19,6 +19,8 @@
 
 void display(scene_t *scene, dialogues_t *dialogue);
 void update_clock(clock_data_t *clock);
+void update(scene_t *menu, settings_t *settings,
+sfEvent *event, dialogues_t **dialogue);
 // void free_all(game_t *game);
 int my_rpg(void);
 // void set_mouse_cursor(game_t *game);
@@ -48,6 +50,8 @@ sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones);
 int initialize_settings_values(settings_t **settings, scene_t **scene);
 int initialize_game(scene_t **game_scene, scene_t *old_scene);
 int initialize_dialogues(dialogues_t *dialogues);
+int initialize_structures(scene_t **menu,
+clock_data_t **principal_clock, settings_t **settings);
 
 /************************set event fonctions*********************************/
 
@@ -65,7 +69,8 @@ void analyse_event(sfEvent event, game_t *game);
 /**************************free functions************************************/
 
 int free_scene(scene_t *scene);
-void free_game(scene_t *scene, settings_t *settings, clock_data_t *clock);
+void free_game(scene_t *scene, settings_t *settings,
+clock_data_t *clock, dialogues_t *dialogue);
 void free_settings(settings_infos_t *settings);
 
 /************************text zone functions*********************************/

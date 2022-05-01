@@ -7,8 +7,12 @@
 
 #include "rpg.h"
 
-void free_game(scene_t *scene, settings_t *settings, clock_data_t *clock)
+void free_game(scene_t *scene, settings_t *settings,
+clock_data_t *clock, dialogues_t *dialogue)
 {
+    if (my_strcmp(scene->zone_name, "game") == 0) {
+        free_dialogue(&dialogue);
+    }
     char *zone_name = malloc(sizeof(char) * (my_strlen(scene->zone_name) + 1));
     my_strcpy(zone_name, scene->zone_name);
     free_scene(scene);

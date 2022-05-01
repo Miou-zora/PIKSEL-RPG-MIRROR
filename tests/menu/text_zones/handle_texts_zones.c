@@ -7,6 +7,16 @@
 
 #include "rpg.h"
 
+void add_return_to_the_line(text_zone_t **text_zone, char *text_string, int i)
+{
+    for (; text_string[i] != '\0'; i++) {
+        if (text_string[i] == ' ') {
+            (*text_zone)->text_string[i] = '\n';
+            return;
+        }
+    }
+}
+
 int set_text_strings(text_zone_t **text_zone, char *text_string)
 {
     (*text_zone)->current_string = my_calloc(1, (my_strlen(text_string) + 1));
@@ -17,14 +27,8 @@ int set_text_strings(text_zone_t **text_zone, char *text_string)
     (*text_zone)->text_string = my_strdup(text_string);
     if (my_strlen(text_string) < 110)
         return (0);
-    for (int i = 110; text_string[i] != '\0'; i++) {
-        for (; text_string[i] != '\0'; i++) {
-            if (text_string[i] == ' ') {
-                (*text_zone)->text_string[i] = '\n';
-                break;
-            }
-        }
-        i+= 115;
+    for (int i = 110; text_string[i] != '\0'; i+= 115) {
+        add_return_to_the_line(text_zone, text_string, i);
     }
     return (0);
 }
@@ -66,64 +70,10 @@ int create_text_zone(text_zone_t **text_zone, char *text_string)
     return (0);
 }
 
-int create_dialogue_bubble(dialogues_t **bubble, char *string)
-{
-    (*bubble) = malloc(sizeof(dialogues_t));
-    if ((*bubble) == NULL)
-        return (84);
-    if (create_text_zone(&((*bubble)->text_zone), string) == 84) {
-        return (84);
-    }
-    if (initialize_clock(&((*bubble)->text_zone->text_clock)) == 84) {
-        return (84);
-    }
-    return (0);
-}
-
-int create_each_bubble_of_monologue(dialogues_t **dialogue,
-char **bubbles, int i)
-{
-    (*dialogue)->next = malloc(sizeof(dialogues_t *) * 2);
-    (*dialogue)->next[1] = NULL;
-    if ((*dialogue)->next == NULL)
-        return (84);
-    if (create_dialogue_bubble(&((*dialogue)->next[0]), bubbles[i]) == 84)
-        return (84);
-    (*dialogue)->next[0]->next = NULL;
-    if (bubbles[i + 1] != NULL)
-        create_each_bubble_of_monologue(&((*dialogue)->next[0]), bubbles, i + 1);
-    return (0);
-}
-
 void free_bubbles_text(char **bubbles)
 {
     for (int i = 0; bubbles[i] != NULL; i++) {
         free(bubbles[i]);
     }
     free(bubbles);
-}
-
-int create_dialogue_list(dialogues_t **dialogue, char *path_to_file,
-int question_or_monologue)
-{
-    char **bubbles = get_data_from_file(path_to_file);
-    if (create_dialogue_bubble(dialogue, bubbles[0]) == 84)
-        return (84);
-    if (question_or_monologue == 0) {
-        (*dialogue)->next = malloc(sizeof(dialogues_t *) * 2);
-        if ((*dialogue)->next == NULL)
-            return (84);
-        if (create_dialogue_bubble(&((*dialogue)->next[0]), bubbles[1]) == 84)
-            return (84);
-        (*dialogue)->next[0]->next = NULL;
-        if (create_dialogue_bubble(&((*dialogue)->next[1]), bubbles[2]) == 84)
-            return (84);
-        (*dialogue)->next[1]->next = NULL;
-        free_bubbles_text(bubbles);
-        return (0);
-    } else {
-        if (create_each_bubble_of_monologue(dialogue, bubbles, 1) == 84)
-            return (84);
-        return (0);
-    }
 }

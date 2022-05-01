@@ -34,7 +34,6 @@ scene_t *scene, settings_t **settings_struct, dialogues_t **dialogue)
 int change_menu(sfEvent *event, scene_t *scene,
 settings_t **settings_struct, dialogues_t **dialogue)
 {
-    my_putstr("salut");
     if (handle_keyboard_inputs(event, scene, settings_struct, dialogue) == 84)
         return (84);
     if (my_strcmp(scene->zone_name, "settings") == 0) {
