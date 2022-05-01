@@ -42,6 +42,7 @@ void detect_key(player_t *player)
     move_player_up_and_down(player);
     if (sfKeyboard_isKeyPressed(sfKeyD)) {
         player->move_left = true;
+        player->direction = true;
         if (player->player_mode == 1)
             player->walk->sprite_data->rect.top = 0;
         else if (player->player_mode == 2)
@@ -50,6 +51,7 @@ void detect_key(player_t *player)
         player->move_left = false;
     if (sfKeyboard_isKeyPressed(sfKeyQ)) {
         player->move_right = true;
+        player->direction = false;
         if (player->player_mode == 1)
             player->walk->sprite_data->rect.top = 48;
         else if (player->player_mode == 2)

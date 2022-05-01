@@ -161,6 +161,8 @@ TEST_PLAYER =	tests/tests_file/main_loop.c					\
 				tests/tests_file/move_player.c					\
 				tests/tests_file/player_animation.c				\
 				tests/tests_file/player_position.c				\
+				tests/tests_file/clock_player_attack.c			\
+				tests/tests_file/player_animation_attack.c		\
 
 CFLAGS		=	-Wall -Wextra -Wshadow -Werror -I./include -lcsfml-audio \
 				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window

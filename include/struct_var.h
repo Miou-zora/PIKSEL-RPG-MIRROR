@@ -135,14 +135,15 @@ struct player_s {
     animator_t *spear;
     animator_t *punch;
     sfVector2f pos;
+    int player_mode;
     bool player_walk;
     bool player_run;
-    int player_mode;
     bool move_up;
     bool move_down;
     bool move_left;
     bool move_right;
     bool attack;
+    bool direction;
     int weapon;
 };
 

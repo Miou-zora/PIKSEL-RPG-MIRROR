@@ -76,12 +76,14 @@ int my_rpg(void)
     player->pos = (sfVector2f){0, 0};
     player->weapon = 1;
     player->attack = false;
+    player->direction = true;
 
     create_sprite_player(player);
     while (sfRenderWindow_isOpen(player->window)) {
         while (sfRenderWindow_pollEvent(player->window, &player->event))
             analyse_events(player);
-        called_clock(player);
+        called_clock_player(player);
+        called_clock_player_attack(player);
         detect_if_key_pressed(player);
         update_position(player);
         display_player_sprites(player);

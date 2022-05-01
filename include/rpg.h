@@ -15,7 +15,8 @@
 
 /***********************init fonctions player********************************/
 
-void called_clock(player_t *player);
+void called_clock_player(player_t *player);
+void called_clock_player_attack(player_t *player);
 void create_sprite_player(player_t *player);
 void display_player_sprites(player_t *player);
 int detect_if_key_pressed(player_t *player);
@@ -25,8 +26,8 @@ void move_player_run(player_t *player);
 void player_animation_iddle(player_t *player);
 void player_animation_walk(player_t *player);
 void player_animation_run(player_t *player);
-void update_position(player_t *player);
 void player_animation_sword(player_t *player);
 void player_animation_gun(player_t *player);
 void player_animation_punch(player_t *player);
 void player_animation_spear(player_t *player);
+void update_position(player_t *player);

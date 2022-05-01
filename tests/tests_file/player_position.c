@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "rpg.h"
 
 void update_position(player_t *player)
 {
