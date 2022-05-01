@@ -8,8 +8,11 @@
 #include "my.h"
 #include "rpg.h"
 
-void display(game_t *game)
+void display(scene_t *scene)
 {
-    (void)game;
+    sfRenderWindow_drawSprite(scene->window,
+    scene->background->sprite, NULL);
+    sfRenderWindow_drawRectangleShape(scene->window, scene->hitbox, NULL);
+    sfRenderWindow_display(scene->window);
     return;
 }

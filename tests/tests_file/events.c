@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 void key_run(player_t *player)
 {
@@ -57,9 +58,37 @@ void detect_key(player_t *player)
         player->move_right = false;
 }
 
+void player_attack(player_t *player)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyEnter) && player->sword->sprite_data->rect.left != 576) {
+        player->player_walk = false;
+        player->player_run = false;
+        player->move_up = false;
+        player->move_down = false;
+        player->move_left = false;
+        player->move_right = false;
+        player->attack = true;
+    } else
+        player->attack = false;
+}
+
+void select_weapon(player_t *player)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyNumpad1))
+        player->weapon = 1;
+    if (sfKeyboard_isKeyPressed(sfKeyNumpad2))
+        player->weapon = 2;
+    if (sfKeyboard_isKeyPressed(sfKeyNumpad3))
+        player->weapon = 3;
+    if (sfKeyboard_isKeyPressed(sfKeyNumpad4))
+        player->weapon = 4;
+}
+
 void analyse_events(player_t *player)
 {
     if (player->event.type == sfEvtClosed)
         sfRenderWindow_close(player->window);
+    select_weapon(player);
     detect_key(player);
+    player_attack(player);
 }

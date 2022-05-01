@@ -23,10 +23,11 @@ static void set_armor_type(const char *str, armor_t *armor)
 
 static void set_bonus_basic(const char *str, armor_t *armor)
 {
-    char *bonus[] = {"health", "regeneration", "power", "speed", "armor", "charisma"};
+    char *bonus[] = {"health", "regeneration", "power", "armor", "speed",
+    "charisma", NULL};
 
     armor->type_bonus_basic = 0;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; bonus[i]; i++) {
         if (my_strcmp(str, bonus[i]) == 0) {
             armor->type_bonus_basic = i + 1;
             return;

@@ -31,28 +31,14 @@ void print_armor_type(int type)
 
 void print_type_bonus_basic(int type)
 {
-    switch (type) {
-        case 1:
-            my_putstr("Health");
-            break;
-        case 2:
-            my_putstr("Regeneration");
-            break;
-        case 3:
-            my_putstr("Power");
-            break;
-        case 4:
-            my_putstr("Speed");
-            break;
-        case 5:
-            my_putstr("Armor");
-            break;
-        case 6:
-            my_putstr("Charisma");
-            break;
-        default:
-            my_putstr("Unknown bonus type or not_set");
-            break;
+    char *bonus[] = {"Unknown bonus type or not_set", "Health", "Regeneration",
+    "Power", "Armor", "Speed", "Charisma"};
+
+    for (int i = 0; i < 6; i++) {
+        if (type == i) {
+            my_putstr(bonus[i]);
+            i = 7;
+        }
     }
 }
 
@@ -78,6 +64,9 @@ void print_armor(armor_t *armor)
 
 void print_all_armors(armor_t **armors)
 {
+    if (armors == NULL) {
+        return;
+    }
     for (int i = 0; armors[i]; i++) {
         print_armor(armors[i]);
     }

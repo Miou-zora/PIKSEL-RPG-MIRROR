@@ -1,0 +1,8 @@
+type: mob, mini_boss, boss
+name
+id
+health
+armor
+power
+speed
+path assets for animation

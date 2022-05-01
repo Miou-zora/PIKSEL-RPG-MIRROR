@@ -8,12 +8,22 @@
 #include "my.h"
 #include "rpg.h"
 
-int initialize_window(game_t *game)
+// int initialize_window(game_t *game)
+// {
+//     game->mode = (sfVideoMode){1080, 1920, 32};
+//     game->window = sfRenderWindow_create(game->mode, "my_defender", sfResize |
+//     sfClose, NULL);
+//     if (game->window == NULL)
+//         return (84);
+//     return (0);
+// }
+
+int initialize_window(sfRenderWindow **window)
 {
-    game->mode = (sfVideoMode){1080, 1920, 32};
-    game->window = sfRenderWindow_create(game->mode, "my_defender", sfResize |
+    sfVideoMode mode = {1920, 1080, 32};
+    (*window) = sfRenderWindow_create(mode, "my_defender", sfResize |
     sfClose, NULL);
-    if (game->window == NULL)
+    if ((*window) == NULL)
         return (84);
     return (0);
 }
