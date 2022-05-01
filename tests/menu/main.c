@@ -31,12 +31,14 @@ sfEvent *event, dialogues_t **dialogue)
             (*dialogue)->text_zone->enter_is_pressed = true;
         }
         if (event->type == sfEvtKeyPressed && event->key.code == sfKeyUp
-        && my_strcmp(menu->zone_name, "game") == 0) {
+        && my_strcmp(menu->zone_name, "game") == 0 &&
+        (*dialogue)->next != NULL) {
             (*dialogue) = (*dialogue)->next[0];
             sfClock_restart((*dialogue)->text_zone->text_clock->clocksfInt64);
         }
         if (event->type == sfEvtKeyPressed && event->key.code == sfKeyDown
-        && my_strcmp(menu->zone_name, "game") == 0) {
+        && my_strcmp(menu->zone_name, "game") == 0 &&
+        (*dialogue)->next != NULL && (*dialogue)->next[1] != NULL) {
             (*dialogue) = (*dialogue)->next[1];
             sfClock_restart((*dialogue)->text_zone->text_clock->clocksfInt64);
         }
