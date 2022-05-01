@@ -23,7 +23,7 @@ enum types_weapon {SWORD = 1, SPEAR, GLOVES, GUN};
 enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
-enum types_ennemy {MOB = 1, MINI_BOSS, BOSS};
+enum types_enemy {MOB = 1, MINI_BOSS, BOSS};
 
 /************************** typedef ***********************************/
 
@@ -32,10 +32,10 @@ typedef struct weapon_s weapon_t;
 typedef struct sprite_data_s sprite_data_t;
 typedef struct animator_s animator_t;
 typedef struct clock_data_s clock_data_t;
-typedef struct ennemy_s ennemy_t;
+typedef struct enemy_s enemy_t;
 typedef struct npc_s npc_t;
 typedef struct dialogues_s dialogues_t;
-typedef struct ennemy_sprite_s ennemy_sprite_t;
+typedef struct enemy_sprite_s enemy_sprite_t;
 typedef struct stat_s stat_t;
 typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
@@ -71,15 +71,14 @@ struct stat_s {
     int speed;
 };
 
-struct ennemy_s {
-    enum types_ennemy type_ennemy;
+struct enemy_s {
+    enum types_enemy type_enemy;
     char *name;
     int id;
     stat_t *stat;
     sprite_data_t *sprite_data;
     animator_t *animator_standing;
     animator_t *animator_moving;
-    int max_left;
 };
 
 struct armor_s {
@@ -176,7 +175,7 @@ struct text_zone_s {
 typedef struct game {
     int click[2];
     sfRenderWindow *window;
-    ennemy_t *ennemy;
+    enemy_t *enemy;
     int distance[2];
     sfClock *clock;
 }game_t;
@@ -194,12 +193,12 @@ char **get_files_from_directory(char *directory, char *expected_extension);
 void freen_array(void *array);
 bool verif_extension(char *filename, char *expected_extension);
 
-//*ennemy
+//*enemy
 
-ennemy_t *create_ennemy(void);
-void destroy_ennemy(ennemy_t **ennemy);
-ennemy_t *fill_ennemy(ennemy_t *ennemy, char **data);
-ennemy_t *load_ennemy(char *path);
+enemy_t *create_enemy(void);
+void destroy_enemy(enemy_t **enemy);
+enemy_t *load_enemy(char *path);
+enemy_t *fill_enemy(enemy_t *enemy, char **data);
 
 //* armor
 

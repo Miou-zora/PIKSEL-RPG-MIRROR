@@ -17,8 +17,8 @@ Test(create_sprite_data, casual_sprite_data_creation)
     cr_assert_null(sprite_data->texture);
     cr_assert_eq(sprite_data->pos.x, 0);
     cr_assert_eq(sprite_data->pos.y, 0);
-    cr_assert_eq(sprite_data->scale.x, 0);
-    cr_assert_eq(sprite_data->scale.y, 0);
+    cr_assert_eq(sprite_data->scale.x, 1);
+    cr_assert_eq(sprite_data->scale.y, 1);
     cr_assert_eq(sprite_data->rect.left, 0);
     cr_assert_eq(sprite_data->rect.top, 0);
     cr_assert_eq(sprite_data->rect.width, 0);
