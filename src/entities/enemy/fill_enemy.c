@@ -36,7 +36,6 @@ static bool check_error(enemy_t *enemy)
 {
     bool error = false;
 
-    error |= (enemy->sprite_data == NULL);
     error |= (enemy->stat == NULL);
     error |= (enemy->stat->health == 0);
     error |= (enemy->name == NULL);
@@ -50,7 +49,6 @@ enemy_t *fill_enemy(enemy_t *enemy, char **data)
     if (data == NULL || get_len_array(data) != 8 || enemy == NULL) {
         return (NULL);
     } else {
-        enemy->sprite_data = load_sprite_data(data[7]);
         enemy->type_enemy = get_type_enemy(data[0]);
         enemy->name = my_strdup(data[1]);
         enemy->id = my_getnbr(data[2]);

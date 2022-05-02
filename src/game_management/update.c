@@ -9,6 +9,5 @@
 
 void update(game_t *game)
 {
-    (void)game;
-    // update_animator(game->enemy->animator_standing);
+    update_animator(game->enemy->animator_standing);
 }

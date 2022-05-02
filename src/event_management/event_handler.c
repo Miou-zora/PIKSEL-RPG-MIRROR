@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 int event_handler(game_t *game)
 {

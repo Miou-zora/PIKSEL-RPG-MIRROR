@@ -85,7 +85,6 @@ struct enemy_s {
     char *name;
     int id;
     stat_t *stat;
-    sprite_data_t *sprite_data;
     animator_t *animator_standing;
     animator_t *animator_moving;
 };

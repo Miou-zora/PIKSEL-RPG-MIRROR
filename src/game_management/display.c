@@ -9,6 +9,7 @@
 
 void display(game_t *game)
 {
-    (void)game;
-    // sfRenderWindow_drawSprite(game->window, game->enemy->animator_standing->sprite_data->sprite, NULL);
+    sfRenderWindow_clear(game->window, sfBlack);
+    sfRenderWindow_drawSprite(game->window, game->enemy->animator_standing->sprite_data->sprite, NULL);
+    sfRenderWindow_display(game->window);
 }

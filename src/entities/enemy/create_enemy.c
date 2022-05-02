@@ -18,7 +18,6 @@ enemy_t *create_enemy(void)
     enemy->name = NULL;
     enemy->id = NOT_SET;
     enemy->stat = NOT_SET;
-    enemy->sprite_data = NULL;
     enemy->animator_standing = NULL;
     enemy->animator_moving = NULL;
     return (enemy);

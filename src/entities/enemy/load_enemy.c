@@ -24,8 +24,6 @@ enemy_t *load_enemy(char *path)
         return (NULL);
     }
     if (fill_enemy(enemy, data) == NULL) {
-        freen(&(*data));
-        freen(&data);
         destroy_enemy(&enemy);
     }
     freen(&(*data));

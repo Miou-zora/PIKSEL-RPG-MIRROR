@@ -24,10 +24,7 @@ animator_t *load_animator(char *path)
         return (NULL);
     }
     if (fill_animator(animator, data) == NULL) {
-        freen(&(*data));
-        freen(&data);
         destroy_animator(&animator);
-        return (NULL);
     }
     freen(&(*data));
     freen(&data);
