@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 enemy_t *load_enemy(char *path)
 {

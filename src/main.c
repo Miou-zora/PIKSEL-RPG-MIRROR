@@ -20,6 +20,8 @@ int my_rpg(void)
         drain_clock_data(principal_clock);
         while (update_clock_data(principal_clock)) {
             event_handler(game);
+            update(game);
+            display(game);
         }
     }
     return (0);

@@ -40,7 +40,7 @@ static bool check_error(enemy_t *enemy)
     error |= (enemy->stat == NULL);
     error |= (enemy->stat->health == 0);
     error |= (enemy->name == NULL);
-    error |= (enemy->type_enemy != NOT_SET);
+    error |= (enemy->type_enemy == NOT_SET);
     error |= (enemy->animator_standing == NULL);
     return (error);
 }

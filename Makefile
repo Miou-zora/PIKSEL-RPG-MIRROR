@@ -18,6 +18,8 @@ SRC =					$(SRC_ANIMATOR)										\
 PATH_GAME_MANAGEMENT =	src/game_management
 
 SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
+						$(PATH_GAME_MANAGEMENT)/update.c					\
+						$(PATH_GAME_MANAGEMENT)/display.c					\
 
 PATH_EVENT =			src/event_management
 

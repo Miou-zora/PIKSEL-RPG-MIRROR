@@ -315,6 +315,8 @@ void destroy_clock_data(clock_data_t **clock_data);
 
 int event_handler(game_t *game);
 
-//* initialize game
+//* game management
 
 bool initialize_game(game_t **game);
+void display(game_t *game);
+void update(game_t *game);
