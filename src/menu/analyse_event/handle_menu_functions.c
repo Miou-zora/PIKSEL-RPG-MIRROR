@@ -7,17 +7,9 @@
 
 #include "rpg.h"
 
-int game(scene_t *scene, dialogues_t **dialogue)
+int game(void)
 {
-    scene_t *new_scene = NULL;
-
-    if (free_scene(scene) == 84)
-        return (84);
-    if (initialize_game(&(new_scene), scene) == 84)
-        return (84);
-    *scene = *new_scene;
-    if (create_dialogue_list(dialogue, "tests/menu/coucou", 0) == 84)
-        return (84);
+    my_rpg_player();
     return (0);
 }
 
@@ -45,11 +37,10 @@ int quit(scene_t *scene)
     return (0);
 }
 
-int go_to_good_menu(scene_t *scene,
-settings_t *settings_struct, dialogues_t **dialogue)
+int go_to_good_menu(scene_t *scene, settings_t *settings_struct)
 {
     if (scene->select_zone->current_pos == 0) {
-        return (game(scene, dialogue));
+        return (game());
     }
     if (scene->select_zone->current_pos == 1) {
         if (settings(scene, settings_struct) == 84)

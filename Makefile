@@ -51,6 +51,17 @@ SRC 		=			src/free.c \
 						src/sprite_data/destroy_sprite_data.c	\
 						src/sprite_data/load_sprite_data.c	\
 						src/sprite_data/create_sprite_data.c	\
+						tests/tests_file/main_loop.c	\
+						tests/tests_file/clock_player_attack.c	\
+						tests/tests_file/clock_player.c	\
+						tests/tests_file/create_sprites_player.c	\
+						tests/tests_file/detect_key.c	\
+						tests/tests_file/display_sprite.c	\
+						tests/tests_file/events.c	\
+						tests/tests_file/move_player.c	\
+						tests/tests_file/player_animation_attack.c	\
+						tests/tests_file/player_animation.c	\
+						tests/tests_file/player_position.c	\
 
 MAIN 		=			src/main.c
 

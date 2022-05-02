@@ -11,7 +11,7 @@
 #include "my.h"
 #include <stdio.h>
 
-int my_rpg(void)
+int my_rpg_player(void)
 {
     player_t *player = malloc(sizeof(player_t));
     animator_t *animator_iddle = malloc(sizeof(animator_t));
@@ -90,11 +90,5 @@ int my_rpg(void)
         sfRenderWindow_display(player->window);
         sfRenderWindow_clear(player->window, sfBlack);
     }
-    return (0);
-}
-
-int main()
-{
-    my_rpg();
     return (0);
 }

@@ -20,6 +20,7 @@ void display(scene_t *scene, dialogues_t *dialogue);
 void update_clock(clock_data_t *clock);
 void update(scene_t *menu, settings_t *settings,
 sfEvent *event, dialogues_t **dialogue);
+int my_rpg_player(void);
 
 /***********************init fonctions player********************************/
 
@@ -76,15 +77,13 @@ clock_data_t **principal_clock, settings_t **settings);
 
 /************************set event fonctions*********************************/
 
-int change_menu(sfEvent *event, scene_t *scene,
-settings_t **settings, dialogues_t **dialogue);
+int change_menu(sfEvent *event, scene_t *scene, settings_t **settings_struct);
 void handle_settings(scene_t **scene, sfEvent *event, settings_t *settings);
 void handle_fps(settings_t *settings, sfEvent *event);
 void handle_sound(settings_t *settings, sfEvent *event);
 void handle_music(settings_t *settings, sfEvent *event);
 void handle_quit(scene_t *scene);
-int go_to_good_menu(scene_t *scene,
-settings_t *settings_struct, dialogues_t **dialogue);
+int go_to_good_menu(scene_t *scene, settings_t *settings_struct);
 void analyse_event(sfEvent event, game_t *game);
 
 /**************************free functions************************************/

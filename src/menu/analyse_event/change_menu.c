@@ -9,7 +9,7 @@
 #include "my.h"
 
 int handle_keyboard_inputs(sfEvent *event,
-scene_t *scene, settings_t **settings_struct, dialogues_t **dialogue)
+scene_t *scene, settings_t **settings_struct)
 {
     if ((event->key.code == sfKeyDown || event->key.code == sfKeyS) &&
     scene->select_zone->current_pos != scene->select_zone->nb_of_poses - 1) {
@@ -26,16 +26,15 @@ scene_t *scene, settings_t **settings_struct, dialogues_t **dialogue)
     if ((event->key.code == sfKeyEnter || event->key.code == sfKeySpace)
     && my_strcmp(scene->zone_name, "menu")
     == 0) {
-        if (go_to_good_menu(scene, (*settings_struct), dialogue) == 84)
+        if (go_to_good_menu(scene, (*settings_struct)) == 84)
             return (84);
     }
     return (0);
 }
 
-int change_menu(sfEvent *event, scene_t *scene,
-settings_t **settings_struct, dialogues_t **dialogue)
+int change_menu(sfEvent *event, scene_t *scene, settings_t **settings_struct)
 {
-    if (handle_keyboard_inputs(event, scene, settings_struct, dialogue) == 84)
+    if (handle_keyboard_inputs(event, scene, settings_struct) == 84)
         return (84);
     if (my_strcmp(scene->zone_name, "settings") == 0) {
         handle_settings(&scene, event, (*settings_struct));
