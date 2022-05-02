@@ -24,8 +24,9 @@ void my_rpg_player(void)
     cinematic->player_walk->sprite_data = sprite_data_player_walk;
     cinematic->enemy_run = animator_enemy_run;
     cinematic->enemy_run->sprite_data = sprite_data_enemy_run;
+
     cinematic->city = sprite_data_city;
-    cinematic->city = sprite_data_light;
+    cinematic->light = sprite_data_light;
 
     create_sprites_cinematic(cinematic);
     while (sfRenderWindow_isOpen(cinematic->window)) {
