@@ -12,18 +12,28 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_ENEMY)										\
 						$(SRC_CLOCK)										\
 						$(SRC_ELEMENTARY)									\
+						$(SRC_EVENT)										\
+						$(SRC_GAME_MANAGEMENT)								\
+
+PATH_GAME_MANAGEMENT =	src/game_management
+
+SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
+
+PATH_EVENT =			src/event_management
+
+SRC_EVENT =				$(PATH_EVENT)/event_handler.c						\
 
 MAIN 		=			src/main.c
 
 PATH_ELEMENTARY =		src/elementary
 
-SRC_ELEMENTARY =		$(PATH_ELEMENTARY)/get_file.c							\
-						$(PATH_ELEMENTARY)/get_data_from_file.c					\
-						$(PATH_ELEMENTARY)/freen.c								\
-						$(PATH_ELEMENTARY)/put_str_error.c						\
-						$(PATH_ELEMENTARY)/get_files_from_directory.c			\
-						$(PATH_ELEMENTARY)/freen_array.c						\
-						$(PATH_ELEMENTARY)/verif_extension.c					\
+SRC_ELEMENTARY =		$(PATH_ELEMENTARY)/get_file.c						\
+						$(PATH_ELEMENTARY)/get_data_from_file.c				\
+						$(PATH_ELEMENTARY)/freen.c							\
+						$(PATH_ELEMENTARY)/put_str_error.c					\
+						$(PATH_ELEMENTARY)/get_files_from_directory.c		\
+						$(PATH_ELEMENTARY)/freen_array.c					\
+						$(PATH_ELEMENTARY)/verif_extension.c				\
 
 PATH_ENEMY =			src/entities/enemy
 
@@ -89,22 +99,7 @@ CC			=	gcc
 
 TEST_BINARY	=	unit_tests
 
-TEST_PLAYER =	tests/tests_file/main_loop.c					\
-				tests/tests_file/clock_player.c					\
-				tests/tests_file/create_sprites_player.c		\
-				tests/tests_file/detect_key.c					\
-				tests/tests_file/display_sprite.c				\
-				tests/tests_file/events.c						\
-				tests/tests_file/move_player.c					\
-				tests/tests_file/player_animation.c				\
-				tests/tests_file/player_position.c				\
-				tests/tests_file/clock_player_attack.c			\
-				tests/tests_file/player_animation_attack.c		\
-
 CFLAGS		=	-Wall -Wextra -Wshadow -Werror -I./include -lcsfml-audio \
-				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
-
-CFLAGS_MENU		=	-Wall -Wextra -Wshadow -Werror -I./tests/menu/include -lcsfml-audio \
 				-lcsfml-graphics -lm -lcsfml-system -lcsfml-window
 
 TESTS_FLAGS	=	--coverage -lcriterion
@@ -124,7 +119,7 @@ MV			=	mv
 all:		$(NAME)
 
 $(NAME):	make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(MAIN) $(CFLAGS) -o $(NAME) $(LFLAGS)
+			$(CC) $(OBJ_SRC) $(MAIN) $(CFLAGS) -o $(NAME) $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de %s réussi\n" \
 				$(NAME)
 

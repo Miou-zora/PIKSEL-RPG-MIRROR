@@ -17,14 +17,6 @@ int initialize_window(sfRenderWindow **window)
     return (0);
 }
 
-int event_handler(sfEvent *event, sfRenderWindow *window)
-{
-    if (event->type == sfEvtClosed) {
-        sfRenderWindow_close(window);
-    }
-    return (0);
-}
-
 int main()
 {
     sfRenderWindow *window = NULL;
