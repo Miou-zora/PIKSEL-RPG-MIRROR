@@ -14,23 +14,21 @@
 //     return (0);
 // }
 
-// int settings(scene_t *scene, settings_t *settings_struct)
-// {
-//     scene_t *new_scene = NULL;
-
-//     if (free_scene(scene) == 84)
-//         return (84);
-//     if (initialize_settings(&(new_scene), scene) == 84)
-//         return (84);
-//     *scene = *new_scene;
-//     if (scene == NULL)
-//         return (84);
-//     if (settings_struct->sound == false)
-//         settings_struct->sound = true;
-//     else
-//         settings_struct->sound = false;
-//     return (0);
-// }
+int settings(game_t *game)
+{
+    sprite_data_t *settings_background = NULL;
+    settings_background = load_sprite_data("assets/menu/settings.png");
+    sfSprite_setScale(settings_background->sprite, (sfVector2f){8, 8});
+    sfSprite_setPosition(settings_background->sprite, (sfVector2f){0, 0});
+    game->background->menu->sprite = settings_background;
+    my_putstr("coucou");
+    if (initialize_settings_rectangles(game->background->menu) == 84)
+        return (84);
+    my_putstr("salut");
+    my_put_nbr(sfRectangleShape_getPosition(game->background->menu->settings_rectangles[0]).x);
+    my_putstr("coucou");
+    return (0);
+}
 
 int quit(game_t *game)
 {
@@ -60,11 +58,11 @@ int go_to_good_menu(sfVector2i position, game_t *game)
     // if (mouse_pos == 0) {
     //     return (game());
     // }
-    // if (mouse_pos == 1) {
-    //     if (settings(scene, settings_struct) == 84)
-    //         return (84);
-    // }
-    if (mouse_pos == 2)
+    if (mouse_pos == 1) {
+        if (settings(game) == 84)
+            return (84);
+    }
+    if (mouse_pos == 3)
         quit(game);
     return (0);
 }

@@ -207,6 +207,9 @@ struct laboratory_s {
 
 struct menu_s {
     sprite_data_t *sprite;
+    sfRectangleShape **settings_rectangles;
+    sfVector2f *rectangles_positions;
+    sfVector2f *rectangles_sizes;
 };
 
 struct background_s {
@@ -337,6 +340,7 @@ bool initialize_menu(menu_t **menu);
 int go_to_good_menu(sfVector2i position, game_t *game);
 sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones);
 void handle_menu_events(game_t *game);
+int initialize_settings_rectangles(menu_t *menu);
 
 //* background
 
