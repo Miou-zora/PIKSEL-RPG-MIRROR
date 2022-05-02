@@ -92,6 +92,13 @@ SRC_ELEMENTARY =		src/elementary/get_file.c							\
 						src/elementary/freen_array.c						\
 						src/elementary/verif_extension.c					\
 
+PATH_ENEMY =			src/entities/enemy
+
+SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
+						$(PATH_ENEMY)/destroy_enemy.c						\
+						$(PATH_ENEMY)/load_enemy.c							\
+						$(PATH_ENEMY)/fill_enemy.c							\
+
 PATH_CLOCK_DATA =		src/elementary/clock
 
 SRC_CLOCK =				$(PATH_CLOCK_DATA)/create_clock_data.c				\
