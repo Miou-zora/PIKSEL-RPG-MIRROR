@@ -6,7 +6,7 @@
 */
 
 #include "my.h"
-#include "rpg.h"
+#include "struct_var.h"
 
 int initialize_intro(game_t *game)
 {

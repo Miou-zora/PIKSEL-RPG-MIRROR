@@ -5,7 +5,7 @@
 ** handle_settings
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 #include "my.h"
 
 void change_position_and_size(scene_t *scene,

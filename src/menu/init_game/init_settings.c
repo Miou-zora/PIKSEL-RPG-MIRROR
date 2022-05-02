@@ -5,7 +5,7 @@
 ** init_settings
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 #include "my.h"
 
 int initialize_settings_values(settings_t **settings, scene_t **scene)

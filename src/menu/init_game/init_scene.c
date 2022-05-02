@@ -5,7 +5,7 @@
 ** init_scene
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 #include "my.h"
 
 sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones)

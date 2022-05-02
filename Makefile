@@ -5,103 +5,25 @@
 ## Makefile
 ##
 
-SRC 		=			src/free.c \
-						src/set_mouse_cursor.c \
-						src/init_game/init_cursor.c \
-						src/init_game/init_window.c \
-						src/init_game/init_game_end.c \
-						src/init_game/init_how_to_play.c \
-						src/init_game/init_intro.c \
-						src/init_game/init_menu.c \
-						src/init_game/init_options.c \
-						src/init_game/init_pause.c \
-						src/init_game/init_rpg.c \
-						src/init_game/init_sound.c \
-						src/init_game/init_music.c \
-						src/analyse_event/change_menu.c \
-						src/elementary/get_file.c			\
-						src/elementary/get_data_from_file.c	\
-						src/elementary/freen.c				\
-						src/elementary/put_str_error.c		\
-						src/ennemy/create_ennemy.c 		\
-						src/ennemy/destroy_ennemy.c 	\
-						src/ennemy/fill_ennemy.c 	\
-						src/ennemy/load_ennemy.c 	\
-						src/menu/analyse_event/change_menu.c	\
-						src/menu/analyse_event/handle_menu_functions.c	\
-						src/menu/analyse_event/handle_settings_functions.c	\
-						src/menu/analyse_event/handle_settings.c	\
-						src/menu/free_game/free_game.c	\
-						src/menu/free_game/free_scene.c	\
-						src/menu/free_game/free_settings.c	\
-						src/menu/init_game/init_clock.c	\
-						src/menu/init_game/init_game.c	\
-						src/menu/init_game/init_scene.c	\
-						src/menu/init_game/init_settings.c	\
-						src/menu/init_game/init_sprite.c	\
-						src/menu/init_game/init_window.c	\
-						src/menu/text_zones/create_dialogue.c	\
-						src/menu/text_zones/display_one_more_char.c	\
-						src/menu/text_zones/display_text_zone.c	\
-						src/menu/text_zones/free_dialogue.c	\
-						src/menu/text_zones/free_text_zone.c	\
-						src/menu/text_zones/handle_texts_zones.c	\
-						src/menu/display.c	\
-						src/menu/update.c	\
-						src/sprite_data/destroy_sprite_data.c	\
-						src/sprite_data/load_sprite_data.c	\
-						src/sprite_data/create_sprite_data.c	\
-						tests/tests_file/main_loop.c	\
-						tests/tests_file/clock_player_attack.c	\
-						tests/tests_file/clock_player.c	\
-						tests/tests_file/create_sprites_player.c	\
-						tests/tests_file/detect_key.c	\
-						tests/tests_file/display_sprite.c	\
-						tests/tests_file/events.c	\
-						tests/tests_file/move_player.c	\
-						tests/tests_file/player_animation_attack.c	\
-						tests/tests_file/player_animation.c	\
-						tests/tests_file/player_position.c	\
+SRC =					$(SRC_ANIMATOR)										\
+						$(SRC_SPRITE_DATA)									\
+						$(SRC_ARMOR)										\
+						$(SRC_WEAPON)										\
+						$(SRC_ENEMY)										\
+						$(SRC_CLOCK)										\
+						$(SRC_ELEMENTARY)									\
 
 MAIN 		=			src/main.c
 
-MAIN_TEST_ANIMATION =	tests/test_main_animation.c
+PATH_ELEMENTARY =		src/elementary
 
-BINARY_TEST_ANIMATION =	tests_animation
-
-TESTS_MENU =	tests/menu/main.c \
-				tests/menu/analyse_event/event.c \
-				tests/menu/init_game/init_scene.c \
-				tests/menu/init_game/init_clock.c \
-				tests/menu/init_game/init_sprite.c \
-				tests/menu/init_game/init_window.c \
-				tests/menu/analyse_event/change_menu.c \
-				tests/menu/analyse_event/event.c \
-				tests/menu/display.c \
-				tests/menu/update.c \
-				tests/menu/init_game/init_settings.c \
-				tests/menu/free_game/free_scene.c \
-				tests/menu/analyse_event/handle_settings.c \
-				tests/menu/analyse_event/handle_settings_functions.c \
-				tests/menu/analyse_event/handle_menu_functions.c \
-				tests/menu/free_game/free_game.c \
-				tests/menu/free_game/free_settings.c \
-				tests/menu/init_game/init_game.c \
-				tests/menu/text_zones/handle_texts_zones.c \
-				tests/menu/text_zones/display_text_zone.c \
-				tests/menu/text_zones/display_one_more_char.c \
-				tests/menu/text_zones/free_text_zone.c \
-				tests/menu/text_zones/free_dialogue.c \
-				tests/menu/text_zones/create_dialogue.c \
-
-
-SRC_ELEMENTARY =		src/elementary/get_file.c							\
-						src/elementary/get_data_from_file.c					\
-						src/elementary/freen.c								\
-						src/elementary/put_str_error.c						\
-						src/elementary/get_files_from_directory.c			\
-						src/elementary/freen_array.c						\
-						src/elementary/verif_extension.c					\
+SRC_ELEMENTARY =		$(PATH_ELEMENTARY)/get_file.c							\
+						$(PATH_ELEMENTARY)/get_data_from_file.c					\
+						$(PATH_ELEMENTARY)/freen.c								\
+						$(PATH_ELEMENTARY)/put_str_error.c						\
+						$(PATH_ELEMENTARY)/get_files_from_directory.c			\
+						$(PATH_ELEMENTARY)/freen_array.c						\
+						$(PATH_ELEMENTARY)/verif_extension.c					\
 
 PATH_ENEMY =			src/entities/enemy
 
@@ -110,7 +32,7 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/load_enemy.c							\
 						$(PATH_ENEMY)/fill_enemy.c							\
 
-PATH_CLOCK_DATA =		src/elementary/clock
+PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 
 SRC_CLOCK =				$(PATH_CLOCK_DATA)/create_clock_data.c				\
 						$(PATH_CLOCK_DATA)/destroy_clock_data.c				\
@@ -157,26 +79,6 @@ SRC_ANIMATOR =			$(PATH_ANIMATOR)/create_animator.c					\
 						$(PATH_ANIMATOR)/increment_animator_image_pos.c		\
 						$(PATH_ANIMATOR)/refresh_animator.c					\
 						$(PATH_ANIMATOR)/update_animator.c					\
-
-TEST_FONC =		tests/elementary/test_freen.c								\
-				tests/elementary/test_put_str_error.c						\
-				tests/load_management/test_create_armor.c					\
-				tests/load_management/test_create_sprite_data.c				\
-				tests/load_management/test_load_sprite_data.c				\
-				tests/load_management/test_destroy_sprite_data.c			\
-				tests/load_management/test_load_armor.c						\
-				tests/load_management/test_load_all_armors.c				\
-				tests/elementary/test_get_file.c							\
-				tests/elementary/test_get_number_of_files_in_directory.c	\
-				tests/elementary/test_get_files_from_directory.c			\
-				tests/load_management/test_load_animator.c					\
-				tests/load_management/test_load_weapon.c
-
-TEST_ENNEMY = 	tests/ennemy/test_ennemy_main.c	\
-
-TEST_BACKGROUND = 	tests/background/test_background_main.c \
-
-MAIN_DEBUG	=	src/temp_test.c
 
 OBJ_SRC		=	$(SRC:%.c=%.o)
 
@@ -238,6 +140,7 @@ tests_menu:		make_lib $(OBJ_SRC)
 				réussi\n"
 
 clean:
+			echo $(SRC_ANIMATOR)
 			@$(RM) $(OBJ_SRC)
 			@$(RM) $(OBJ_TEST)
 			@$(MK) -C lib/my/ clean

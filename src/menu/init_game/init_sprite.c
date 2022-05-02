@@ -5,7 +5,7 @@
 ** init_sprite
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 #include "my.h"
 
 int initialize_sprite_data(sprite_data_t **sprite_data, char *path_to_image,

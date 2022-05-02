@@ -5,7 +5,7 @@
 ** change_menu
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 
 // void change_menu(sfRenderWindow *window, sfIntRect hitbox)
 // {

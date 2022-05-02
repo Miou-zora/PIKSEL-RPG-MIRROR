@@ -5,8 +5,7 @@
 ** free game struct
 */
 
-#include "my.h"
-#include "rpg.h"
+#include "struct_var.h"
 
 void free_all(game_t *game)
 {

@@ -6,7 +6,7 @@
 */
 
 #include "my.h"
-#include "rpg.h"
+#include "struct_var.h"
 
 void set_mouse_cursor(game_t *game)
 {

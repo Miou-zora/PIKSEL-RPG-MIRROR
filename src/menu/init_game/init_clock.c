@@ -5,7 +5,7 @@
 ** init_clock
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 
 int initialize_clock(clock_data_t **clock)
 {

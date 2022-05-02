@@ -6,7 +6,7 @@
 */
 
 #include "my.h"
-#include "rpg.h"
+#include "struct_var.h"
 
 void analyse_event(sfEvent event, game_t *game)
 {

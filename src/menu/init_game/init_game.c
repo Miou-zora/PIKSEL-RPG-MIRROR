@@ -5,7 +5,7 @@
 ** init_game
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 
 int initialize_structures(scene_t **menu,
 clock_data_t **principal_clock, settings_t **settings)

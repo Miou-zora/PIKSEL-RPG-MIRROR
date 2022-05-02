@@ -5,7 +5,7 @@
 ** init_scene
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 
 // sfIntRect initialize_hitbox(void)
 // {
