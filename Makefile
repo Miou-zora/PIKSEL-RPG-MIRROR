@@ -6,7 +6,6 @@
 ##
 
 SRC 		=			src/free.c \
-						src/display.c \
 						src/set_mouse_cursor.c \
 						src/init_game/init_cursor.c \
 						src/init_game/init_window.c \
@@ -19,37 +18,39 @@ SRC 		=			src/free.c \
 						src/init_game/init_rpg.c \
 						src/init_game/init_sound.c \
 						src/init_game/init_music.c \
-						src/init_game/init_sprite.c \
-						src/init_game/init_clock.c \
 						src/analyse_event/change_menu.c \
 						src/elementary/get_file.c			\
 						src/elementary/get_data_from_file.c	\
 						src/elementary/freen.c				\
 						src/elementary/put_str_error.c		\
-						src/load_management/create_armor.c	\
-						src/load_management/fill_armor.c	\
-						src/load_management/destroy_armor.c	\
-						src/load_management/load_armor.c	\
-						src/load_management/create_sprite_data.c	\
-						src/load_management/destroy_sprite_data.c	\
-						src/load_management/load_sprite_data.c		\
 						src/ennemy/create_ennemy.c 		\
 						src/ennemy/destroy_ennemy.c 	\
 						src/ennemy/fill_ennemy.c 	\
 						src/ennemy/load_ennemy.c 	\
-
-TESTS_MENU =			tests/menu/main.c \
-						tests/menu/analyse_event/event.c \
-						tests/menu/init_game/init_scene.c \
-						tests/menu/init_game/init_clock.c \
-						tests/menu/init_game/init_sprite.c \
-						tests/menu/init_game/init_window.c \
-						tests/menu/analyse_event/change_menu.c \
-						tests/menu/analyse_event/event.c \
-						tests/menu/display.c \
-						tests/menu/init_game/init_settings.c \
-						tests/menu/free_game/free_scene.c \
-						tests/menu/analyse_event/handle_settings.c \
+						src/menu/analyse_event/change_menu.c	\
+						src/menu/analyse_event/handle_menu_functions.c	\
+						src/menu/analyse_event/handle_settings_functions.c	\
+						src/menu/analyse_event/handle_settings.c	\
+						src/menu/free_game/free_game.c	\
+						src/menu/free_game/free_scene.c	\
+						src/menu/free_game/free_settings.c	\
+						src/menu/init_game/init_clock.c	\
+						src/menu/init_game/init_game.c	\
+						src/menu/init_game/init_scene.c	\
+						src/menu/init_game/init_settings.c	\
+						src/menu/init_game/init_sprite.c	\
+						src/menu/init_game/init_window.c	\
+						src/menu/text_zones/create_dialogue.c	\
+						src/menu/text_zones/display_one_more_char.c	\
+						src/menu/text_zones/display_text_zone.c	\
+						src/menu/text_zones/free_dialogue.c	\
+						src/menu/text_zones/free_text_zone.c	\
+						src/menu/text_zones/handle_texts_zones.c	\
+						src/menu/display.c	\
+						src/menu/update.c	\
+						src/sprite_data/destroy_sprite_data.c	\
+						src/sprite_data/load_sprite_data.c	\
+						src/sprite_data/create_sprite_data.c	\
 
 MAIN 		=			src/main.c
 
@@ -138,13 +139,6 @@ SRC_ANIMATOR =			$(PATH_ANIMATOR)/create_animator.c					\
 						$(PATH_ANIMATOR)/increment_animator_image_pos.c		\
 						$(PATH_ANIMATOR)/refresh_animator.c					\
 						$(PATH_ANIMATOR)/update_animator.c					\
-
-SRC =					$(SRC_ELEMENTARY)									\
-						$(SRC_WEAPON)										\
-						$(SRC_ARMOR)										\
-						$(SRC_SPRITE_DATA)									\
-						$(SRC_ANIMATOR)										\
-						$(SRC_CLOCK)										\
 
 TEST_FONC =		tests/elementary/test_freen.c								\
 				tests/elementary/test_put_str_error.c						\

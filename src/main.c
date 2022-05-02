@@ -5,36 +5,35 @@
 ** rpg main
 */
 
+#include "my.h"
 #include "rpg.h"
-
-// int my_rpg(void)
-// {
-//     game_t *game = malloc(sizeof(game_t));
-
-//     if (initialize_var(game) == 84)
-//         return (84);
-//     while (sfRenderWindow_isOpen(game->window)) {
-//         display(game);
-//         set_mouse_cursor(game);
-//         sfRenderWindow_display(game->window);
-//         while (sfRenderWindow_pollEvent(game->window, game->event))
-//             analyse_event(game);
-//         sfRenderWindow_clear(game->window, sfBlack);
-//     }
-//     free_all(game);
-//     return (0);
-// }
 
 int my_rpg(void)
 {
+    scene_t *menu;
+    sfEvent event;
+    clock_data_t *principal_clock;
+    settings_t *settings;
+    dialogues_t *dialogue;
+
+    if (initialize_structures(&menu, &principal_clock, &settings) == 84)
+        return (84);
+    while (sfRenderWindow_isOpen(menu->window)) {
+        update_clock(principal_clock);
+        if (my_strcmp(menu->zone_name, "game") == 0)
+            update_clock(dialogue->text_zone->text_clock);
+        while (principal_clock->elapsed_time > 10000) {
+            principal_clock->elapsed_time -= 10000;
+            update(menu, settings, &event, &dialogue);
+            display(menu, dialogue);
+        }
+    }
+    free_game(menu, settings, principal_clock, dialogue);
     return (0);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
-    (void)argc;
-    (void)argv;
-
     if (my_rpg() == 84)
         return (84);
 }

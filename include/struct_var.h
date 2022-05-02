@@ -56,9 +56,7 @@ typedef struct text_zone_s text_zone_t;
 /************************** struct ***********************************/
 
 struct dialogues_s {
-    char *text;
-    bool text_changed;
-    dialogues_t *changed_text;
+    text_zone_t *text_zone;
     bool binary_reponse;
     dialogues_t **next;
     //struct quest *quest_add;
@@ -226,8 +224,7 @@ struct text_zone_s {
     char *text_string;
     char *current_string;
     int which_character;
-    sfSprite *sprite_zone;
-    sfTexture *texture_zone;
+    sprite_data_t *text_zone_sprite;
     clock_data_t *text_clock;
     bool enter_is_pressed;
 };
