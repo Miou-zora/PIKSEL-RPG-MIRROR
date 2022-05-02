@@ -54,8 +54,20 @@ typedef struct bedroom_s bedroom_t;
 typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 typedef struct game_s game_t;
+typedef struct cinematic_s cinematic_t;
 
 /************************** struct ***********************************/
+
+struct cinematic_s {
+    sfRenderWindow *window;
+    sfEvent event;
+    sprite_data_t *player;
+    sprite_data_t *enemy;
+    sprite_data_t *light;
+    sprite_data_t *city;
+    animator_t *player_walk;
+    animator_t *enemy_run;
+};
 
 struct dialogues_s {
     text_zone_t *text_zone;
@@ -319,3 +331,9 @@ int event_handler(game_t *game);
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
+
+//* cinematic
+
+void create_sprites_cinematic(cinematic_t *cinematic);
+void analyse_events(cinematic_t *cinematic);
+void display_sprite_cinematic(cinematic_t *cinematic);

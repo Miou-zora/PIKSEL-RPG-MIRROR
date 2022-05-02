@@ -92,6 +92,13 @@ SRC_ANIMATOR =			$(PATH_ANIMATOR)/create_animator.c					\
 						$(PATH_ANIMATOR)/refresh_animator.c					\
 						$(PATH_ANIMATOR)/update_animator.c					\
 
+PATH_CINEMATIC	=		tests/cinematic
+
+SRC_CINEMATIC	=		$(PATH_CINEMATIC)/main_loop.c						\
+						$(PATH_CINEMATIC)/events.c							\
+						$(PATH_CINEMATIC)/create_sprites.c					\
+						$(PATH_CINEMATIC)/display_sprites.c
+
 OBJ_SRC		=	$(SRC:%.c=%.o)
 
 OBJ_TEST	+=	$(OBJ_SRC)
@@ -166,6 +173,11 @@ tests_player:	make_lib $(OBJ_SRC)
 tests_background:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_BACKGROUND) $(CFLAGS) -o "tests_background" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_background \
+			réussi\n"
+
+tests_cinematic:	make_lib $(OBJ_SRC)
+			@$(CC) $(OBJ_SRC) $(SRC_CINEMATIC) $(CFLAGS) -o "tests_cinematic" $(LFLAGS)
+			@printf "\033[32m[Message]\033[39m Compilation de tests_cinematic \
 			réussi\n"
 
 tclean:
