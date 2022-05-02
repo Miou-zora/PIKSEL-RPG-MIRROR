@@ -28,5 +28,4 @@
     // if (mouse_pos.x > positions[0][0].x && mouse_pos.x < positions[0][1].x &&
     // mouse_pos.y > positions[0][0].y && mouse_pos.y < positions[0][1].y)
     //     my_putstr("salut mec");
-
 // }

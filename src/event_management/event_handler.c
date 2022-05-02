@@ -14,6 +14,7 @@ int event_handler(game_t *game)
         if (game->event.type == sfEvtClosed) {
             sfRenderWindow_close(game->window);
         }
+        manage_key(game);
     }
     return (0);
 }

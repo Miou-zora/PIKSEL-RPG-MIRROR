@@ -17,6 +17,10 @@ bool fill_game(game_t *game)
     game->enemy = load_enemy("scripts/ennemy/wolf.ene");
     if (game->enemy == NULL)
         return (true);
+    game->background = NULL;
+    if (init_back(&(game->background))) {
+        return (true);
+    }
     return (false);
 }
 

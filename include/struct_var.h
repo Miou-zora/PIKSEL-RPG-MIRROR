@@ -12,6 +12,7 @@
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 /************************** global ***********************************/
 
@@ -210,6 +211,7 @@ struct background_s {
     town_t *town[2];
     laboratory_t *laboratory;
     bedroom_t *bedroom;
+    enum scene_background_t scene_background;
 };
 
 struct settings_s {
@@ -235,8 +237,8 @@ struct game_s {
     sfEvent event;
     enemy_t *enemy;
     background_t *background;
-    enum scene_background_t scene_background;
     int distance[2];
+    player_t *player;
     sfClock *clock;
 };
 
@@ -313,9 +315,19 @@ void destroy_clock_data(clock_data_t **clock_data);
 //* event management
 
 int event_handler(game_t *game);
+int manage_key(game_t *game);
+int manage_key_d(game_t *game);
+int manage_key_z(game_t *game);
+int manage_key_s(game_t *game);
+int manage_key_q(game_t *game);
 
 //* game management
 
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
+
+
+//* background
+
+bool init_back(background_t **background);
