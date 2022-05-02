@@ -15,10 +15,12 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_EVENT)										\
 						$(SRC_GAME_MANAGEMENT)								\
 						$(SRC_MENU)											\
+						#$(SRC_BACKGROUND)									\
 
 SRC_MENU	=			src/init_game/init_menu.c							\
 						src/event_management/handle_menu_functions.c		\
-						src/init_game/init_menu_positions.c
+						src/init_game/init_menu_positions.c					\
+						src/event_management/handle_menu_events.c			\
 
 PATH_GAME_MANAGEMENT =	src/game_management
 
@@ -29,6 +31,11 @@ SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 PATH_EVENT =			src/event_management
 
 SRC_EVENT =				$(PATH_EVENT)/event_handler.c						\
+						$(PATH_EVENT)/event_key.c							\
+						$(PATH_EVENT)/key_d_event.c 						\
+						$(PATH_EVENT)/key_q_event.c 						\
+						$(PATH_EVENT)/key_s_event.c 						\
+						$(PATH_EVENT)/key_z_event.c 						\
 
 MAIN 		=			src/main.c
 
@@ -68,6 +75,10 @@ SRC_ARMOR =				$(PATH_ARMOR)/create_armor.c						\
 						$(PATH_ARMOR)/load_all_armors.c						\
 						$(PATH_ARMOR)/fill_all_armors.c						\
 						$(PATH_ARMOR)/print_all_armors.c					\
+
+PATH_BACKGROUND = 		src/background
+
+SRC_BACKGROUND = 		$(PATH_BACKGROUND)/init_background.c				\
 
 PATH_WEAPON =			src/items/weapon
 
@@ -159,6 +170,8 @@ tests_run:		tclean $(NAME)
 			gcovr -e tests
 			gcovr -e tests -bu
 
+TEST_ENNEMY = tests/ennemy/test_ennemy_main.c
+
 tests_ennemy: 	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_ENNEMY) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy"
@@ -167,6 +180,8 @@ tests_player:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_player" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_player \
 			réussi\n"
+
+TEST_BACKGROUND = tests/background/test_background_main.c
 
 tests_background:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_BACKGROUND) $(CFLAGS) -o "tests_background" $(LFLAGS)
