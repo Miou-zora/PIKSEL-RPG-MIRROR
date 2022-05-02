@@ -54,6 +54,7 @@ typedef struct bedroom_s bedroom_t;
 typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 typedef struct game_s game_t;
+typedef struct menu_s menu_t;
 
 /************************** struct ***********************************/
 
@@ -182,8 +183,6 @@ struct settings_infos_s {
 };
 
 struct scene_s {
-    sfRenderWindow *window;
-    sprite_data_t *background;
     selection_zone_t *select_zone;
     settings_infos_t *settings;
     char *zone_name;
@@ -205,7 +204,12 @@ struct laboratory_s {
     sprite_data_t *sprite;
 };
 
+struct menu_s {
+    sprite_data_t *sprite;
+};
+
 struct background_s {
+    menu_t *menu;
     forest_t *forest[2];
     town_t *town[2];
     laboratory_t *laboratory;
@@ -319,3 +323,9 @@ int event_handler(game_t *game);
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
+
+//* menu
+
+bool initialize_menu(menu_t **menu);
+int go_to_good_menu(sfVector2i position, game_t *game);
+sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones);

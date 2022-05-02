@@ -14,6 +14,11 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_ELEMENTARY)									\
 						$(SRC_EVENT)										\
 						$(SRC_GAME_MANAGEMENT)								\
+						$(SRC_MENU)											\
+
+SRC_MENU	=			src/init_game/init_menu.c							\
+						src/event_management/handle_menu_functions.c		\
+						src/init_game/init_menu_positions.c
 
 PATH_GAME_MANAGEMENT =	src/game_management
 

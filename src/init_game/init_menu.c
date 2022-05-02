@@ -1,15 +1,22 @@
 /*
 ** EPITECH PROJECT, 2022
-** B-MUL-200-NAN-2-1-my_rpg_kentin_paille
+** PIKSEL-RPG-MIRROR
 ** File description:
-** init sprite and data in rpg
+** init_menu
 */
 
-#include "my.h"
 #include "struct_var.h"
+#include "my.h"
 
-int initialize_menu(game_t *game)
+bool initialize_menu(menu_t **menu)
 {
-    (void)game;
-    return (0);
+    (*menu) = my_calloc(1, sizeof(menu_t));
+    if ((*menu) == NULL)
+        return (true);
+    (*menu)->sprite = load_sprite_data("assets/menu/menu.png");
+    sfSprite_setScale((*menu)->sprite->sprite,
+    (sfVector2f){8, 8});
+    sfSprite_setPosition((*menu)->sprite->sprite,
+    (sfVector2f){0, 0});
+    return (false);
 }
