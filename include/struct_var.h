@@ -18,6 +18,8 @@
 
 #define NOT_SET 0
 #define sfKeyReturn sfKeyInsert
+#define sfKeyEnter sfKeyInsert
+#define PI 3.14159265358979323846
 
 /************************** enum ***********************************/
 
@@ -56,6 +58,9 @@ typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 typedef struct game_s game_t;
 typedef struct menu_s menu_t;
+typedef struct framebuffer_s framebuffer_t;
+typedef struct nest_particle_s nest_particle_t;
+typedef struct particle_s particle_t;
 
 /************************** struct ***********************************/
 
@@ -92,6 +97,27 @@ struct enemy_s {
     stat_t *stat;
     animator_t *animator_standing;
     animator_t *animator_moving;
+};
+
+struct framebuffer_s {
+    sfUint8 *pixels;
+    unsigned int width;
+    unsigned int height;
+};
+
+struct particle_s {
+    float acceleration;
+    float speed;
+    sfVector2f position;
+    particle_t *next;
+    sfColor color;
+    particle_t *prev;
+};
+
+struct nest_particle_s {
+    framebuffer_t *framebuffer;
+    sfVector2f offset;
+    particle_t *all_particles;
 };
 
 struct armor_s {
@@ -372,3 +398,12 @@ bool init_player_clock(player_t *player);
 int init_stats(stat_t **stat);
 void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
+
+//* particle
+
+void destroy_framebuffer(framebuffer_t **framebuffer);
+framebuffer_t *create_framebuffer(unsigned int width, unsigned int height);
+nest_particle_t *create_nest_particle(int number_of_particle,
+sfVector2i size_framebuffer);
+void update_nest_particle(nest_particle_t *nest_particle, float delta_time);
+void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);

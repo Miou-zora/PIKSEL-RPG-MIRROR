@@ -17,6 +17,14 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_MENU)											\
 						$(SRC_BACKGROUND)									\
 						$(SRC_PLAYER)										\
+						$(SRC_PARTICLES)									\
+
+PATH_PARTICLES =		src/particle
+
+SRC_PARTICLES =			$(PATH_PARTICLES)/create_framebuffer.c				\
+						$(PATH_PARTICLES)/create_nest_particle.c			\
+						$(PATH_PARTICLES)/update_nest_particle.c			\
+						$(PATH_PARTICLES)/put_nest_particle_on_framebuffer.c\
 
 SRC_MENU	=			src/init_game/init_menu.c							\
 						src/event_management/menu/handle_menu_functions.c	\
