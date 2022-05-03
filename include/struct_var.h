@@ -45,7 +45,7 @@ typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
-typedef struct clock_player_s clock_player_t;
+typedef struct clock_simple_s clock_simple_t;
 typedef struct background_s background_t;
 typedef struct forest_s forest_t;
 typedef struct town_s town_t;
@@ -61,12 +61,14 @@ typedef struct cinematic_s cinematic_t;
 struct cinematic_s {
     sfRenderWindow *window;
     sfEvent event;
-    sprite_data_t *player;
-    sprite_data_t *enemy;
     sprite_data_t *light;
     sprite_data_t *city;
-    animator_t *player_walk;
-    animator_t *enemy_run;
+    animator_t *anim_player_walk;
+    animator_t *anim_enemy_run;
+    clock_data_t *clock_move_player;
+    clock_data_t *clock_move_enemy;
+    bool walk;
+    bool run;
 };
 
 struct dialogues_s {
@@ -141,12 +143,12 @@ struct player_s {
     sfRenderWindow *window;
     sfEvent event;
     sfVideoMode mode;
-    clock_player_t *anim;
-    clock_player_t *player;
-    clock_player_t *c_sword;
-    clock_player_t *c_punch;
-    clock_player_t *c_gun;
-    clock_player_t *c_spear;
+    clock_simple_t *anim;
+    clock_simple_t *simple;
+    clock_simple_t *c_sword;
+    clock_simple_t *c_punch;
+    clock_simple_t *c_gun;
+    clock_simple_t *c_spear;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
@@ -165,12 +167,6 @@ struct player_s {
     bool attack;
     bool direction;
     int weapon;
-};
-
-struct clock_player_s {
-    sfClock *clock;
-    sfTime time;
-    float seconds;
 };
 
 struct clock_data_s {
@@ -337,3 +333,4 @@ void update(game_t *game);
 void create_sprites_cinematic(cinematic_t *cinematic);
 void analyse_events(cinematic_t *cinematic);
 void display_sprite_cinematic(cinematic_t *cinematic);
+void call_clock_cine(cinematic_t *cinematic);

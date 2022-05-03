@@ -97,7 +97,8 @@ PATH_CINEMATIC	=		tests/cinematic
 SRC_CINEMATIC	=		$(PATH_CINEMATIC)/main_loop.c						\
 						$(PATH_CINEMATIC)/events.c							\
 						$(PATH_CINEMATIC)/create_sprites.c					\
-						$(PATH_CINEMATIC)/display_sprites.c
+						$(PATH_CINEMATIC)/display_sprites.c					\
+						$(PATH_CINEMATIC)/clock_cinematic.c
 
 OBJ_SRC		=	$(SRC:%.c=%.o)
 

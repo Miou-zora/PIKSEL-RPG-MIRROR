@@ -12,9 +12,9 @@ void display_sprite_cinematic(cinematic_t *cinematic)
     sfRenderWindow_drawSprite(cinematic->window,
     cinematic->city->sprite, NULL);
     sfRenderWindow_drawSprite(cinematic->window,
-    cinematic->player_walk->sprite_data->sprite, NULL);
+    cinematic->anim_player_walk->sprite_data->sprite, NULL);
     sfRenderWindow_drawSprite(cinematic->window,
-    cinematic->enemy_run->sprite_data->sprite, NULL);
+    cinematic->anim_enemy_run->sprite_data->sprite, NULL);
     sfRenderWindow_drawSprite(cinematic->window,
     cinematic->light->sprite, NULL);
 }

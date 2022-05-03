@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 void set_framerate_clock_data(clock_data_t *clock, int framerate)
 {
