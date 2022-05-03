@@ -71,7 +71,7 @@ SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
 						$(PATH_EVENT)/map_changement/forest_to_labo.c 		\
 						$(PATH_EVENT)/map_changement/labo_to_forest.c 		\
 						$(PATH_EVENT)/map_changement/forest_to_city.c 		\
-						$(PATH_EVENT)/key_management/move_loot.c			\
+						$(PATH_EVENT)/key_management/handle_loot.c			\
 
 MAIN 		=			src/main.c
 

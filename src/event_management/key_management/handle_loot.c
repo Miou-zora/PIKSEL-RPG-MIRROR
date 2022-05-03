@@ -6,6 +6,23 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
+
+void get_loot(game_t *game)
+{
+    sfVector2f loot_pos;
+    loot_pos.x = game->background->loot->position.x - 100;
+    loot_pos.y = game->background->loot->position.y - 200;
+    if (game->player->pos.x >= loot_pos.x - 100 &&
+    game->player->pos.x <= loot_pos.x + 100 &&
+    game->player->pos.y >= loot_pos.y - 100 &&
+    game->player->pos.y <= loot_pos.y + 100) {
+        if (game->background->loot->armor_or_weapon == 0)
+            my_putstr(game->background->loot->armor->name);
+        else
+            my_putstr(game->background->loot->weapon->name);
+    }
+}
 
 void move_loot(loot_t *loot, int x_or_y, int to_move)
 {

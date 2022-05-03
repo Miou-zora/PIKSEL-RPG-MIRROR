@@ -433,5 +433,6 @@ void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
 
 //* inventory
 
-int spawn_random_loot(loot_t **loot, sfVector2f pos);
+void spawn_random_loot(loot_t **loot, sfVector2f pos);
 void display_loot(game_t *game);
+void get_loot(game_t *game);

@@ -18,7 +18,7 @@ void shade_framebuffer(framebuffer_t *framebuffer) {
 
 int my_rpg(void)
 {
-    srand(time(NULL));
+    srand(0);
     game_t *game = NULL;
     clock_data_t *principal_clock = create_clock_data();
     // sfTexture *texture = sfTexture_create(1920, 1080);
