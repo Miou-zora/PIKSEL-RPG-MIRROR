@@ -21,7 +21,7 @@ int settings(game_t *game)
     sfSprite_setScale(settings_background->sprite, (sfVector2f){8, 8});
     sfSprite_setPosition(settings_background->sprite, (sfVector2f){0, 0});
     game->background->menu->sprite = settings_background;
-    if (initialize_settings_rectangles(game->background->menu) == 84)
+    if (initialize_settings_rectangles(game->background->menu, game) == 84)
         return (84);
     game->background->scene_background = SETTINGS;
     return (0);
