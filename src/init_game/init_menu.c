@@ -8,18 +8,6 @@
 #include "struct_var.h"
 #include "my.h"
 
-int initialize_settings_values(settings_t **settings, scene_t **scene)
-{
-    (*settings) = malloc(sizeof(settings_t));
-    if ((*settings) == NULL)
-        return (84);
-    my_putstr((*scene)->zone_name);
-    (*settings)->fps = 60;
-    (*settings)->sound = true;
-    (*settings)->music = true;
-    return (0);
-}
-
 void initialize_settings_rectangle_shapes(menu_t *menu)
 {
     for (int i = 0; i < 3; i++) {
@@ -38,17 +26,30 @@ void initialize_settings_rectangle_shapes(menu_t *menu)
     }
 }
 
-int initialize_settings_rectangles(menu_t *menu)
+int initialize_settings_rectangles(menu_t *menu, game_t *game)
 {
     menu->settings_rectangles = my_calloc(8, sizeof(sfRectangleShape *));
     if (menu->settings_rectangles == NULL)
         return (84);
     menu->rectangles_positions = initialize_positions
-    ("1100 295 1340 295 1100 535 1340 535 1100 775 1250 775 1400 775 50 1000", 8);
+    ("1100 295 1340 295 1100 535 1340 535 1100 775 1250 775 1400 775 100 850", 8);
     menu->rectangles_sizes = initialize_positions
-    ("220 135 245 135 220 135 245 135 140 135 140 135 185 135 100 100", 8);
+    ("220 135 245 135 220 135 245 135 140 135 140 135 185 135 150 150", 8);
     initialize_settings_rectangle_shapes(menu);
-    my_putstr("salut emc");
+    if (menu->fps == 30)
+        set_fps_30(game);
+    if (menu->fps == 60)
+        set_fps_60(game);
+    if (menu->fps == 120)
+        set_fps_120(game);
+    if (menu->sound == true)
+        sound_on(game);
+    if (menu->sound == false)
+        sound_off(game);
+    if (menu->sound == true)
+        music_on(game);
+    if (menu->sound == false)
+        music_off(game);
     return (0);
 }
 
@@ -62,5 +63,8 @@ bool initialize_menu(menu_t **menu)
     (sfVector2f){8, 8});
     sfSprite_setPosition((*menu)->sprite->sprite,
     (sfVector2f){0, 0});
+    (*menu)->fps = 60;
+    (*menu)->music = true;
+    (*menu)->sound = true;
     return (false);
 }

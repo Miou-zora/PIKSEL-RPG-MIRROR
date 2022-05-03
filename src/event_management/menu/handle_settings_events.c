@@ -11,6 +11,10 @@
 int find_which_setting(game_t *game)
 {
     sfVector2i mouse_position = sfMouse_getPositionRenderWindow(game->window);
+    my_put_nbr(mouse_position.x);
+    my_putchar('\n');
+    my_put_nbr(mouse_position.y);
+    my_putchar('\n');
     sfVector2f rect_pos_left = {0, 0};
     sfVector2f rect_pos_right = {0, 0};
     for (int i = 0; i < 9; i++) {

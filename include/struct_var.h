@@ -210,6 +210,9 @@ struct menu_s {
     sfRectangleShape **settings_rectangles;
     sfVector2f *rectangles_positions;
     sfVector2f *rectangles_sizes;
+    int fps;
+    bool sound;
+    bool music;
 };
 
 struct background_s {
@@ -341,7 +344,7 @@ int go_to_good_menu(sfVector2i position, game_t *game);
 sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones);
 void handle_menu_events(game_t *game);
 void handle_settings_events(game_t *game);
-int initialize_settings_rectangles(menu_t *menu);
+int initialize_settings_rectangles(menu_t *menu, game_t *game);
 void set_fps_30(game_t *game);
 void set_fps_60(game_t *game);
 void set_fps_120(game_t *game);
