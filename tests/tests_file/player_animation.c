@@ -6,7 +6,6 @@
 */
 
 #include "struct_var.h"
-#include "rpg.h"
 
 void player_animation_run(player_t *player)
 {

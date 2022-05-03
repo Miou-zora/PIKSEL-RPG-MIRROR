@@ -28,6 +28,7 @@ int manage_key(game_t *game)
         manage_key_q(game);
         manage_key_s(game);
         manage_key_d(game);
+        manage_key_f(game);
         manage_key_enter(game);
         if (game->event.key.code == sfKeyLShift)
             game->player->player_mode = 2;

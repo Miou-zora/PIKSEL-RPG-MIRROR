@@ -6,7 +6,6 @@
 */
 
 #include "struct_var.h"
-#include "rpg.h"
 #include <stdlib.h>
 #include "my.h"
 #include <stdio.h>

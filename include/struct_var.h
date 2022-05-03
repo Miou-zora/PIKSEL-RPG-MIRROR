@@ -27,8 +27,7 @@ enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
 enum types_enemy {MOB = 1, MINI_BOSS, BOSS};
 enum deph_background {FRONTGROUND = 1, MIDGROUND, BACKGROUND};
-enum scene_background_t {MENU = 1, SETTINGS, ROOM, CITY, CITY_FOREST, FOREST,
-FOREST_LABO, LABO};
+enum scene_background_t {MENU = 1, SETTINGS, ROOM, CITY, FOREST, LABO};
 
 /************************** typedef ***********************************/
 
@@ -152,6 +151,7 @@ struct player_s {
     bool direction;
     int weapon;
     int player_mode;
+    int traveled_distance;
 };
 
 struct clock_player_s {
@@ -329,7 +329,14 @@ int manage_key_d(game_t *game);
 int manage_key_z(game_t *game);
 int manage_key_s(game_t *game);
 int manage_key_q(game_t *game);
+int manage_key_f(game_t *game);
 int manage_key_enter(game_t *game);
+bool room_to_city(game_t *game);
+bool city_to_room(game_t *game);
+bool city_to_forest(game_t *game);
+bool forest_to_city(game_t *game);
+bool forest_to_labo(game_t *game);
+bool labo_to_forest(game_t *game);
 
 //* game management
 
@@ -359,6 +366,9 @@ bool display_one_more_char(text_zone_t **text_zone);
 //* background
 
 bool init_back(background_t *background);
+bool init_forest(forest_t *forest[2]);
+bool init_town(town_t *town[2]);
+sprite_data_t *set_sprite(sprite_data_t *sprite);
 
 //* player
 
