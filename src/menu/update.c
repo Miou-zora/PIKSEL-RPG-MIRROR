@@ -5,8 +5,10 @@
 ** update
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 #include "my.h"
+
+//UTILISER L'AUTRE DISPLAY ET UPDATE
 
 int analyse_events_menu(sfEvent *event, scene_t *scene,
 settings_t **settings, dialogues_t **dialogue)
@@ -44,7 +46,7 @@ void handle_dialogue_keys(sfEvent *event, dialogues_t **dialogue)
     }
 }
 
-void update(scene_t *menu, settings_t *settings,
+void update_menu(scene_t *menu, settings_t *settings,
 sfEvent *event, dialogues_t **dialogue)
 {
     while (sfRenderWindow_pollEvent(menu->window, event)) {

@@ -8,7 +8,7 @@
 #include "struct_var.h"
 #include "my.h"
 
-int game(game_t *game)
+int launch_game(game_t *game)
 {
     game->background->scene_background = ROOM;
     return (0);
@@ -53,7 +53,7 @@ int go_to_good_menu(sfVector2i position, game_t *game)
 {
     int mouse_pos = detect_pos(position);
     if (mouse_pos == 0) {
-        return (game(game));
+        return (launch_game(game));
     }
     if (mouse_pos == 1) {
         if (settings(game) == 84)

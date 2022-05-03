@@ -20,6 +20,7 @@ bool fill_game(game_t *game)
     game->background = my_calloc(1, sizeof(background_t));
     if (game->background == NULL)
         return (true);
+    game->background->scene_background = MENU;
     if (initialize_menu(&(game->background->menu)) == true)
         return (true);
     // game->background = NULL;
