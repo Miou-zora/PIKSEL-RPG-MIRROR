@@ -56,6 +56,7 @@ typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 typedef struct game_s game_t;
 typedef struct menu_s menu_t;
+typedef struct loot_s loot_t;
 
 /************************** struct ***********************************/
 
@@ -64,6 +65,14 @@ struct dialogues_s {
     bool binary_reponse;
     dialogues_t **next;
     //struct quest *quest_add;
+};
+
+struct loot_s {
+    sfVector2f position;
+    loot_t *next;
+    int armor_or_weapon;
+    armor_t *armor;
+    weapon_t *weapon;
 };
 
 struct npc_s {
@@ -225,6 +234,7 @@ struct background_s {
     laboratory_t *laboratory;
     bedroom_t *bedroom;
     enum scene_background_t scene_background;
+    loot_t *loot;
 };
 
 struct settings_s {
@@ -359,6 +369,7 @@ void music_off(game_t *game);
 int how_to_play(game_t *game);
 int initialize_how_to_play(game_t *game);
 bool display_one_more_char(text_zone_t **text_zone);
+void update_how_to_play(menu_t *menu);
 
 //* background
 

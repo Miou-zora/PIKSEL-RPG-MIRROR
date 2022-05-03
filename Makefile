@@ -28,6 +28,7 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 						src/event_management/menu/how_to_play.c				\
 						src/init_game/init_how_to_play.c					\
 						src/game_management/display_one_more_char.c			\
+						src/game_management/update_how_to_play.c			\
 
 PATH_PLAYER = 			src/player
 
