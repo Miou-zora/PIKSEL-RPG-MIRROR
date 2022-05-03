@@ -12,4 +12,8 @@ void handle_menu_events(game_t *game)
     if (game->event.type == sfEvtMouseButtonPressed) {
         go_to_good_menu(sfMouse_getPositionRenderWindow(game->window), game);
     }
+    if (game->background->menu->how_to_play_mode == true &&
+    sfMouse_isButtonPressed(game->event.mouseButton.button)) {
+        game->background->menu->how_to_play->enter_is_pressed = true;
+    }
 }

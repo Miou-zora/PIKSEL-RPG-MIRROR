@@ -59,7 +59,9 @@ int go_to_good_menu(sfVector2i position, game_t *game)
         if (settings(game) == 84)
             return (84);
     }
-    if (mouse_pos == 3)
+    if (mouse_pos == 2)
         quit(game);
+    if (mouse_pos == 3)
+        how_to_play(game);
     return (0);
 }
