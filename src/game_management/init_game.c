@@ -29,6 +29,7 @@ bool fill_game(game_t *game)
 
 bool initialize_game(game_t **game)
 {
+    srand(0);
     if (game == NULL)
         return (true);
     (*game) = my_calloc(1, sizeof(*(*game)));

@@ -33,7 +33,13 @@ void display_background(game_t *game)
         sfRenderWindow_drawSprite(game->window,
         game->background->laboratory->sprite->sprite, NULL);
         display_player_sprites(game->player, game);
+        
     }
+    sfRenderWindow_drawSprite(game->window,
+    game->player->stat->top_bar->sprite, NULL);
+    display_stats(game);
+    sfRenderWindow_drawSprite(game->window,
+    game->player->iddle->sprite_data->sprite, NULL);
 }
 
 void display_menu(game_t *game)

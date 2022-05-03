@@ -19,6 +19,7 @@ void update(game_t *game)
             game->background->menu->how_to_play_mode = false;
         }
     }
+    update_how_to_play(game->background->menu);
     if (game->player->player_mode == 1
     && detect_if_key_pressed(game->player) == 0)
         update_animator(game->player->walk);

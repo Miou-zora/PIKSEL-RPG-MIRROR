@@ -18,6 +18,8 @@
 
 #define NOT_SET 0
 #define sfKeyReturn sfKeyInsert
+#define sfKeyEnter sfKeyInsert
+#define PI 3.14159265358979323846
 
 /************************** enum ***********************************/
 
@@ -55,6 +57,10 @@ typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 typedef struct game_s game_t;
 typedef struct menu_s menu_t;
+typedef struct loot_s loot_t;
+typedef struct framebuffer_s framebuffer_t;
+typedef struct nest_particle_s nest_particle_t;
+typedef struct particle_s particle_t;
 
 /************************** struct ***********************************/
 
@@ -63,6 +69,14 @@ struct dialogues_s {
     bool binary_reponse;
     dialogues_t **next;
     //struct quest *quest_add;
+};
+
+struct loot_s {
+    sfVector2f position;
+    loot_t *next;
+    int armor_or_weapon;
+    armor_t *armor;
+    weapon_t *weapon;
 };
 
 struct npc_s {
@@ -79,6 +93,9 @@ struct stat_s {
     int armor;
     int power;
     int speed;
+    int level;
+    int xp;
+    sprite_data_t *top_bar;
 };
 
 struct enemy_s {
@@ -88,6 +105,27 @@ struct enemy_s {
     stat_t *stat;
     animator_t *animator_standing;
     animator_t *animator_moving;
+};
+
+struct framebuffer_s {
+    sfUint8 *pixels;
+    unsigned int width;
+    unsigned int height;
+};
+
+struct particle_s {
+    float acceleration;
+    float speed;
+    sfVector2f position;
+    particle_t *next;
+    sfColor color;
+    particle_t *prev;
+};
+
+struct nest_particle_s {
+    framebuffer_t *framebuffer;
+    sfVector2f offset;
+    particle_t *all_particles;
 };
 
 struct armor_s {
@@ -152,6 +190,7 @@ struct player_s {
     int weapon;
     int player_mode;
     int traveled_distance;
+    stat_t *stat;
 };
 
 struct clock_player_s {
@@ -221,6 +260,7 @@ struct background_s {
     laboratory_t *laboratory;
     bedroom_t *bedroom;
     enum scene_background_t scene_background;
+    loot_t *loot;
 };
 
 struct settings_s {
@@ -362,6 +402,7 @@ void music_off(game_t *game);
 int how_to_play(game_t *game);
 int initialize_how_to_play(game_t *game);
 bool display_one_more_char(text_zone_t **text_zone);
+void update_how_to_play(menu_t *menu);
 
 //* background
 
@@ -375,4 +416,15 @@ sprite_data_t *set_sprite(sprite_data_t *sprite);
 void display_player_sprites(player_t *player, game_t *game);
 bool init_player(player_t *player);
 bool init_player_clock(player_t *player);
+int init_stats(stat_t **stat);
+void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
+
+//* particle
+
+void destroy_framebuffer(framebuffer_t **framebuffer);
+framebuffer_t *create_framebuffer(unsigned int width, unsigned int height);
+nest_particle_t *create_nest_particle(int number_of_particle,
+sfVector2i size_framebuffer);
+void update_nest_particle(nest_particle_t *nest_particle, float delta_time);
+void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);

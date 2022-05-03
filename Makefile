@@ -17,6 +17,14 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_MENU)											\
 						$(SRC_BACKGROUND)									\
 						$(SRC_PLAYER)										\
+						$(SRC_PARTICLES)									\
+
+PATH_PARTICLES =		src/particle
+
+SRC_PARTICLES =			$(PATH_PARTICLES)/create_framebuffer.c				\
+						$(PATH_PARTICLES)/create_nest_particle.c			\
+						$(PATH_PARTICLES)/update_nest_particle.c			\
+						$(PATH_PARTICLES)/put_nest_particle_on_framebuffer.c\
 
 SRC_MENU	=			src/init_game/init_menu.c							\
 						src/event_management/menu/handle_menu_functions.c	\
@@ -28,17 +36,20 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 						src/event_management/menu/how_to_play.c				\
 						src/init_game/init_how_to_play.c					\
 						src/game_management/display_one_more_char.c			\
+						src/game_management/update_how_to_play.c			\
 
 PATH_PLAYER = 			src/player
 
 SRC_PLAYER = 			$(PATH_PLAYER)/init_player.c 						\
-						$(PATH_PLAYER)/display_player.c 						\
+			 			$(PATH_PLAYER)/init_stats.c 						\
+						$(PATH_PLAYER)/display_player.c 					\
 
 PATH_GAME_MANAGEMENT =	src/game_management
 
 SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 						$(PATH_GAME_MANAGEMENT)/update.c					\
 						$(PATH_GAME_MANAGEMENT)/display.c					\
+						$(PATH_GAME_MANAGEMENT)/display_stats.c				\
 
 PATH_EVENT =			src/event_management
 

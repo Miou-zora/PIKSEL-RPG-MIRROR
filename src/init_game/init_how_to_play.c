@@ -78,7 +78,7 @@ int create_text_zone(text_zone_t **text_zone, char *text_string)
 
 int initialize_how_to_play(game_t *game)
 {
-    char **text_to_write = get_data_from_file("scripts/menu/how_to_play.txt");
+    char **text_to_write = get_data_from_file("scripts/menu/how_to_play.zon");
     if (create_text_zone(&game->background->menu->how_to_play,
     text_to_write[0]) == 84)
         return (84);
