@@ -14,15 +14,19 @@ bool fill_game(game_t *game)
     "Piksel RPG", sfClose, NULL);
     if (game->window == NULL)
         return (true);
+    // game->enemy = load_enemy("scripts/ennemy/wolf.ene");
+    // if (game->enemy == NULL)
+    //     return (true);
     game->background = my_calloc(1, sizeof(background_t));
+    game->player = my_calloc(1, sizeof(player_t));
     if (game->background == NULL)
         return (true);
-    game->background->scene_background = MENU;
     if (initialize_menu(&(game->background->menu)) == true)
         return (true);
-    if (init_back(game->background)) {
+    if (init_back(game->background))
         return (true);
-    }
+    if (init_player(game->player))
+        return (true);
     return (false);
 }
 

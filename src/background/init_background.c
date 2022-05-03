@@ -50,6 +50,7 @@ bool init_laboratory(laboratory_t **laboratory)
 
 bool init_back(background_t *background)
 {
+    background->scene_background = MENU;
     if (background == NULL)
         return (true);
     if (init_room(&(background->bedroom)))

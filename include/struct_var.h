@@ -128,15 +128,12 @@ struct animator_s {
 };
 
 struct player_s {
-    sfRenderWindow *window;
-    sfEvent event;
-    sfVideoMode mode;
-    clock_player_t *anim;
-    clock_player_t *player;
-    clock_player_t *c_sword;
-    clock_player_t *c_punch;
-    clock_player_t *c_gun;
-    clock_player_t *c_spear;
+    clock_data_t *anim;
+    clock_data_t *player;
+    clock_data_t *c_sword;
+    clock_data_t *c_punch;
+    clock_data_t *c_gun;
+    clock_data_t *c_spear;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
@@ -145,7 +142,6 @@ struct player_s {
     animator_t *spear;
     animator_t *punch;
     sfVector2f pos;
-    int player_mode;
     bool player_walk;
     bool player_run;
     bool move_up;
@@ -155,6 +151,7 @@ struct player_s {
     bool attack;
     bool direction;
     int weapon;
+    int player_mode;
 };
 
 struct clock_player_s {
@@ -353,3 +350,9 @@ void music_off(game_t *game);
 //* background
 
 bool init_back(background_t *background);
+
+
+//* player
+
+bool init_player(player_t *player);
+bool init_player_clock(player_t *player);

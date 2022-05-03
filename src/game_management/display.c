@@ -13,6 +13,8 @@ void display_background(game_t *game)
     if (game->background->scene_background == ROOM) {
         sfRenderWindow_drawSprite(game->window,
         game->background->bedroom->sprite->sprite, NULL);
+        sfRenderWindow_drawSprite(game->window,
+        game->player->iddle->sprite_data->sprite, NULL);
     }
 }
 
@@ -35,5 +37,6 @@ void display(game_t *game)
     game->background->scene_background == SETTINGS)
         display_menu(game);
     display_background(game);
+    
     sfRenderWindow_display(game->window);
 }

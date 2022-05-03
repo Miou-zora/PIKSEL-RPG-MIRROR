@@ -10,5 +10,6 @@
 void update(game_t *game)
 {
     (void)game;
+    update_animator(game->player->iddle);
     // update_animator(game->enemy->animator_standing);
 }
