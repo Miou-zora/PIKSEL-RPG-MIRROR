@@ -344,4 +344,4 @@ int initialize_settings_rectangles(menu_t *menu);
 
 //* background
 
-bool init_back(background_t **background);
+bool init_back(background_t *background);
