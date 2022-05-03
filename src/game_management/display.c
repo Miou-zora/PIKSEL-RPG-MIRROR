@@ -19,6 +19,7 @@ void display_background(game_t *game)
         sfRenderWindow_drawSprite(game->window,
         game->player->iddle->sprite_data->sprite, NULL);
     }
+    display_loot(game);
 }
 
 void display_menu(game_t *game)

@@ -18,6 +18,10 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_BACKGROUND)									\
 						$(SRC_PLAYER)										\
 						$(SRC_PARTICLES)									\
+						$(SRC_INVENTORY)									\
+
+SRC_INVENTORY	=		src/items/spawn_random_loot.c						\
+						src/game_management/display_loot.c
 
 PATH_PARTICLES =		src/particle
 

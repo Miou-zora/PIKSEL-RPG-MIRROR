@@ -75,9 +75,11 @@ struct dialogues_s {
 struct loot_s {
     sfVector2f position;
     loot_t *next;
+    loot_t *prev;
     int armor_or_weapon;
     armor_t *armor;
     weapon_t *weapon;
+    int id;
 };
 
 struct npc_s {
@@ -418,3 +420,8 @@ nest_particle_t *create_nest_particle(int number_of_particle,
 sfVector2i size_framebuffer);
 void update_nest_particle(nest_particle_t *nest_particle, float delta_time);
 void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
+
+//* inventory
+
+int spawn_random_loot(loot_t **loot, sfVector2f pos);
+void display_loot(game_t *game);
