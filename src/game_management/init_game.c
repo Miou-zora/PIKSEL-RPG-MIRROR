@@ -22,10 +22,9 @@ bool fill_game(game_t *game)
         return (true);
     if (initialize_menu(&(game->background->menu)) == true)
         return (true);
-    // game->background = NULL;
-    // if (init_back(&(game->background))) {
-    //     return (true);
-    // }
+    if (init_back(game->background)) {
+        return (true);
+    }
     return (false);
 }
 

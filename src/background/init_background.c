@@ -48,16 +48,13 @@ bool init_laboratory(laboratory_t **laboratory)
     return (false);
 }
 
-bool init_back(background_t **background)
+bool init_back(background_t *background)
 {
-    *background = malloc(sizeof(game_t));
-
-    (*background)->scene_background = ROOM;
-    if (*background == NULL)
+    if (background == NULL)
         return (true);
-    if (init_room(&((*background)->bedroom)))
+    if (init_room(&(background->bedroom)))
         return (true);
-    if (init_laboratory(&((*background)->laboratory)))
+    if (init_laboratory(&(background->laboratory)))
         return (true);
     return (false);
 }

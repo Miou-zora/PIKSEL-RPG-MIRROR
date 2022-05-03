@@ -32,8 +32,6 @@ void display(game_t *game)
 {
     sfRenderWindow_clear(game->window, sfBlack);
     display_menu(game);
-    // display_background(game);
-    // sfRenderWindow_drawSprite(game->window,
-    // game->enemy->animator_standing->sprite_data->sprite, NULL);
+    display_background(game);
     sfRenderWindow_display(game->window);
 }
