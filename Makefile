@@ -29,6 +29,7 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 PATH_PLAYER = 			src/player
 
 SRC_PLAYER = 			$(PATH_PLAYER)/init_player.c 						\
+						$(PATH_PLAYER)/display_player.c 						\
 
 PATH_GAME_MANAGEMENT =	src/game_management
 
@@ -44,6 +45,7 @@ SRC_EVENT =				$(PATH_EVENT)/event_handler.c						\
 						$(PATH_EVENT)/key_q_event.c 						\
 						$(PATH_EVENT)/key_s_event.c 						\
 						$(PATH_EVENT)/key_z_event.c 						\
+						$(PATH_EVENT)/key_enter_event.c						\
 
 MAIN 		=			src/main.c
 

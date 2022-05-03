@@ -10,17 +10,14 @@
 
 void key_run(player_t *player)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyLShift))
+    if (sfKeyboard_isKeyPressed(sfKeyLShift)) {
         player->player_mode = 2;
-    else
-        player->player_mode = 1;
-
-    if (player->player_mode == 2) {
         player->player_walk = false;
         player->player_run = true;
-    } else if (player->player_mode == 1) {
+    } else {
         player->player_walk = true;
         player->player_run = false;
+        player->player_mode = 1;
     }
 }
 

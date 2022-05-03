@@ -327,6 +327,7 @@ int manage_key_d(game_t *game);
 int manage_key_z(game_t *game);
 int manage_key_s(game_t *game);
 int manage_key_q(game_t *game);
+int manage_key_enter(game_t *game);
 
 //* game management
 
@@ -354,8 +355,9 @@ void music_off(game_t *game);
 
 bool init_back(background_t *background);
 
-
 //* player
 
+void display_player_sprites(player_t *player, game_t *game);
 bool init_player(player_t *player);
 bool init_player_clock(player_t *player);
+int detect_if_key_pressed(player_t *player);
