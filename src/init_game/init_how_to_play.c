@@ -82,5 +82,8 @@ int initialize_how_to_play(game_t *game)
     if (create_text_zone(&game->background->menu->how_to_play,
     text_to_write[0]) == 84)
         return (84);
+    game->background->menu->how_to_play->text_clock = create_clock_data();
+    set_framerate_clock_data(game->background->menu->how_to_play->text_clock,
+    2000000 / 60);
     return (0);
 }

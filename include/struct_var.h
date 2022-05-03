@@ -353,7 +353,7 @@ void music_on(game_t *game);
 void music_off(game_t *game);
 int how_to_play(game_t *game);
 int initialize_how_to_play(game_t *game);
-void display_one_more_char(text_zone_t **text_zone);
+bool display_one_more_char(text_zone_t **text_zone);
 
 //* background
 
