@@ -6,7 +6,6 @@
 */
 
 #include "my.h"
-#include "rpg.h"
 #include "struct_var.h"
 
 sprite_data_t *set_sprite(sprite_data_t *sprite)
@@ -97,7 +96,7 @@ int create_init_game(game_t *game)
     game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
     "ennemy_test", sfResize | sfClose, NULL);
     game->background = malloc(sizeof(background_t));
-    game->scene_background = ROOM;
+    game->background->scene_background = ROOM;
     init_forest(game->background);
     init_town(game->background);
     init_bedroom(game->background);
@@ -108,24 +107,24 @@ int create_init_game(game_t *game)
 
 void display(game_t *game)
 {
-    if (game->scene_background == 0) {
+    if (game->background->scene_background == 0) {
         sfRenderWindow_drawSprite(game->window,
         game->background->bedroom->sprite->sprite, NULL);
-    } else if (game->scene_background == 1) {
+    } else if (game->background->scene_background == 1) {
         sfRenderWindow_drawSprite(game->window,
         game->background->town[0]->sprite->sprite, NULL);
         sfRenderWindow_drawSprite(game->window,
         game->background->town[1]->sprite->sprite, NULL);
-    } else if (game->scene_background == 2) {
+    } else if (game->background->scene_background == 2) {
         return;
-    } else if (game->scene_background == 3) {
+    } else if (game->background->scene_background == 3) {
         sfRenderWindow_drawSprite(game->window,
         game->background->forest[0]->sprite->sprite, NULL);
         sfRenderWindow_drawSprite(game->window,
         game->background->forest[1]->sprite->sprite, NULL);
-    } else if (game->scene_background == 4) {
+    } else if (game->background->scene_background == 4) {
         return;
-    } else if (game->scene_background == 5) {
+    } else if (game->background->scene_background == 5) {
         sfRenderWindow_drawSprite(game->window,
         game->background->laboratory->sprite->sprite, NULL);
     }
@@ -135,38 +134,38 @@ void display(game_t *game)
 void manage_key_pressed(game_t *game, sfEvent event)
 {
     if (event.key.code == sfKeyRight) {
-        if (game->scene_background == 0
+        if (game->background->scene_background == 0
         && game->background->bedroom->sprite->rect.left < 300) {
             game->background->bedroom->sprite->rect.left += 5;
             sfSprite_setTextureRect(game->background->bedroom->sprite->sprite,
             game->background->bedroom->sprite->rect);
-        } else if (game->scene_background == 1) {
+        } else if (game->background->scene_background == 1) {
             game->background->town[0]->sprite->rect.left += 5;
             game->background->town[1]->sprite->rect.left += 10;
             sfSprite_setTextureRect(game->background->town[0]->sprite->sprite,
             game->background->town[0]->sprite->rect);
             sfSprite_setTextureRect(game->background->town[1]->sprite->sprite,
             game->background->town[1]->sprite->rect);
-        } else if (game->scene_background == 2) {
+        } else if (game->background->scene_background == 2) {
             return;
-        } else if (game->scene_background == 3) {
+        } else if (game->background->scene_background == 3) {
             sfRenderWindow_drawSprite(game->window,
             game->background->forest[0]->sprite->sprite, NULL);
             sfRenderWindow_drawSprite(game->window,
             game->background->forest[1]->sprite->sprite, NULL);
-        } else if (game->scene_background == 4) {
+        } else if (game->background->scene_background == 4) {
             return;
-        } else if (game->scene_background == 5) {
+        } else if (game->background->scene_background == 5) {
             sfRenderWindow_drawSprite(game->window,
             game->background->laboratory->sprite->sprite, NULL);
         }
     } else if (event.key.code == sfKeyLeft) {
-        if (game->scene_background == 0
+        if (game->background->scene_background == 0
         && game->background->bedroom->sprite->rect.left > 0) {
             game->background->bedroom->sprite->rect.left -= 5;
             sfSprite_setTextureRect(game->background->bedroom->sprite->sprite,
             game->background->bedroom->sprite->rect);
-        } else if (game->scene_background == 1) {
+        } else if (game->background->scene_background == 1) {
             game->background->town[0]->sprite->rect.left -= 5;
             game->background->town[1]->sprite->rect.left -= 10;
             sfSprite_setTextureRect(game->background->town[0]->sprite->sprite,
@@ -182,8 +181,9 @@ void analyse_event(sfEvent event, game_t *game)
     if (event.type == sfEvtClosed) {
         sfRenderWindow_close(game->window);
     }
-    if (event.type == sfEvtMouseButtonPressed && game->scene_background < 5)
-        game->scene_background += 1;
+    if (event.type == sfEvtMouseButtonPressed
+    && game->background->scene_background < 5)
+        game->background->scene_background += 1;
     if (event.type == sfEvtKeyPressed) {
         manage_key_pressed(game, event);
     }

@@ -12,5 +12,5 @@ void update(game_t *game)
     if (game->background->menu->how_to_play_mode == true) {
         display_one_more_char(&game->background->menu->how_to_play);
     }
-    // update_animator(game->enemy->animator_standing);
+    update_animator(game->player->iddle);
 }
