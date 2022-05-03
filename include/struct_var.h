@@ -411,6 +411,7 @@ bool init_back(background_t *background);
 bool init_forest(forest_t *forest[2]);
 bool init_town(town_t *town[2]);
 sprite_data_t *set_sprite(sprite_data_t *sprite);
+void move_loot(loot_t *loot, int x_or_y, int to_move);
 
 //* player
 

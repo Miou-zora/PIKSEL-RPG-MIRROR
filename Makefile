@@ -71,6 +71,7 @@ SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
 						$(PATH_EVENT)/map_changement/forest_to_labo.c 		\
 						$(PATH_EVENT)/map_changement/labo_to_forest.c 		\
 						$(PATH_EVENT)/map_changement/forest_to_city.c 		\
+						$(PATH_EVENT)/key_management/move_loot.c			\
 
 MAIN 		=			src/main.c
 
@@ -115,7 +116,7 @@ PATH_BACKGROUND = 		src/background
 
 SRC_BACKGROUND = 		$(PATH_BACKGROUND)/init_background.c				\
 						$(PATH_BACKGROUND)/init_background_town.c			\
-						$(PATH_BACKGROUND)/init_background_forest.c				\
+						$(PATH_BACKGROUND)/init_background_forest.c			\
 
 PATH_WEAPON =			src/items/weapon
 

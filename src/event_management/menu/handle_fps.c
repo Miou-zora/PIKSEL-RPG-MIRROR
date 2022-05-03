@@ -15,6 +15,7 @@ void set_fps_30(game_t *game)
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_sizes[4]);
     game->background->menu->fps = 30;
+    sfRenderWindow_setFramerateLimit(game->window, 30);
 }
 
 void set_fps_60(game_t *game)
@@ -24,6 +25,7 @@ void set_fps_60(game_t *game)
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_sizes[5]);
     game->background->menu->fps = 60;
+    sfRenderWindow_setFramerateLimit(game->window, 60);
 }
 
 void set_fps_120(game_t *game)
@@ -33,4 +35,5 @@ void set_fps_120(game_t *game)
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_sizes[6]);
     game->background->menu->fps = 120;
+    sfRenderWindow_setFramerateLimit(game->window, 120);
 }
