@@ -20,7 +20,7 @@ void display_menu(game_t *game)
 {
     sfRenderWindow_drawSprite(game->window,
     game->background->menu->sprite->sprite , NULL);
-    if (game->background->menu->settings_rectangles != NULL) {
+    if (game->background->scene_background == SETTINGS) {
         for (int i = 0; i < 3; i++) {
             sfRenderWindow_drawRectangleShape(game->window,
             game->background->menu->settings_rectangles[i], NULL);
@@ -31,7 +31,9 @@ void display_menu(game_t *game)
 void display(game_t *game)
 {
     sfRenderWindow_clear(game->window, sfBlack);
-    display_menu(game);
+    if (game->background->scene_background == MENU ||
+    game->background->scene_background == SETTINGS)
+        display_menu(game);
     display_background(game);
     sfRenderWindow_display(game->window);
 }

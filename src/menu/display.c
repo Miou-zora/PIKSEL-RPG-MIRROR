@@ -5,10 +5,12 @@
 ** display file
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 #include "my.h"
 
-void display(scene_t *scene, dialogues_t *dialogue)
+//UTILISER L'AUTRE DISPLAY ET UPDATE
+
+void display_menu(scene_t *scene, dialogues_t *dialogue)
 {
     sfRenderWindow_drawSprite(scene->window,
     scene->background->sprite, NULL);
