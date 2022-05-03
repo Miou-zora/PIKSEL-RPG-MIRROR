@@ -26,15 +26,14 @@ char *put_in_str(int nb, char *str)
 void fill_stats(char **stats, int *stats_values, game_t *game)
 {
     sfText **text = malloc(sizeof(sfText *) * 5);
-    sfFont *font =
-    sfFont_createFromFile("assets/font/arcadeclassic/ARCADECLASSIC.TTF");
     for (int i = 0; i < 5; i++) {
         stats[i] = malloc(sizeof(char) * get_nbrlen(stats_values[i]));
         stats[i][0] = '\0';
         stats[i] = put_in_str(stats_values[i], stats[i]);
         text[i] = sfText_create();
         sfText_setString(text[i], stats[i]);
-        sfText_setFont(text[i], font);
+        sfText_setFont(text[i],
+        sfFont_createFromFile("assets/font/arcadeclassic/ARCADECLASSIC.TTF"));
         sfText_setScale(text[i], (sfVector2f){4, 4});
         sfText_setColor(text[i], sfGreen);
     }
@@ -46,7 +45,6 @@ void fill_stats(char **stats, int *stats_values, game_t *game)
     for (int i = 0; i < 5; i++) {
         sfRenderWindow_drawText(game->window, text[i], NULL);
     }
-
 }
 
 void display_stats(game_t *game)
