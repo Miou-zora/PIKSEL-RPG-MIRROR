@@ -16,6 +16,7 @@ int manage_key_d(game_t *game)
             game->background->bedroom->sprite->rect.left += 5;
         sfSprite_setTextureRect(game->background->bedroom->sprite->sprite ,
         game->background->bedroom->sprite->rect);
+        game->player->move_right = true;
     }
     return (0);
 }

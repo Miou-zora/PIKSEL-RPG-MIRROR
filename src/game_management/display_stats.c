@@ -23,19 +23,11 @@ char *put_in_str(int nb, char *str)
     return (str);
 }
 
-void display_stats(game_t *game)
+void fill_stats(char **stats, int *stats_values, game_t *game)
 {
-    char **stats = malloc(sizeof(char *) * 5);
-    int *stats_values = malloc(sizeof(int) * 5);
     sfText **text = malloc(sizeof(sfText *) * 5);
     sfFont *font =
     sfFont_createFromFile("assets/font/arcadeclassic/ARCADECLASSIC.TTF");
-
-    stats_values[0] = game->player->stat->level;
-    stats_values[1] = game->player->stat->xp;
-    stats_values[2] = game->player->stat->actual_life;
-    stats_values[3] = game->player->stat->armor;
-    stats_values[4] = game->player->stat->speed;
     for (int i = 0; i < 5; i++) {
         stats[i] = malloc(sizeof(char) * get_nbrlen(stats_values[i]));
         stats[i][0] = '\0';
@@ -54,4 +46,18 @@ void display_stats(game_t *game)
     for (int i = 0; i < 5; i++) {
         sfRenderWindow_drawText(game->window, text[i], NULL);
     }
+
+}
+
+void display_stats(game_t *game)
+{
+    char **stats = malloc(sizeof(char *) * 5);
+    int *stats_values = malloc(sizeof(int) * 5);
+
+    stats_values[0] = game->player->stat->level;
+    stats_values[1] = game->player->stat->xp;
+    stats_values[2] = game->player->stat->actual_life;
+    stats_values[3] = game->player->stat->armor;
+    stats_values[4] = game->player->stat->speed;
+    fill_stats(stats, stats_values, game);
 }

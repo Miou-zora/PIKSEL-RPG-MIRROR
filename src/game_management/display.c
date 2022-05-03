@@ -46,6 +46,6 @@ void display(game_t *game)
     game->background->scene_background == SETTINGS)
         display_menu(game);
     display_background(game);
-    
+    display_player_sprites(game->player, game);
     sfRenderWindow_display(game->window);
 }

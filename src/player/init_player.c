@@ -36,14 +36,20 @@ bool init_player_animator_move(player_t *player)
     player->walk = load_animator("scripts/animator/walk_player.ani");
     if (player->walk == NULL)
         return (true);
+    player->walk->sprite_data->scale = (sfVector2f){6, 6};
+    sfSprite_setScale(player->walk->sprite_data->sprite,
+    player->walk->sprite_data->scale);
     player->run = load_animator("scripts/animator/run_player.ani");
     if (player->run == NULL)
         return (true);
+    player->run->sprite_data->scale = (sfVector2f){6, 6};
+    sfSprite_setScale(player->run->sprite_data->sprite,
+    player->run->sprite_data->scale);
     player->iddle = load_animator("scripts/animator/iddle_player.ani");
     if (player->iddle == NULL)
         return (true);
     player->iddle->sprite_data->pos = (sfVector2f){400, 400};
-    player->iddle->sprite_data->scale = (sfVector2f){4, 4};
+    player->iddle->sprite_data->scale = (sfVector2f){6, 6};
     sfSprite_setPosition(player->iddle->sprite_data->sprite,
     player->iddle->sprite_data->pos);
     sfSprite_setScale(player->iddle->sprite_data->sprite,
