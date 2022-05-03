@@ -14,7 +14,10 @@ int event_handler(game_t *game)
         if (game->event.type == sfEvtClosed) {
             sfRenderWindow_close(game->window);
         }
-        handle_menu_events(game);
+        if (game->background->scene_background == MENU)
+            handle_menu_events(game);
+        if (game->background->scene_background == SETTINGS)
+            handle_settings_events(game);
         manage_key(game);
     }
     return (0);

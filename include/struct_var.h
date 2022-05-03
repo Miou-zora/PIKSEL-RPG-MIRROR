@@ -26,8 +26,8 @@ enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
 enum types_enemy {MOB = 1, MINI_BOSS, BOSS};
-enum deph_background {FRONTGROUND = 0, MIDGROUND, BACKGROUND};
-enum scene_background_t {ROOM = 0, CITY, CITY_FOREST, FOREST,
+enum deph_background {FRONTGROUND = 1, MIDGROUND, BACKGROUND};
+enum scene_background_t {MENU = 1, SETTINGS, ROOM, CITY, CITY_FOREST, FOREST,
 FOREST_LABO, LABO};
 
 /************************** typedef ***********************************/
@@ -340,7 +340,15 @@ bool initialize_menu(menu_t **menu);
 int go_to_good_menu(sfVector2i position, game_t *game);
 sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones);
 void handle_menu_events(game_t *game);
+void handle_settings_events(game_t *game);
 int initialize_settings_rectangles(menu_t *menu);
+void set_fps_30(game_t *game);
+void set_fps_60(game_t *game);
+void set_fps_120(game_t *game);
+void sound_on(game_t *game);
+void sound_off(game_t *game);
+void music_on(game_t *game);
+void music_off(game_t *game);
 
 //* background
 
