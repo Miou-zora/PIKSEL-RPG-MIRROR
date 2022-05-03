@@ -32,12 +32,14 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 PATH_PLAYER = 			src/player
 
 SRC_PLAYER = 			$(PATH_PLAYER)/init_player.c 						\
+			 			$(PATH_PLAYER)/init_stats.c 						\
 
 PATH_GAME_MANAGEMENT =	src/game_management
 
 SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 						$(PATH_GAME_MANAGEMENT)/update.c					\
 						$(PATH_GAME_MANAGEMENT)/display.c					\
+						$(PATH_GAME_MANAGEMENT)/display_stats.c				\
 
 PATH_EVENT =			src/event_management
 

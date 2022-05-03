@@ -14,6 +14,9 @@ void display_background(game_t *game)
         sfRenderWindow_drawSprite(game->window,
         game->background->bedroom->sprite->sprite, NULL);
         sfRenderWindow_drawSprite(game->window,
+        game->player->stat->top_bar->sprite, NULL);
+        display_stats(game);
+        sfRenderWindow_drawSprite(game->window,
         game->player->iddle->sprite_data->sprite, NULL);
     }
 }

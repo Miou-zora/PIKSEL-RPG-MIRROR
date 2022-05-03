@@ -80,6 +80,9 @@ struct stat_s {
     int armor;
     int power;
     int speed;
+    int level;
+    int xp;
+    sprite_data_t *top_bar;
 };
 
 struct enemy_s {
@@ -152,6 +155,7 @@ struct player_s {
     bool direction;
     int weapon;
     int player_mode;
+    stat_t *stat;
 };
 
 struct clock_player_s {
@@ -364,3 +368,5 @@ bool init_back(background_t *background);
 
 bool init_player(player_t *player);
 bool init_player_clock(player_t *player);
+int init_stats(stat_t **stat);
+void display_stats(game_t *game);
