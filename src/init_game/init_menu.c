@@ -40,13 +40,13 @@ void initialize_settings_rectangle_shapes(menu_t *menu)
 
 int initialize_settings_rectangles(menu_t *menu)
 {
-    menu->settings_rectangles = my_calloc(7, sizeof(sfRectangleShape *));
+    menu->settings_rectangles = my_calloc(8, sizeof(sfRectangleShape *));
     if (menu->settings_rectangles == NULL)
         return (84);
     menu->rectangles_positions = initialize_positions
-    ("1100 295 1340 295 1100 535 1340 535 1100 775 1250 775 1400 775", 7);
+    ("1100 295 1340 295 1100 535 1340 535 1100 775 1250 775 1400 775 50 1000", 8);
     menu->rectangles_sizes = initialize_positions
-    ("220 135 245 135 220 135 245 135 140 135 140 135 185 135", 7);
+    ("220 135 245 135 220 135 245 135 140 135 140 135 185 135 100 100", 8);
     initialize_settings_rectangle_shapes(menu);
     my_putstr("salut emc");
     return (0);
