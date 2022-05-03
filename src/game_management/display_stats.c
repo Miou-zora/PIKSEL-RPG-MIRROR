@@ -10,16 +10,19 @@
 
 char *put_in_str(int nb, char *str)
 {
+    char *nb_str = NULL;
     if (nb >= 0 && nb <= 9) {
-        char *nb_str = malloc(sizeof(char) * 2);
+        nb_str = malloc(sizeof(char) * 2);
         nb_str[0] = nb + 48;
         nb_str[1] = '\0';
         my_strcat(str, nb_str);
+        free(nb_str);
         return (str);
     } else if (nb > 9) {
         put_in_str(nb / 10, str);
         put_in_str(nb % 10, str);
     }
+    free(nb_str);
     return (str);
 }
 
@@ -27,7 +30,7 @@ void fill_stats(char **stats, int *stats_values, game_t *game)
 {
     sfText **text = malloc(sizeof(sfText *) * 5);
     for (int i = 0; i < 5; i++) {
-        stats[i] = malloc(sizeof(char) * get_nbrlen(stats_values[i]));
+        stats[i] = malloc(sizeof(char) * (get_nbrlen(stats_values[i]) + 1));
         stats[i][0] = '\0';
         stats[i] = put_in_str(stats_values[i], stats[i]);
         text[i] = sfText_create();
