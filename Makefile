@@ -18,9 +18,12 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_BACKGROUND)									\
 
 SRC_MENU	=			src/init_game/init_menu.c							\
-						src/event_management/handle_menu_functions.c		\
+						src/event_management/menu/handle_menu_functions.c	\
 						src/init_game/init_menu_positions.c					\
-						src/event_management/handle_menu_events.c			\
+						src/event_management/menu/handle_menu_events.c		\
+						src/event_management/menu/handle_settings_events.c	\
+						src/event_management/menu/handle_fps.c				\
+						src/event_management/menu/handle_music_and_sound.c	\
 
 PATH_GAME_MANAGEMENT =	src/game_management
 

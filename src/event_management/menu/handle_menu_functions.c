@@ -8,11 +8,11 @@
 #include "struct_var.h"
 #include "my.h"
 
-// int game(void)
-// {
-//     my_rpg_player();
-//     return (0);
-// }
+int game(game_t *game)
+{
+    game->background->scene_background = ROOM;
+    return (0);
+}
 
 int settings(game_t *game)
 {
@@ -21,12 +21,9 @@ int settings(game_t *game)
     sfSprite_setScale(settings_background->sprite, (sfVector2f){8, 8});
     sfSprite_setPosition(settings_background->sprite, (sfVector2f){0, 0});
     game->background->menu->sprite = settings_background;
-    my_putstr("coucou");
     if (initialize_settings_rectangles(game->background->menu) == 84)
         return (84);
-    my_putstr("salut");
-    my_put_nbr(sfRectangleShape_getPosition(game->background->menu->settings_rectangles[0]).x);
-    my_putstr("coucou");
+    game->background->scene_background = SETTINGS;
     return (0);
 }
 
@@ -55,9 +52,9 @@ int detect_pos(sfVector2i position)
 int go_to_good_menu(sfVector2i position, game_t *game)
 {
     int mouse_pos = detect_pos(position);
-    // if (mouse_pos == 0) {
-    //     return (game());
-    // }
+    if (mouse_pos == 0) {
+        return (game(game));
+    }
     if (mouse_pos == 1) {
         if (settings(game) == 84)
             return (84);
