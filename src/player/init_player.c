@@ -89,6 +89,7 @@ void init_move_player(player_t *player)
     player->player_walk = false;
     player->weapon = 1;
     player->player_mode = 1;
+    player->traveled_distance = 0;
     return;
 }
 

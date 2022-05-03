@@ -11,6 +11,5 @@ void drain_clock_data(clock_data_t *clock)
 {
     if (clock == NULL)
         return;
-    clock->currElapsedTime = sfClock_restart(clock->clocksfInt64);
-    clock->elapsed_time += clock->currElapsedTime.microseconds;
+    clock->elapsed_time += sfClock_restart(clock->clock).microseconds;
 }

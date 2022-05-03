@@ -11,7 +11,6 @@ void reset_clock_data(clock_data_t *clock)
 {
     if (clock == NULL)
         return;
-    sfClock_restart(clock->clocksfInt64);
-    clock->currElapsedTime = (sfTime){0};
+    sfClock_restart(clock->clock);
     clock->elapsed_time = 0;
 }

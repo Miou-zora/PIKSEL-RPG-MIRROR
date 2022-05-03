@@ -57,13 +57,20 @@ SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 
 PATH_EVENT =			src/event_management
 
-SRC_EVENT =				$(PATH_EVENT)/event_handler.c						\
-						$(PATH_EVENT)/event_key.c							\
-						$(PATH_EVENT)/key_d_event.c 						\
-						$(PATH_EVENT)/key_q_event.c 						\
-						$(PATH_EVENT)/key_s_event.c 						\
-						$(PATH_EVENT)/key_z_event.c 						\
-						$(PATH_EVENT)/key_enter_event.c						\
+SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
+						$(PATH_EVENT)/key_management/event_key.c			\
+						$(PATH_EVENT)/key_management/key_d_event.c 			\
+						$(PATH_EVENT)/key_management/key_q_event.c 			\
+						$(PATH_EVENT)/key_management/key_s_event.c 			\
+						$(PATH_EVENT)/key_management/key_z_event.c 			\
+						$(PATH_EVENT)/key_management/key_f_event.c 			\
+						$(PATH_EVENT)/key_management/key_enter_event.c		\
+						$(PATH_EVENT)/map_changement/city_to_forest.c 		\
+						$(PATH_EVENT)/map_changement/city_to_room.c 		\
+						$(PATH_EVENT)/map_changement/room_to_city.c 		\
+						$(PATH_EVENT)/map_changement/forest_to_labo.c 		\
+						$(PATH_EVENT)/map_changement/labo_to_forest.c 		\
+						$(PATH_EVENT)/map_changement/forest_to_city.c 		\
 
 MAIN 		=			src/main.c
 
@@ -107,6 +114,8 @@ SRC_ARMOR =				$(PATH_ARMOR)/create_armor.c						\
 PATH_BACKGROUND = 		src/background
 
 SRC_BACKGROUND = 		$(PATH_BACKGROUND)/init_background.c				\
+						$(PATH_BACKGROUND)/init_background_town.c			\
+						$(PATH_BACKGROUND)/init_background_forest.c				\
 
 PATH_WEAPON =			src/items/weapon
 
@@ -203,6 +212,18 @@ TEST_ENNEMY = tests/ennemy/test_ennemy_main.c
 tests_ennemy: 	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_ENNEMY) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy"
+
+TEST_PLAYER = 	tests/tests_file/player_position.c \
+				tests/tests_file/player_animation.c \
+				tests/tests_file/player_animation_attack.c \
+				tests/tests_file/move_player.c \
+				tests/tests_file/main_loop.c \
+				tests/tests_file/events.c \
+				tests/tests_file/display_sprite.c \
+				tests/tests_file/detect_key.c \
+				tests/tests_file/create_sprites_player.c \
+				tests/tests_file/clock_player.c \
+				tests/tests_file/clock_player_attack.c \
 
 tests_player:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_player" $(LFLAGS)

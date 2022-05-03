@@ -57,5 +57,9 @@ bool init_back(background_t *background)
         return (true);
     if (init_laboratory(&(background->laboratory)))
         return (true);
+    if (init_town(background->town))
+        return (true);
+    if (init_forest(background->forest))
+        return (true);
     return (false);
 }

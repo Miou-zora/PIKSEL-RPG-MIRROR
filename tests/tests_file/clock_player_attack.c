@@ -6,7 +6,6 @@
 */
 
 #include "struct_var.h"
-#include "rpg.h"
 
 void clock_animation_sword(player_t *player)
 {
