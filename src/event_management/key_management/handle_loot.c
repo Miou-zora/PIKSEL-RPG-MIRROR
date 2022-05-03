@@ -21,6 +21,7 @@ void get_loot(game_t *game)
             my_putstr(game->background->loot->armor->name);
         else
             my_putstr(game->background->loot->weapon->name);
+        game->background->loot->armor_or_weapon = 2;
     }
 }
 
@@ -37,7 +38,8 @@ void move_loot(loot_t *loot, int x_or_y, int to_move)
         else
             sfSprite_move(loot->armor->sprite_data->sprite,
             (sfVector2f){0, to_move});
-    } else {
+    }
+    if (loot->armor_or_weapon == 1) {
         if (x_or_y == 0)
             sfSprite_move(loot->weapon->sprite_data->sprite,
             (sfVector2f){to_move, 0});
