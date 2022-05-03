@@ -10,8 +10,8 @@
 void destroy_clock_data(clock_data_t **clock_data)
 {
     if (*clock_data) {
-        if ((*clock_data)->clocksfInt64)
-            sfClock_destroy((*clock_data)->clocksfInt64);
+        if ((*clock_data)->clock)
+            sfClock_destroy((*clock_data)->clock);
         freen(clock_data);
     }
 }

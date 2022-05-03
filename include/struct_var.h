@@ -200,10 +200,9 @@ struct clock_player_s {
 };
 
 struct clock_data_s {
-    sfClock *clocksfInt64;
-    sfInt64 elapsed_time;
-    sfTime currElapsedTime;
-    int framerate;
+    sfClock *clock;
+    float elapsed_time;
+    float framerate_seconds;
 };
 
 struct selection_zone_s {

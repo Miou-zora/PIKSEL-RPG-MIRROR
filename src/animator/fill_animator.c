@@ -57,7 +57,7 @@ bool fill_animator_clock(animator_t *animator, char *data)
     if (animator->clock_data == NULL || framerate <= 0) {
         return (true);
     } else {
-        animator->clock_data->framerate = 1000000 / my_getnbr(data);
+        animator->clock_data->framerate_seconds = 1000000 / my_getnbr(data);
     }
     return (false);
 }
