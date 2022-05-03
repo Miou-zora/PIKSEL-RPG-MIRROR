@@ -25,6 +25,9 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 						src/event_management/menu/handle_settings_events.c	\
 						src/event_management/menu/handle_fps.c				\
 						src/event_management/menu/handle_music_and_sound.c	\
+						src/event_management/menu/how_to_play.c				\
+						src/init_game/init_how_to_play.c					\
+						src/game_management/display_one_more_char.c			\
 
 PATH_PLAYER = 			src/player
 

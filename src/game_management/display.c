@@ -26,6 +26,12 @@ void display_menu(game_t *game)
             game->background->menu->settings_rectangles[i], NULL);
         }
     }
+    if (game->background->menu->how_to_play_mode == true) {
+        sfRenderWindow_drawSprite(game->window,
+        game->background->menu->how_to_play->text_zone_sprite->sprite, NULL);
+        sfRenderWindow_drawText(game->window,
+        game->background->menu->how_to_play->text, NULL);
+    }
 }
 
 void display(game_t *game)

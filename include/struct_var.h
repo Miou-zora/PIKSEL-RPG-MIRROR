@@ -210,6 +210,8 @@ struct menu_s {
     int fps;
     bool sound;
     bool music;
+    bool how_to_play_mode;
+    text_zone_t *how_to_play;
 };
 
 struct background_s {
@@ -350,6 +352,9 @@ void sound_on(game_t *game);
 void sound_off(game_t *game);
 void music_on(game_t *game);
 void music_off(game_t *game);
+int how_to_play(game_t *game);
+int initialize_how_to_play(game_t *game);
+bool display_one_more_char(text_zone_t **text_zone);
 
 //* background
 

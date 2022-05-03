@@ -66,5 +66,6 @@ bool initialize_menu(menu_t **menu)
     (*menu)->fps = 60;
     (*menu)->music = true;
     (*menu)->sound = true;
+    (*menu)->how_to_play_mode = false;
     return (false);
 }
