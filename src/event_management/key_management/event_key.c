@@ -24,7 +24,8 @@ void key_run(player_t *player)
 int manage_key(game_t *game)
 {
     if (sfKeyboard_isKeyPressed(game->event.key.code) == true) {
-        if (game->event.key.code == sfKeySpace) {
+        if (game->event.key.code == sfKeySpace &&
+        game->background->scene_background != MENU) {
             spawn_random_loot(&(game->background->loot), (sfVector2f){700, 600});
         }
         manage_key_z(game);

@@ -35,7 +35,7 @@ void fill_stats(char **stats, int *stats_values, game_t *game)
         text[i] = sfText_create();
         sfText_setString(text[i], stats[i]);
         sfText_setFont(text[i],
-        sfFont_createFromFile("assets/font/arcadeclassic/ARCADECLASSIC.TTF"));
+        sfFont_createFromFile("assets/font/font.ttf"));
         sfText_setScale(text[i], (sfVector2f){4, 4});
         sfText_setColor(text[i], sfGreen);
     }
