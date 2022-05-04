@@ -13,12 +13,14 @@ void display_background(game_t *game)
     if (game->background->scene_background == ROOM) {
         sfRenderWindow_drawSprite(game->window,
         game->background->bedroom->sprite->sprite, NULL);
+        //display_npc(game);
         display_player_sprites(game->player, game);
     }
     if (game->background->scene_background == CITY) {
         sfRenderWindow_drawSprite(game->window,
         game->background->town[0]->sprite->sprite, NULL);
         display_player_sprites(game->player, game);
+        //display_npc(game);
         sfRenderWindow_drawSprite(game->window,
         game->background->town[1]->sprite->sprite, NULL);
     }
@@ -27,11 +29,13 @@ void display_background(game_t *game)
         game->background->forest[0]->sprite->sprite, NULL);
         sfRenderWindow_drawSprite(game->window,
         game->background->forest[1]->sprite->sprite, NULL);
+        //display_npc(game);
         display_player_sprites(game->player, game);
     }
     if (game->background->scene_background == LABO) {
         sfRenderWindow_drawSprite(game->window,
         game->background->laboratory->sprite->sprite, NULL);
+        //display_npc(game);
         display_player_sprites(game->player, game);
     }
     if (game->background->scene_background != MENU
