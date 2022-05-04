@@ -59,6 +59,9 @@ bool initialize_menu(menu_t **menu)
     if ((*menu) == NULL)
         return (true);
     (*menu)->sprite = load_sprite_data("assets/menu/menu.png");
+    if ((*menu)->sprite == NULL) {
+        return (true);
+    }
     sfSprite_setScale((*menu)->sprite->sprite,
     (sfVector2f){8, 8});
     sfSprite_setPosition((*menu)->sprite->sprite,

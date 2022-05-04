@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** PIKSEL-RPG-MIRROR
+** RPG
 ** File description:
-** move_loot
+** handle_loot
 */
 
 #include "struct_var.h"

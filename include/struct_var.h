@@ -82,11 +82,11 @@ struct loot_s {
 };
 
 struct npc_s {
-    char *name;
     sprite_data_t *sprite_data;
     int postion[2];
     struct dialogues *dialogue;
-    int index;
+    int distance_à_parcourir;
+    enum scene_background_t scene;
 };
 
 struct stat_s {
@@ -193,6 +193,7 @@ struct player_s {
     int player_mode;
     int traveled_distance;
     stat_t *stat;
+    sfIntRect hitbox;
 };
 
 struct clock_player_s {
@@ -289,7 +290,9 @@ struct game_s {
     background_t *background;
     int distance[2];
     player_t *player;
+    npc_t *npc[4];
     sfClock *clock;
+    clock_data_t *clock_secondary;
 };
 
 /************************** functions ***********************************/
@@ -356,7 +359,7 @@ void update_animator(animator_t *animator);
 
 //* clock_data
 
-void set_framerate_clock_data(clock_data_t *clock, int framerate);
+void set_framerate_clock_data(clock_data_t *clock, float framerate);
 clock_data_t *create_clock_data(void);
 void drain_clock_data(clock_data_t *clock);
 bool update_clock_data(clock_data_t *clock);
@@ -421,6 +424,7 @@ bool init_player_clock(player_t *player);
 int init_stats(stat_t **stat);
 void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
+void display_hitbox(sfIntRect rect, sfRenderWindow *window);
 
 //* particle
 
@@ -436,3 +440,8 @@ void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
 void spawn_random_loot(loot_t **loot, sfVector2f pos);
 void display_loot(game_t *game);
 void get_loot(game_t *game);
+
+//* npc
+
+void display_npc(game_t *game);
+bool init_npc(npc_t *npc[4]);

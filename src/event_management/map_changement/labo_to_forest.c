@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** PIKSEL-RPG-MIRROR
+** RPG
 ** File description:
-** display_one_more_char
+** labo_to_forest
 */
 
 #include "struct_var.h"
