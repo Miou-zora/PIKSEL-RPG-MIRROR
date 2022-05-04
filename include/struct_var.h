@@ -82,11 +82,11 @@ struct loot_s {
 };
 
 struct npc_s {
-    char *name;
     sprite_data_t *sprite_data;
     int postion[2];
     struct dialogues *dialogue;
-    int index;
+    int distance_à_parcourir;
+    enum scene_background_t scene;
 };
 
 struct stat_s {
@@ -289,6 +289,7 @@ struct game_s {
     background_t *background;
     int distance[2];
     player_t *player;
+    npc_t *npc[4];
     sfClock *clock;
 };
 
@@ -436,3 +437,7 @@ void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
 void spawn_random_loot(loot_t **loot, sfVector2f pos);
 void display_loot(game_t *game);
 void get_loot(game_t *game);
+
+//* npc
+
+bool init_npc(npc_t *npc[4]);

@@ -19,6 +19,7 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_PLAYER)										\
 						$(SRC_PARTICLES)									\
 						$(SRC_INVENTORY)									\
+						$(SRC_NPC)											\
 
 SRC_INVENTORY	=		src/items/spawn_random_loot.c						\
 						src/game_management/display_loot.c
@@ -45,7 +46,7 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 PATH_PLAYER = 			src/player
 
 SRC_PLAYER = 			$(PATH_PLAYER)/init_player.c 						\
-			 			$(PATH_PLAYER)/init_stats.c 						\
+			 		    $(PATH_PLAYER)/init_stats.c 						\
 						$(PATH_PLAYER)/display_player.c 					\
 
 PATH_GAME_MANAGEMENT =	src/game_management
@@ -129,6 +130,10 @@ SRC_WEAPON =			$(PATH_WEAPON)/create_weapon.c						\
 						$(PATH_WEAPON)/load_all_weapons.c					\
 						$(PATH_WEAPON)/fill_all_weapons.c					\
 						$(PATH_WEAPON)/print_all_weapons.c					\
+
+PATH_NPC = 				src/npc
+
+SRC_NPC = 				$(PATH_NPC)/init_npc.c 								\
 
 PATH_SPRITE_DATA =		src/sprite_data
 
