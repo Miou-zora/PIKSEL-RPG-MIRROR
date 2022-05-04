@@ -28,6 +28,10 @@ bool init_player_clock(player_t *player)
     player->player = create_clock_data();
     if (player->player == NULL)
         return (true);
+    player->clock_update_animator = create_clock_data();
+    if (player->clock_update_animator == NULL)
+        return (true);
+    set_framerate_clock_data(player->clock_update_animator, 0.1);
     return (false);
 }
 

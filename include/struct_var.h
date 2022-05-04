@@ -171,6 +171,7 @@ struct player_s {
     clock_data_t *c_gun;
     clock_data_t *c_sword;
     clock_data_t *c_spear;
+    clock_data_t *clock_update_animator;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;

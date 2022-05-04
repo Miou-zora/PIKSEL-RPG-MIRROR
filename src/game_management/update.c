@@ -48,7 +48,9 @@ void clock_animation_player(player_t *player)
 void called_clock_player(player_t *player, game_t *game)
 {
     clock_player(player, game);
-    clock_animation_player(player);
+    drain_clock_data(player->clock_update_animator);
+    while (update_clock_data(player->clock_update_animator))
+        clock_animation_player(player);
 }
 
 void update(game_t *game)
