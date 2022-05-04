@@ -6,13 +6,13 @@
 */
 
 #include "struct_var.h"
-
+#include "my.h"
 
 void move_player_walk(player_t *player)
 {
-    if (player->move_up == true && player->player_mode == 1)
+    if (player->move_up == true && player->player_mode == 1 && player->pos.y - 10 > 350)
         player->pos.y -= 10;
-    if (player->move_down == true && player->player_mode == 1)
+    if (player->move_down == true && player->player_mode == 1 && player->pos.y + 10 < 500)
         player->pos.y += 10;
     if (player->move_left == true && player->player_mode == 1)
         player->pos.x += 10;
@@ -22,9 +22,9 @@ void move_player_walk(player_t *player)
 
 void move_player_run(player_t *player)
 {
-    if (player->move_up == true && player->player_mode == 2)
+    if (player->move_up == true && player->player_mode == 2 && player->pos.y - 10 > 350)
         player->pos.y -= 30;
-    if (player->move_down == true && player->player_mode == 2)
+    if (player->move_down == true && player->player_mode == 2 && player->pos.y + 10 < 500)
         player->pos.y += 30;
     if (player->move_left == true && player->player_mode == 2)
         player->pos.x += 30;
@@ -65,6 +65,10 @@ void player_animation_iddle(player_t *player)
 
 void update_position(player_t *player)
 {
+    player->hitbox.left = player->pos.x + 100;
+    player->hitbox.top = player->pos.y + 280;
+    my_printf("pos: %i %i\n", (int)player->pos.x, (int)player->pos.y);
+    my_printf("hitbox: %i %i\n", (int)player->hitbox.left, (int)player->hitbox.top);
     sfSprite_setPosition(player->run->sprite_data->sprite, player->pos);
     sfSprite_setPosition(player->walk->sprite_data->sprite, player->pos);
     sfSprite_setPosition(player->iddle->sprite_data->sprite, player->pos);

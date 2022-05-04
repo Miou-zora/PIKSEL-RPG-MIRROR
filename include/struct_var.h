@@ -194,6 +194,7 @@ struct player_s {
     int traveled_distance;
     stat_t *stat;
     sfIntRect hitbox;
+    sfColor hitbox_color;
 };
 
 struct clock_player_s {
@@ -424,7 +425,7 @@ bool init_player_clock(player_t *player);
 int init_stats(stat_t **stat);
 void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
-void display_hitbox(sfIntRect rect, sfRenderWindow *window);
+void display_hitbox(sfIntRect rect, sfRenderWindow *window, sfColor color);
 
 //* particle
 
