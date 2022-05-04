@@ -22,7 +22,10 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_NPC)											\
 
 SRC_INVENTORY	=		src/items/spawn_random_loot.c						\
-						src/game_management/display_loot.c
+						src/game_management/display_loot_and_inventory.c	\
+						src/init_game/init_inventory.c						\
+						src/event_management/key_management/handle_inv.c	\
+						src/event_management/key_management/add_armor.c		\
 
 PATH_PARTICLES =		src/particle
 

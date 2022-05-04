@@ -17,16 +17,16 @@ void destroy_loot(loot_t *loot)
     }
 }
 
-void take_loot(loot_t *loot)
+void take_loot(inventory_t *inventory, loot_t *loot)
 {
     if (loot->armor_or_weapon == 0) {
         my_putstr(loot->armor->name);
         my_putchar('\n');
-        destroy_loot(loot);
+        add_loot_to_inventory(inventory, loot);
     } else {
         my_putstr(loot->weapon->name);
         my_putchar('\n');
-        destroy_loot(loot);
+        add_loot_to_inventory(inventory, loot);
     }
     loot->armor_or_weapon = 3;
 }
@@ -44,7 +44,8 @@ void get_loot(game_t *game)
         game->player->pos.x <= loot_pos.x + 100 &&
         game->player->pos.y >= loot_pos.y - 100 &&
         game->player->pos.y <= loot_pos.y + 100) {
-            take_loot(game->background->loot[i]);
+            take_loot(game->player->inventory, game->background->loot[i]);
+            return;
         }
     }
     
