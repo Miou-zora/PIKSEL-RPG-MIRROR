@@ -22,9 +22,21 @@ static void move_forest(game_t *game, int speed)
     }
 }
 
+void move_player_right(game_t *game, int speed)
+{
+    game->player->pos.x += 15.f * speed;
+    if (speed <= 1)
+        sfSprite_setPosition(game->player->walk->sprite_data->sprite ,
+        game->player->pos);
+    else
+        sfSprite_setPosition(game->player->run->sprite_data->sprite ,
+        game->player->pos);
+}
 void move_background_right(game_t *game, int speed)
 {
     if (game->background->bedroom->sprite->rect.left < 300
+    && game->player->pos.x > 500
+    && game->player->pos.x < 1000
     && game->background->scene_background == ROOM) {
         if (game->background->loot != NULL)
             move_loot(game->background->loot, -20);
@@ -32,6 +44,13 @@ void move_background_right(game_t *game, int speed)
         game->player->traveled_distance += 1 * speed;
         sfSprite_setTextureRect(game->background->bedroom->sprite->sprite ,
         game->background->bedroom->sprite->rect);
+        move_player_right(game, 0.2);
+    } else if ((game->background->bedroom->sprite->rect.left <= 0
+    || game->background->bedroom->sprite->rect.left >= 300)  
+    && game->player->pos.x - 16 * speed <= 1600
+    && game->background->scene_background == ROOM) {
+        game->player->traveled_distance += 1 * speed;
+        move_player_right(game, speed);
     }
     if (game->background->scene_background == CITY) {
         if (game->background->loot != NULL)

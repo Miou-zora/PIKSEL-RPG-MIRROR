@@ -23,9 +23,9 @@ void move_player_walk(player_t *player, game_t *game)
 void move_player_run(player_t *player, game_t *game)
 {
     if (player->move_up == true && player->player_mode == 2)
-        player->pos.y -= 30;
+        player->pos.y -= 15;
     if (player->move_down == true && player->player_mode == 2)
-        player->pos.y += 30;
+        player->pos.y += 15;
     if (player->move_left == true && player->player_mode == 2)
         move_background_left(game, 2);
     if (player->move_right == true && player->player_mode == 2)
@@ -111,17 +111,6 @@ void update(game_t *game)
         }
     }
     update_how_to_play(game->background->menu);
-    // if (game->player->player_mode == 1
-    // && detect_if_key_pressed(game->player) == 0)
-    //     update_animator(game->player->walk);
-    // if (game->player->player_mode == 2)
-    //     update_animator(game->player->run);
-    // if (detect_if_key_pressed(game->player) == 0)
-    //     update_animator(game->player->iddle);
-    // if (game->player->attack == true && game->player->weapon == 1) {
-    //     update_animator(game->player->sword);
-    // }
     called_clock_player(game->player, game);
     update_position(game->player);
-    // update_animator(game->enemy->animator_standing);
 }
