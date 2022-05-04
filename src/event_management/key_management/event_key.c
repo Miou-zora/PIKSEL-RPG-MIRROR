@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** PIKSEL-RPG-MIRROR
+** RPG
 ** File description:
-** event_handler
+** event_key
 */
 
 #include "struct_var.h"
@@ -24,6 +24,9 @@ void key_run(player_t *player)
 int manage_key(game_t *game)
 {
     if (sfKeyboard_isKeyPressed(game->event.key.code) == true) {
+        if (game->event.key.code == sfKeySpace) {
+            spawn_random_loot(&(game->background->loot), (sfVector2f){700, 600});
+        }
         manage_key_z(game);
         manage_key_q(game);
         manage_key_s(game);

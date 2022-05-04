@@ -24,6 +24,8 @@ bool fill_game(game_t *game)
         return (true);
     if (init_player(game->player))
         return (true);
+    if (init_npc(game->npc))
+        return (true);
     return (false);
 }
 

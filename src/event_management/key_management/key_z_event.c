@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** PIKSEL-RPG-MIRROR
+** RPG
 ** File description:
-** event_handler
+** key_z_event
 */
 
 #include "struct_var.h"

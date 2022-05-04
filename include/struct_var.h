@@ -74,17 +74,19 @@ struct dialogues_s {
 struct loot_s {
     sfVector2f position;
     loot_t *next;
+    loot_t *prev;
     int armor_or_weapon;
     armor_t *armor;
     weapon_t *weapon;
+    int id;
 };
 
 struct npc_s {
-    char *name;
     sprite_data_t *sprite_data;
     int postion[2];
     struct dialogues *dialogue;
-    int index;
+    int distance_à_parcourir;
+    enum scene_background_t scene;
 };
 
 struct stat_s {
@@ -288,6 +290,7 @@ struct game_s {
     background_t *background;
     int distance[2];
     player_t *player;
+    npc_t *npc[4];
     sfClock *clock;
     clock_data_t *clock_secondary;
 };
@@ -411,6 +414,7 @@ bool init_back(background_t *background);
 bool init_forest(forest_t *forest[2]);
 bool init_town(town_t *town[2]);
 sprite_data_t *set_sprite(sprite_data_t *sprite);
+void move_loot(loot_t *loot, int to_move);
 
 //* player
 
@@ -430,3 +434,13 @@ nest_particle_t *create_nest_particle(int number_of_particle,
 sfVector2i size_framebuffer);
 void update_nest_particle(nest_particle_t *nest_particle, float delta_time);
 void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
+
+//* inventory
+
+void spawn_random_loot(loot_t **loot, sfVector2f pos);
+void display_loot(game_t *game);
+void get_loot(game_t *game);
+
+//* npc
+
+bool init_npc(npc_t *npc[4]);

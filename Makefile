@@ -18,6 +18,11 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_BACKGROUND)									\
 						$(SRC_PLAYER)										\
 						$(SRC_PARTICLES)									\
+						$(SRC_INVENTORY)									\
+						$(SRC_NPC)											\
+
+SRC_INVENTORY	=		src/items/spawn_random_loot.c						\
+						src/game_management/display_loot.c
 
 PATH_PARTICLES =		src/particle
 
@@ -41,7 +46,7 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 PATH_PLAYER = 			src/player
 
 SRC_PLAYER = 			$(PATH_PLAYER)/init_player.c 						\
-			 			$(PATH_PLAYER)/init_stats.c 						\
+			 		    $(PATH_PLAYER)/init_stats.c 						\
 						$(PATH_PLAYER)/display_player.c 					\
 						$(PATH_PLAYER)/display_hitbox.c 					\
 
@@ -68,6 +73,7 @@ SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
 						$(PATH_EVENT)/map_changement/forest_to_labo.c 		\
 						$(PATH_EVENT)/map_changement/labo_to_forest.c 		\
 						$(PATH_EVENT)/map_changement/forest_to_city.c 		\
+						$(PATH_EVENT)/key_management/handle_loot.c			\
 
 MAIN 		=			src/main.c
 
@@ -112,7 +118,7 @@ PATH_BACKGROUND = 		src/background
 
 SRC_BACKGROUND = 		$(PATH_BACKGROUND)/init_background.c				\
 						$(PATH_BACKGROUND)/init_background_town.c			\
-						$(PATH_BACKGROUND)/init_background_forest.c				\
+						$(PATH_BACKGROUND)/init_background_forest.c			\
 
 PATH_WEAPON =			src/items/weapon
 
@@ -125,6 +131,10 @@ SRC_WEAPON =			$(PATH_WEAPON)/create_weapon.c						\
 						$(PATH_WEAPON)/load_all_weapons.c					\
 						$(PATH_WEAPON)/fill_all_weapons.c					\
 						$(PATH_WEAPON)/print_all_weapons.c					\
+
+PATH_NPC = 				src/npc
+
+SRC_NPC = 				$(PATH_NPC)/init_npc.c 								\
 
 PATH_SPRITE_DATA =		src/sprite_data
 

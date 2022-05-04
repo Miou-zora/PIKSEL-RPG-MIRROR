@@ -10,8 +10,9 @@
 
 char *put_in_str(int nb, char *str)
 {
+    char nb_str[2];
+
     if (nb >= 0 && nb <= 9) {
-        char *nb_str = malloc(sizeof(char) * 2);
         nb_str[0] = nb + 48;
         nb_str[1] = '\0';
         my_strcat(str, nb_str);
@@ -26,8 +27,9 @@ char *put_in_str(int nb, char *str)
 void fill_stats(char **stats, int *stats_values, game_t *game)
 {
     sfText **text = malloc(sizeof(sfText *) * 5);
+
     for (int i = 0; i < 5; i++) {
-        stats[i] = malloc(sizeof(char) * get_nbrlen(stats_values[i]));
+        stats[i] = malloc(sizeof(char) * (get_nbrlen(stats_values[i]) + 2));
         stats[i][0] = '\0';
         stats[i] = put_in_str(stats_values[i], stats[i]);
         text[i] = sfText_create();
@@ -42,9 +44,8 @@ void fill_stats(char **stats, int *stats_values, game_t *game)
     sfText_setPosition(text[2], (sfVector2f){900, -40});
     sfText_setPosition(text[3], (sfVector2f){1400, -40});
     sfText_setPosition(text[4], (sfVector2f){1800, -40});
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++)
         sfRenderWindow_drawText(game->window, text[i], NULL);
-    }
 }
 
 void display_stats(game_t *game)

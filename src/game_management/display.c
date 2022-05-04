@@ -15,11 +15,12 @@ void display_background(game_t *game)
         game->background->bedroom->sprite->sprite, NULL);
         display_hitbox(game->player->hitbox, game->window);
         // *display_player_sprites(game->player, game);
+        display_player_sprites(game->player, game);
     }
     if (game->background->scene_background == CITY) {
         sfRenderWindow_drawSprite(game->window,
         game->background->town[0]->sprite->sprite, NULL);
-        //*display_player_sprites(game->player, game);
+        display_player_sprites(game->player, game);
         sfRenderWindow_drawSprite(game->window,
         game->background->town[1]->sprite->sprite, NULL);
     }
@@ -28,19 +29,20 @@ void display_background(game_t *game)
         game->background->forest[0]->sprite->sprite, NULL);
         sfRenderWindow_drawSprite(game->window,
         game->background->forest[1]->sprite->sprite, NULL);
-        //*display_player_sprites(game->player, game);
+        display_player_sprites(game->player, game);
     }
     if (game->background->scene_background == LABO) {
         sfRenderWindow_drawSprite(game->window,
         game->background->laboratory->sprite->sprite, NULL);
-        //*display_player_sprites(game->player, game);
+        display_player_sprites(game->player, game);
     }
-    /*if (game->background->scene_background != MENU
+    if (game->background->scene_background != MENU
     && game->background->scene_background != SETTINGS) {
         sfRenderWindow_drawSprite(game->window,
         game->player->stat->top_bar->sprite, NULL);
         display_stats(game);
-    }*/
+    }
+    display_loot(game);
 }
 
 void display_menu(game_t *game)
