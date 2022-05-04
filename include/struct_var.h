@@ -73,8 +73,6 @@ struct dialogues_s {
 
 struct loot_s {
     sfVector2f position;
-    loot_t *next;
-    loot_t *prev;
     int armor_or_weapon;
     armor_t *armor;
     weapon_t *weapon;
@@ -262,7 +260,7 @@ struct background_s {
     laboratory_t *laboratory;
     bedroom_t *bedroom;
     enum scene_background_t scene_background;
-    loot_t *loot;
+    loot_t *loot[10];
 };
 
 struct settings_s {
@@ -414,7 +412,7 @@ bool init_back(background_t *background);
 bool init_forest(forest_t *forest[2]);
 bool init_town(town_t *town[2]);
 sprite_data_t *set_sprite(sprite_data_t *sprite);
-void move_loot(loot_t *loot, int to_move);
+void move_loot(loot_t **loot, int to_move);
 
 //* player
 
@@ -440,6 +438,7 @@ void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
 void spawn_random_loot(loot_t **loot, sfVector2f pos);
 void display_loot(game_t *game);
 void get_loot(game_t *game);
+bool init_loot(loot_t *loot[10]);
 
 //* npc
 

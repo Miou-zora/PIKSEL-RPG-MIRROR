@@ -20,32 +20,53 @@ void destroy_loot(loot_t *loot)
 void get_loot(game_t *game)
 {
     sfVector2f loot_pos;
-    loot_pos.x = game->background->loot->position.x - 100;
-    loot_pos.y = game->background->loot->position.y - 200;
-    if (game->player->pos.x >= loot_pos.x - 100 &&
-    game->player->pos.x <= loot_pos.x + 100 &&
-    game->player->pos.y >= loot_pos.y - 100 &&
-    game->player->pos.y <= loot_pos.y + 100) {
-        if (game->background->loot->armor_or_weapon == 0) {
-            my_putstr(game->background->loot->armor->name);
-            destroy_loot(game->background->loot);
-        } else {
-            my_putstr(game->background->loot->weapon->name);
-            destroy_loot(game->background->loot);
+    for (int i = 0; game->background->loot[i]->armor_or_weapon != 2; i++) {
+        if (game->background->loot[i]->armor_or_weapon == 3)
+            continue;
+        loot_pos.x = game->background->loot[i]->position.x - 100;
+        loot_pos.y = game->background->loot[i]->position.y - 200;
+        if (game->player->pos.x >= loot_pos.x - 100 &&
+        game->player->pos.x <= loot_pos.x + 100 &&
+        game->player->pos.y >= loot_pos.y - 100 &&
+        game->player->pos.y <= loot_pos.y + 100) {
+            if (game->background->loot[i]->armor_or_weapon == 0) {
+                my_putstr(game->background->loot[i]->armor->name);
+                my_putchar('\n');
+                destroy_loot(game->background->loot[i]);
+            } else {
+                my_putstr(game->background->loot[i]->weapon->name);
+                my_putchar('\n');
+                destroy_loot(game->background->loot[i]);
+            }
+            game->background->loot[i]->armor_or_weapon = 3;
         }
-        game->background->loot = NULL;
     }
+    
 }
 
-void move_loot(loot_t *loot, int to_move)
+void move_loot(loot_t **loot, int to_move)
 {
-    loot->position.x += to_move;
-    if (loot->armor_or_weapon == 0) {
-        sfSprite_move(loot->armor->sprite_data->sprite,
-        (sfVector2f){to_move, 0});
+    for (int i = 0; loot[i]->armor_or_weapon != 2; i++) {
+        loot[i]->position.x += to_move;
+        if (loot[i]->armor_or_weapon == 0) {
+            sfSprite_move(loot[i]->armor->sprite_data->sprite,
+            (sfVector2f){to_move, 0});
+        }
+        if (loot[i]->armor_or_weapon == 1) {
+            sfSprite_move(loot[i]->weapon->sprite_data->sprite,
+            (sfVector2f){to_move, 0});
+        }
     }
-    if (loot->armor_or_weapon == 1) {
-        sfSprite_move(loot->weapon->sprite_data->sprite,
-        (sfVector2f){to_move, 0});
+    
+}
+
+bool init_loot(loot_t *loot[10])
+{
+    for (int i = 0; i < 10; i++) {
+        loot[i] = malloc(sizeof(loot_t));
+        if (loot[i] == NULL)
+            return (true);
+        loot[i]->armor_or_weapon = 2;
     }
+    return (false);
 }
