@@ -8,6 +8,15 @@
 #include "struct_var.h"
 #include "my.h"
 
+void destroy_loot(loot_t *loot)
+{
+    if (loot->armor_or_weapon == 0) {
+        destroy_armor(&loot->armor);
+    } else if (loot->armor_or_weapon == 1) {
+        destroy_weapon(&loot->weapon);
+    }
+}
+
 void get_loot(game_t *game)
 {
     sfVector2f loot_pos;
@@ -17,11 +26,14 @@ void get_loot(game_t *game)
     game->player->pos.x <= loot_pos.x + 100 &&
     game->player->pos.y >= loot_pos.y - 100 &&
     game->player->pos.y <= loot_pos.y + 100) {
-        if (game->background->loot->armor_or_weapon == 0)
+        if (game->background->loot->armor_or_weapon == 0) {
             my_putstr(game->background->loot->armor->name);
-        else
+            destroy_loot(game->background->loot);
+        } else {
             my_putstr(game->background->loot->weapon->name);
-        game->background->loot->armor_or_weapon = 2;
+            destroy_loot(game->background->loot);
+        }
+        game->background->loot = NULL;
     }
 }
 
