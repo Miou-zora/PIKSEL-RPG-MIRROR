@@ -32,11 +32,7 @@
 
 void spawn_random_loot(loot_t **loot, sfVector2f pos)
 {
-    char *pathes[8] = {"scripts/armor/common_boots.arm",
-    "scripts/armor/common_chestplate.arm", "scripts/armor/common_helmet.arm",
-    "scripts/armor/common_leggings.arm", "scripts/weapon/common_sword.wea",
-    "scripts/weapon/common_gloves.wea", "scripts/weapon/common_spear.wea",
-    "scripts/weapon/common_gun.wea"};
+    char **pathes = get_data_from_file("scripts/loot/items_filepathes");
     int random_value = rand() % 4;
 
     (*loot) = malloc(sizeof(loot_t));
@@ -46,10 +42,12 @@ void spawn_random_loot(loot_t **loot, sfVector2f pos)
         (*loot)->weapon = NULL;
         (*loot)->armor = load_armor(pathes[random_value]);
         sfSprite_setPosition((*loot)->armor->sprite_data->sprite, pos);
+        sfSprite_setColor((*loot)->armor->sprite_data->sprite, sfYellow);
     } else {
         (*loot)->armor = NULL;
         my_putstr(pathes[random_value + 4]);
         (*loot)->weapon = load_weapon(pathes[random_value + 4]);
         sfSprite_setPosition((*loot)->weapon->sprite_data->sprite, pos);
+        sfSprite_setColor((*loot)->weapon->sprite_data->sprite, sfBlue);
     }
 }
