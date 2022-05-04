@@ -11,25 +11,25 @@
 void move_player_walk(player_t *player)
 {
     if (player->move_up == true && player->player_mode == 1)
-        player->pos.y -= 0.5;
+        player->pos.y -= 10;
     if (player->move_down == true && player->player_mode == 1)
-        player->pos.y += 0.5;
+        player->pos.y += 10;
     if (player->move_left == true && player->player_mode == 1)
-        player->pos.x += 0.5;
+        player->pos.x += 10;
     if (player->move_right == true && player->player_mode == 1)
-        player->pos.x -= 0.5;
+        player->pos.x -= 10;
 }
 
 void move_player_run(player_t *player)
 {
     if (player->move_up == true && player->player_mode == 2)
-        player->pos.y -= 1;
+        player->pos.y -= 30;
     if (player->move_down == true && player->player_mode == 2)
-        player->pos.y += 1;
+        player->pos.y += 30;
     if (player->move_left == true && player->player_mode == 2)
-        player->pos.x += 1;
+        player->pos.x += 30;
     if (player->move_right == true && player->player_mode == 2)
-        player->pos.x -= 1;
+        player->pos.x -= 30;
 }
 
 
