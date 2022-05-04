@@ -14,25 +14,22 @@ void move_player_walk(player_t *player, game_t *game)
         player->pos.y -= 7.5;
     if (player->move_down == true && player->player_mode == 1)
         player->pos.y += 7.5;
-    if (player->move_left == true && player->player_mode == 1) {
-        move_background_right(game);
-    }
-    if (player->move_right == true && player->player_mode == 1) {
-        move_background_left(game);
-    }
-        
+    if (player->move_right == true && player->player_mode == 1)
+        move_background_right(game, 1);
+    if (player->move_left == true && player->player_mode == 1)
+        move_background_left(game, 1);
 }
 
-void move_player_run(player_t *player)
+void move_player_run(player_t *player, game_t *game)
 {
     if (player->move_up == true && player->player_mode == 2)
-        player->pos.y -= 15;
+        player->pos.y -= 30;
     if (player->move_down == true && player->player_mode == 2)
-        player->pos.y += 15;
+        player->pos.y += 30;
     if (player->move_left == true && player->player_mode == 2)
-        player->pos.x += 7;
+        move_background_left(game, 2);
     if (player->move_right == true && player->player_mode == 2)
-        player->pos.x -= 7;
+        move_background_right(game, 2);
 }
 
 
@@ -80,7 +77,7 @@ void update_position(player_t *player)
 void clock_player(player_t *player, game_t *game)
 {
     move_player_walk(player, game);
-    move_player_run(player);
+    move_player_run(player, game);
     update_position(player);
 }
 
