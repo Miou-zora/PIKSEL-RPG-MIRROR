@@ -56,6 +56,7 @@ SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 						$(PATH_GAME_MANAGEMENT)/update.c					\
 						$(PATH_GAME_MANAGEMENT)/display.c					\
 						$(PATH_GAME_MANAGEMENT)/display_stats.c				\
+						$(PATH_GAME_MANAGEMENT)/handle_stats.c				\
 
 PATH_EVENT =			src/event_management
 

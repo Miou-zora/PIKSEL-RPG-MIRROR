@@ -426,6 +426,9 @@ int init_stats(stat_t **stat);
 void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
 void display_hitbox(sfIntRect rect, sfRenderWindow *window);
+void upgrade_level(stat_t *stat);
+void handle_stats(stat_t *stat);
+void win_xp(stat_t *stat, int how_much_xp);
 
 //* particle
 

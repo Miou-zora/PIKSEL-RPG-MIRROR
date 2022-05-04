@@ -36,14 +36,14 @@ void fill_stats(char **stats, int *stats_values, game_t *game)
         sfText_setString(text[i], stats[i]);
         sfText_setFont(text[i],
         sfFont_createFromFile("assets/font/font.ttf"));
-        sfText_setScale(text[i], (sfVector2f){4, 4});
+        sfText_setScale(text[i], (sfVector2f){2, 2});
         sfText_setColor(text[i], sfGreen);
     }
-    sfText_setPosition(text[0], (sfVector2f){200, -40});
-    sfText_setPosition(text[1], (sfVector2f){550, -40});
-    sfText_setPosition(text[2], (sfVector2f){900, -40});
-    sfText_setPosition(text[3], (sfVector2f){1400, -40});
-    sfText_setPosition(text[4], (sfVector2f){1800, -40});
+    sfText_setPosition(text[0], (sfVector2f){200, 20});
+    sfText_setPosition(text[1], (sfVector2f){550, 20});
+    sfText_setPosition(text[2], (sfVector2f){900, 20});
+    sfText_setPosition(text[3], (sfVector2f){1400, 20});
+    sfText_setPosition(text[4], (sfVector2f){1800, 20});
     for (int i = 0; i < 5; i++)
         sfRenderWindow_drawText(game->window, text[i], NULL);
 }

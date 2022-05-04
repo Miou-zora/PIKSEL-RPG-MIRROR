@@ -113,4 +113,5 @@ void update(game_t *game)
     update_how_to_play(game->background->menu);
     called_clock_player(game->player, game);
     update_position(game->player);
+    handle_stats(game->player->stat);
 }
