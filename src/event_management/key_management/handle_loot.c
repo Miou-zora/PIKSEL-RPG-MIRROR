@@ -17,9 +17,24 @@ void destroy_loot(loot_t *loot)
     }
 }
 
+void take_loot(loot_t *loot)
+{
+    if (loot->armor_or_weapon == 0) {
+        my_putstr(loot->armor->name);
+        my_putchar('\n');
+        destroy_loot(loot);
+    } else {
+        my_putstr(loot->weapon->name);
+        my_putchar('\n');
+        destroy_loot(loot);
+    }
+    loot->armor_or_weapon = 3;
+}
+
 void get_loot(game_t *game)
 {
     sfVector2f loot_pos;
+
     for (int i = 0; game->background->loot[i]->armor_or_weapon != 2; i++) {
         if (game->background->loot[i]->armor_or_weapon == 3)
             continue;
@@ -29,16 +44,7 @@ void get_loot(game_t *game)
         game->player->pos.x <= loot_pos.x + 100 &&
         game->player->pos.y >= loot_pos.y - 100 &&
         game->player->pos.y <= loot_pos.y + 100) {
-            if (game->background->loot[i]->armor_or_weapon == 0) {
-                my_putstr(game->background->loot[i]->armor->name);
-                my_putchar('\n');
-                destroy_loot(game->background->loot[i]);
-            } else {
-                my_putstr(game->background->loot[i]->weapon->name);
-                my_putchar('\n');
-                destroy_loot(game->background->loot[i]);
-            }
-            game->background->loot[i]->armor_or_weapon = 3;
+            take_loot(game->background->loot[i]);
         }
     }
     
