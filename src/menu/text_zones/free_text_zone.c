@@ -5,7 +5,7 @@
 ** free_text_zone
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 
 void free_text_zone(text_zone_t *text_zone)
 {

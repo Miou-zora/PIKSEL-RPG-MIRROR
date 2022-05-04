@@ -5,7 +5,7 @@
 ** display file
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 #include "my.h"
 
 void display(scene_t *scene, dialogues_t *dialogue)

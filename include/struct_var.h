@@ -61,12 +61,14 @@ typedef struct cinematic_s cinematic_t;
 struct cinematic_s {
     sfRenderWindow *window;
     sfEvent event;
+    sprite_data_t *skip_button;
     sprite_data_t *light;
     sprite_data_t *city;
     animator_t *anim_player_walk;
     animator_t *anim_enemy_run;
     clock_data_t *clock_move_player;
     clock_data_t *clock_move_enemy;
+    text_zone_t *text_zone;
     bool walk;
     bool run;
 };
@@ -334,3 +336,12 @@ void create_sprites_cinematic(cinematic_t *cinematic);
 void analyse_events(cinematic_t *cinematic);
 void display_sprite_cinematic(cinematic_t *cinematic);
 void call_clock_cine(cinematic_t *cinematic);
+void clock_cine_text(cinematic_t *cinematic);
+void create_sprite_skip_button(cinematic_t *cinematic);
+
+
+//* text zone
+
+int create_text_zone(text_zone_t **text_zone, char *text_string);
+bool display_one_more_char(text_zone_t **text_zone);
+void display_text_zone(sfRenderWindow *window, text_zone_t *text_zone);

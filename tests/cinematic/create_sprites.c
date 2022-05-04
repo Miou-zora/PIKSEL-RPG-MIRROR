@@ -55,4 +55,5 @@ void create_sprites_cinematic(cinematic_t *cinematic)
     create_sprite_cine_enemy(cinematic);
     create_sprite_cine_city(cinematic);
     create_sprite_cine_light(cinematic);
+    create_sprite_skip_button(cinematic);
 }

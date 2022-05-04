@@ -5,8 +5,9 @@
 ** handle_texts_zones
 */
 
-#include "rpg.h"
 #include "my.h"
+#include "struct_var.h"
+#include <stdlib.h>
 
 void add_return_to_the_line(text_zone_t **text_zone, char *text_string, int i)
 {
@@ -36,9 +37,14 @@ int set_text_strings(text_zone_t **text_zone, char *text_string)
 
 int set_text_zone_variables(text_zone_t **text_zone)
 {
-    initialize_sprite_data(&((*text_zone)->text_zone_sprite),
-    "assets/text_zone/text_zone.png", (sfVector2f){7, 7},
+    (*text_zone)->text_zone_sprite =
+    load_sprite_data("assets/text_zone/text_zone.png");
+    if ((*text_zone)->text_zone_sprite == NULL)
+        return (84);
+    sfSprite_setPosition((*text_zone)->text_zone_sprite->sprite,
     (sfVector2f){120, 450});
+    sfSprite_setScale((*text_zone)->text_zone_sprite->sprite,
+    (sfVector2f){7, 7});
     sfText_setFont((*text_zone)->text, (*text_zone)->font);
     sfText_setString((*text_zone)->text, (*text_zone)->current_string);
     sfText_setColor((*text_zone)->text, sfBlack);

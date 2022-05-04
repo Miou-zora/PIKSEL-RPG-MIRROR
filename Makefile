@@ -98,7 +98,12 @@ SRC_CINEMATIC	=		$(PATH_CINEMATIC)/main_loop.c						\
 						$(PATH_CINEMATIC)/events.c							\
 						$(PATH_CINEMATIC)/create_sprites.c					\
 						$(PATH_CINEMATIC)/display_sprites.c					\
-						$(PATH_CINEMATIC)/clock_cinematic.c
+						$(PATH_CINEMATIC)/clock_cinematic.c					\
+						$(PATH_CINEMATIC)/clock_cinematic_text.c			\
+						$(PATH_CINEMATIC)/create_sprite_skip.c				\
+						src/menu/text_zones/handle_texts_zones.c			\
+						src/menu/text_zones/display_one_more_char.c			\
+						src/menu/text_zones/display_text_zone.c				\
 
 OBJ_SRC		=	$(SRC:%.c=%.o)
 
