@@ -6,30 +6,33 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
-
-void move_player_walk(player_t *player)
+void move_player_walk(player_t *player, game_t *game)
 {
     if (player->move_up == true && player->player_mode == 1)
-        player->pos.y -= 0.5;
+        player->pos.y -= 7.5;
     if (player->move_down == true && player->player_mode == 1)
-        player->pos.y += 0.5;
-    if (player->move_left == true && player->player_mode == 1)
-        player->pos.x += 0.5;
-    if (player->move_right == true && player->player_mode == 1)
-        player->pos.x -= 0.5;
+        player->pos.y += 7.5;
+    if (player->move_left == true && player->player_mode == 1) {
+        move_background_right(game);
+    }
+    if (player->move_right == true && player->player_mode == 1) {
+        move_background_left(game);
+    }
+        
 }
 
 void move_player_run(player_t *player)
 {
     if (player->move_up == true && player->player_mode == 2)
-        player->pos.y -= 1;
+        player->pos.y -= 15;
     if (player->move_down == true && player->player_mode == 2)
-        player->pos.y += 1;
+        player->pos.y += 15;
     if (player->move_left == true && player->player_mode == 2)
-        player->pos.x += 1;
+        player->pos.x += 7;
     if (player->move_right == true && player->player_mode == 2)
-        player->pos.x -= 1;
+        player->pos.x -= 7;
 }
 
 
@@ -74,9 +77,9 @@ void update_position(player_t *player)
     sfSprite_setPosition(player->spear->sprite_data->sprite, player->pos);
 }
 
-void clock_player(player_t *player)
+void clock_player(player_t *player, game_t *game)
 {
-    move_player_walk(player);
+    move_player_walk(player, game);
     move_player_run(player);
     update_position(player);
 }
@@ -92,9 +95,9 @@ void clock_animation_player(player_t *player)
 }
 
 
-void called_clock_player(player_t *player)
+void called_clock_player(player_t *player, game_t *game)
 {
-    clock_player(player);
+    clock_player(player, game);
     clock_animation_player(player);
 }
 
@@ -121,7 +124,7 @@ void update(game_t *game)
     // if (game->player->attack == true && game->player->weapon == 1) {
     //     update_animator(game->player->sword);
     // }
-    called_clock_player(game->player);
+    called_clock_player(game->player, game);
     update_position(game->player);
     // update_animator(game->enemy->animator_standing);
 }
