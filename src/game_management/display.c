@@ -13,6 +13,8 @@ void display_background(game_t *game)
     if (game->background->scene_background == ROOM) {
         sfRenderWindow_drawSprite(game->window,
         game->background->bedroom->sprite->sprite, NULL);
+        display_hitbox(game->player->hitbox, game->window);
+        // *display_player_sprites(game->player, game);
         display_player_sprites(game->player, game);
     }
     if (game->background->scene_background == CITY) {
@@ -68,5 +70,6 @@ void display(game_t *game)
     game->background->scene_background == SETTINGS)
         display_menu(game);
     display_background(game);
+    display_player_sprites(game->player, game);
     sfRenderWindow_display(game->window);
 }

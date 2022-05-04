@@ -7,7 +7,7 @@
 
 #include "struct_var.h"
 
-void set_framerate_clock_data(clock_data_t *clock, int framerate_seconds)
+void set_framerate_clock_data(clock_data_t *clock, float framerate_seconds)
 {
     if (clock == NULL)
         return;

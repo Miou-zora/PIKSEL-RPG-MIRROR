@@ -48,6 +48,7 @@ PATH_PLAYER = 			src/player
 SRC_PLAYER = 			$(PATH_PLAYER)/init_player.c 						\
 			 		    $(PATH_PLAYER)/init_stats.c 						\
 						$(PATH_PLAYER)/display_player.c 					\
+						$(PATH_PLAYER)/display_hitbox.c 					\
 
 PATH_GAME_MANAGEMENT =	src/game_management
 
