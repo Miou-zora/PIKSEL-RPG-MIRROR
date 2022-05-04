@@ -21,13 +21,16 @@ int my_rpg(void)
     srand(time(NULL));
     game_t *game = NULL;
     clock_data_t *principal_clock = create_clock_data();
+    clock_data_t *clock_secondary = create_clock_data();
     // sfTexture *texture = sfTexture_create(1920, 1080);
     // sfSprite *sprite = sfSprite_create();
     // nest_particle_t *nest_particle = create_nest_particle(100, (sfVector2i){1920, 1080});
 
-    set_framerate_clock_data(principal_clock, 1000000 / 60);
+    set_framerate_clock_data(clock_secondary, 0.1);
+    set_framerate_clock_data(principal_clock, 0.1);
     if (initialize_game(&game))
         return (84);
+    game->clock_secondary = clock_secondary;
     while (sfRenderWindow_isOpen(game->window)) {
         drain_clock_data(principal_clock);
         while (update_clock_data(principal_clock)) {

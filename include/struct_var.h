@@ -191,6 +191,7 @@ struct player_s {
     int player_mode;
     int traveled_distance;
     stat_t *stat;
+    sfIntRect hitbox;
 };
 
 struct clock_player_s {
@@ -288,6 +289,7 @@ struct game_s {
     int distance[2];
     player_t *player;
     sfClock *clock;
+    clock_data_t *clock_secondary;
 };
 
 /************************** functions ***********************************/
@@ -354,7 +356,7 @@ void update_animator(animator_t *animator);
 
 //* clock_data
 
-void set_framerate_clock_data(clock_data_t *clock, int framerate);
+void set_framerate_clock_data(clock_data_t *clock, float framerate);
 clock_data_t *create_clock_data(void);
 void drain_clock_data(clock_data_t *clock);
 bool update_clock_data(clock_data_t *clock);
@@ -418,6 +420,7 @@ bool init_player_clock(player_t *player);
 int init_stats(stat_t **stat);
 void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
+void display_hitbox(sfIntRect rect, sfRenderWindow *window);
 
 //* particle
 
