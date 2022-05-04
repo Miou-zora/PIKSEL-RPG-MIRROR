@@ -443,4 +443,5 @@ void get_loot(game_t *game);
 
 //* npc
 
+void display_npc(game_t *game);
 bool init_npc(npc_t *npc[4]);
