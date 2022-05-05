@@ -18,6 +18,8 @@ static void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos)
     scaling = sqrt(pow(pos.x - enemy->pos.x, 2) + pow(pos.y - enemy->pos.y, 2))
     / (enemy->base_speed * enemy->stat.speed);
     if (scaling <= 1) {
+        enemy->pos.x = pos.x;
+        enemy->pos.y = pos.y;
         return;
     }
     enemy->pos.x += (pos.x - enemy->pos.x) / scaling;
