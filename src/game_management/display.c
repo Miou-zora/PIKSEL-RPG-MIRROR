@@ -40,7 +40,8 @@ void display_background(game_t *game)
         display_player_sprites(game->player, game);
     }
     if (game->background->scene_background != MENU
-    && game->background->scene_background != SETTINGS) {
+    && game->background->scene_background != SETTINGS
+    && game->background->scene_background != CINEMATIC) {
         sfRenderWindow_drawSprite(game->window,
         game->player->stat->top_bar->sprite, NULL);
         display_stats(game);
@@ -75,5 +76,8 @@ void display(game_t *game)
     display_background(game);
     if (game->player->inventory->display_inventory == true)
         display_inventory(game);
+    if (game->background->scene_background == CINEMATIC) {
+        display_sprite_cinematic(game);
+    }
     sfRenderWindow_display(game->window);
 }

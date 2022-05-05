@@ -5,7 +5,7 @@
 ** create_dialogue
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 
 int create_dialogue_bubble(dialogues_t **bubble, char *string)
 {

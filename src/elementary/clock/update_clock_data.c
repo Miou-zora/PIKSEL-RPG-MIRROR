@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 bool update_clock_data(clock_data_t *clock)
 {

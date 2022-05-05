@@ -20,6 +20,13 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_PARTICLES)									\
 						$(SRC_INVENTORY)									\
 						$(SRC_NPC)											\
+						$(SRC_CINEMATIC)									\
+
+SRC_CINEMATIC	=		src/init_game/init_cinematic.c						\
+						src/init_game/init_cinematic_sprites.c				\
+						src/game_management/update_cinematic.c				\
+						src/game_management/update_clock_cinematic.c		\
+						src/game_management/display_cinematic.c				\
 
 SRC_INVENTORY	=		src/items/spawn_random_loot.c						\
 						src/game_management/display_loot_and_inventory.c	\
@@ -162,6 +169,19 @@ SRC_ANIMATOR =			$(PATH_ANIMATOR)/create_animator.c					\
 						$(PATH_ANIMATOR)/refresh_animator.c					\
 						$(PATH_ANIMATOR)/update_animator.c					\
 
+PATH_CINEMATIC	=		tests/cinematic
+
+SRC_CINEMATIC_TESTS	=	$(PATH_CINEMATIC)/main_loop.c						\
+						$(PATH_CINEMATIC)/events.c							\
+						$(PATH_CINEMATIC)/create_sprites.c					\
+						$(PATH_CINEMATIC)/display_sprites.c					\
+						$(PATH_CINEMATIC)/clock_cinematic.c					\
+						$(PATH_CINEMATIC)/clock_cinematic_text.c			\
+						$(PATH_CINEMATIC)/create_sprite_skip.c				\
+						src/menu/text_zones/handle_texts_zones.c			\
+						src/menu/text_zones/display_one_more_char.c			\
+						src/menu/text_zones/display_text_zone.c				\
+
 OBJ_SRC		=	$(SRC:%.c=%.o)
 
 OBJ_TEST	+=	$(OBJ_SRC)
@@ -252,6 +272,11 @@ TEST_BACKGROUND = tests/background/test_background_main.c
 tests_background:	make_lib $(OBJ_SRC)
 			@$(CC) $(OBJ_SRC) $(TEST_BACKGROUND) $(CFLAGS) -o "tests_background" $(LFLAGS)
 			@printf "\033[32m[Message]\033[39m Compilation de tests_background \
+			réussi\n"
+
+tests_cinematic:	make_lib $(OBJ_SRC)
+			@$(CC) $(OBJ_SRC) $(SRC_CINEMATIC_TESTS) $(CFLAGS) -o "tests_cinematic" $(LFLAGS)
+			@printf "\033[32m[Message]\033[39m Compilation de tests_cinematic \
 			réussi\n"
 
 tclean:

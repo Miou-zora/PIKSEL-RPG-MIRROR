@@ -98,6 +98,10 @@ int event_handler(game_t *game)
             handle_menu_events(game);
         if (game->background->scene_background == SETTINGS)
             handle_settings_events(game);
+        if (sfKeyboard_isKeyPressed(game->event.key.code) == true
+        && game->event.key.code == sfKeySpace) {
+            game->background->scene_background = ROOM;
+        }
         manage_key(game);
         select_weapon(game->player);
         detect_key(game->player, game->clock_secondary);

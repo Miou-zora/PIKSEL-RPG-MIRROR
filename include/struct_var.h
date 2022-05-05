@@ -29,7 +29,8 @@ enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
 enum types_enemy {MOB = 1, MINI_BOSS, BOSS};
 enum deph_background {FRONTGROUND = 1, MIDGROUND, BACKGROUND};
-enum scene_background_t {MENU = 1, SETTINGS, ROOM, CITY, FOREST, LABO};
+enum scene_background_t {MENU = 1, SETTINGS, CINEMATIC, ROOM, CITY,
+FOREST, LABO};
 enum moving_states {IDDLE = 1, MOVING, RUNNING};
 
 /************************** typedef ***********************************/
@@ -48,7 +49,7 @@ typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
 typedef struct player_s player_t;
-typedef struct clock_player_s clock_player_t;
+typedef struct clock_simple_s clock_simple_t;
 typedef struct background_s background_t;
 typedef struct forest_s forest_t;
 typedef struct town_s town_t;
@@ -57,6 +58,7 @@ typedef struct bedroom_s bedroom_t;
 typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 typedef struct game_s game_t;
+typedef struct cinematic_s cinematic_t;
 typedef struct menu_s menu_t;
 typedef struct loot_s loot_t;
 typedef struct framebuffer_s framebuffer_t;
@@ -65,6 +67,19 @@ typedef struct particle_s particle_t;
 typedef struct inventory_s inventory_t;
 
 /************************** struct ***********************************/
+
+struct cinematic_s {
+    sprite_data_t *skip_button;
+    sprite_data_t *light;
+    sprite_data_t *city;
+    animator_t *anim_player_walk;
+    animator_t *anim_enemy_run;
+    clock_data_t *clock_move_player;
+    clock_data_t *clock_move_enemy;
+    text_zone_t *text_zone;
+    bool walk;
+    bool run;
+};
 
 struct dialogues_s {
     text_zone_t *text_zone;
@@ -213,12 +228,6 @@ struct player_s {
     sfColor hitbox_color;
 };
 
-struct clock_player_s {
-    sfClock *clock;
-    sfTime time;
-    float seconds;
-};
-
 struct clock_data_s {
     sfClock *clock;
     float elapsed_time;
@@ -310,6 +319,7 @@ struct game_s {
     npc_t *npc[4];
     sfClock *clock;
     clock_data_t *clock_secondary;
+    cinematic_t *cinematic;
 };
 
 /************************** functions ***********************************/
@@ -410,13 +420,29 @@ void move_player_walk(player_t *player, game_t *game);
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
-void player_animation_sword(player_t *player);
-void player_animation_gun(player_t *player);
-void player_animation_punch(player_t *player);
-void player_animation_spear(player_t *player);
-void player_animation_run(player_t *player);
-void player_animation_walk(player_t *player);
-void player_animation_iddle(player_t *player);
+
+//* cinematic
+
+void create_sprites_cinematic(cinematic_t *cinematic);
+void analyse_events(cinematic_t *cinematic);
+void display_sprite_cinematic(game_t *game);
+void call_clock_cine(cinematic_t *cinematic);
+void clock_cine_text(cinematic_t **cinematic);
+void create_sprite_skip_button(cinematic_t *cinematic);
+void create_sprite_cine_player(cinematic_t *cinematic);
+void create_sprite_cine_enemy(cinematic_t *cinematic);
+void create_sprite_cine_city(cinematic_t *cinematic);
+void create_sprite_cine_light(cinematic_t *cinematic);
+bool init_cinematic(cinematic_t **cinematic);
+void skip_cinematic(game_t *game);
+void clock_cine_text(cinematic_t **cinematic);
+
+
+//* text zone
+
+int create_text_zone(text_zone_t **text_zone, char *text_string);
+bool display_one_more_char(text_zone_t **text_zone);
+void display_text_zone(sfRenderWindow *window, text_zone_t *text_zone);
 
 //* menu
 
@@ -461,6 +487,13 @@ void display_hitbox(sfIntRect rect, sfRenderWindow *window, sfColor color);
 void upgrade_level(stat_t *stat);
 void handle_stats(stat_t *stat);
 void win_xp(stat_t *stat, int how_much_xp);
+void player_animation_sword(player_t *player);
+void player_animation_gun(player_t *player);
+void player_animation_punch(player_t *player);
+void player_animation_spear(player_t *player);
+void player_animation_run(player_t *player);
+void player_animation_walk(player_t *player);
+void player_animation_iddle(player_t *player);
 
 //* particle
 

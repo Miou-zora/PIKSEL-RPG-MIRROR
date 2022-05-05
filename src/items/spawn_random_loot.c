@@ -62,7 +62,5 @@ void spawn_random_loot(loot_t **loot, sfVector2f pos)
         loot[which_loot] = malloc(sizeof(loot_t));
         loot[which_loot]->position = pos;
         set_armor_or_weapon(&(loot[which_loot]), colors, pos);
-        my_put_nbr(which_loot);
-        my_putchar('\n');
     }
 }

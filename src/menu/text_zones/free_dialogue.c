@@ -5,7 +5,7 @@
 ** free_dialogue
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 
 int free_dialogue(dialogues_t **dialogue)
 {

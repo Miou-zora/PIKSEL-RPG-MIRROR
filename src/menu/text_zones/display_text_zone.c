@@ -5,7 +5,7 @@
 ** display_text_zone
 */
 
-#include "rpg.h"
+#include "struct_var.h"
 
 void display_text_zone(sfRenderWindow *window, text_zone_t *text_zone)
 {

@@ -30,7 +30,7 @@ bool init_forest_front(forest_t **forest)
 
     if (*forest == NULL)
         return (true);
-    (*forest)->sprite = load_sprite_data("assets/background/Lampadaire.png");
+    (*forest)->sprite = load_sprite_data("assets/background/light.png");
     if ((*forest)->sprite == NULL)
         return (true);
     (*forest)->sprite->pos = (sfVector2f){0, 0};
