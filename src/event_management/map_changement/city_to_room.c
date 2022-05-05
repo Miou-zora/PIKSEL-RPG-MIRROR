@@ -14,8 +14,8 @@ bool city_to_room(game_t *game)
     && game->player->traveled_distance <= 15
     && game->background->scene_background == CITY) {
         game->background->scene_background = ROOM;
-        game->player->traveled_distance = 70;
-        game->player->pos = (sfVector2f){600, 330};
+        game->player->traveled_distance = 49;
+        game->player->pos = (sfVector2f){820, 330};
         return (true);
     }
     return (false);

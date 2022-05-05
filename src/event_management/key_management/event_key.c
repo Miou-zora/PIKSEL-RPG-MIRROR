@@ -35,6 +35,7 @@ static void select_weapon(player_t *player)
 
 int manage_key(game_t *game)
 {
+    my_printf("%i\n", game->player->traveled_distance);
     if (sfKeyboard_isKeyPressed(game->event.key.code) == true) {
         if (game->event.key.code == sfKeySpace &&
         game->background->scene_background != MENU) {

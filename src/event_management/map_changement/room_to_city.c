@@ -10,8 +10,8 @@
 
 bool room_to_city(game_t *game)
 {
-    if (game->player->traveled_distance >= 85
-    && game->player->traveled_distance <= 145
+    if (game->player->traveled_distance >= 42
+    && game->player->traveled_distance <= 55
     && game->background->scene_background == ROOM) {
         game->background->scene_background = CITY;
         game->player->traveled_distance = 0;
