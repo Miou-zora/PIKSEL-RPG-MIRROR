@@ -205,6 +205,7 @@ struct player_s {
     stat_t *stat;
     inventory_t *inventory;
     sfIntRect hitbox;
+    sfColor hitbox_color;
 };
 
 struct clock_player_s {
@@ -447,7 +448,7 @@ bool init_player_clock(player_t *player);
 int init_stats(stat_t **stat);
 void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
-void display_hitbox(sfIntRect rect, sfRenderWindow *window);
+void display_hitbox(sfIntRect rect, sfRenderWindow *window, sfColor color);
 void upgrade_level(stat_t *stat);
 void handle_stats(stat_t *stat);
 void win_xp(stat_t *stat, int how_much_xp);

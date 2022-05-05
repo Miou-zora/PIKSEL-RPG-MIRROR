@@ -10,6 +10,10 @@
 
 void update_position(player_t *player)
 {
+    player->hitbox.left = player->pos.x + 100;
+    player->hitbox.top = player->pos.y + 280;
+    my_printf("pos: %i %i\n", (int)player->pos.x, (int)player->pos.y);
+    my_printf("hitbox: %i %i\n", (int)player->hitbox.left, (int)player->hitbox.top);
     sfSprite_setPosition(player->run->sprite_data->sprite, player->pos);
     sfSprite_setPosition(player->walk->sprite_data->sprite, player->pos);
     sfSprite_setPosition(player->iddle->sprite_data->sprite, player->pos);

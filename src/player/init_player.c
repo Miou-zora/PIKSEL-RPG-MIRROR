@@ -116,7 +116,8 @@ bool init_player(player_t *player)
     if (init_player_clock(player))
         return (true);
     init_move_player(player);
-    player->hitbox = (sfIntRect){500, 400, 50, 50}; // pos player x, pos player y, size x, size y
+    player->hitbox = (sfIntRect){player->pos.x, player->pos.y + 100, 100, 20};
+    player->hitbox_color = sfRed;
     if (init_stats(&(player->stat)) == 84)
         return (true);
     return (false);
