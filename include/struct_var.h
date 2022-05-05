@@ -12,11 +12,14 @@
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 /************************** global ***********************************/
 
 #define NOT_SET 0
 #define sfKeyReturn sfKeyInsert
+#define sfKeyEnter sfKeyInsert
+#define PI 3.14159265358979323846
 
 /************************** enum ***********************************/
 
@@ -25,9 +28,10 @@ enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
 enum types_enemy {MOB = 1, MINI_BOSS, BOSS};
-enum deph_background {FRONTGROUND = 0, MIDGROUND, BACKGROUND};
-enum scene_background_t {ROOM = 0, CITY, CITY_FOREST, FOREST,
-FOREST_LABO, LABO};
+enum deph_background {FRONTGROUND = 1, MIDGROUND, BACKGROUND};
+enum scene_background_t {MENU = 1, SETTINGS, CINEMATIC, ROOM, CITY,
+FOREST, LABO};
+enum moving_states {IDDLE = 1, MOVING, RUNNING};
 
 /************************** typedef ***********************************/
 
@@ -55,12 +59,16 @@ typedef struct settings_s settings_t;
 typedef struct text_zone_s text_zone_t;
 typedef struct game_s game_t;
 typedef struct cinematic_s cinematic_t;
+typedef struct menu_s menu_t;
+typedef struct loot_s loot_t;
+typedef struct framebuffer_s framebuffer_t;
+typedef struct nest_particle_s nest_particle_t;
+typedef struct particle_s particle_t;
+typedef struct inventory_s inventory_t;
 
 /************************** struct ***********************************/
 
 struct cinematic_s {
-    sfRenderWindow *window;
-    sfEvent event;
     sprite_data_t *skip_button;
     sprite_data_t *light;
     sprite_data_t *city;
@@ -80,12 +88,30 @@ struct dialogues_s {
     //struct quest *quest_add;
 };
 
+struct inventory_s {
+    bool display_inventory;
+    sprite_data_t *sprite_data;
+    armor_t *helmet;
+    armor_t *chestplate;
+    armor_t *pant;
+    armor_t *boots;
+    weapon_t *weapon;
+};
+
+struct loot_s {
+    sfVector2f position;
+    int armor_or_weapon;
+    armor_t *armor;
+    weapon_t *weapon;
+    int id;
+};
+
 struct npc_s {
-    char *name;
     sprite_data_t *sprite_data;
     int postion[2];
     struct dialogues *dialogue;
-    int index;
+    int distance_à_parcourir;
+    enum scene_background_t scene;
 };
 
 struct stat_s {
@@ -94,15 +120,43 @@ struct stat_s {
     int armor;
     int power;
     int speed;
+    int level;
+    int xp;
+    sprite_data_t *top_bar;
 };
 
 struct enemy_s {
     enum types_enemy type_enemy;
     char *name;
     int id;
-    stat_t *stat;
+    stat_t stat;
+    float base_speed;
+    sfVector2f pos;
+    clock_data_t *clock_data;
+    enum moving_states moving_state;
     animator_t *animator_standing;
     animator_t *animator_moving;
+};
+
+struct framebuffer_s {
+    sfUint8 *pixels;
+    unsigned int width;
+    unsigned int height;
+};
+
+struct particle_s {
+    float acceleration;
+    float speed;
+    sfVector2f position;
+    particle_t *next;
+    sfColor color;
+    particle_t *prev;
+};
+
+struct nest_particle_s {
+    framebuffer_t *framebuffer;
+    sfVector2f offset;
+    particle_t *all_particles;
 };
 
 struct armor_s {
@@ -142,15 +196,13 @@ struct animator_s {
 };
 
 struct player_s {
-    sfRenderWindow *window;
-    sfEvent event;
-    sfVideoMode mode;
-    clock_simple_t *anim;
-    clock_simple_t *simple;
-    clock_simple_t *c_sword;
-    clock_simple_t *c_punch;
-    clock_simple_t *c_gun;
-    clock_simple_t *c_spear;
+    clock_data_t *anim;
+    clock_data_t *player;
+    clock_data_t *c_punch;
+    clock_data_t *c_gun;
+    clock_data_t *c_sword;
+    clock_data_t *c_spear;
+    clock_data_t *clock_update_animator;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
@@ -159,7 +211,6 @@ struct player_s {
     animator_t *spear;
     animator_t *punch;
     sfVector2f pos;
-    int player_mode;
     bool player_walk;
     bool player_run;
     bool move_up;
@@ -169,13 +220,18 @@ struct player_s {
     bool attack;
     bool direction;
     int weapon;
+    int player_mode;
+    int traveled_distance;
+    stat_t *stat;
+    inventory_t *inventory;
+    sfIntRect hitbox;
+    sfColor hitbox_color;
 };
 
 struct clock_data_s {
-    sfClock *clocksfInt64;
-    sfInt64 elapsed_time;
-    sfTime currElapsedTime;
-    int framerate;
+    sfClock *clock;
+    float elapsed_time;
+    float framerate_seconds;
 };
 
 struct selection_zone_s {
@@ -192,8 +248,6 @@ struct settings_infos_s {
 };
 
 struct scene_s {
-    sfRenderWindow *window;
-    sprite_data_t *background;
     selection_zone_t *select_zone;
     settings_infos_t *settings;
     char *zone_name;
@@ -215,11 +269,26 @@ struct laboratory_s {
     sprite_data_t *sprite;
 };
 
+struct menu_s {
+    sprite_data_t *sprite;
+    sfRectangleShape **settings_rectangles;
+    sfVector2f *rectangles_positions;
+    sfVector2f *rectangles_sizes;
+    int fps;
+    bool sound;
+    bool music;
+    bool how_to_play_mode;
+    text_zone_t *how_to_play;
+};
+
 struct background_s {
+    menu_t *menu;
     forest_t *forest[2];
     town_t *town[2];
     laboratory_t *laboratory;
     bedroom_t *bedroom;
+    enum scene_background_t scene_background;
+    loot_t *loot[10];
 };
 
 struct settings_s {
@@ -245,9 +314,12 @@ struct game_s {
     sfEvent event;
     enemy_t *enemy;
     background_t *background;
-    enum scene_background_t scene_background;
     int distance[2];
+    player_t *player;
+    npc_t *npc[4];
     sfClock *clock;
+    clock_data_t *clock_secondary;
+    cinematic_t *cinematic;
 };
 
 /************************** functions ***********************************/
@@ -269,6 +341,9 @@ enemy_t *create_enemy(void);
 void destroy_enemy(enemy_t **enemy);
 enemy_t *load_enemy(char *path);
 enemy_t *fill_enemy(enemy_t *enemy, char **data);
+enemy_t *init_basic_enemy(sfVector2f pos);
+void display_enemy(enemy_t *enemy, sfRenderWindow *window);
+void update_enemy(enemy_t *enemy, game_t *game);
 
 //* armor
 
@@ -314,15 +389,31 @@ void update_animator(animator_t *animator);
 
 //* clock_data
 
-void set_framerate_clock_data(clock_data_t *clock, int framerate);
+void set_framerate_clock_data(clock_data_t *clock, float framerate);
 clock_data_t *create_clock_data(void);
 void drain_clock_data(clock_data_t *clock);
 bool update_clock_data(clock_data_t *clock);
 void destroy_clock_data(clock_data_t **clock_data);
+clock_data_t *init_clock_data(float framerate_seconds);
 
 //* event management
 
 int event_handler(game_t *game);
+int manage_key(game_t *game);
+int manage_key_d(game_t *game);
+int manage_key_z(game_t *game);
+int manage_key_s(game_t *game);
+int manage_key_q(game_t *game);
+int manage_key_f(game_t *game);
+int manage_key_enter(game_t *game);
+bool room_to_city(game_t *game);
+bool city_to_room(game_t *game);
+bool city_to_forest(game_t *game);
+bool forest_to_city(game_t *game);
+bool forest_to_labo(game_t *game);
+bool labo_to_forest(game_t *game);
+void move_player_run(player_t *player, game_t *game);
+void move_player_walk(player_t *player, game_t *game);
 
 //* game management
 
@@ -334,10 +425,17 @@ void update(game_t *game);
 
 void create_sprites_cinematic(cinematic_t *cinematic);
 void analyse_events(cinematic_t *cinematic);
-void display_sprite_cinematic(cinematic_t *cinematic);
+void display_sprite_cinematic(game_t *game);
 void call_clock_cine(cinematic_t *cinematic);
-void clock_cine_text(cinematic_t *cinematic);
+void clock_cine_text(cinematic_t **cinematic);
 void create_sprite_skip_button(cinematic_t *cinematic);
+void create_sprite_cine_player(cinematic_t *cinematic);
+void create_sprite_cine_enemy(cinematic_t *cinematic);
+void create_sprite_cine_city(cinematic_t *cinematic);
+void create_sprite_cine_light(cinematic_t *cinematic);
+bool init_cinematic(cinematic_t **cinematic);
+void skip_cinematic(game_t *game);
+void clock_cine_text(cinematic_t **cinematic);
 
 
 //* text zone
@@ -345,3 +443,84 @@ void create_sprite_skip_button(cinematic_t *cinematic);
 int create_text_zone(text_zone_t **text_zone, char *text_string);
 bool display_one_more_char(text_zone_t **text_zone);
 void display_text_zone(sfRenderWindow *window, text_zone_t *text_zone);
+
+//* menu
+
+bool initialize_menu(menu_t **menu);
+int go_to_good_menu(sfVector2i position, game_t *game);
+sfVector2f *initialize_positions(char *positions_buffer, int nb_of_zones);
+void handle_menu_events(game_t *game);
+void handle_settings_events(game_t *game);
+int initialize_settings_rectangles(menu_t *menu, game_t *game);
+void set_fps_30(game_t *game);
+void set_fps_60(game_t *game);
+void set_fps_120(game_t *game);
+void sound_on(game_t *game);
+void sound_off(game_t *game);
+void music_on(game_t *game);
+void music_off(game_t *game);
+int how_to_play(game_t *game);
+int initialize_how_to_play(game_t *game);
+bool display_one_more_char(text_zone_t **text_zone);
+void update_how_to_play(menu_t *menu);
+
+//* background
+
+bool init_back(background_t *background);
+bool init_forest(forest_t *forest[2]);
+bool init_town(town_t *town[2]);
+sprite_data_t *set_sprite(sprite_data_t *sprite);
+void move_loot(loot_t **loot, int to_move);
+void move_background_left(game_t *game, int speed);
+void move_background_right(game_t *game, int speed);
+
+
+//* player
+
+void display_player_sprites(player_t *player, game_t *game);
+bool init_player(player_t *player);
+bool init_player_clock(player_t *player);
+int init_stats(stat_t **stat);
+void display_stats(game_t *game);
+int detect_if_key_pressed(player_t *player);
+void display_hitbox(sfIntRect rect, sfRenderWindow *window, sfColor color);
+void upgrade_level(stat_t *stat);
+void handle_stats(stat_t *stat);
+void win_xp(stat_t *stat, int how_much_xp);
+void player_animation_sword(player_t *player);
+void player_animation_gun(player_t *player);
+void player_animation_punch(player_t *player);
+void player_animation_spear(player_t *player);
+void player_animation_run(player_t *player);
+void player_animation_walk(player_t *player);
+void player_animation_iddle(player_t *player);
+
+//* particle
+
+void destroy_framebuffer(framebuffer_t **framebuffer);
+framebuffer_t *create_framebuffer(unsigned int width, unsigned int height);
+nest_particle_t *create_nest_particle(int number_of_particle,
+sfVector2i size_framebuffer);
+void update_nest_particle(nest_particle_t *nest_particle, float delta_time);
+void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
+
+//* inventory
+
+void spawn_random_loot(loot_t **loot, sfVector2f pos);
+void display_loot(game_t *game);
+void get_loot(game_t *game);
+bool init_loot(loot_t *loot[10]);
+void display_inventory(game_t *game);
+bool init_inventory(inventory_t **inventory);
+void invert_display_of_inventory(inventory_t *inventory);
+void add_loot_to_inventory(inventory_t *inventory, loot_t *loot);
+void add_helmet(inventory_t *inventory, loot_t *loot);
+void add_chestplate(inventory_t *inventory, loot_t *loot);
+void add_pant(inventory_t *inventory, loot_t *loot);
+void add_boots(inventory_t *inventory, loot_t *loot);
+void add_weapon(inventory_t *inventory, loot_t *loot);
+
+//* npc
+
+void display_npc(game_t *game);
+bool init_npc(npc_t *npc[4]);

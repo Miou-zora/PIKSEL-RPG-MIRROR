@@ -11,9 +11,10 @@ void clock_cine_text(cinematic_t *cinematic)
 {
     drain_clock_data(cinematic->text_zone->text_clock);
     while (update_clock_data(cinematic->text_zone->text_clock)) {
-        if (cinematic->anim_enemy_run->sprite_data->pos.x >= cinematic->anim_player_walk->sprite_data->pos.x) {
+        if (cinematic->anim_enemy_run->sprite_data->pos.x >=
+        cinematic->anim_player_walk->sprite_data->pos.x) {
             display_one_more_char(&cinematic->text_zone);
-            sfClock_restart(cinematic->text_zone->text_clock->clocksfInt64);
+            sfClock_restart(cinematic->text_zone->text_clock->clock);
         }
     }
 }

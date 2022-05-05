@@ -1,8 +1,8 @@
 common_helmet
 1
 helmet
-health
+power
 5
 10
-assets/player/armor/common_helmet/item_inventory.png
-assets/player/armor/common_helmet/animations/
+assets/items/Helmet.png
+NULL

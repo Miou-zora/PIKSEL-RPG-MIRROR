@@ -9,3 +9,5 @@
 my_rpg
 unit_tests
 include/my.h
+vgcore.*
+tests_background

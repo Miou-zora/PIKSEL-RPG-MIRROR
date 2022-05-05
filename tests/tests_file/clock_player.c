@@ -6,7 +6,6 @@
 */
 
 #include "struct_var.h"
-#include "rpg.h"
 
 void clock_player(player_t *player)
 {

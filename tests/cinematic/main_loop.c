@@ -18,7 +18,7 @@ int my_rpg_player(void)
     sprite_data_t *sprite_data_player_walk = load_sprite_data("assets/player/Stick walk.png");
     sprite_data_t *sprite_data_enemy_run = load_sprite_data("assets/player/Stick run enemy(1).png");
     sprite_data_t *sprite_data_city = load_sprite_data("assets/background/city.png");
-    sprite_data_t *sprite_data_light = load_sprite_data("assets/background/Lampadaire.png");
+    sprite_data_t *sprite_data_light = load_sprite_data("assets/background/light.png");
     cinematic->text_zone = NULL;
     sfVideoMode mode = {1920, 1080, 32};
 

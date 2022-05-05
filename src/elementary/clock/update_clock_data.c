@@ -12,8 +12,8 @@ bool update_clock_data(clock_data_t *clock)
 {
     if (clock == NULL)
         return (false);
-    if (clock->elapsed_time > clock->framerate) {
-        clock->elapsed_time -= clock->framerate;
+    if (clock->elapsed_time > clock->framerate_seconds) {
+        clock->elapsed_time -= clock->framerate_seconds;
         return (true);
     }
     return (false);
