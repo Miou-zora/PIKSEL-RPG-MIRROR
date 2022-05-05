@@ -49,7 +49,7 @@ bool fill_animator_nbr_image_xy(animator_t *animator, char *data)
 
 bool fill_animator_clock(animator_t *animator, char *data)
 {
-    int framerate = my_getnbr(data);
+    float framerate = (float)(my_getnbr(data)) / 1000;
 
     if (animator == NULL)
         return (true);
@@ -57,7 +57,7 @@ bool fill_animator_clock(animator_t *animator, char *data)
     if (animator->clock_data == NULL || framerate <= 0) {
         return (true);
     } else {
-        animator->clock_data->framerate_seconds = my_getnbr(data);
+        animator->clock_data->framerate_seconds = framerate;
     }
     return (false);
 }

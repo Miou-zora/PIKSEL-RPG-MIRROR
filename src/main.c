@@ -11,7 +11,8 @@
 #include "struct_var.h"
 
 void shade_framebuffer(framebuffer_t *framebuffer) {
-    for (unsigned int i = 0; i < framebuffer->width * framebuffer->height * 4; i++) {
+    for (unsigned int i = 0;
+    i < framebuffer->width * framebuffer->height *4; i++) {
         framebuffer->pixels[i] -= (framebuffer->pixels[i] > 0) ? 1 : 0;
     }
 }

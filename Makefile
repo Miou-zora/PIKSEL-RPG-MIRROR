@@ -58,7 +58,7 @@ SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 						$(PATH_GAME_MANAGEMENT)/display_stats.c				\
 						$(PATH_GAME_MANAGEMENT)/update_player_attack.c 		\
 						$(PATH_GAME_MANAGEMENT)/update_player_move.c 		\
-						
+
 PATH_EVENT =			src/event_management
 
 SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
@@ -95,6 +95,8 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/destroy_enemy.c						\
 						$(PATH_ENEMY)/load_enemy.c							\
 						$(PATH_ENEMY)/fill_enemy.c							\
+						$(PATH_ENEMY)/display_enemy.c						\
+						$(PATH_ENEMY)/update_enemy.c						\
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 
@@ -103,6 +105,7 @@ SRC_CLOCK =				$(PATH_CLOCK_DATA)/create_clock_data.c				\
 						$(PATH_CLOCK_DATA)/update_clock_data.c				\
 						$(PATH_CLOCK_DATA)/drain_clock_data.c				\
 						$(PATH_CLOCK_DATA)/set_framerate_clock_data.c		\
+						$(PATH_CLOCK_DATA)/init_clock_data.c				\
 
 PATH_ARMOR =			src/items/armor
 
