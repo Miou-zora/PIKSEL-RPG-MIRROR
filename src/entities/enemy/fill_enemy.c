@@ -19,25 +19,22 @@ enum types_enemy get_type_enemy(char *type)
     return (NOT_SET);
 }
 
-static stat_t *load_stat(char **data)
+static stat_t load_stat(char **data)
 {
-    stat_t *stat = my_calloc(1, sizeof(*stat));
+    stat_t stat;
 
-    if (stat == NULL)
-        return (NULL);
-    stat->health = my_getnbr(data[3]);
-    stat->actual_life = stat->health;
-    stat->armor = my_getnbr(data[4]);
-    stat->power = my_getnbr(data[5]);
-    stat->speed = my_getnbr(data[6]);
+    stat.health = my_getnbr(data[3]);
+    stat.actual_life = stat.health;
+    stat.armor = my_getnbr(data[4]);
+    stat.power = my_getnbr(data[5]);
+    stat.speed = my_getnbr(data[6]);
     return (stat);
 }
 static bool check_error(enemy_t *enemy)
 {
     bool error = false;
 
-    error |= (enemy->stat == NULL);
-    error |= (enemy->stat->health == 0);
+    error |= (enemy->stat.health == 0);
     error |= (enemy->name == NULL);
     error |= (enemy->type_enemy == NOT_SET);
     error |= (enemy->animator_standing == NULL);

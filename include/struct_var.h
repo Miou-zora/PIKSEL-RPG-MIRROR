@@ -30,6 +30,7 @@ POWER, ARMOR, SPEED, CHARISMA};
 enum types_enemy {MOB = 1, MINI_BOSS, BOSS};
 enum deph_background {FRONTGROUND = 1, MIDGROUND, BACKGROUND};
 enum scene_background_t {MENU = 1, SETTINGS, ROOM, CITY, FOREST, LABO};
+enum moving_states {IDDLE = 1, MOVING, RUNNING};
 
 /************************** typedef ***********************************/
 
@@ -113,7 +114,11 @@ struct enemy_s {
     enum types_enemy type_enemy;
     char *name;
     int id;
-    stat_t *stat;
+    stat_t stat;
+    float base_speed;
+    sfVector2f pos;
+    clock_data_t *clock_data;
+    enum moving_states moving_state;
     animator_t *animator_standing;
     animator_t *animator_moving;
 };
@@ -326,6 +331,9 @@ enemy_t *create_enemy(void);
 void destroy_enemy(enemy_t **enemy);
 enemy_t *load_enemy(char *path);
 enemy_t *fill_enemy(enemy_t *enemy, char **data);
+enemy_t *init_basic_enemy(sfVector2f pos);
+void display_enemy(enemy_t *enemy, sfRenderWindow *window);
+void update_enemy(enemy_t *enemy, game_t *game);
 
 //* armor
 
@@ -376,6 +384,7 @@ clock_data_t *create_clock_data(void);
 void drain_clock_data(clock_data_t *clock);
 bool update_clock_data(clock_data_t *clock);
 void destroy_clock_data(clock_data_t **clock_data);
+clock_data_t *init_clock_data(float framerate_seconds);
 
 //* event management
 
