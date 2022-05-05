@@ -23,7 +23,6 @@ int my_rpg(void)
     game_t *game = NULL;
     clock_data_t *principal_clock = create_clock_data();
     clock_data_t *clock_secondary = create_clock_data();
-    enemy_t *enemy = init_basic_enemy((sfVector2f){0, 0});
 
     set_framerate_clock_data(clock_secondary, 0.03);
     set_framerate_clock_data(principal_clock, 0.03);
@@ -35,10 +34,7 @@ int my_rpg(void)
         while (update_clock_data(principal_clock)) {
             event_handler(game);
             update(game);
-            update_enemy(enemy, game);
             display(game);
-            display_enemy(enemy, game->window);
-            sfRenderWindow_display(game->window);
         }
     }
     return (0);
