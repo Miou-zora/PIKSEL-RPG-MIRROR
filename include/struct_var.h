@@ -465,6 +465,7 @@ void add_helmet(inventory_t *inventory, loot_t *loot);
 void add_chestplate(inventory_t *inventory, loot_t *loot);
 void add_pant(inventory_t *inventory, loot_t *loot);
 void add_boots(inventory_t *inventory, loot_t *loot);
+void add_weapon(inventory_t *inventory, loot_t *loot);
 
 //* npc
 

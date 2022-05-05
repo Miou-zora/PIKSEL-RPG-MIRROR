@@ -28,7 +28,6 @@ void take_loot(inventory_t *inventory, loot_t *loot)
         my_putchar('\n');
         add_loot_to_inventory(inventory, loot);
     }
-    loot->armor_or_weapon = 3;
 }
 
 void get_loot(game_t *game)

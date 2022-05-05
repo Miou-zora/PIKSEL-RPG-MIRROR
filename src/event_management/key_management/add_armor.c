@@ -11,6 +11,10 @@
 void add_helmet(inventory_t *inventory, loot_t *loot)
 {
     armor_t *temp = NULL;
+    sfVector2f pos =
+    sfSprite_getPosition(loot->armor->sprite_data->sprite);
+    sfVector2f scale =
+    sfSprite_getScale(loot->armor->sprite_data->sprite);
     if (inventory->helmet != NULL) {
         temp = malloc(sizeof(armor_t));
         temp = inventory->helmet;
@@ -21,14 +25,24 @@ void add_helmet(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->helmet->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     if (temp != NULL) {
+        my_putstr("on repose l'ancien equipement");
         loot->armor = temp;
         loot->armor_or_weapon = 0;
+        sfSprite_setPosition(loot->armor->sprite_data->sprite, pos);
+        sfSprite_setScale(loot->armor->sprite_data->sprite, scale);
+    } else {
+        loot->armor_or_weapon = 3;
     }
 }
 
 void add_chestplate(inventory_t *inventory, loot_t *loot)
 {
     armor_t *temp = NULL;
+    sfVector2f pos =
+    sfSprite_getPosition(loot->armor->sprite_data->sprite);
+    sfVector2f scale =
+    sfSprite_getScale(loot->armor->sprite_data->sprite);
+
     if (inventory->chestplate != NULL) {
         temp = malloc(sizeof(armor_t));
         temp = inventory->chestplate;
@@ -42,12 +56,21 @@ void add_chestplate(inventory_t *inventory, loot_t *loot)
         my_putstr("on repose l'ancien equipement");
         loot->armor = temp;
         loot->armor_or_weapon = 0;
+        sfSprite_setPosition(loot->armor->sprite_data->sprite, pos);
+        sfSprite_setScale(loot->armor->sprite_data->sprite, scale);
+    } else {
+        loot->armor_or_weapon = 3;
     }
 }
 
 void add_pant(inventory_t *inventory, loot_t *loot)
 {
     armor_t *temp = NULL;
+    sfVector2f pos =
+    sfSprite_getPosition(loot->armor->sprite_data->sprite);
+    sfVector2f scale =
+    sfSprite_getScale(loot->armor->sprite_data->sprite);
+
     if (inventory->pant != NULL) {
         temp = malloc(sizeof(armor_t));
         temp = inventory->pant;
@@ -61,12 +84,21 @@ void add_pant(inventory_t *inventory, loot_t *loot)
         my_putstr("on repose l'ancien equipement");
         loot->armor = temp;
         loot->armor_or_weapon = 0;
+        sfSprite_setPosition(loot->armor->sprite_data->sprite, pos);
+        sfSprite_setScale(loot->armor->sprite_data->sprite, scale);
+    } else {
+        loot->armor_or_weapon = 3;
     }
 }
 
 void add_boots(inventory_t *inventory, loot_t *loot)
 {
     armor_t *temp = NULL;
+    sfVector2f pos =
+    sfSprite_getPosition(loot->armor->sprite_data->sprite);
+    sfVector2f scale =
+    sfSprite_getScale(loot->armor->sprite_data->sprite);
+
     if (inventory->boots != NULL) {
         temp = malloc(sizeof(armor_t));
         temp = inventory->boots;
@@ -80,5 +112,9 @@ void add_boots(inventory_t *inventory, loot_t *loot)
         my_putstr("on repose l'ancien equipement");
         loot->armor = temp;
         loot->armor_or_weapon = 0;
+        sfSprite_setPosition(loot->armor->sprite_data->sprite, pos);
+        sfSprite_setScale(loot->armor->sprite_data->sprite, scale);
+    } else {
+        loot->armor_or_weapon = 3;
     }
 }

@@ -18,16 +18,12 @@ void invert_display_of_inventory(inventory_t *inventory)
 
 void add_loot_to_inventory(inventory_t *inventory, loot_t *loot)
 {
-    void (*armors[4])(inventory_t *, loot_t *) =
-    {add_helmet, add_chestplate, add_pant, add_boots};
+    void (*armors[5])(inventory_t *, loot_t *) =
+    {add_weapon, add_helmet, add_chestplate, add_pant, add_boots};
 
     if (loot->armor_or_weapon == 1) {
-        inventory->weapon = loot->weapon;
-        sfSprite_setPosition(inventory->weapon->sprite_data->sprite,
-        (sfVector2f){1380, 245});
-        sfSprite_setScale(inventory->weapon->sprite_data->sprite,
-        (sfVector2f){2.1, 2.1});
+        armors[0](inventory, loot);
     } else if (loot->armor_or_weapon == 0) {
-        armors[loot->armor->id - 1](inventory, loot);
+        armors[loot->armor->id](inventory, loot);
     }
 }
