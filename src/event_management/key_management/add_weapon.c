@@ -28,6 +28,8 @@ void add_weapon(inventory_t *inventory, loot_t *loot)
         my_putstr("on repose l'ancienne arme");
         loot->weapon = temp;
         loot->armor_or_weapon = 1;
+        pos.x += 50;
+        loot->position.x += 50;
         sfSprite_setPosition(loot->weapon->sprite_data->sprite, pos);
         sfSprite_setScale(loot->weapon->sprite_data->sprite, scale);
     } else {

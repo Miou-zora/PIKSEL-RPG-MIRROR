@@ -20,12 +20,8 @@ void destroy_loot(loot_t *loot)
 void take_loot(inventory_t *inventory, loot_t *loot)
 {
     if (loot->armor_or_weapon == 0) {
-        my_putstr(loot->armor->name);
-        my_putchar('\n');
         add_loot_to_inventory(inventory, loot);
     } else {
-        my_putstr(loot->weapon->name);
-        my_putchar('\n');
         add_loot_to_inventory(inventory, loot);
     }
 }
