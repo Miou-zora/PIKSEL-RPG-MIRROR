@@ -109,6 +109,8 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/fill_enemy.c							\
 						$(PATH_ENEMY)/display_enemy.c						\
 						$(PATH_ENEMY)/update_enemy.c						\
+						$(PATH_ENEMY)/init_enemy.c							\
+						$(PATH_ENEMY)/enemy_attack_player.c					\
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 

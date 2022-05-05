@@ -136,6 +136,7 @@ struct enemy_s {
     enum moving_states moving_state;
     animator_t *animator_standing;
     animator_t *animator_moving;
+    clock_data_t *attack_clock;
 };
 
 struct framebuffer_s {
@@ -524,3 +525,9 @@ void add_weapon(inventory_t *inventory, loot_t *loot);
 
 void display_npc(game_t *game);
 bool init_npc(npc_t *npc[4]);
+
+
+//* enemy
+
+bool init_enemy(enemy_t **enemy);
+void attack_player(enemy_t *enemy, player_t *player);

@@ -35,8 +35,12 @@ void update_enemy(enemy_t *enemy, game_t *game)
     else if (enemy->moving_state == MOVING)
         update_animator(enemy->animator_moving);
     drain_clock_data(enemy->clock_data);
+    drain_clock_data(enemy->attack_clock);
     while (update_clock_data(enemy->clock_data)) {
         move_enemy_to_pos(enemy, game->player->pos);
+    }
+    while (update_clock_data(enemy->attack_clock)) {
+        attack_player(enemy, game->player);
     }
     sfSprite_setPosition(enemy->animator_standing->sprite_data->sprite,
     enemy->pos);
