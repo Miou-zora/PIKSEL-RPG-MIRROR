@@ -41,6 +41,10 @@ int manage_key(game_t *game)
         game->background->scene_background != MENU) {
             spawn_random_loot(game->background->loot, (sfVector2f){700, 600});
         }
+        if (game->event.key.code == sfKeyE &&
+        game->background->scene_background != MENU) {
+            invert_display_of_inventory(game->player->inventory);
+        }
         manage_key_z(game);
         manage_key_q(game);
         manage_key_s(game);

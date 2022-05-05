@@ -22,7 +22,11 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_NPC)											\
 
 SRC_INVENTORY	=		src/items/spawn_random_loot.c						\
-						src/game_management/display_loot.c
+						src/game_management/display_loot_and_inventory.c	\
+						src/init_game/init_inventory.c						\
+						src/event_management/key_management/handle_inv.c	\
+						src/event_management/key_management/add_armor.c		\
+						src/event_management/key_management/add_weapon.c	\
 
 PATH_PARTICLES =		src/particle
 
@@ -56,9 +60,10 @@ SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 						$(PATH_GAME_MANAGEMENT)/update.c					\
 						$(PATH_GAME_MANAGEMENT)/display.c					\
 						$(PATH_GAME_MANAGEMENT)/display_stats.c				\
+						$(PATH_GAME_MANAGEMENT)/handle_stats.c				\
 						$(PATH_GAME_MANAGEMENT)/update_player_attack.c 		\
 						$(PATH_GAME_MANAGEMENT)/update_player_move.c 		\
-						
+
 PATH_EVENT =			src/event_management
 
 SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\

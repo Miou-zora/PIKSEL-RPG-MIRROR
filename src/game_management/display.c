@@ -73,5 +73,7 @@ void display(game_t *game)
     game->background->scene_background == SETTINGS)
         display_menu(game);
     display_background(game);
+    if (game->player->inventory->display_inventory == true)
+        display_inventory(game);
     sfRenderWindow_display(game->window);
 }

@@ -56,12 +56,13 @@ void spawn_random_loot(loot_t **loot, sfVector2f pos)
     sfGreen, sfGreen, sfGreen, sfGreen, sfBlue, sfBlue, sfBlue, sfRed, sfRed,
     sfYellow};
 
-    for (; loot[which_loot]->armor_or_weapon != 2 &&
-    loot[which_loot]->armor_or_weapon != 3 && which_loot < 9; which_loot++);
+    for (; loot[which_loot]->armor_or_weapon < 2
+    && which_loot < 9; which_loot++);
     if (which_loot < 9) {
         loot[which_loot] = malloc(sizeof(loot_t));
         loot[which_loot]->position = pos;
         set_armor_or_weapon(&(loot[which_loot]), colors, pos);
-    } else
-        my_putstr("EH OH FRERO T4AS PAS DEJA ASSEZ DE STUFF");
+        my_put_nbr(which_loot);
+        my_putchar('\n');
+    }
 }

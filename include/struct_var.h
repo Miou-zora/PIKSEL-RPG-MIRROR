@@ -61,6 +61,7 @@ typedef struct loot_s loot_t;
 typedef struct framebuffer_s framebuffer_t;
 typedef struct nest_particle_s nest_particle_t;
 typedef struct particle_s particle_t;
+typedef struct inventory_s inventory_t;
 
 /************************** struct ***********************************/
 
@@ -69,6 +70,16 @@ struct dialogues_s {
     bool binary_reponse;
     dialogues_t **next;
     //struct quest *quest_add;
+};
+
+struct inventory_s {
+    bool display_inventory;
+    sprite_data_t *sprite_data;
+    armor_t *helmet;
+    armor_t *chestplate;
+    armor_t *pant;
+    armor_t *boots;
+    weapon_t *weapon;
 };
 
 struct loot_s {
@@ -192,6 +203,7 @@ struct player_s {
     int player_mode;
     int traveled_distance;
     stat_t *stat;
+    inventory_t *inventory;
     sfIntRect hitbox;
 };
 
@@ -436,6 +448,9 @@ int init_stats(stat_t **stat);
 void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
 void display_hitbox(sfIntRect rect, sfRenderWindow *window);
+void upgrade_level(stat_t *stat);
+void handle_stats(stat_t *stat);
+void win_xp(stat_t *stat, int how_much_xp);
 
 //* particle
 
@@ -452,6 +467,15 @@ void spawn_random_loot(loot_t **loot, sfVector2f pos);
 void display_loot(game_t *game);
 void get_loot(game_t *game);
 bool init_loot(loot_t *loot[10]);
+void display_inventory(game_t *game);
+bool init_inventory(inventory_t **inventory);
+void invert_display_of_inventory(inventory_t *inventory);
+void add_loot_to_inventory(inventory_t *inventory, loot_t *loot);
+void add_helmet(inventory_t *inventory, loot_t *loot);
+void add_chestplate(inventory_t *inventory, loot_t *loot);
+void add_pant(inventory_t *inventory, loot_t *loot);
+void add_boots(inventory_t *inventory, loot_t *loot);
+void add_weapon(inventory_t *inventory, loot_t *loot);
 
 //* npc
 

@@ -26,6 +26,8 @@ bool fill_game(game_t *game)
         return (true);
     if (init_npc(game->npc))
         return (true);
+    if (init_inventory(&game->player->inventory))
+        return (true);
     return (false);
 }
 
