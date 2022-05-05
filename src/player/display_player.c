@@ -46,7 +46,6 @@ void display_attack_player(player_t *player, game_t *game)
     if (player->weapon == 4)
         sfRenderWindow_drawSprite(game->window,
         player->gun->sprite_data->sprite, NULL);
-    game->player->attack = false;
 }
 
 void display_player_sprites(player_t *player, game_t *game)

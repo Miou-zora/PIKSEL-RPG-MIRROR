@@ -53,7 +53,7 @@ int create_text_zone(text_zone_t **text_zone, char *text_string)
     if ((*text_zone) == NULL)
         return (84);
     (*text_zone)->font =
-    sfFont_createFromFile("assets/font/arcadeclassic/ARCADECLASSIC.TTF");
+    sfFont_createFromFile("assets/font/font.ttf");
     if ((*text_zone)->font == NULL) {
         return (84);
     }

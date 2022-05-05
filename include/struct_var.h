@@ -61,6 +61,7 @@ typedef struct loot_s loot_t;
 typedef struct framebuffer_s framebuffer_t;
 typedef struct nest_particle_s nest_particle_t;
 typedef struct particle_s particle_t;
+typedef struct inventory_s inventory_t;
 
 /************************** struct ***********************************/
 
@@ -71,10 +72,18 @@ struct dialogues_s {
     //struct quest *quest_add;
 };
 
+struct inventory_s {
+    bool display_inventory;
+    sprite_data_t *sprite_data;
+    armor_t *helmet;
+    armor_t *chestplate;
+    armor_t *pant;
+    armor_t *boots;
+    weapon_t *weapon;
+};
+
 struct loot_s {
     sfVector2f position;
-    loot_t *next;
-    loot_t *prev;
     int armor_or_weapon;
     armor_t *armor;
     weapon_t *weapon;
@@ -169,10 +178,11 @@ struct animator_s {
 struct player_s {
     clock_data_t *anim;
     clock_data_t *player;
-    clock_data_t *c_sword;
     clock_data_t *c_punch;
     clock_data_t *c_gun;
+    clock_data_t *c_sword;
     clock_data_t *c_spear;
+    clock_data_t *clock_update_animator;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
@@ -193,6 +203,7 @@ struct player_s {
     int player_mode;
     int traveled_distance;
     stat_t *stat;
+    inventory_t *inventory;
     sfIntRect hitbox;
     sfColor hitbox_color;
 };
@@ -263,7 +274,7 @@ struct background_s {
     laboratory_t *laboratory;
     bedroom_t *bedroom;
     enum scene_background_t scene_background;
-    loot_t *loot;
+    loot_t *loot[10];
 };
 
 struct settings_s {
@@ -382,12 +393,21 @@ bool city_to_forest(game_t *game);
 bool forest_to_city(game_t *game);
 bool forest_to_labo(game_t *game);
 bool labo_to_forest(game_t *game);
+void move_player_run(player_t *player, game_t *game);
+void move_player_walk(player_t *player, game_t *game);
 
 //* game management
 
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
+void player_animation_sword(player_t *player);
+void player_animation_gun(player_t *player);
+void player_animation_punch(player_t *player);
+void player_animation_spear(player_t *player);
+void player_animation_run(player_t *player);
+void player_animation_walk(player_t *player);
+void player_animation_iddle(player_t *player);
 
 //* menu
 
@@ -415,7 +435,10 @@ bool init_back(background_t *background);
 bool init_forest(forest_t *forest[2]);
 bool init_town(town_t *town[2]);
 sprite_data_t *set_sprite(sprite_data_t *sprite);
-void move_loot(loot_t *loot, int to_move);
+void move_loot(loot_t **loot, int to_move);
+void move_background_left(game_t *game, int speed);
+void move_background_right(game_t *game, int speed);
+
 
 //* player
 
@@ -426,6 +449,10 @@ int init_stats(stat_t **stat);
 void display_stats(game_t *game);
 int detect_if_key_pressed(player_t *player);
 void display_hitbox(sfIntRect rect, sfRenderWindow *window, sfColor color);
+void display_hitbox(sfIntRect rect, sfRenderWindow *window);
+void upgrade_level(stat_t *stat);
+void handle_stats(stat_t *stat);
+void win_xp(stat_t *stat, int how_much_xp);
 
 //* particle
 
@@ -441,6 +468,16 @@ void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
 void spawn_random_loot(loot_t **loot, sfVector2f pos);
 void display_loot(game_t *game);
 void get_loot(game_t *game);
+bool init_loot(loot_t *loot[10]);
+void display_inventory(game_t *game);
+bool init_inventory(inventory_t **inventory);
+void invert_display_of_inventory(inventory_t *inventory);
+void add_loot_to_inventory(inventory_t *inventory, loot_t *loot);
+void add_helmet(inventory_t *inventory, loot_t *loot);
+void add_chestplate(inventory_t *inventory, loot_t *loot);
+void add_pant(inventory_t *inventory, loot_t *loot);
+void add_boots(inventory_t *inventory, loot_t *loot);
+void add_weapon(inventory_t *inventory, loot_t *loot);
 
 //* npc
 
