@@ -23,8 +23,8 @@ int my_rpg(void)
     clock_data_t *principal_clock = create_clock_data();
     clock_data_t *clock_secondary = create_clock_data();
 
-    set_framerate_clock_data(clock_secondary, 0.1);
-    set_framerate_clock_data(principal_clock, 0.1);
+    set_framerate_clock_data(clock_secondary, 0.03);
+    set_framerate_clock_data(principal_clock, 0.03);
     if (initialize_game(&game))
         return (84);
     game->clock_secondary = clock_secondary;

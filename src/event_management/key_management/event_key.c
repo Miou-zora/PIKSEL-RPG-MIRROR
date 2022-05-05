@@ -21,8 +21,21 @@ void key_run(player_t *player)
     }
 }
 
+static void select_weapon(player_t *player)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyNumpad1))
+        player->weapon = 1;
+    if (sfKeyboard_isKeyPressed(sfKeyNumpad2))
+        player->weapon = 2;
+    if (sfKeyboard_isKeyPressed(sfKeyNumpad3))
+        player->weapon = 3;
+    if (sfKeyboard_isKeyPressed(sfKeyNumpad4))
+        player->weapon = 4;
+}
+
 int manage_key(game_t *game)
 {
+    my_printf("%i\n", game->player->traveled_distance);
     if (sfKeyboard_isKeyPressed(game->event.key.code) == true) {
         if (game->event.key.code == sfKeySpace &&
         game->background->scene_background != MENU) {
@@ -38,6 +51,7 @@ int manage_key(game_t *game)
         manage_key_d(game);
         manage_key_f(game);
         manage_key_enter(game);
+        select_weapon(game->player);
         if (game->event.key.code == sfKeyLShift)
             game->player->player_mode = 2;
         key_run(game->player);

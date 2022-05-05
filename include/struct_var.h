@@ -178,10 +178,11 @@ struct animator_s {
 struct player_s {
     clock_data_t *anim;
     clock_data_t *player;
-    clock_data_t *c_sword;
     clock_data_t *c_punch;
     clock_data_t *c_gun;
+    clock_data_t *c_sword;
     clock_data_t *c_spear;
+    clock_data_t *clock_update_animator;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
@@ -391,12 +392,21 @@ bool city_to_forest(game_t *game);
 bool forest_to_city(game_t *game);
 bool forest_to_labo(game_t *game);
 bool labo_to_forest(game_t *game);
+void move_player_run(player_t *player, game_t *game);
+void move_player_walk(player_t *player, game_t *game);
 
 //* game management
 
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
+void player_animation_sword(player_t *player);
+void player_animation_gun(player_t *player);
+void player_animation_punch(player_t *player);
+void player_animation_spear(player_t *player);
+void player_animation_run(player_t *player);
+void player_animation_walk(player_t *player);
+void player_animation_iddle(player_t *player);
 
 //* menu
 
