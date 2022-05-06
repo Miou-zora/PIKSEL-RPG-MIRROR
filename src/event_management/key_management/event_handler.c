@@ -87,7 +87,8 @@ int event_handler(game_t *game)
         if (game->background->scene_background == SETTINGS)
             handle_settings_events(game);
         if (sfKeyboard_isKeyPressed(game->event.key.code) == true
-        && game->event.key.code == sfKeySpace) {
+        && game->event.key.code == sfKeySpace
+        && game->background->scene_background == CINEMATIC) {
             game->background->scene_background = ROOM;
         }
         manage_key(game);

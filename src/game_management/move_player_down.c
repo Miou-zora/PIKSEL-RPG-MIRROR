@@ -11,16 +11,16 @@
 void manage_down_lab(game_t *game)
 {
     if (game->background->scene_background == LABO
-    && game->player->pos.y < 500)
-        game->player->move_down = true;
+    && game->player->pos.y > 650)
+        game->player->move_down = false;
 
 }
 
 void manage_down_forest(game_t *game)
 {
     if (game->background->scene_background == FOREST
-    && game->player->pos.y < 500)
-        game->player->move_down = true;
+    && game->player->pos.y > 700)
+        game->player->move_down = false;
 
 }
 

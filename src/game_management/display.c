@@ -14,13 +14,16 @@ void display_background(game_t *game)
         sfRenderWindow_drawSprite(game->window,
         game->background->bedroom->sprite->sprite, NULL);
         display_npc(game);
+        display_loot(game);
         display_hitbox(game->player->hitbox, game->window, game->player->hitbox_color);
         display_player_sprites(game->player, game);
+
     }
     if (game->background->scene_background == CITY) {
         sfRenderWindow_drawSprite(game->window,
         game->background->town[0]->sprite->sprite, NULL);
         display_npc(game);
+        display_loot(game);
         display_player_sprites(game->player, game);
         sfRenderWindow_drawSprite(game->window,
         game->background->town[1]->sprite->sprite, NULL);
@@ -31,6 +34,7 @@ void display_background(game_t *game)
         sfRenderWindow_drawSprite(game->window,
         game->background->forest[1]->sprite->sprite, NULL);
         display_npc(game);
+        display_loot(game);
         display_player_sprites(game->player, game);
     }
     if (game->background->scene_background == LABO) {
@@ -46,7 +50,7 @@ void display_background(game_t *game)
         game->player->stat->top_bar->sprite, NULL);
         display_stats(game);
     }
-    display_loot(game);
+    
 }
 
 void display_menu(game_t *game)
