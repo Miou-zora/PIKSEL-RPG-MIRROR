@@ -31,7 +31,7 @@ void get_loot(game_t *game)
         game->player->pos.y >= loot_pos.y - 100 &&
         game->player->pos.y <= loot_pos.y + 100) {
             add_loot_to_inventory(game->player->inventory,
-            game->background->loot);
+            game->background->loot[i]);
             return;
         }
     }
