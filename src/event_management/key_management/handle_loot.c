@@ -17,15 +17,6 @@ void destroy_loot(loot_t *loot)
     }
 }
 
-void take_loot(inventory_t *inventory, loot_t *loot)
-{
-    if (loot->armor_or_weapon == 0) {
-        add_loot_to_inventory(inventory, loot);
-    } else {
-        add_loot_to_inventory(inventory, loot);
-    }
-}
-
 void get_loot(game_t *game)
 {
     sfVector2f loot_pos;
@@ -39,7 +30,8 @@ void get_loot(game_t *game)
         game->player->pos.x <= loot_pos.x + 100 &&
         game->player->pos.y >= loot_pos.y - 100 &&
         game->player->pos.y <= loot_pos.y + 100) {
-            take_loot(game->player->inventory, game->background->loot[i]);
+            add_loot_to_inventory(game->player->inventory,
+            game->background->loot);
             return;
         }
     }
