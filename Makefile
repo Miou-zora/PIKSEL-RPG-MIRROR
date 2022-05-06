@@ -80,7 +80,7 @@ SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
 						$(PATH_EVENT)/key_management/key_s_event.c 			\
 						$(PATH_EVENT)/key_management/key_z_event.c 			\
 						$(PATH_EVENT)/key_management/key_f_event.c 			\
-						$(PATH_EVENT)/key_management/key_enter_event.c		\
+						$(PATH_EVENT)/key_management/attack_key_event.c		\
 						$(PATH_EVENT)/map_changement/city_to_forest.c 		\
 						$(PATH_EVENT)/map_changement/city_to_room.c 		\
 						$(PATH_EVENT)/map_changement/room_to_city.c 		\
@@ -111,6 +111,7 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/update_enemy.c						\
 						$(PATH_ENEMY)/init_enemy.c							\
 						$(PATH_ENEMY)/enemy_attack_player.c					\
+						$(PATH_ENEMY)/player_attack_enemy.c					\
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 
