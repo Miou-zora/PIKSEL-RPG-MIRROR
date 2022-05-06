@@ -10,8 +10,8 @@
 
 bool city_to_forest(game_t *game)
 {
-    if (game->player->traveled_distance > 85
-    && game->player->traveled_distance < 115
+    if (game->player->traveled_distance > 515
+    && game->player->traveled_distance < 545
     && game->background->scene_background == CITY) {
         game->background->scene_background = FOREST;
         game->player->traveled_distance = 0;

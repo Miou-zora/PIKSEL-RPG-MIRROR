@@ -496,6 +496,7 @@ void player_animation_spear(player_t *player);
 void player_animation_run(player_t *player);
 void player_animation_walk(player_t *player);
 void player_animation_iddle(player_t *player);
+bool init_player_animator_move(player_t *player);
 
 //* particle
 

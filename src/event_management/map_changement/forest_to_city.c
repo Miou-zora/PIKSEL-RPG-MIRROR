@@ -10,12 +10,11 @@
 
 bool forest_to_city(game_t *game)
 {
-    my_printf("%i\n", game->player->traveled_distance);
     if (game->player->traveled_distance > 25
     && game->player->traveled_distance < 30
     && game->background->scene_background == FOREST) {
         game->background->scene_background = CITY;
-        game->player->traveled_distance = 100;
+        game->player->traveled_distance = 530;
         game->npc[2]->sprite_data->pos = (sfVector2f){2000, 500};
         sfSprite_setPosition(game->npc[2]->sprite_data->sprite,
         game->npc[2]->sprite_data->pos);
