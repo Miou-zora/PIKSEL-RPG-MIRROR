@@ -18,6 +18,7 @@ static void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos)
     scaling = sqrt(pow(pos.x - enemy->pos.x, 2) + pow(pos.y - enemy->pos.y, 2))
     / (enemy->base_speed * enemy->stat.speed);
     if (scaling <= 1) {
+        enemy->stat.actual_life = 0;
         enemy->pos.x = pos.x;
         enemy->pos.y = pos.y;
         return;
@@ -40,4 +41,15 @@ void update_enemy(enemy_t *enemy, game_t *game)
     }
     sfSprite_setPosition(enemy->animator_standing->sprite_data->sprite,
     enemy->pos);
+}
+
+void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
+{
+    enemies_list_t **cursor = enemies_list;
+
+    while ((*cursor) != NULL) {
+        update_enemy((*cursor)->enemy, game);
+        cursor = &((*cursor)->next);
+    }
+    update_dead_list(enemies_list, game->player);
 }

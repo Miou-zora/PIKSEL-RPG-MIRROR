@@ -28,6 +28,8 @@ int my_rpg(void)
     set_framerate_clock_data(principal_clock, 0.03);
     if (initialize_game(&game))
         return (84);
+    add_enemy(BASIC_ENEMY, &(game->enemies_list), (sfVector2f){0, 0});
+    add_enemy(BASIC_ENEMY, &(game->enemies_list), (sfVector2f){300, 300});
     game->clock_secondary = clock_secondary;
     while (sfRenderWindow_isOpen(game->window)) {
         drain_clock_data(principal_clock);

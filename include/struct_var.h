@@ -28,6 +28,7 @@ enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
 enum types_enemy {MOB = 1, MINI_BOSS, BOSS};
+enum categories_enemy {BASIC_ENEMY = 1};
 enum deph_background {FRONTGROUND = 1, MIDGROUND, BACKGROUND};
 enum scene_background_t {MENU = 1, SETTINGS, CINEMATIC, ROOM, CITY,
 FOREST, LABO};
@@ -65,6 +66,7 @@ typedef struct framebuffer_s framebuffer_t;
 typedef struct nest_particle_s nest_particle_t;
 typedef struct particle_s particle_t;
 typedef struct inventory_s inventory_t;
+typedef struct enemies_list_s enemies_list_t;
 
 /************************** struct ***********************************/
 
@@ -123,6 +125,12 @@ struct stat_s {
     int level;
     int xp;
     sprite_data_t *top_bar;
+};
+
+struct enemies_list_s {
+    enemy_t *enemy;
+    enemies_list_t *next;
+    enemies_list_t *prev;
 };
 
 struct enemy_s {
@@ -320,6 +328,7 @@ struct game_s {
     sfClock *clock;
     clock_data_t *clock_secondary;
     cinematic_t *cinematic;
+    enemies_list_t *enemies_list;
 };
 
 /************************** functions ***********************************/
@@ -344,6 +353,13 @@ enemy_t *fill_enemy(enemy_t *enemy, char **data);
 enemy_t *init_basic_enemy(sfVector2f pos);
 void display_enemy(enemy_t *enemy, sfRenderWindow *window);
 void update_enemy(enemy_t *enemy, game_t *game);
+bool is_dead_enemy(enemy_t *enemy);
+int add_enemy(int category_enemy, enemies_list_t **enemies_list,
+sfVector2f pos);
+void update_enemies_list(enemies_list_t **enemies_list, game_t *game);
+void display_enemies_list(enemies_list_t **enemies_list,
+sfRenderWindow *window);
+void update_dead_list(enemies_list_t **enemies_list, player_t *player);
 
 //* armor
 
