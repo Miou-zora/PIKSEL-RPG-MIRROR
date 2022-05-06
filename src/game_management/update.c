@@ -75,4 +75,5 @@ void update(game_t *game)
     called_clock_player(game->player, game);
     update_position(game->player);
     handle_stats(game->player->stat);
+    remove_loot(game->background->loot);
 }

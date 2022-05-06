@@ -34,6 +34,7 @@ SRC_INVENTORY	=		src/items/spawn_random_loot.c						\
 						src/event_management/key_management/handle_inv.c	\
 						src/event_management/key_management/add_armor.c		\
 						src/event_management/key_management/add_weapon.c	\
+						src/items/remove_loot.c								\
 
 PATH_PARTICLES =		src/particle
 
