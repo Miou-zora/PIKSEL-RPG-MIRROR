@@ -28,6 +28,10 @@ bool init_player_clock(player_t *player)
     player->player = create_clock_data();
     if (player->player == NULL)
         return (true);
+    player->clock_update_animator = create_clock_data();
+    if (player->clock_update_animator == NULL)
+        return (true);
+    set_framerate_clock_data(player->clock_update_animator, 0.1);
     return (false);
 }
 
@@ -63,15 +67,27 @@ bool init_player_animator(player_t *player)
     player->gun = load_animator("scripts/animator/gun_player.ani");
     if (player->gun == NULL)
         return (true);
+    player->gun->sprite_data->scale = (sfVector2f){6, 6};
+    sfSprite_setScale(player->gun->sprite_data->sprite,
+    player->gun->sprite_data->scale);
     player->punch = load_animator("scripts/animator/punch_player.ani");
     if (player->punch == NULL)
         return (true);
+    player->punch->sprite_data->scale = (sfVector2f){6, 6};
+    sfSprite_setScale(player->punch->sprite_data->sprite,
+    player->punch->sprite_data->scale);
     player->spear = load_animator("scripts/animator/spear_player.ani");
     if (player->spear == NULL)
         return (true);
+    player->spear->sprite_data->scale = (sfVector2f){6, 6};
+    sfSprite_setScale(player->spear->sprite_data->sprite,
+    player->spear->sprite_data->scale);
     player->sword = load_animator("scripts/animator/sword_player.ani");
     if (player->sword == NULL)
         return (true);
+    player->sword->sprite_data->scale = (sfVector2f){6, 6};
+    sfSprite_setScale(player->sword->sprite_data->sprite,
+    player->sword->sprite_data->scale);
     if (init_player_animator_move(player))
         return (true);
     return (false);
@@ -100,7 +116,8 @@ bool init_player(player_t *player)
     if (init_player_clock(player))
         return (true);
     init_move_player(player);
-    player->hitbox = (sfIntRect){500, 400, 50, 50}; // pos player x, pos player y, size x, size y
+    player->hitbox = (sfIntRect){player->pos.x, player->pos.y + 100, 100, 20};
+    player->hitbox_color = sfRed;
     if (init_stats(&(player->stat)) == 84)
         return (true);
     return (false);

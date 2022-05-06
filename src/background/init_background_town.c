@@ -31,7 +31,7 @@ bool init_town_front(town_t **town)
 
     if (*town == NULL)
         return (true);
-    (*town)->sprite = load_sprite_data("assets/background/Lampadaire.png");
+    (*town)->sprite = load_sprite_data("assets/background/light.png");
     if ((*town)->sprite == NULL)
         return (true);
     (*town)->sprite->pos = (sfVector2f){0, 0};

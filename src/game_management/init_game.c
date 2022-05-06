@@ -20,11 +20,15 @@ bool fill_game(game_t *game)
         return (true);
     if (initialize_menu(&(game->background->menu)) == true)
         return (true);
+    if (init_cinematic(&(game->cinematic)) == true)
+        return (true);
     if (init_back(game->background))
         return (true);
     if (init_player(game->player))
         return (true);
     if (init_npc(game->npc))
+        return (true);
+    if (init_inventory(&game->player->inventory))
         return (true);
     return (false);
 }

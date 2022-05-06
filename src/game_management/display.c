@@ -13,7 +13,8 @@ void display_background(game_t *game)
     if (game->background->scene_background == ROOM) {
         sfRenderWindow_drawSprite(game->window,
         game->background->bedroom->sprite->sprite, NULL);
-        display_hitbox(game->player->hitbox, game->window);
+        display_npc(game);
+        display_hitbox(game->player->hitbox, game->window, game->player->hitbox_color);
         display_player_sprites(game->player, game);
     }
     if (game->background->scene_background == CITY) {
@@ -39,7 +40,8 @@ void display_background(game_t *game)
         display_player_sprites(game->player, game);
     }
     if (game->background->scene_background != MENU
-    && game->background->scene_background != SETTINGS) {
+    && game->background->scene_background != SETTINGS
+    && game->background->scene_background != CINEMATIC) {
         sfRenderWindow_drawSprite(game->window,
         game->player->stat->top_bar->sprite, NULL);
         display_stats(game);
@@ -72,5 +74,10 @@ void display(game_t *game)
     game->background->scene_background == SETTINGS)
         display_menu(game);
     display_background(game);
+    if (game->player->inventory->display_inventory == true)
+        display_inventory(game);
+    if (game->background->scene_background == CINEMATIC) {
+        display_sprite_cinematic(game);
+    }
     sfRenderWindow_display(game->window);
 }

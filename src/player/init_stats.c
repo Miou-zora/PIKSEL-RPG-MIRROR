@@ -13,12 +13,12 @@ int init_stats(stat_t **stat)
     (*stat) = my_calloc(1, sizeof(stat_t));
     if ((*stat) == NULL)
         return (84);
-    (*stat)->actual_life = 10;
+    (*stat)->actual_life = 100;
     (*stat)->armor = 0;
-    (*stat)->health = 0;
-    (*stat)->power = 0;
+    (*stat)->health = 100;
+    (*stat)->power = 10;
     (*stat)->speed = 1;
-    (*stat)->level = 0;
+    (*stat)->level = 1;
     (*stat)->xp = 0;
     (*stat)->top_bar = load_sprite_data("assets/background/top_bar.png");
     sfSprite_setPosition((*stat)->top_bar->sprite, (sfVector2f){0, 0});

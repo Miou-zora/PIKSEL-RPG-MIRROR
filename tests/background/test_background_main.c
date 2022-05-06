@@ -63,7 +63,7 @@ background_t *init_town(background_t *background)
     background->town[MIDGROUND]->sprite->scale = (sfVector2f){4, 4};
     background->town[MIDGROUND]->sprite->sprite = sfSprite_create();
     background->town[MIDGROUND]->sprite->texture = \
-    sfTexture_createFromFile("assets/background/Lampadaire.png", NULL);
+    sfTexture_createFromFile("assets/background/light.png", NULL);
     set_sprite(background->town[MIDGROUND]->sprite);
     return (background);
 }

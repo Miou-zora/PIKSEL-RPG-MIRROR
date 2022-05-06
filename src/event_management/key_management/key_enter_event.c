@@ -10,7 +10,7 @@
 
 int manage_key_enter(game_t *game)
 {
-    if (game->event.key.code == sfKeyEnter) {
+    if (game->event.key.code == sfKeyM) {
         game->player->attack = true;
     }
     return (0);

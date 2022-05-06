@@ -10,7 +10,7 @@
 
 int launch_game(game_t *game)
 {
-    game->background->scene_background = ROOM;
+    game->background->scene_background = CINEMATIC;
     return (0);
 }
 

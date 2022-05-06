@@ -14,7 +14,7 @@ static void move_forest(game_t *game, int speed)
     if (game->background->scene_background == FOREST) {
         game->background->forest[0]->sprite->rect.left += 5 * speed;
         game->background->forest[1]->sprite->rect.left += 10 * speed;
-        game->player->traveled_distance += 1 * speed;
+        game->player->traveled_distance += 1;
         sfSprite_setTextureRect(game->background->forest[0]->sprite->sprite,
         game->background->forest[0]->sprite->rect);
         sfSprite_setTextureRect(game->background->forest[1]->sprite->sprite,
