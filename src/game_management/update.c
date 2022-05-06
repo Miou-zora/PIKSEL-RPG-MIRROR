@@ -46,7 +46,6 @@ void clock_animation_player(player_t *player)
         player_animation_gun(player);
 }
 
-
 void called_clock_player(player_t *player, game_t *game)
 {
     clock_player(player, game);

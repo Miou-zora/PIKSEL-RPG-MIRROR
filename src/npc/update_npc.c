@@ -20,5 +20,8 @@ void update_npc(game_t *game)
         } else {
             game->npc[i]->display = false;
         }
+        drain_clock_data(game->npc[i]->dialogue->text_clock);
+        while (update_clock_data(game->npc[i]->dialogue->text_clock))
+            display_one_more_char(&game->npc[i]->dialogue);
     }
 }

@@ -109,8 +109,9 @@ struct loot_s {
 struct npc_s {
     sprite_data_t *sprite_data;
     bool display;
-    struct dialogues *dialogue;
+    text_zone_t *dialogue;
     int distance_à_parcourir;
+    bool display_text;
     enum scene_background_t scene;
 };
 

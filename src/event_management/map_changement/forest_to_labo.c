@@ -10,11 +10,18 @@
 
 bool forest_to_labo(game_t *game)
 {
-    if (game->player->traveled_distance > 470
-    && game->player->traveled_distance < 500
-    && game->background->scene_background == FOREST) {
+    if (game->player->traveled_distance > 478
+    && game->player->traveled_distance < 520
+    && game->background->scene_background == FOREST
+    && game->npc[3]->display_text == true) {
+        game->npc[3]->display_text = false;
         game->background->scene_background = LABO;
         game->player->traveled_distance = 0;
+    }
+    if (game->player->traveled_distance > 478
+    && game->player->traveled_distance < 520
+    && game->background->scene_background == FOREST) {
+        game->npc[3]->display_text = true;
     }
     return (false);
 }
