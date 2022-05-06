@@ -65,8 +65,15 @@ typedef struct framebuffer_s framebuffer_t;
 typedef struct nest_particle_s nest_particle_t;
 typedef struct particle_s particle_t;
 typedef struct inventory_s inventory_t;
+typedef struct sound_music_s sound_music_t;
 
 /************************** struct ***********************************/
+
+struct sound_music_s {
+    sfMusic *music;
+    sfSoundBuffer *sound_buff;
+    sfSound *sound;
+};
 
 struct cinematic_s {
     sprite_data_t *skip_button;
@@ -320,6 +327,7 @@ struct game_s {
     sfClock *clock;
     clock_data_t *clock_secondary;
     cinematic_t *cinematic;
+    sound_music_t *sound_music;
 };
 
 /************************** functions ***********************************/
@@ -524,3 +532,7 @@ void add_weapon(inventory_t *inventory, loot_t *loot);
 
 void display_npc(game_t *game);
 bool init_npc(npc_t *npc[4]);
+
+//* sound / music
+
+bool init_sound(sound_music_t *sound_music);
