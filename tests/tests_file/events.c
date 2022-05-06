@@ -21,18 +21,6 @@ void key_run(player_t *player)
     }
 }
 
-void move_player_up_and_down(player_t *player)
-{
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
-        player->move_up = true;
-    else
-        player->move_up = false;
-    if (sfKeyboard_isKeyPressed(sfKeyS))
-        player->move_down = true;
-    else
-        player->move_down = false;
-}
-
 void detect_key(player_t *player)
 {
     key_run(player);

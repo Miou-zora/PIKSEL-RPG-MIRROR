@@ -81,7 +81,7 @@ struct loot_s {
 
 struct npc_s {
     sprite_data_t *sprite_data;
-    int postion[2];
+    bool display;
     struct dialogues *dialogue;
     int distance_à_parcourir;
     enum scene_background_t scene;
@@ -385,6 +385,8 @@ bool labo_to_forest(game_t *game);
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
+void manage_up(game_t *game);
+void manage_down(game_t *game);
 
 //* menu
 
@@ -447,3 +449,6 @@ bool init_loot(loot_t *loot[10]);
 
 void display_npc(game_t *game);
 bool init_npc(npc_t *npc[4]);
+void update_npc(game_t *game);
+void move_npc_left(game_t *game, int speed);
+void move_npc_right(game_t *game, int speed);

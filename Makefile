@@ -46,7 +46,7 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 PATH_PLAYER = 			src/player
 
 SRC_PLAYER = 			$(PATH_PLAYER)/init_player.c 						\
-			 		    $(PATH_PLAYER)/init_stats.c 						\
+			 			$(PATH_PLAYER)/init_stats.c 						\
 						$(PATH_PLAYER)/display_player.c 					\
 						$(PATH_PLAYER)/display_hitbox.c 					\
 
@@ -56,6 +56,8 @@ SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 						$(PATH_GAME_MANAGEMENT)/update.c					\
 						$(PATH_GAME_MANAGEMENT)/display.c					\
 						$(PATH_GAME_MANAGEMENT)/display_stats.c				\
+						$(PATH_GAME_MANAGEMENT)/move_player_up.c 			\
+						$(PATH_GAME_MANAGEMENT)/move_player_down.c 			\
 
 PATH_EVENT =			src/event_management
 
@@ -135,6 +137,9 @@ SRC_WEAPON =			$(PATH_WEAPON)/create_weapon.c						\
 PATH_NPC = 				src/npc
 
 SRC_NPC = 				$(PATH_NPC)/init_npc.c 								\
+						$(PATH_NPC)/display_npc.c 							\
+						$(PATH_NPC)/move_npc.c 								\
+						$(PATH_NPC)/update_npc.c 							\
 
 PATH_SPRITE_DATA =		src/sprite_data
 

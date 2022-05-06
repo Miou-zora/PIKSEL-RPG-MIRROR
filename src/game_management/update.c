@@ -10,6 +10,8 @@
 
 void move_player_walk(player_t *player, game_t *game)
 {
+    manage_up(game);
+    manage_down(game);
     if (player->move_up == true && player->player_mode == 1)
         player->pos.y -= 7.5;
     if (player->move_down == true && player->player_mode == 1)
@@ -110,6 +112,7 @@ void update(game_t *game)
             game->background->menu->how_to_play_mode = false;
         }
     }
+    update_npc(game);
     update_how_to_play(game->background->menu);
     called_clock_player(game->player, game);
     update_position(game->player);
