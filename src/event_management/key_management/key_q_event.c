@@ -40,7 +40,7 @@ void move_background_left(game_t *game, int speed)
     && game->player->pos.x < 831
     && game->background->scene_background == ROOM) {
         if (game->background->loot != NULL)
-            move_loot(game->background->loot, 20);
+            move_loot(game->background->loot, 20 * speed);
         game->background->bedroom->sprite->rect.left -= 5 * speed;
         game->player->traveled_distance -= 1 * speed;
         sfSprite_setTextureRect(game->background->bedroom->sprite->sprite,
@@ -56,7 +56,7 @@ void move_background_left(game_t *game, int speed)
     && game->player->pos.x < 831
     && game->background->town[0]->sprite->rect.left > 0) {
         if (game->background->loot != NULL)
-            move_loot(game->background->loot, 20);
+            move_loot(game->background->loot, 20 * speed);
         game->background->town[0]->sprite->rect.left -= 5 * speed;
         game->background->town[1]->sprite->rect.left -= 10 * speed;
         game->player->traveled_distance -= 1 * speed;
