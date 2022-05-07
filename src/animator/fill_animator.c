@@ -93,6 +93,8 @@ animator_t *fill_animator(animator_t *animator, char **data)
         }
         animator->sprite_data->rect.height = animator->size_image.y;
         animator->sprite_data->rect.width = animator->size_image.x;
+        sfSprite_setTextureRect(animator->sprite_data->sprite,
+        animator->sprite_data->rect);
     }
     return (animator);
 }

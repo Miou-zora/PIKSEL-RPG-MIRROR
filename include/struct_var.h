@@ -65,6 +65,7 @@ typedef struct framebuffer_s framebuffer_t;
 typedef struct nest_particle_s nest_particle_t;
 typedef struct particle_s particle_t;
 typedef struct inventory_s inventory_t;
+typedef struct enemies_list_s enemies_list_t;
 
 /************************** struct ***********************************/
 
@@ -125,6 +126,12 @@ struct stat_s {
     sprite_data_t *top_bar;
 };
 
+struct enemies_list_s {
+    enemy_t *enemy;
+    enemies_list_t *next;
+    enemies_list_t *prev;
+};
+
 struct enemy_s {
     enum types_enemy type_enemy;
     char *name;
@@ -133,9 +140,12 @@ struct enemy_s {
     float base_speed;
     sfVector2f pos;
     clock_data_t *clock_data;
+    float agro_distance;
     enum moving_states moving_state;
+    animator_t *actual_animator;
     animator_t *animator_standing;
     animator_t *animator_moving;
+    nest_particle_t *nest_particle;
 };
 
 struct framebuffer_s {
@@ -157,6 +167,7 @@ struct nest_particle_s {
     framebuffer_t *framebuffer;
     sfVector2f offset;
     particle_t *all_particles;
+    sfColor color;
 };
 
 struct armor_s {
@@ -320,6 +331,7 @@ struct game_s {
     sfClock *clock;
     clock_data_t *clock_secondary;
     cinematic_t *cinematic;
+    enemies_list_t *enemies_list;
 };
 
 /************************** functions ***********************************/
@@ -341,9 +353,18 @@ enemy_t *create_enemy(void);
 void destroy_enemy(enemy_t **enemy);
 enemy_t *load_enemy(char *path);
 enemy_t *fill_enemy(enemy_t *enemy, char **data);
-enemy_t *init_basic_enemy(sfVector2f pos);
+enemy_t *spawn_mob_enemy(sfVector2f pos);
+enemy_t *spawn_mini_boss_enemy(sfVector2f pos);
+enemy_t *spawn_boss_enemy(sfVector2f pos);
 void display_enemy(enemy_t *enemy, sfRenderWindow *window);
 void update_enemy(enemy_t *enemy, game_t *game);
+bool is_dead_enemy(enemy_t *enemy);
+int add_enemy(int category_enemy, enemies_list_t **enemies_list,
+sfVector2f pos);
+void update_enemies_list(enemies_list_t **enemies_list, game_t *game);
+void display_enemies_list(enemies_list_t **enemies_list,
+sfRenderWindow *window);
+void update_dead_list(enemies_list_t **enemies_list, player_t *player);
 
 //* armor
 
@@ -395,6 +416,7 @@ void drain_clock_data(clock_data_t *clock);
 bool update_clock_data(clock_data_t *clock);
 void destroy_clock_data(clock_data_t **clock_data);
 clock_data_t *init_clock_data(float framerate_seconds);
+void reset_clock_data(clock_data_t *clock);
 
 //* event management
 

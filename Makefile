@@ -109,6 +109,8 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/fill_enemy.c							\
 						$(PATH_ENEMY)/display_enemy.c						\
 						$(PATH_ENEMY)/update_enemy.c						\
+						$(PATH_ENEMY)/is_dead_enemy.c						\
+						$(PATH_ENEMY)/spawn_enemy.c							\
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 
@@ -118,6 +120,7 @@ SRC_CLOCK =				$(PATH_CLOCK_DATA)/create_clock_data.c				\
 						$(PATH_CLOCK_DATA)/drain_clock_data.c				\
 						$(PATH_CLOCK_DATA)/set_framerate_clock_data.c		\
 						$(PATH_CLOCK_DATA)/init_clock_data.c				\
+						$(PATH_CLOCK_DATA)/reset_clock_data.c				\
 
 PATH_ARMOR =			src/items/armor
 

@@ -30,6 +30,7 @@ bool fill_game(game_t *game)
         return (true);
     if (init_inventory(&game->player->inventory))
         return (true);
+    game->enemies_list = NULL;
     return (false);
 }
 

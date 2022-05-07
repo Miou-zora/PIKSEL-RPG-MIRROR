@@ -79,5 +79,6 @@ void display(game_t *game)
     if (game->background->scene_background == CINEMATIC) {
         display_sprite_cinematic(game);
     }
+    display_enemies_list(&(game->enemies_list), game->window);
     sfRenderWindow_display(game->window);
 }
