@@ -8,10 +8,11 @@
 #include "struct_var.h"
 #include "my.h"
 
-int manage_key_enter(game_t *game)
+int manage_attack_key(game_t *game)
 {
     if (game->event.key.code == sfKeyM) {
         game->player->attack = true;
+        attack_enemy(game);
     }
     return (0);
 }
