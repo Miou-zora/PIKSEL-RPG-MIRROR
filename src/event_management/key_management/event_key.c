@@ -68,10 +68,6 @@ static void manage_key_pressed(game_t *game)
     key_run(game->player);
     if (game->event.key.code == sfKeyT)
         sfSound_play(game->sound_music->damage);
-    if (game->event.key.code == sfKeyY)
-        sfSound_play(game->sound_music->teleport);
-    if (game->event.key.code == sfKeyU)
-        sfSound_play(game->sound_music->terry);
 }
 
 int manage_key(game_t *game)

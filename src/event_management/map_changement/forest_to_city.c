@@ -14,6 +14,7 @@ bool forest_to_city_display_text(game_t *game)
     && game->player->traveled_distance < 30
     && game->background->scene_background == FOREST) {
         game->npc[2]->display_text = true;
+        sfSound_play(game->sound_music->terry);
         return (true);
     }
     return (false);
@@ -35,6 +36,7 @@ bool forest_to_city(game_t *game)
         sfSprite_setTextureRect(game->background->forest[0]->sprite->sprite,
         game->background->forest[0]->sprite->rect);
         game->player->pos = (sfVector2f){820, 440};
+        sfSound_play(game->sound_music->teleport);
         return (true);
     }
     if (forest_to_city_display_text(game))
