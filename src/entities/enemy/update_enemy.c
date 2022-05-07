@@ -13,10 +13,13 @@ void change_enemy_direction(sfVector2f *enemy_core, sfVector2f *pos,
 enemy_t *enemy)
 {
     if (enemy_core->x - pos->x > 0) {
-        // sfSprite_setTextureRect(enemy->actual_animator->sprite_data->sprite, (sfIntRect){0, 0, -enemy->actual_animator->size_image.x, enemy->actual_animator->size_image.y});
+        enemy->actual_animator->sprite_data->rect.top = 0;
     } else {
-        // sfSprite_setTextureRect(enemy->actual_animator->sprite_data->sprite, (sfIntRect){0, 0, enemy->actual_animator->size_image.x, enemy->actual_animator->size_image.y});
+        enemy->actual_animator->sprite_data->rect.top =
+        enemy->actual_animator->size_image.y;
     }
+    sfSprite_setTextureRect(enemy->actual_animator->sprite_data->sprite,
+    enemy->actual_animator->sprite_data->rect);
 }
 
 static void move_enemy_to_pos_animator(sfVector2f *enemy_core, sfVector2f *pos,
