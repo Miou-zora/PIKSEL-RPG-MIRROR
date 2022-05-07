@@ -345,11 +345,8 @@ struct game_s {
     sfClock *clock;
     clock_data_t *clock_secondary;
     cinematic_t *cinematic;
-<<<<<<< HEAD
     enemies_list_t *enemies_list;
-=======
     sound_music_t *sound_music;
->>>>>>> origin/dev
 };
 
 /************************** functions ***********************************/
