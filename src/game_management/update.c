@@ -74,6 +74,16 @@ void called_clock_player(player_t *player, game_t *game)
         clock_animation_player(player);
 }
 
+void set_update_function(game_t *game)
+{
+    update_enemies_list(&(game->enemies_list), game);
+    update_how_to_play(game->background->menu);
+    called_clock_player(game->player, game);
+    update_position(game->player);
+    handle_stats(game->player->stat);
+    remove_loot(game->background->loot);
+}
+
 void update(game_t *game)
 {
     if (game->background->menu->how_to_play_mode == true)
@@ -91,10 +101,5 @@ void update(game_t *game)
         clock_cine_text(&(game->cinematic));
         call_clock_cine(game->cinematic);
     }
-    update_enemies_list(&(game->enemies_list), game);
-    update_how_to_play(game->background->menu);
-    called_clock_player(game->player, game);
-    update_position(game->player);
-    handle_stats(game->player->stat);
-    remove_loot(game->background->loot);
+    set_update_function(game);
 }
