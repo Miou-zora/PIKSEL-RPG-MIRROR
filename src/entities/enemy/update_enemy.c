@@ -33,7 +33,7 @@ float distance, enemy_t *enemy)
         return;
     } else
         re_set_animator(&(enemy->actual_animator), &(enemy->animator_moving));
-    //change_enemy_direction(enemy_core, pos, enemy);
+    change_enemy_direction(enemy_core, pos, enemy);
     scaling = distance / (enemy->base_speed * enemy->stat.speed);
     if (scaling <= 1) {
         enemy->pos.x = pos->x - (enemy->actual_animator->size_image.x *
