@@ -100,6 +100,7 @@ SRC_ELEMENTARY =		$(PATH_ELEMENTARY)/get_file.c						\
 						$(PATH_ELEMENTARY)/get_files_from_directory.c		\
 						$(PATH_ELEMENTARY)/freen_array.c					\
 						$(PATH_ELEMENTARY)/verif_extension.c				\
+						$(PATH_ELEMENTARY)/get_distance.c					\
 
 PATH_ENEMY =			src/entities/enemy
 
@@ -171,6 +172,7 @@ SRC_ANIMATOR =			$(PATH_ANIMATOR)/create_animator.c					\
 						$(PATH_ANIMATOR)/increment_animator_image_pos.c		\
 						$(PATH_ANIMATOR)/refresh_animator.c					\
 						$(PATH_ANIMATOR)/update_animator.c					\
+						$(PATH_ANIMATOR)/re_set_animator.c					\
 
 PATH_CINEMATIC	=		tests/cinematic
 

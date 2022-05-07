@@ -16,20 +16,12 @@ static void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos)
 
     if (enemy == NULL)
         return;
-    distance = sqrt(pow(pos.x - enemy->pos.x, 2) +
-    pow(pos.y - enemy->pos.y, 2));
+    distance = get_distance(enemy->pos, pos);
     if (distance >= enemy->agro_distance) {
-        if (enemy->actual_animator != enemy->animator_standing) {
-            enemy->actual_animator = enemy->animator_standing;
-            reset_clock_data(enemy->actual_animator->clock_data);
-        }
+        re_set_animator(&(enemy->actual_animator), &(enemy->animator_standing));
         return;
-    } else {
-        if (enemy->actual_animator != enemy->animator_moving) {
-            enemy->actual_animator = enemy->animator_moving;
-            reset_clock_data(enemy->actual_animator->clock_data);
-        }
-    }
+    } else
+        re_set_animator(&(enemy->actual_animator), &(enemy->animator_moving));
     scaling = distance / (enemy->base_speed * enemy->stat.speed);
     if (scaling <= 1) {
         enemy->stat.actual_life = 0;

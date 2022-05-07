@@ -346,6 +346,7 @@ int get_number_of_files_in_directory(char *directory, char *expected_extension);
 char **get_files_from_directory(char *directory, char *expected_extension);
 void freen_array(void *array);
 bool verif_extension(char *filename, char *expected_extension);
+float get_distance(sfVector2f a, sfVector2f b);
 
 //*enemy
 
@@ -407,6 +408,7 @@ animator_t *load_animator(char *path);
 void increment_animator_image_pos(animator_t *animator);
 animator_t *fill_animator(animator_t *animator, char **data);
 void update_animator(animator_t *animator);
+void re_set_animator(animator_t **target, animator_t **giver);
 
 //* clock_data
 
