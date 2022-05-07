@@ -21,7 +21,7 @@ enemy_t *create_enemy(void)
     enemy->moving_state = IDDLE;
     enemy->display = false;
     enemy->base_speed = NOT_SET;
-    enemy->distance_à_parcourir = 0;
+    enemy->distance_to_travel = 0;
     enemy->scene = NOT_SET;
     enemy->clock_data = NULL;
     enemy->pos = (sfVector2f){NOT_SET, NOT_SET};

@@ -53,8 +53,8 @@ void update_enemy(enemy_t *enemy, game_t *game)
         attack_player(enemy, game->player);
     }
     if (enemy->scene == game->background->scene_background
-    && enemy->distance_à_parcourir - 60 < game->player->traveled_distance
-    && enemy->distance_à_parcourir + 60 > game->player->traveled_distance) {
+    && enemy->distance_to_travel - 60 < game->player->traveled_distance
+    && enemy->distance_to_travel + 60 > game->player->traveled_distance) {
         enemy->display = true;
     } else
         enemy->display = false;

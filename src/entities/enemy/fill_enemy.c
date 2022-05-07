@@ -30,6 +30,7 @@ static stat_t load_stat(char **data)
     stat.speed = my_getnbr(data[6]);
     return (stat);
 }
+
 static bool check_error(enemy_t *enemy)
 {
     bool error = false;
@@ -52,7 +53,7 @@ enemy_t *fill_enemy(enemy_t *enemy, char **data)
         enemy->stat = load_stat(data);
         enemy->animator_standing = load_animator(data[7]);
         if (check_error(enemy)) {
-            return(NULL);
+            return (NULL);
         }
     }
     return (enemy);

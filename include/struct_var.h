@@ -124,7 +124,7 @@ struct npc_s {
     sprite_data_t *sprite_data;
     bool display;
     text_zone_t *dialogue;
-    int distance_à_parcourir;
+    int distance_to_travel;
     bool display_text;
     enum scene_background_t scene;
 };
@@ -148,7 +148,7 @@ struct enemies_list_s {
 
 struct enemy_s {
     enum types_enemy type_enemy;
-    int distance_à_parcourir;
+    int distance_to_travel;
     enum scene_background_t scene;
     char *name;
     int id;
