@@ -27,7 +27,7 @@ void manage_down_forest(game_t *game)
 void manage_down_city(game_t *game)
 {
     if (game->background->scene_background == CITY
-    && game->player->pos.y > 475)
+    && game->player->pos.y > 700)
         game->player->move_down = false;
 }
 

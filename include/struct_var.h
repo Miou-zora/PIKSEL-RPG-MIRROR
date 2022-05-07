@@ -353,7 +353,7 @@ struct game_s {
     background_t *background;
     int distance[2];
     player_t *player;
-    npc_t *npc[4];
+    npc_t *npc[5];
     sfClock *clock;
     clock_data_t *clock_secondary;
     cinematic_t *cinematic;
@@ -583,7 +583,7 @@ void remove_loot(loot_t *loot[10]);
 //* npc
 
 void display_npc(game_t *game);
-bool init_npc(npc_t *npc[4]);
+bool init_npc(npc_t *npc[5]);
 void update_npc(game_t *game);
 void move_npc_left(game_t *game, int speed);
 void move_npc_right(game_t *game, int speed);

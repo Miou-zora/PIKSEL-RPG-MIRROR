@@ -10,7 +10,7 @@
 
 void display_npc(game_t *game)
 {
-    for (int i = 0; i != 4; i++) {
+    for (int i = 0; i != 5; i++) {
         if (game->background->scene_background == game->npc[i]->scene
         && game->npc[i]->display == true)
             sfRenderWindow_drawSprite(game->window,

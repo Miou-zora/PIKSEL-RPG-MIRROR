@@ -25,7 +25,7 @@ void manage_up_forest(game_t *game)
 void manage_up_city(game_t *game)
 {
     if (game->background->scene_background == CITY
-    && game->player->pos.y < 440)
+    && game->player->pos.y < 400)
         game->player->move_up = false;
 }
 

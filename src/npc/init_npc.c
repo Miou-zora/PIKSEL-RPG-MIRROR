@@ -8,7 +8,7 @@
 #include "my.h"
 #include "struct_var.h"
 
-bool init_quest_npc(npc_t *npc[4])
+bool init_quest_npc(npc_t *npc[5])
 {
     npc[0] = my_calloc(1, sizeof(npc_t));
     if (npc[0] == NULL)
@@ -31,7 +31,7 @@ bool init_quest_npc(npc_t *npc[4])
     return (false);
 }
 
-bool init_city_to_forest_npc(npc_t *npc[4])
+bool init_city_to_forest_npc(npc_t *npc[5])
 {
     npc[1] = my_calloc(1, sizeof(npc_t));
     if (npc[1] == NULL)
@@ -54,7 +54,7 @@ bool init_city_to_forest_npc(npc_t *npc[4])
     return (false);
 }
 
-bool init_forest_to_city_npc(npc_t *npc[4])
+bool init_forest_to_city_npc(npc_t *npc[5])
 {
     npc[2] = my_calloc(1, sizeof(npc_t));
     if (npc[2] == NULL)
@@ -77,7 +77,7 @@ bool init_forest_to_city_npc(npc_t *npc[4])
     return (false);
 }
 
-bool init_forest_to_lab_npc(npc_t *npc[4])
+bool init_forest_to_lab_npc(npc_t *npc[5])
 {
     npc[3] = my_calloc(1, sizeof(npc_t));
     if (npc[3] == NULL)
@@ -100,7 +100,30 @@ bool init_forest_to_lab_npc(npc_t *npc[4])
     return (false);
 }
 
-bool init_npc(npc_t *npc[4])
+bool init_win_npc(npc_t *npc[5])
+{
+    npc[4] = my_calloc(1, sizeof(npc_t));
+    if (npc[4] == NULL)
+        return (true);
+    npc[4]->sprite_data = load_sprite_data("assets/npc.png");
+    if (npc[4]->sprite_data == NULL)
+        return (true);
+    npc[4]->sprite_data->pos = (sfVector2f){1500, 500};
+    npc[4]->sprite_data->scale = (sfVector2f){0.5, 0.5};
+    npc[4]->distance_to_travel = 0;
+    npc[4]->scene = LABO;
+    npc[4]->display = false;
+    npc[4]->display_text = false;
+    npc[4]->sprite_data = set_sprite(npc[4]->sprite_data);
+    if (create_text_zone(&npc[4]->dialogue,
+    "Good job you have make your revenge :)") == 84)
+        return (true);
+    npc[4]->dialogue->text_clock = create_clock_data();
+    set_framerate_clock_data(npc[4]->dialogue->text_clock, 0.03);
+    return (false);
+}
+
+bool init_npc(npc_t *npc[5])
 {
     if (init_quest_npc(npc))
         return (true);
@@ -109,6 +132,8 @@ bool init_npc(npc_t *npc[4])
     if (init_forest_to_city_npc(npc))
         return (true);
     if (init_forest_to_lab_npc(npc))
+        return (true);
+    if (init_win_npc(npc))
         return (true);
     return (false);
 }
