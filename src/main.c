@@ -19,11 +19,11 @@ void shade_framebuffer(framebuffer_t *framebuffer) {
 
 int my_rpg(void)
 {
-    srand(0);
     game_t *game = NULL;
     clock_data_t *principal_clock = create_clock_data();
     clock_data_t *clock_secondary = create_clock_data();
 
+    srand(0);
     set_framerate_clock_data(clock_secondary, 0.03);
     set_framerate_clock_data(principal_clock, 0.03);
     if (initialize_game(&game))

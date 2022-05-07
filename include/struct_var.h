@@ -104,6 +104,7 @@ struct loot_s {
     armor_t *armor;
     weapon_t *weapon;
     int id;
+    clock_data_t *disparition_clock;
 };
 
 struct npc_s {
@@ -523,6 +524,7 @@ void add_chestplate(inventory_t *inventory, loot_t *loot);
 void add_pant(inventory_t *inventory, loot_t *loot);
 void add_boots(inventory_t *inventory, loot_t *loot);
 void add_weapon(inventory_t *inventory, loot_t *loot);
+void remove_loot(loot_t *loot[10]);
 
 //* npc
 
