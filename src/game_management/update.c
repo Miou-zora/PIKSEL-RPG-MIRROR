@@ -21,10 +21,34 @@ void update_position(player_t *player)
     sfSprite_setPosition(player->spear->sprite_data->sprite, player->pos);
 }
 
+void update_direction_attack(game_t *game)
+{
+    if (game->player->direction == false) {
+        game->player->gun->sprite_data->rect.top = 48;
+        game->player->sword->sprite_data->rect.top = 48;
+        game->player->spear->sprite_data->rect.top = 48;
+        game->player->punch->sprite_data->rect.top = 48;
+    } else {
+        game->player->gun->sprite_data->rect.top = 0;
+        game->player->sword->sprite_data->rect.top = 0;
+        game->player->spear->sprite_data->rect.top = 0;
+        game->player->punch->sprite_data->rect.top = 0;
+    }
+    sfSprite_setTextureRect(game->player->run->sprite_data->sprite,
+    game->player->gun->sprite_data->rect);
+    sfSprite_setTextureRect(game->player->run->sprite_data->sprite,
+    game->player->punch->sprite_data->rect);
+    sfSprite_setTextureRect(game->player->run->sprite_data->sprite,
+    game->player->spear->sprite_data->rect);
+    sfSprite_setTextureRect(game->player->run->sprite_data->sprite,
+    game->player->sword->sprite_data->rect);
+}
+
 void clock_player(player_t *player, game_t *game)
 {
     move_player_walk(player, game);
     move_player_run(player, game);
+    update_direction_attack(game);
     update_position(player);
 }
 
