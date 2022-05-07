@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2022
-** PIKSEL-RPG-MIRROR
+** RPG
 ** File description:
-** add_armor
+** add_armor_down
 */
 
 #include "struct_var.h"
 #include "my.h"
 
-void add_helmet_pos(loot_t *loot, sfVector2f *pos, armor_t *temp,
+void add_pant_pos(loot_t *loot, sfVector2f *pos, armor_t *temp,
 sfVector2f *scale)
 {
     if (temp != NULL) {
@@ -23,26 +23,27 @@ sfVector2f *scale)
     }
 }
 
-void add_helmet(inventory_t *inventory, loot_t *loot)
+void add_pant(inventory_t *inventory, loot_t *loot)
 {
     armor_t *temp = NULL;
     sfVector2f pos =
     sfSprite_getPosition(loot->armor->sprite_data->sprite);
     sfVector2f scale =
     sfSprite_getScale(loot->armor->sprite_data->sprite);
-    if (inventory->helmet != NULL) {
+
+    if (inventory->pant != NULL) {
         temp = malloc(sizeof(armor_t));
-        temp = inventory->helmet;
+        temp = inventory->pant;
     }
-    inventory->helmet = loot->armor;
-    sfSprite_setPosition(inventory->helmet->sprite_data->sprite,
-    (sfVector2f){355, 245});
-    sfSprite_setScale(inventory->helmet->sprite_data->sprite,
+    inventory->pant = loot->armor;
+    sfSprite_setPosition(inventory->pant->sprite_data->sprite,
+    (sfVector2f){658, 245});
+    sfSprite_setScale(inventory->pant->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
-    add_helmet_pos(loot, &pos, temp, &scale);
+    add_pant_pos(loot, &pos, temp, &scale);
 }
 
-void add_chestplate_pos(loot_t *loot, sfVector2f *pos, armor_t *temp,
+void add_boots_pos(loot_t *loot, sfVector2f *pos, armor_t *temp,
 sfVector2f *scale)
 {
     if (temp != NULL) {
@@ -57,7 +58,7 @@ sfVector2f *scale)
     }
 }
 
-void add_chestplate(inventory_t *inventory, loot_t *loot)
+void add_boots(inventory_t *inventory, loot_t *loot)
 {
     armor_t *temp = NULL;
     sfVector2f pos =
@@ -65,14 +66,14 @@ void add_chestplate(inventory_t *inventory, loot_t *loot)
     sfVector2f scale =
     sfSprite_getScale(loot->armor->sprite_data->sprite);
 
-    if (inventory->chestplate != NULL) {
+    if (inventory->boots != NULL) {
         temp = malloc(sizeof(armor_t));
-        temp = inventory->chestplate;
+        temp = inventory->boots;
     }
-    inventory->chestplate = loot->armor;
-    sfSprite_setPosition(inventory->chestplate->sprite_data->sprite,
-    (sfVector2f){355, 530});
-    sfSprite_setScale(inventory->chestplate->sprite_data->sprite,
+    inventory->boots = loot->armor;
+    sfSprite_setPosition(inventory->boots->sprite_data->sprite,
+    (sfVector2f){658, 530});
+    sfSprite_setScale(inventory->boots->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
-    add_chestplate_pos(loot, &pos, temp, &scale);
+    add_boots_pos(loot, &pos, temp, &scale);
 }

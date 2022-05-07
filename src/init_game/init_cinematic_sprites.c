@@ -13,7 +13,8 @@ void create_sprite_cine_player(cinematic_t *cinematic)
     sfSprite_setPosition(cinematic->anim_player_walk->sprite_data->sprite,
     cinematic->anim_player_walk->sprite_data->pos);
     cinematic->anim_player_walk->sprite_data->scale = (sfVector2f){4, 4};
-    cinematic->anim_player_walk->sprite_data->rect = (sfIntRect){0, 48, 48, 48};
+    cinematic->anim_player_walk->sprite_data->rect =
+    (sfIntRect){0, 48, 48, 48};
     sfSprite_setScale(cinematic->anim_player_walk->sprite_data->sprite,
     cinematic->anim_player_walk->sprite_data->scale);
     sfSprite_setTextureRect(cinematic->anim_player_walk->sprite_data->sprite,

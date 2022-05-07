@@ -15,7 +15,8 @@ float distance, enemy_t *enemy)
     float scaling = 0;
 
     if (distance >= enemy->agro_distance) {
-        re_set_animator(&(enemy->actual_animator), &(enemy->animator_standing));
+        re_set_animator(&(enemy->actual_animator),
+        &(enemy->animator_standing));
         return;
     } else
         re_set_animator(&(enemy->actual_animator), &(enemy->animator_moving));
