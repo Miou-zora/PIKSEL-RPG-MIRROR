@@ -8,6 +8,25 @@
 #include "struct_var.h"
 #include "my.h"
 
+bool init_game(game_t *game)
+{
+    if (initialize_menu(&(game->background->menu)) == true)
+        return (true);
+    if (init_cinematic(&(game->cinematic)) == true)
+        return (true);
+    if (init_back(game->background))
+        return (true);
+    if (init_player(game->player))
+        return (true);
+    if (init_enemy(&(game->enemy)))
+        return (true);
+    if (init_npc(game->npc))
+        return (true);
+    if (init_inventory(&game->player->inventory))
+        return (true);
+    return (false);
+}
+
 bool fill_game(game_t *game)
 {
     game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
@@ -18,19 +37,7 @@ bool fill_game(game_t *game)
     game->player = my_calloc(1, sizeof(player_t));
     if (game->background == NULL)
         return (true);
-    if (initialize_menu(&(game->background->menu)) == true)
-        return (true);
-    if (init_cinematic(&(game->cinematic)) == true)
-        return (true);
-    if (init_back(game->background))
-        return (true);
-    if (init_player(game->player))
-        return (true);
-    if (init_npc(game->npc))
-        return (true);
-    if (init_inventory(&game->player->inventory))
-        return (true);
-    game->enemies_list = NULL;
+    init_game(game);
     return (false);
 }
 

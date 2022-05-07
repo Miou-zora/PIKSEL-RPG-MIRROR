@@ -26,13 +26,26 @@ void initialize_settings_rectangle_shapes(menu_t *menu)
     }
 }
 
+void init_settings_sound(menu_t *menu, game_t *game)
+{
+    if (menu->sound == true)
+        sound_on(game);
+    if (menu->sound == false)
+        sound_off(game);
+    if (menu->sound == true)
+        music_on(game);
+    if (menu->sound == false)
+        music_off(game);
+}
+
 int initialize_settings_rectangles(menu_t *menu, game_t *game)
 {
     menu->settings_rectangles = my_calloc(8, sizeof(sfRectangleShape *));
     if (menu->settings_rectangles == NULL)
         return (84);
     menu->rectangles_positions = initialize_positions
-    ("1100 295 1340 295 1100 535 1340 535 1100 775 1250 775 1400 775 100 850", 8);
+    ("1100 295 1340 295 1100 535 1340 535 1100 775 1250 775 1400 775 100 850",
+    8);
     menu->rectangles_sizes = initialize_positions
     ("220 135 245 135 220 135 245 135 140 135 140 135 185 135 150 150", 8);
     initialize_settings_rectangle_shapes(menu);
@@ -42,14 +55,7 @@ int initialize_settings_rectangles(menu_t *menu, game_t *game)
         set_fps_60(game);
     if (menu->fps == 120)
         set_fps_120(game);
-    if (menu->sound == true)
-        sound_on(game);
-    if (menu->sound == false)
-        sound_off(game);
-    if (menu->sound == true)
-        music_on(game);
-    if (menu->sound == false)
-        music_off(game);
+    init_settings_sound(menu, game);
     return (0);
 }
 

@@ -49,7 +49,7 @@ int manage_key(game_t *game)
         manage_key_s(game);
         manage_key_d(game);
         manage_key_f(game);
-        manage_key_enter(game);
+        manage_attack_key(game);
         select_weapon(game->player);
         if (game->event.key.code == sfKeyLShift)
             game->player->player_mode = 2;

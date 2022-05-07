@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 void display_particle(enemy_t *enemy, sfRenderWindow *window, framebuffer_t *framebuffer)
 {

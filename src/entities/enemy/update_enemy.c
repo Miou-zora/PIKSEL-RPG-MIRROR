@@ -39,9 +39,13 @@ void update_enemy(enemy_t *enemy, game_t *game)
         return;
     update_animator(enemy->actual_animator);
     drain_clock_data(enemy->clock_data);
+    drain_clock_data(enemy->attack_clock);
     while (update_clock_data(enemy->clock_data)) {
         move_enemy_to_pos(enemy, game->player->pos);
         update_nest_particle(enemy->nest_particle, 1);
+    }
+    while (update_clock_data(enemy->attack_clock)) {
+        attack_player(enemy, game->player);
     }
     sfSprite_setPosition(enemy->animator_standing->sprite_data->sprite,
     enemy->pos);
