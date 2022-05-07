@@ -28,7 +28,6 @@ enum types_armor {HELMET = 1, CHESTPLATE, LEGGINGS, BOOTS};
 enum types_bonus_basic {HEALTH = 1, REGENERATION,
 POWER, ARMOR, SPEED, CHARISMA};
 enum types_enemy {MOB = 1, MINI_BOSS, BOSS};
-enum categories_enemy {BASIC_ENEMY = 1};
 enum deph_background {FRONTGROUND = 1, MIDGROUND, BACKGROUND};
 enum scene_background_t {MENU = 1, SETTINGS, CINEMATIC, ROOM, CITY,
 FOREST, LABO};
@@ -141,9 +140,12 @@ struct enemy_s {
     float base_speed;
     sfVector2f pos;
     clock_data_t *clock_data;
+    float agro_distance;
     enum moving_states moving_state;
+    animator_t *actual_animator;
     animator_t *animator_standing;
     animator_t *animator_moving;
+    nest_particle_t *nest_particle;
 };
 
 struct framebuffer_s {
@@ -165,6 +167,7 @@ struct nest_particle_s {
     framebuffer_t *framebuffer;
     sfVector2f offset;
     particle_t *all_particles;
+    sfColor color;
 };
 
 struct armor_s {
@@ -350,7 +353,9 @@ enemy_t *create_enemy(void);
 void destroy_enemy(enemy_t **enemy);
 enemy_t *load_enemy(char *path);
 enemy_t *fill_enemy(enemy_t *enemy, char **data);
-enemy_t *init_basic_enemy(sfVector2f pos);
+enemy_t *spawn_mob_enemy(sfVector2f pos);
+enemy_t *spawn_mini_boss_enemy(sfVector2f pos);
+enemy_t *spawn_boss_enemy(sfVector2f pos);
 void display_enemy(enemy_t *enemy, sfRenderWindow *window);
 void update_enemy(enemy_t *enemy, game_t *game);
 bool is_dead_enemy(enemy_t *enemy);
@@ -411,6 +416,7 @@ void drain_clock_data(clock_data_t *clock);
 bool update_clock_data(clock_data_t *clock);
 void destroy_clock_data(clock_data_t **clock_data);
 clock_data_t *init_clock_data(float framerate_seconds);
+void reset_clock_data(clock_data_t *clock);
 
 //* event management
 

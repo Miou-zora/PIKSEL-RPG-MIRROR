@@ -24,33 +24,16 @@ enemy_t *create_enemy(void)
     enemy->pos = (sfVector2f){NOT_SET, NOT_SET};
     enemy->animator_standing = NULL;
     enemy->animator_moving = NULL;
-    return (enemy);
-}
-
-enemy_t *init_basic_enemy(sfVector2f pos)
-{
-    enemy_t *enemy = create_enemy();
-
-    if (enemy == NULL)
-        return (NULL);
-    enemy->name = my_strdup("basic_temp_name");
-    enemy->clock_data = init_clock_data(0.03);
-    enemy->moving_state = IDDLE;
-    enemy->stat = (stat_t){.actual_life=10, .armor=0, .health=10, .level=1,
-    .power=1, .speed=1, .xp=10, .top_bar=NULL};
-    enemy->base_speed = 3.f;
-    enemy->type_enemy = MOB;
-    enemy->pos = pos;
-    enemy->animator_standing = load_animator("scripts/animator/iddle.ani");
-    enemy->animator_moving = load_animator("scripts/animator/iddle.ani");
-    enemy->animator_moving->clock_data->framerate_seconds *= 2;
+    enemy->agro_distance = 0.f;
+    enemy->nest_particle = NULL;
     return (enemy);
 }
 
 enemy_t *create_enemy_depend_of_category(int category_enemy, sfVector2f pos)
 {
-    int enum_categories[] = {BASIC_ENEMY, 0};
-    enemy_t *(*functions_enemy_creation[])(sfVector2f) = {init_basic_enemy, NULL};
+    int enum_categories[] = {MOB, MINI_BOSS, BOSS, 0};
+    enemy_t *(*functions_enemy_creation[])(sfVector2f) = {spawn_mob_enemy,
+    spawn_mini_boss_enemy, spawn_boss_enemy, NULL};
 
     for (int i = 0; enum_categories[i] != 0; i++) {
         if (category_enemy == enum_categories[i]) {
