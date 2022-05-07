@@ -22,7 +22,6 @@ float distance, enemy_t *enemy)
         re_set_animator(&(enemy->actual_animator), &(enemy->animator_moving));
     scaling = distance / (enemy->base_speed * enemy->stat.speed);
     if (scaling <= 1) {
-        enemy->stat.actual_life = 0;
         enemy->pos.x = pos->x + (enemy->actual_animator->size_image.x /
         (2 * enemy->actual_animator->sprite_data->scale.x));
         enemy->pos.y = pos->y + (enemy->actual_animator->size_image.y /
