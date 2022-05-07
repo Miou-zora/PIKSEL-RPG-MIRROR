@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 void display_enemy(enemy_t *enemy, sfRenderWindow *window)
 {

@@ -66,14 +66,9 @@ void player_attack(player_t *player)
 
 void select_weapon(player_t *player)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyNumpad1))
-        player->weapon = 1;
-    if (sfKeyboard_isKeyPressed(sfKeyNumpad2))
-        player->weapon = 2;
-    if (sfKeyboard_isKeyPressed(sfKeyNumpad3))
-        player->weapon = 3;
-    if (sfKeyboard_isKeyPressed(sfKeyNumpad4))
-        player->weapon = 4;
+    if (player->inventory->weapon != NULL) {
+        player->weapon = player->inventory->weapon->id;
+    }
 }
 
 int event_handler(game_t *game)
