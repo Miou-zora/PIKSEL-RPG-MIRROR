@@ -22,10 +22,10 @@ float distance, enemy_t *enemy)
         re_set_animator(&(enemy->actual_animator), &(enemy->animator_moving));
     scaling = distance / (enemy->base_speed * enemy->stat.speed);
     if (scaling <= 1) {
-        enemy->pos.x = pos->x + (enemy->actual_animator->size_image.x /
-        (2 * enemy->actual_animator->sprite_data->scale.x));
-        enemy->pos.y = pos->y + (enemy->actual_animator->size_image.y /
-        (2 * enemy->actual_animator->sprite_data->scale.y));
+        enemy->pos.x = pos->x - (enemy->actual_animator->size_image.x *
+        enemy->actual_animator->sprite_data->scale.x / 2);
+        enemy->pos.y = pos->y - (enemy->actual_animator->size_image.y *
+        enemy->actual_animator->sprite_data->scale.y / 2);
         return;
     }
     enemy->pos.x += (pos->x - enemy_core->x) / scaling;
@@ -42,10 +42,10 @@ static void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos)
         return;
     pos.x += 150;
     pos.y += 200;
-    enemy_core.x = enemy->pos.x + (enemy->actual_animator->size_image.x /
-    (2 * enemy->actual_animator->sprite_data->scale.x));
-    enemy_core.y = enemy->pos.y + (enemy->actual_animator->size_image.y /
-    (2 * enemy->actual_animator->sprite_data->scale.y));
+    enemy_core.x = enemy->pos.x + (enemy->actual_animator->size_image.x *
+    enemy->actual_animator->sprite_data->scale.x / 2);
+    enemy_core.y = enemy->pos.y + (enemy->actual_animator->size_image.y *
+    enemy->actual_animator->sprite_data->scale.y / 2);
     distance = get_distance(enemy_core, pos);
     move_enemy_to_pos_animator(&enemy_core, &pos, distance, enemy);
 }
