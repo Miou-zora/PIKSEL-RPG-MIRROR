@@ -6,6 +6,7 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 
 bool is_dead_enemy(enemy_t *enemy)
 {

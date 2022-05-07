@@ -12,7 +12,6 @@ int manage_attack_key(game_t *game)
 {
     if (game->event.key.code == sfKeyM) {
         game->player->attack = true;
-        attack_enemy(game);
     }
     return (0);
 }

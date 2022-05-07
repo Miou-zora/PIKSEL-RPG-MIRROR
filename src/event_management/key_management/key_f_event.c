@@ -15,7 +15,6 @@ int manage_key_f(game_t *game)
     if (game->event.key.code == sfKeyF) {
         if (game->background->loot != NULL)
             get_loot(game);
-        my_printf("%i\n", game->player->traveled_distance);
         if (game->player->traveled_distance >= 90
         && game->player->traveled_distance <= 130
         && game->background->scene_background == CITY

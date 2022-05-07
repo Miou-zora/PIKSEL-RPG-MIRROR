@@ -59,6 +59,23 @@ int initialize_settings_rectangles(menu_t *menu, game_t *game)
     return (0);
 }
 
+bool init_pause_menu(pause_menu_t **pause)
+{
+    (*pause) = malloc(sizeof(menu_t));
+    if ((*pause) == NULL)
+        return (true);
+    (*pause)->rectangles_positions =
+    initialize_positions("525 410 525 610 525 810", 3);
+    (*pause)->rectangles_sizes =
+    initialize_positions("900 120 900 120 900 120", 3);
+    (*pause)->sprite = load_sprite_data("assets/menu/pause.png");
+    sfSprite_setPosition((*pause)->sprite->sprite, (sfVector2f){150, 150});
+    sfSprite_setScale((*pause)->sprite->sprite, (sfVector2f){7, 7});
+    (*pause)->display_pause = false;
+    (*pause)->back = load_sprite_data("assets/menu/back_pause.png");
+    return (false);
+}
+
 bool initialize_menu(menu_t **menu)
 {
     (*menu) = my_calloc(1, sizeof(menu_t));
@@ -76,5 +93,7 @@ bool initialize_menu(menu_t **menu)
     (*menu)->music = true;
     (*menu)->sound = true;
     (*menu)->how_to_play_mode = false;
+    if (init_pause_menu(&(*menu)->pause))
+        return (true);
     return (false);
 }

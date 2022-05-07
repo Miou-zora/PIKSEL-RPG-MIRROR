@@ -8,7 +8,7 @@
 #include "struct_var.h"
 #include "my.h"
 
-enemy_t *spawn_mob_enemy(sfVector2f pos)
+enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
 {
     enemy_t *enemy = create_enemy();
 
@@ -22,6 +22,8 @@ enemy_t *spawn_mob_enemy(sfVector2f pos)
     enemy->base_speed = 3.f;
     enemy->type_enemy = MOB;
     enemy->pos = pos;
+    enemy->scene = spawn_info.x;
+    enemy->distance_à_parcourir = spawn_info.y;
     enemy->animator_standing = load_animator("scripts/animator/iddle.ani");
     enemy->animator_moving = load_animator("scripts/animator/iddle.ani");
     enemy->actual_animator = enemy->animator_standing;
@@ -31,7 +33,7 @@ enemy_t *spawn_mob_enemy(sfVector2f pos)
     return (enemy);
 }
 
-enemy_t *spawn_mini_boss_enemy(sfVector2f pos)
+enemy_t *spawn_mini_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
 {
     enemy_t *enemy = create_enemy();
 
@@ -45,6 +47,8 @@ enemy_t *spawn_mini_boss_enemy(sfVector2f pos)
     enemy->base_speed = 3.6f;
     enemy->type_enemy = MINI_BOSS;
     enemy->pos = pos;
+    enemy->scene = spawn_info.x;
+    enemy->distance_à_parcourir = spawn_info.y;
     enemy->animator_standing = load_animator("scripts/animator/iddle.ani");
     enemy->animator_moving = load_animator("scripts/animator/iddle.ani");
     enemy->actual_animator = enemy->animator_standing;
@@ -55,7 +59,7 @@ enemy_t *spawn_mini_boss_enemy(sfVector2f pos)
     return (enemy);
 }
 
-enemy_t *spawn_boss_enemy(sfVector2f pos)
+enemy_t *spawn_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
 {
     enemy_t *enemy = create_enemy();
 
@@ -77,6 +81,8 @@ enemy_t *spawn_boss_enemy(sfVector2f pos)
     sfSprite_setScale(enemy->animator_moving->sprite_data->sprite, (sfVector2f){8, 8});
     enemy->actual_animator = enemy->animator_standing;
     enemy->animator_moving->clock_data->framerate_seconds = 0.05;
+    enemy->scene = spawn_info.x;
+    enemy->distance_à_parcourir = spawn_info.y;
     enemy->agro_distance = 400.f;
     enemy->nest_particle = create_nest_particle(100000, (sfVector2i){250, 250});
     enemy->nest_particle->color = (sfColor){255, 0, 255, 255};

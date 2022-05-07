@@ -15,6 +15,8 @@ static void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos)
     float distance = 0;
     sfVector2f enemy_core;
 
+    pos.x += 150;
+    pos.y += 200;
     if (enemy == NULL)
         return;
     enemy_core.x = enemy->pos.x + enemy->actual_animator->size_image.x / 2 * enemy->actual_animator->sprite_data->scale.x;
@@ -50,6 +52,12 @@ void update_enemy(enemy_t *enemy, game_t *game)
     while (update_clock_data(enemy->attack_clock)) {
         attack_player(enemy, game->player);
     }
+    if (enemy->scene == game->background->scene_background
+    && enemy->distance_à_parcourir - 60 < game->player->traveled_distance
+    && enemy->distance_à_parcourir + 60 > game->player->traveled_distance) {
+        enemy->display = true;
+    } else
+        enemy->display = false;
     sfSprite_setPosition(enemy->animator_standing->sprite_data->sprite,
     enemy->pos);
     sfSprite_setPosition(enemy->animator_moving->sprite_data->sprite,
@@ -62,6 +70,9 @@ void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
 
     while ((*cursor) != NULL) {
         update_enemy((*cursor)->enemy, game);
+        if (game->player->attack == true) {
+            attack_enemy((*cursor)->enemy, game);
+        }
         cursor = &((*cursor)->next);
     }
     update_dead_list(enemies_list, game->player);

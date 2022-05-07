@@ -93,6 +93,6 @@ int initialize_how_to_play(game_t *game)
     (sfVector2f){150, 250});
     game->background->menu->how_to_play->text_clock = create_clock_data();
     set_framerate_clock_data(game->background->menu->how_to_play->text_clock,
-    2000000 / 60);
+    0.05);
     return (0);
 }

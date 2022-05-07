@@ -55,6 +55,8 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 						src/init_game/init_how_to_play.c					\
 						src/game_management/display_one_more_char.c			\
 						src/game_management/update_how_to_play.c			\
+						src/event_management/key_management/pause_event.c	\
+						src/game_management/display_pause.c					\
 
 PATH_PLAYER = 			src/player
 
@@ -120,6 +122,7 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/init_enemy.c							\
 						$(PATH_ENEMY)/enemy_attack_player.c					\
 						$(PATH_ENEMY)/player_attack_enemy.c					\
+						$(PATH_ENEMY)/move_enemy.c 							\
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 

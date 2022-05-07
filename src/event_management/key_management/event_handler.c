@@ -87,6 +87,7 @@ int event_handler(game_t *game)
             game->background->scene_background = ROOM;
         }
         manage_key(game);
+        manage_pause(game);
         select_weapon(game->player);
         detect_key(game->player, game->clock_secondary);
         player_attack(game->player);

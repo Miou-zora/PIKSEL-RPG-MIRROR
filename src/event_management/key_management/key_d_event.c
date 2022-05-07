@@ -32,6 +32,7 @@ static void move_forest(game_t *game, int speed)
         game->background->forest[1]->sprite->rect.left += 10 * speed;
         game->player->traveled_distance += 1 * speed;
         move_npc_right(game, speed * 2);
+        move_enemy_right(game, speed * 2);
         sfSprite_setTextureRect(game->background->forest[0]->sprite->sprite,
         game->background->forest[0]->sprite->rect);
         sfSprite_setTextureRect(game->background->forest[1]->sprite->sprite,
@@ -39,11 +40,13 @@ static void move_forest(game_t *game, int speed)
     } else if (game->player->pos.x - 20 * speed <= 1600
     && game->background->scene_background == FOREST
     && game->player->traveled_distance < 650) {
-        move_player_right(game, speed);
+        move_player_right(game, speed * 2);
+        move_enemy_right(game, speed * 2);
     }
     if (game->player->pos.x + 16 * speed <= 1700
     && game->background->scene_background == LABO) {
-        move_player_right(game, speed * 2);
+        move_player_right(game, speed);
+        move_enemy_right(game, speed);
     }
 }
 
@@ -75,6 +78,7 @@ void move_background_right(game_t *game, int speed)
         game->background->town[1]->sprite->rect.left += 10 * speed;
         game->player->traveled_distance += 1 * speed;
         move_npc_right(game, speed);
+        move_enemy_right(game, speed);
         sfSprite_setTextureRect(game->background->town[0]->sprite->sprite,
         game->background->town[0]->sprite->rect);
         sfSprite_setTextureRect(game->background->town[1]->sprite->sprite,
@@ -83,6 +87,7 @@ void move_background_right(game_t *game, int speed)
     && game->background->scene_background == CITY
     && game->player->traveled_distance < 650) {
         move_player_right(game, speed);
+        move_enemy_right(game, speed);
     }
     move_forest(game, speed);
 }
@@ -91,7 +96,6 @@ int manage_key_d(game_t *game)
 {
     if (game->event.key.code == sfKeyD) {
         game->player->move_right = true;
-        game->player->attack = true;
         game->player->direction = true;
     }
     return (0);

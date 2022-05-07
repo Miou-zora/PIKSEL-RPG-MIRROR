@@ -67,6 +67,7 @@ typedef struct particle_s particle_t;
 typedef struct inventory_s inventory_t;
 typedef struct enemies_list_s enemies_list_t;
 typedef struct sound_music_s sound_music_t;
+typedef struct pause_menu_s pause_menu_t;
 
 /************************** struct ***********************************/
 
@@ -147,10 +148,13 @@ struct enemies_list_s {
 
 struct enemy_s {
     enum types_enemy type_enemy;
+    int distance_à_parcourir;
+    enum scene_background_t scene;
     char *name;
     int id;
     stat_t stat;
     float base_speed;
+    bool display;
     sfVector2f pos;
     clock_data_t *clock_data;
     float agro_distance;
@@ -294,6 +298,14 @@ struct laboratory_s {
     sprite_data_t *sprite;
 };
 
+struct pause_menu_s {
+    sprite_data_t *sprite;
+    sprite_data_t *back;
+    sfVector2f *rectangles_positions;
+    sfVector2f *rectangles_sizes;
+    bool display_pause;
+};
+
 struct menu_s {
     sprite_data_t *sprite;
     sfRectangleShape **settings_rectangles;
@@ -304,6 +316,7 @@ struct menu_s {
     bool music;
     bool how_to_play_mode;
     text_zone_t *how_to_play;
+    pause_menu_t *pause;
 };
 
 struct background_s {
@@ -369,18 +382,23 @@ enemy_t *create_enemy(void);
 void destroy_enemy(enemy_t **enemy);
 enemy_t *load_enemy(char *path);
 enemy_t *fill_enemy(enemy_t *enemy, char **data);
-enemy_t *spawn_mob_enemy(sfVector2f pos);
-enemy_t *spawn_mini_boss_enemy(sfVector2f pos);
-enemy_t *spawn_boss_enemy(sfVector2f pos);
+enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_inf);
+enemy_t *spawn_mini_boss_enemy(sfVector2f pos, sfVector2i spawn_inf);
+enemy_t *spawn_boss_enemy(sfVector2f pos, sfVector2i spawn_inf);
 void display_enemy(enemy_t *enemy, sfRenderWindow *window);
 void update_enemy(enemy_t *enemy, game_t *game);
 bool is_dead_enemy(enemy_t *enemy);
 int add_enemy(int category_enemy, enemies_list_t **enemies_list,
-sfVector2f pos);
+sfVector2f pos, sfVector2i spawn_inf);
 void update_enemies_list(enemies_list_t **enemies_list, game_t *game);
 void display_enemies_list(enemies_list_t **enemies_list,
 sfRenderWindow *window);
 void update_dead_list(enemies_list_t **enemies_list, player_t *player);
+bool init_enemy(game_t *game);
+void attack_player(enemy_t *enemy, player_t *player);
+void attack_enemy(enemy_t *enemy, game_t *game);
+void move_enemy_left(game_t *game, int speed);
+void move_enemy_right(game_t *game, int speed);
 
 //* armor
 
@@ -577,6 +595,9 @@ bool init_sound(sound_music_t **sound_music);
 
 //* enemy
 
-bool init_enemy(enemy_t **enemy);
 void attack_player(enemy_t *enemy, player_t *player);
-void attack_enemy(game_t *game);
+
+//* pause
+
+void display_pause(game_t *game);
+void manage_pause(game_t *game);

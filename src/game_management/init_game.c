@@ -18,7 +18,7 @@ bool init_game(game_t *game)
         return (true);
     if (init_player(game->player))
         return (true);
-    if (init_enemy(&(game->enemy)))
+    if (init_enemy(game))
         return (true);
     if (init_npc(game->npc))
         return (true);
