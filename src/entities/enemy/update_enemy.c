@@ -17,6 +17,11 @@ static void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos)
         return;
     scaling = sqrt(pow(pos.x - enemy->pos.x, 2) + pow(pos.y - enemy->pos.y, 2))
     / (enemy->base_speed * enemy->stat.speed);
+    if (scaling <= 1) {
+        enemy->pos.x = pos.x;
+        enemy->pos.y = pos.y;
+        return;
+    }
     enemy->pos.x += (pos.x - enemy->pos.x) / scaling;
     enemy->pos.y += (pos.y - enemy->pos.y) / scaling;
 }
@@ -30,8 +35,12 @@ void update_enemy(enemy_t *enemy, game_t *game)
     else if (enemy->moving_state == MOVING)
         update_animator(enemy->animator_moving);
     drain_clock_data(enemy->clock_data);
+    drain_clock_data(enemy->attack_clock);
     while (update_clock_data(enemy->clock_data)) {
         move_enemy_to_pos(enemy, game->player->pos);
+    }
+    while (update_clock_data(enemy->attack_clock)) {
+        attack_player(enemy, game->player);
     }
     sfSprite_setPosition(enemy->animator_standing->sprite_data->sprite,
     enemy->pos);

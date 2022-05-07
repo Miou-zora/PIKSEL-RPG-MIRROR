@@ -61,6 +61,8 @@ void spawn_random_loot(loot_t **loot, sfVector2f pos)
     if (which_loot < 9) {
         loot[which_loot] = malloc(sizeof(loot_t));
         loot[which_loot]->position = pos;
+        loot[which_loot]->disparition_clock = create_clock_data();
+        set_framerate_clock_data(loot[which_loot]->disparition_clock, 15);
         set_armor_or_weapon(&(loot[which_loot]), colors, pos);
     }
 }

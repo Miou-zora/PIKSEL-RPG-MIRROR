@@ -24,22 +24,10 @@ static void key_run(player_t *player)
     }
 }
 
-void move_player_up_and_down(player_t *player)
-{
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
-        player->move_up = true;
-    else
-        player->move_up = false;
-    if (sfKeyboard_isKeyPressed(sfKeyS))
-        player->move_down = true;
-    else
-        player->move_down = false;
-}
 
 void detect_key(player_t *player, clock_data_t *clock)
 {
     key_run(player);
-    move_player_up_and_down(player);
     drain_clock_data(clock);
     while (update_clock_data(clock)) {
         if (sfKeyboard_isKeyPressed(sfKeyD)) {
@@ -78,14 +66,9 @@ void player_attack(player_t *player)
 
 void select_weapon(player_t *player)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyNumpad1))
-        player->weapon = 1;
-    if (sfKeyboard_isKeyPressed(sfKeyNumpad2))
-        player->weapon = 2;
-    if (sfKeyboard_isKeyPressed(sfKeyNumpad3))
-        player->weapon = 3;
-    if (sfKeyboard_isKeyPressed(sfKeyNumpad4))
-        player->weapon = 4;
+    if (player->inventory->weapon != NULL) {
+        player->weapon = player->inventory->weapon->id;
+    }
 }
 
 int event_handler(game_t *game)
@@ -99,7 +82,8 @@ int event_handler(game_t *game)
         if (game->background->scene_background == SETTINGS)
             handle_settings_events(game);
         if (sfKeyboard_isKeyPressed(game->event.key.code) == true
-        && game->event.key.code == sfKeySpace) {
+        && game->event.key.code == sfKeySpace
+        && game->background->scene_background == CINEMATIC) {
             game->background->scene_background = ROOM;
         }
         manage_key(game);

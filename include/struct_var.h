@@ -71,8 +71,12 @@ typedef struct sound_music_s sound_music_t;
 
 struct sound_music_s {
     sfMusic *music;
-    sfSoundBuffer *sound_buff;
-    sfSound *sound;
+    sfSoundBuffer *sound_buff_damage;
+    sfSound *damage;
+    sfSoundBuffer *sound_buff_terry;
+    sfSound *terry;
+    sfSoundBuffer *sound_buff_teleport;
+    sfSound *teleport;
 };
 
 struct cinematic_s {
@@ -111,13 +115,15 @@ struct loot_s {
     armor_t *armor;
     weapon_t *weapon;
     int id;
+    clock_data_t *disparition_clock;
 };
 
 struct npc_s {
     sprite_data_t *sprite_data;
-    int postion[2];
-    struct dialogues *dialogue;
+    bool display;
+    text_zone_t *dialogue;
     int distance_à_parcourir;
+    bool display_text;
     enum scene_background_t scene;
 };
 
@@ -143,6 +149,7 @@ struct enemy_s {
     enum moving_states moving_state;
     animator_t *animator_standing;
     animator_t *animator_moving;
+    clock_data_t *attack_clock;
 };
 
 struct framebuffer_s {
@@ -413,7 +420,7 @@ int manage_key_z(game_t *game);
 int manage_key_s(game_t *game);
 int manage_key_q(game_t *game);
 int manage_key_f(game_t *game);
-int manage_key_enter(game_t *game);
+int manage_attack_key(game_t *game);
 bool room_to_city(game_t *game);
 bool city_to_room(game_t *game);
 bool city_to_forest(game_t *game);
@@ -428,6 +435,8 @@ void move_player_walk(player_t *player, game_t *game);
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
+void manage_up(game_t *game);
+void manage_down(game_t *game);
 
 //* cinematic
 
@@ -502,6 +511,7 @@ void player_animation_spear(player_t *player);
 void player_animation_run(player_t *player);
 void player_animation_walk(player_t *player);
 void player_animation_iddle(player_t *player);
+bool init_player_animator_move(player_t *player);
 
 //* particle
 
@@ -527,12 +537,22 @@ void add_chestplate(inventory_t *inventory, loot_t *loot);
 void add_pant(inventory_t *inventory, loot_t *loot);
 void add_boots(inventory_t *inventory, loot_t *loot);
 void add_weapon(inventory_t *inventory, loot_t *loot);
+void remove_loot(loot_t *loot[10]);
 
 //* npc
 
 void display_npc(game_t *game);
 bool init_npc(npc_t *npc[4]);
+void update_npc(game_t *game);
+void move_npc_left(game_t *game, int speed);
+void move_npc_right(game_t *game, int speed);
 
 //* sound / music
 
-bool init_sound(sound_music_t *sound_music);
+bool init_sound(sound_music_t **sound_music);
+
+//* enemy
+
+bool init_enemy(enemy_t **enemy);
+void attack_player(enemy_t *enemy, player_t *player);
+void attack_enemy(game_t *game);

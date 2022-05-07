@@ -35,6 +35,7 @@ SRC_INVENTORY	=		src/items/spawn_random_loot.c						\
 						src/event_management/key_management/handle_inv.c	\
 						src/event_management/key_management/add_armor.c		\
 						src/event_management/key_management/add_weapon.c	\
+						src/items/remove_loot.c								\
 
 PATH_PARTICLES =		src/particle
 
@@ -58,9 +59,10 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 PATH_PLAYER = 			src/player
 
 SRC_PLAYER = 			$(PATH_PLAYER)/init_player.c 						\
-			 		    $(PATH_PLAYER)/init_stats.c 						\
+			 			$(PATH_PLAYER)/init_stats.c 						\
 						$(PATH_PLAYER)/display_player.c 					\
 						$(PATH_PLAYER)/display_hitbox.c 					\
+						$(PATH_PLAYER)/init_player_clock.c 					\
 
 PATH_GAME_MANAGEMENT =	src/game_management
 
@@ -68,6 +70,8 @@ SRC_GAME_MANAGEMENT =	$(PATH_GAME_MANAGEMENT)/init_game.c					\
 						$(PATH_GAME_MANAGEMENT)/update.c					\
 						$(PATH_GAME_MANAGEMENT)/display.c					\
 						$(PATH_GAME_MANAGEMENT)/display_stats.c				\
+						$(PATH_GAME_MANAGEMENT)/move_player_up.c 			\
+						$(PATH_GAME_MANAGEMENT)/move_player_down.c 			\
 						$(PATH_GAME_MANAGEMENT)/handle_stats.c				\
 						$(PATH_GAME_MANAGEMENT)/update_player_attack.c 		\
 						$(PATH_GAME_MANAGEMENT)/update_player_move.c 		\
@@ -81,7 +85,7 @@ SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
 						$(PATH_EVENT)/key_management/key_s_event.c 			\
 						$(PATH_EVENT)/key_management/key_z_event.c 			\
 						$(PATH_EVENT)/key_management/key_f_event.c 			\
-						$(PATH_EVENT)/key_management/key_enter_event.c		\
+						$(PATH_EVENT)/key_management/attack_key_event.c		\
 						$(PATH_EVENT)/map_changement/city_to_forest.c 		\
 						$(PATH_EVENT)/map_changement/city_to_room.c 		\
 						$(PATH_EVENT)/map_changement/room_to_city.c 		\
@@ -110,6 +114,9 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/fill_enemy.c							\
 						$(PATH_ENEMY)/display_enemy.c						\
 						$(PATH_ENEMY)/update_enemy.c						\
+						$(PATH_ENEMY)/init_enemy.c							\
+						$(PATH_ENEMY)/enemy_attack_player.c					\
+						$(PATH_ENEMY)/player_attack_enemy.c					\
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 
@@ -153,6 +160,9 @@ SRC_WEAPON =			$(PATH_WEAPON)/create_weapon.c						\
 PATH_NPC = 				src/npc
 
 SRC_NPC = 				$(PATH_NPC)/init_npc.c 								\
+						$(PATH_NPC)/display_npc.c 							\
+						$(PATH_NPC)/move_npc.c 								\
+						$(PATH_NPC)/update_npc.c 							\
 
 PATH_SPRITE_DATA =		src/sprite_data
 
@@ -224,11 +234,6 @@ make_lib:
 debug:		CFLAGS += -g
 debug:		re
 
-tests_menu:		make_lib $(OBJ_SRC)
-				@$(CC) $(OBJ_SRC) $(TESTS_MENU) $(CFLAGS_MENU) -o "tests_menu" $(LFLAGS) -g
-				@printf "\033[32m[Message]\033[39m Compilation de tests_menu \
-				réussi\n"
-
 clean:
 			echo $(SRC_ANIMATOR)
 			@$(RM) $(OBJ_SRC)
@@ -236,51 +241,6 @@ clean:
 			@$(MK) -C lib/my/ clean
 			@printf "\033[31m[Message]\033[39m Clean libmy reussi !\n"
 			@printf "\033[31m[Message]\033[39m Clean %s reussi !\n" $(NAME)
-
-tests_run:		tclean $(NAME)
-			$(CC) $(SRC) $(TEST_FONC) $(CFLAGS) $(TESTS_FLAGS) $(LFLAGS) \
-			-o $(TEST_BINARY)
-			./$(TEST_BINARY)
-			@printf "\033[32m[Message]\033[39m Compilation de tests réussi !\n"
-			$(MV) *.gcda tests
-			$(MV) *.gcno tests
-			gcovr -e tests
-			gcovr -e tests -bu
-
-TEST_ENNEMY = tests/ennemy/test_ennemy_main.c
-
-tests_ennemy: 	make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(TEST_ENNEMY) $(CFLAGS) -o "tests_ennemy" $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de tests_ennemy"
-
-TEST_PLAYER = 	tests/tests_file/player_position.c \
-				tests/tests_file/player_animation.c \
-				tests/tests_file/player_animation_attack.c \
-				tests/tests_file/move_player.c \
-				tests/tests_file/main_loop.c \
-				tests/tests_file/events.c \
-				tests/tests_file/display_sprite.c \
-				tests/tests_file/detect_key.c \
-				tests/tests_file/create_sprites_player.c \
-				tests/tests_file/clock_player.c \
-				tests/tests_file/clock_player_attack.c \
-
-tests_player:	make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(TEST_PLAYER) $(CFLAGS) -o "tests_player" $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de tests_player \
-			réussi\n"
-
-TEST_BACKGROUND = tests/background/test_background_main.c
-
-tests_background:	make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(TEST_BACKGROUND) $(CFLAGS) -o "tests_background" $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de tests_background \
-			réussi\n"
-
-tests_cinematic:	make_lib $(OBJ_SRC)
-			@$(CC) $(OBJ_SRC) $(SRC_CINEMATIC_TESTS) $(CFLAGS) -o "tests_cinematic" $(LFLAGS)
-			@printf "\033[32m[Message]\033[39m Compilation de tests_cinematic \
-			réussi\n"
 
 tclean:
 			@$(RM) tests/*.gcda
