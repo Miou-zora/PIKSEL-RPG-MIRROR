@@ -67,6 +67,7 @@ typedef struct particle_s particle_t;
 typedef struct inventory_s inventory_t;
 typedef struct enemies_list_s enemies_list_t;
 typedef struct sound_music_s sound_music_t;
+typedef struct pause_menu_s pause_menu_t;
 
 /************************** struct ***********************************/
 
@@ -297,6 +298,14 @@ struct laboratory_s {
     sprite_data_t *sprite;
 };
 
+struct pause_menu_s {
+    sprite_data_t *sprite;
+    sprite_data_t *back;
+    sfVector2f *rectangles_positions;
+    sfVector2f *rectangles_sizes;
+    bool display_pause;
+};
+
 struct menu_s {
     sprite_data_t *sprite;
     sfRectangleShape **settings_rectangles;
@@ -307,6 +316,7 @@ struct menu_s {
     bool music;
     bool how_to_play_mode;
     text_zone_t *how_to_play;
+    pause_menu_t *pause;
 };
 
 struct background_s {
@@ -582,3 +592,12 @@ void move_npc_right(game_t *game, int speed);
 //* sound / music
 
 bool init_sound(sound_music_t **sound_music);
+
+//* enemy
+
+void attack_player(enemy_t *enemy, player_t *player);
+
+//* pause
+
+void display_pause(game_t *game);
+void manage_pause(game_t *game);

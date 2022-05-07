@@ -17,6 +17,8 @@ void display_background(game_t *game)
         display_loot(game);
         display_hitbox(game->player->hitbox, game->window, game->player->hitbox_color);
         display_player_sprites(game->player, game);
+        if (game->background->menu->pause->display_pause == true)
+            display_pause(game);
     }
     if (game->background->scene_background == CITY) {
         sfRenderWindow_drawSprite(game->window,
@@ -27,6 +29,8 @@ void display_background(game_t *game)
         display_enemies_list(&(game->enemies_list), game->window);
         sfRenderWindow_drawSprite(game->window,
         game->background->town[1]->sprite->sprite, NULL);
+        if (game->background->menu->pause->display_pause == true)
+            display_pause(game);
     }
     if (game->background->scene_background == FOREST) {
         sfRenderWindow_drawSprite(game->window,
@@ -36,6 +40,8 @@ void display_background(game_t *game)
         display_npc(game);
         display_loot(game);
         display_player_sprites(game->player, game);
+        if (game->background->menu->pause->display_pause == true)
+            display_pause(game);
         display_enemies_list(&(game->enemies_list), game->window);
     }
     if (game->background->scene_background == LABO) {
@@ -43,6 +49,8 @@ void display_background(game_t *game)
         game->background->laboratory->sprite->sprite, NULL);
         display_npc(game);
         display_player_sprites(game->player, game);
+        if (game->background->menu->pause->display_pause == true)
+            display_pause(game);
         display_enemies_list(&(game->enemies_list), game->window);
     }
     if (game->background->scene_background != MENU
