@@ -74,6 +74,7 @@ int manage_key_d(game_t *game)
 {
     if (game->event.key.code == sfKeyD) {
         game->player->move_right = true;
+        game->player->attack = true;
     }
     return (0);
 }
