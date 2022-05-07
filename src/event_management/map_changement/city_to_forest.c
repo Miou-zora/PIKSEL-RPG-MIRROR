@@ -18,12 +18,14 @@ bool city_to_forest(game_t *game)
         game->npc[1]->display_text = false;
         game->player->traveled_distance = 0;
         game->player->pos = (sfVector2f){820, 440};
+        sfSound_play(game->sound_music->teleport);
         return (true);
     }
     if (game->player->traveled_distance > 515
     && game->player->traveled_distance < 545
     && game->background->scene_background == CITY) {
         game->npc[1]->display_text = true;
+        sfSound_play(game->sound_music->terry);
         return (true);
     }
     return (false);

@@ -14,6 +14,7 @@ int manage_background(game_t *game)
     && game->player->traveled_distance <= 130
     && game->background->scene_background == CITY) {
         game->npc[0]->display_text = true;
+        sfSound_play(game->sound_music->terry);
         return (0);
     } else
         game->npc[0]->display_text = false;
