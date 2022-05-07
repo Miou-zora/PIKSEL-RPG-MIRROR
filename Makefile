@@ -21,6 +21,7 @@ SRC =					$(SRC_ANIMATOR)										\
 						$(SRC_INVENTORY)									\
 						$(SRC_NPC)											\
 						$(SRC_CINEMATIC)									\
+						$(SRC_SOUND_MUSIC)
 
 SRC_CINEMATIC	=		src/init_game/init_cinematic.c						\
 						src/init_game/init_cinematic_sprites.c				\
@@ -191,6 +192,8 @@ SRC_CINEMATIC_TESTS	=	$(PATH_CINEMATIC)/main_loop.c						\
 						src/menu/text_zones/handle_texts_zones.c			\
 						src/menu/text_zones/display_one_more_char.c			\
 						src/menu/text_zones/display_text_zone.c				\
+
+SRC_SOUND_MUSIC	=		src/init_game/init_sound.c							\
 
 OBJ_SRC		=	$(SRC:%.c=%.o)
 

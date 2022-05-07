@@ -24,6 +24,8 @@ bool init_game(game_t *game)
         return (true);
     if (init_inventory(&game->player->inventory))
         return (true);
+    if (init_sound(&game->sound_music))
+        return (true);
     return (false);
 }
 

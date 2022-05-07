@@ -65,8 +65,19 @@ typedef struct framebuffer_s framebuffer_t;
 typedef struct nest_particle_s nest_particle_t;
 typedef struct particle_s particle_t;
 typedef struct inventory_s inventory_t;
+typedef struct sound_music_s sound_music_t;
 
 /************************** struct ***********************************/
+
+struct sound_music_s {
+    sfMusic *music;
+    sfSoundBuffer *sound_buff_damage;
+    sfSound *damage;
+    sfSoundBuffer *sound_buff_terry;
+    sfSound *terry;
+    sfSoundBuffer *sound_buff_teleport;
+    sfSound *teleport;
+};
 
 struct cinematic_s {
     sprite_data_t *skip_button;
@@ -323,6 +334,7 @@ struct game_s {
     sfClock *clock;
     clock_data_t *clock_secondary;
     cinematic_t *cinematic;
+    sound_music_t *sound_music;
 };
 
 /************************** functions ***********************************/
@@ -534,6 +546,10 @@ bool init_npc(npc_t *npc[4]);
 void update_npc(game_t *game);
 void move_npc_left(game_t *game, int speed);
 void move_npc_right(game_t *game, int speed);
+
+//* sound / music
+
+bool init_sound(sound_music_t **sound_music);
 
 //* enemy
 
