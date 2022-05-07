@@ -69,8 +69,12 @@ enemy_t *spawn_boss_enemy(sfVector2f pos)
     enemy->base_speed = 6.f;
     enemy->type_enemy = BOSS;
     enemy->pos = pos;
-    enemy->animator_standing = load_animator("scripts/animator/iddle.ani");
-    enemy->animator_moving = load_animator("scripts/animator/iddle.ani");
+    enemy->animator_standing = load_animator("scripts/animator/iddle_boss.ani");
+    enemy->animator_standing->sprite_data->scale = (sfVector2f){8, 8};
+    sfSprite_setScale(enemy->animator_standing->sprite_data->sprite, (sfVector2f){8, 8});
+    enemy->animator_moving = load_animator("scripts/animator/moving_boss.ani");
+    enemy->animator_moving->sprite_data->scale = (sfVector2f){8, 8};
+    sfSprite_setScale(enemy->animator_moving->sprite_data->sprite, (sfVector2f){8, 8});
     enemy->actual_animator = enemy->animator_standing;
     enemy->animator_moving->clock_data->framerate_seconds = 0.05;
     enemy->agro_distance = 400.f;
