@@ -32,6 +32,7 @@ static void move_forest(game_t *game, int speed)
         game->background->forest[1]->sprite->rect.left -= 10 * speed;
         game->player->traveled_distance -= 1 * speed;
         move_npc_left(game, speed * 2);
+        move_enemy_left(game, speed * 2);
         sfSprite_setTextureRect(game->background->forest[0]->sprite->sprite,
         game->background->forest[0]->sprite->rect);
         sfSprite_setTextureRect(game->background->forest[1]->sprite->sprite,
@@ -41,10 +42,12 @@ static void move_forest(game_t *game, int speed)
     && game->player->pos.x - 16 * speed >= 0
     && game->background->scene_background == FOREST) {
         move_player_left(game, speed * 2);
+        move_enemy_left(game, speed * 2);
     }
     if (game->player->pos.x - 16 * speed >= -10
     && game->background->scene_background == LABO) {
-        move_player_left(game, speed * 2);
+        move_player_left(game, speed);
+        move_enemy_left(game, speed);
     }
 }
 
@@ -76,6 +79,7 @@ void move_background_left(game_t *game, int speed)
         game->background->town[1]->sprite->rect.left -= 10 * speed;
         game->player->traveled_distance -= 1 * speed;
         move_npc_left(game, speed);
+        move_enemy_left(game, speed);
         sfSprite_setTextureRect(game->background->town[0]->sprite->sprite,
         game->background->town[0]->sprite->rect);
         sfSprite_setTextureRect(game->background->town[1]->sprite->sprite,
@@ -85,6 +89,7 @@ void move_background_left(game_t *game, int speed)
     && game->player->pos.x - 16 * speed >= 0
     && game->background->scene_background == CITY) {
         move_player_left(game, speed);
+        move_enemy_left(game, speed);
     }
     move_forest(game, speed);
 }

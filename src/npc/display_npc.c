@@ -15,7 +15,6 @@ void display_npc(game_t *game)
         && game->npc[i]->display == true)
             sfRenderWindow_drawSprite(game->window, game->npc[i]->sprite_data->sprite, NULL);
         if (game->npc[i]->display_text == true) {
-            my_printf("%i\n", i);
             display_text_zone(game->window, game->npc[i]->dialogue);
         }
     }

@@ -8,13 +8,15 @@
 #include "struct_var.h"
 #include "my.h"
 
-bool init_enemy(enemy_t **enemy)
+bool init_enemy(game_t *game)
 {
-    (*enemy) = load_enemy("scripts/enemy/wolf.ene");
-    if ((*enemy) == NULL)
-        return (true);
-    (*enemy)->pos = (sfVector2f){500, 500};
-    (*enemy)->attack_clock = create_clock_data();
-    set_framerate_clock_data((*enemy)->attack_clock, 1);
+    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
+    (sfVector2i){CITY, 60});
+    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
+    (sfVector2i){CITY, 85});
+    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
+    (sfVector2i){CITY, 115});
+    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
+    (sfVector2i){CITY, 142});
     return (false);
 }
