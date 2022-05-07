@@ -54,6 +54,12 @@ int manage_key(game_t *game)
         if (game->event.key.code == sfKeyLShift)
             game->player->player_mode = 2;
         key_run(game->player);
+        if (game->event.key.code == sfKeyT)
+            sfSound_play(game->sound_music->damage);
+        if (game->event.key.code == sfKeyY)
+            sfSound_play(game->sound_music->teleport);
+        if (game->event.key.code == sfKeyU)
+            sfSound_play(game->sound_music->terry);
     }
     if (game->event.type == sfEvtKeyReleased) {
         if (game->event.key.code == sfKeyD) {
