@@ -9,6 +9,16 @@
 #include "math.h"
 #include "my.h"
 
+void change_enemy_direction(sfVector2f *enemy_core, sfVector2f *pos,
+enemy_t *enemy)
+{
+    if (enemy_core->x - pos->x > 0) {
+        // sfSprite_setTextureRect(enemy->actual_animator->sprite_data->sprite, (sfIntRect){0, 0, -enemy->actual_animator->size_image.x, enemy->actual_animator->size_image.y});
+    } else {
+        // sfSprite_setTextureRect(enemy->actual_animator->sprite_data->sprite, (sfIntRect){0, 0, enemy->actual_animator->size_image.x, enemy->actual_animator->size_image.y});
+    }
+}
+
 static void move_enemy_to_pos_animator(sfVector2f *enemy_core, sfVector2f *pos,
 float distance, enemy_t *enemy)
 {
@@ -20,6 +30,7 @@ float distance, enemy_t *enemy)
         return;
     } else
         re_set_animator(&(enemy->actual_animator), &(enemy->animator_moving));
+    change_enemy_direction(enemy_core, pos, enemy);
     scaling = distance / (enemy->base_speed * enemy->stat.speed);
     if (scaling <= 1) {
         enemy->pos.x = pos->x - (enemy->actual_animator->size_image.x *
