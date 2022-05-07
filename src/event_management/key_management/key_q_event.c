@@ -9,19 +9,6 @@
 #include "struct_var.h"
 #include "my.h"
 
-static void move_forest(game_t *game, int speed)
-{
-    if (game->background->scene_background == FOREST
-    && game->player->traveled_distance > 0) {
-        game->background->forest[0]->sprite->rect.left -= 5 * speed;
-        game->background->forest[1]->sprite->rect.left -= 10 * speed;
-        sfSprite_setTextureRect(game->background->forest[0]->sprite->sprite,
-        game->background->forest[0]->sprite->rect);
-        sfSprite_setTextureRect(game->background->forest[1]->sprite->sprite,
-        game->background->forest[1]->sprite->rect);
-    }
-}
-
 void move_player_left(game_t *game, int speed)
 {
     game->player->pos.x -= 15.f * speed;
@@ -31,6 +18,34 @@ void move_player_left(game_t *game, int speed)
     else
         sfSprite_setPosition(game->player->run->sprite_data->sprite ,
         game->player->pos);
+}
+
+static void move_forest(game_t *game, int speed)
+{
+    if (game->background->scene_background == FOREST
+    && game->player->pos.x > 800
+    && game->player->pos.x < 831
+    && game->background->forest[0]->sprite->rect.left > 0) {
+        if (game->background->loot != NULL)
+            move_loot(game->background->loot, 20 * speed);
+        game->background->forest[0]->sprite->rect.left -= 5 * speed;
+        game->background->forest[1]->sprite->rect.left -= 10 * speed;
+        game->player->traveled_distance -= 1 * speed;
+        move_npc_left(game, speed * 2);
+        sfSprite_setTextureRect(game->background->forest[0]->sprite->sprite,
+        game->background->forest[0]->sprite->rect);
+        sfSprite_setTextureRect(game->background->forest[1]->sprite->sprite,
+        game->background->forest[1]->sprite->rect);
+    } else if ((game->background->forest[0]->sprite->rect.left <= 0
+    || game->player->traveled_distance >= 560)
+    && game->player->pos.x - 16 * speed >= 0
+    && game->background->scene_background == FOREST) {
+        move_player_left(game, speed * 2);
+    }
+    if (game->player->pos.x - 16 * speed >= -10
+    && game->background->scene_background == LABO) {
+        move_player_left(game, speed * 2);
+    }
 }
 
 void move_background_left(game_t *game, int speed)
@@ -60,11 +75,13 @@ void move_background_left(game_t *game, int speed)
         game->background->town[0]->sprite->rect.left -= 5 * speed;
         game->background->town[1]->sprite->rect.left -= 10 * speed;
         game->player->traveled_distance -= 1 * speed;
+        move_npc_left(game, speed);
         sfSprite_setTextureRect(game->background->town[0]->sprite->sprite,
         game->background->town[0]->sprite->rect);
         sfSprite_setTextureRect(game->background->town[1]->sprite->sprite,
         game->background->town[1]->sprite->rect);
-    } else if (game->background->town[0]->sprite->rect.left <= 0 
+    } else if ((game->background->town[0]->sprite->rect.left <= 0
+    || game->player->traveled_distance >= 560)
     && game->player->pos.x - 16 * speed >= 0
     && game->background->scene_background == CITY) {
         move_player_left(game, speed);

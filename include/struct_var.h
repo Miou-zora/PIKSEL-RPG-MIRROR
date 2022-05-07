@@ -109,9 +109,10 @@ struct loot_s {
 
 struct npc_s {
     sprite_data_t *sprite_data;
-    int postion[2];
-    struct dialogues *dialogue;
+    bool display;
+    text_zone_t *dialogue;
     int distance_à_parcourir;
+    bool display_text;
     enum scene_background_t scene;
 };
 
@@ -421,6 +422,8 @@ void move_player_walk(player_t *player, game_t *game);
 bool initialize_game(game_t **game);
 void display(game_t *game);
 void update(game_t *game);
+void manage_up(game_t *game);
+void manage_down(game_t *game);
 
 //* cinematic
 
@@ -495,6 +498,7 @@ void player_animation_spear(player_t *player);
 void player_animation_run(player_t *player);
 void player_animation_walk(player_t *player);
 void player_animation_iddle(player_t *player);
+bool init_player_animator_move(player_t *player);
 
 //* particle
 
@@ -526,3 +530,6 @@ void remove_loot(loot_t *loot[10]);
 
 void display_npc(game_t *game);
 bool init_npc(npc_t *npc[4]);
+void update_npc(game_t *game);
+void move_npc_left(game_t *game, int speed);
+void move_npc_right(game_t *game, int speed);

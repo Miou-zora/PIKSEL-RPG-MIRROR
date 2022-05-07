@@ -15,6 +15,21 @@ int manage_key_f(game_t *game)
     if (game->event.key.code == sfKeyF) {
         if (game->background->loot != NULL)
             get_loot(game);
+        my_printf("%i\n", game->player->traveled_distance);
+        if (game->player->traveled_distance >= 90
+        && game->player->traveled_distance <= 130
+        && game->background->scene_background == CITY
+        && game->npc[0]->display_text == true) {
+            game->npc[0]->display_text = false;
+            return (0);
+        }
+        if (game->player->traveled_distance >= 90
+        && game->player->traveled_distance <= 130
+        && game->background->scene_background == CITY) {
+            game->npc[0]->display_text = true;
+            return (0);
+        } else 
+            game->npc[0]->display_text = false;
         if (room_to_city(game))
             return (0);
         if (city_to_room(game))

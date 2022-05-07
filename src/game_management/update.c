@@ -46,7 +46,6 @@ void clock_animation_player(player_t *player)
         player_animation_gun(player);
 }
 
-
 void called_clock_player(player_t *player, game_t *game)
 {
     clock_player(player, game);
@@ -67,6 +66,7 @@ void update(game_t *game)
             game->background->menu->how_to_play_mode = false;
         }
     }
+    update_npc(game);
     if (game->background->scene_background == CINEMATIC) {
         clock_cine_text(&(game->cinematic));
         call_clock_cine(game->cinematic);
