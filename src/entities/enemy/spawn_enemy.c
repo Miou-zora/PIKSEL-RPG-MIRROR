@@ -73,18 +73,22 @@ enemy_t *spawn_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->base_speed = 6.f;
     enemy->type_enemy = BOSS;
     enemy->pos = pos;
-    enemy->animator_standing = load_animator("scripts/animator/iddle_boss.ani");
+    enemy->animator_standing = \
+    load_animator("scripts/animator/iddle_boss.ani");
     enemy->animator_standing->sprite_data->scale = (sfVector2f){8, 8};
-    sfSprite_setScale(enemy->animator_standing->sprite_data->sprite, (sfVector2f){8, 8});
+    sfSprite_setScale(enemy->animator_standing->sprite_data->sprite,
+    (sfVector2f){8, 8});
     enemy->animator_moving = load_animator("scripts/animator/moving_boss.ani");
     enemy->animator_moving->sprite_data->scale = (sfVector2f){8, 8};
-    sfSprite_setScale(enemy->animator_moving->sprite_data->sprite, (sfVector2f){8, 8});
+    sfSprite_setScale(enemy->animator_moving->sprite_data->sprite,
+    (sfVector2f){8, 8});
     enemy->actual_animator = enemy->animator_standing;
     enemy->animator_moving->clock_data->framerate_seconds = 0.05;
     enemy->scene = spawn_info.x;
     enemy->distance_to_travel = spawn_info.y;
     enemy->agro_distance = 400.f;
-    enemy->nest_particle = create_nest_particle(100000, (sfVector2i){250, 250});
+    enemy->nest_particle = create_nest_particle(100000,
+    (sfVector2i){250, 250});
     enemy->nest_particle->color = (sfColor){255, 0, 255, 255};
     return (enemy);
 }

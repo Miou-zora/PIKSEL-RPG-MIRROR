@@ -33,7 +33,8 @@ char **get_files_from_directory(char *directory, char *expected_extension)
 {
     DIR *dir = NULL;
     struct dirent *file;
-    int nb_of_files = get_number_of_files_in_directory(directory, expected_extension);
+    int nb_of_files = get_number_of_files_in_directory(directory,
+    expected_extension);
     char **files = NULL;
     int i = 0;
 

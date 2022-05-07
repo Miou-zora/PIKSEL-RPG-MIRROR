@@ -89,7 +89,7 @@ animator_t *fill_animator(animator_t *animator, char **data)
         error |= fill_animator_size_image(animator, data[3]);
         error |= fill_animator_nbr_image(animator, data[2]);
         if (error || animator->sprite_data == NULL) {
-            return(NULL);
+            return (NULL);
         }
         animator->sprite_data->rect.height = animator->size_image.y;
         animator->sprite_data->rect.width = animator->size_image.x;
