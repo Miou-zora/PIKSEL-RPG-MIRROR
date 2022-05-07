@@ -91,7 +91,7 @@ void update(game_t *game)
         clock_cine_text(&(game->cinematic));
         call_clock_cine(game->cinematic);
     }
-    update_enemy(game->enemy, game);
+    update_enemies_list(&(game->enemies_list), game);
     update_how_to_play(game->background->menu);
     called_clock_player(game->player, game);
     update_position(game->player);

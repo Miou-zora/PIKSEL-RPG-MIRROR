@@ -10,13 +10,6 @@
 #include "my.h"
 #include "struct_var.h"
 
-void shade_framebuffer(framebuffer_t *framebuffer) {
-    for (unsigned int i = 0;
-    i < framebuffer->width * framebuffer->height *4; i++) {
-        framebuffer->pixels[i] -= (framebuffer->pixels[i] > 0) ? 1 : 0;
-    }
-}
-
 int my_rpg(void)
 {
     game_t *game = NULL;
@@ -28,6 +21,7 @@ int my_rpg(void)
     set_framerate_clock_data(principal_clock, 0.03);
     if (initialize_game(&game))
         return (84);
+    add_enemy(BOSS, &(game->enemies_list), (sfVector2f){100, 100});
     game->clock_secondary = clock_secondary;
     while (sfRenderWindow_isOpen(game->window)) {
         drain_clock_data(principal_clock);

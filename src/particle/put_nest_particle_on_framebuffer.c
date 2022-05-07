@@ -29,13 +29,14 @@ framebuffer_t *framebuffer, sfVector2f offset, sfColor color)
         return;
     }
     float distance = sqrt(pow(particle->position.x, 2) + pow(particle->position.y, 2));
-    float pourcent = (distance * 200.f / 100.f) / 100.f;
+    float pourcent = pow((distance * 100.f / (framebuffer->height / 2)) / 100.f, 2);
     if (pourcent > 1) {
         pourcent = 1;
     }
-    color.r *= (1 - pourcent) ;
+    color.r *= (1 - pourcent);
     color.g *= (1 - pourcent);
     color.b *= (1 - pourcent);
+    color.a *= (1 - pourcent);
     framebuffer->pixels[(pixel_pos.x + pixel_pos.y * framebuffer->width) * 4 + 0] = color.r;
     framebuffer->pixels[(pixel_pos.x + pixel_pos.y * framebuffer->width) * 4 + 1] = color.g;
     framebuffer->pixels[(pixel_pos.x + pixel_pos.y * framebuffer->width) * 4 + 2] = color.b;
@@ -51,7 +52,7 @@ void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle)
     cursor = nest_particle->all_particles;
     while (cursor != NULL) {
         put_particle_on_framebuffer(cursor, nest_particle->framebuffer,
-        nest_particle->offset, (sfColor){255, 255, 255, 255});
+        nest_particle->offset, nest_particle->color);
         cursor = cursor->next;
     }
 }

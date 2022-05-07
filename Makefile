@@ -105,6 +105,7 @@ SRC_ELEMENTARY =		$(PATH_ELEMENTARY)/get_file.c						\
 						$(PATH_ELEMENTARY)/get_files_from_directory.c		\
 						$(PATH_ELEMENTARY)/freen_array.c					\
 						$(PATH_ELEMENTARY)/verif_extension.c				\
+						$(PATH_ELEMENTARY)/get_distance.c					\
 
 PATH_ENEMY =			src/entities/enemy
 
@@ -114,6 +115,8 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/fill_enemy.c							\
 						$(PATH_ENEMY)/display_enemy.c						\
 						$(PATH_ENEMY)/update_enemy.c						\
+						$(PATH_ENEMY)/is_dead_enemy.c						\
+						$(PATH_ENEMY)/spawn_enemy.c							\
 						$(PATH_ENEMY)/init_enemy.c							\
 						$(PATH_ENEMY)/enemy_attack_player.c					\
 						$(PATH_ENEMY)/player_attack_enemy.c					\
@@ -126,6 +129,7 @@ SRC_CLOCK =				$(PATH_CLOCK_DATA)/create_clock_data.c				\
 						$(PATH_CLOCK_DATA)/drain_clock_data.c				\
 						$(PATH_CLOCK_DATA)/set_framerate_clock_data.c		\
 						$(PATH_CLOCK_DATA)/init_clock_data.c				\
+						$(PATH_CLOCK_DATA)/reset_clock_data.c				\
 
 PATH_ARMOR =			src/items/armor
 
@@ -179,6 +183,7 @@ SRC_ANIMATOR =			$(PATH_ANIMATOR)/create_animator.c					\
 						$(PATH_ANIMATOR)/increment_animator_image_pos.c		\
 						$(PATH_ANIMATOR)/refresh_animator.c					\
 						$(PATH_ANIMATOR)/update_animator.c					\
+						$(PATH_ANIMATOR)/re_set_animator.c					\
 
 PATH_CINEMATIC	=		tests/cinematic
 
