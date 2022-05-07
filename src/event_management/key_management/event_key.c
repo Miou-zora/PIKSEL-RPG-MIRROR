@@ -33,34 +33,8 @@ static void select_weapon(player_t *player)
         player->weapon = 4;
 }
 
-int manage_key(game_t *game)
+void manage_key_released(game_t *game)
 {
-    if (sfKeyboard_isKeyPressed(game->event.key.code) == true) {
-        if (game->event.key.code == sfKeySpace &&
-        game->background->scene_background != MENU) {
-            spawn_random_loot(game->background->loot, (sfVector2f){700, 600});
-        }
-        if (game->event.key.code == sfKeyE &&
-        game->background->scene_background != MENU) {
-            invert_display_of_inventory(game->player->inventory);
-        }
-        manage_key_z(game);
-        manage_key_q(game);
-        manage_key_s(game);
-        manage_key_d(game);
-        manage_key_f(game);
-        manage_attack_key(game);
-        select_weapon(game->player);
-        if (game->event.key.code == sfKeyLShift)
-            game->player->player_mode = 2;
-        key_run(game->player);
-        if (game->event.key.code == sfKeyT)
-            sfSound_play(game->sound_music->damage);
-        if (game->event.key.code == sfKeyY)
-            sfSound_play(game->sound_music->teleport);
-        if (game->event.key.code == sfKeyU)
-            sfSound_play(game->sound_music->terry);
-    }
     if (game->event.type == sfEvtKeyReleased) {
         if (game->event.key.code == sfKeyD) {
             game->player->move_right = false;
@@ -78,5 +52,41 @@ int manage_key(game_t *game)
             game->player->player_mode = 1;
         }
     }
+}
+
+static void manage_key_pressed(game_t *game)
+{
+    manage_key_z(game);
+    manage_key_q(game);
+    manage_key_s(game);
+    manage_key_d(game);
+    manage_key_f(game);
+    manage_attack_key(game);
+    select_weapon(game->player);
+    if (game->event.key.code == sfKeyLShift)
+        game->player->player_mode = 2;
+    key_run(game->player);
+    if (game->event.key.code == sfKeyT)
+        sfSound_play(game->sound_music->damage);
+    if (game->event.key.code == sfKeyY)
+        sfSound_play(game->sound_music->teleport);
+    if (game->event.key.code == sfKeyU)
+        sfSound_play(game->sound_music->terry);
+}
+
+int manage_key(game_t *game)
+{
+    if (sfKeyboard_isKeyPressed(game->event.key.code) == true) {
+        if (game->event.key.code == sfKeySpace &&
+        game->background->scene_background != MENU) {
+            spawn_random_loot(game->background->loot, (sfVector2f){700, 600});
+        }
+        if (game->event.key.code == sfKeyE &&
+        game->background->scene_background != MENU) {
+            invert_display_of_inventory(game->player->inventory);
+        }
+        manage_key_pressed(game);
+    }
+    manage_key_released(game);
     return (0);
 }
