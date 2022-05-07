@@ -9,7 +9,7 @@
 #include "math.h"
 #include "my.h"
 
-/*void change_enemy_direction(sfVector2f *enemy_core, sfVector2f *pos,
+void change_enemy_direction(sfVector2f *enemy_core, sfVector2f *pos,
 enemy_t *enemy)
 {
     if (enemy_core->x - pos->x > 0) {
@@ -20,7 +20,7 @@ enemy_t *enemy)
     }
     sfSprite_setTextureRect(enemy->actual_animator->sprite_data->sprite,
     enemy->actual_animator->sprite_data->rect);
-}*/
+}
 
 static void move_enemy_to_pos_animator(sfVector2f *enemy_core, sfVector2f *pos,
 float distance, enemy_t *enemy)
