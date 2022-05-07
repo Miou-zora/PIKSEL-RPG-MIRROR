@@ -46,16 +46,16 @@ bool init_cinematic(cinematic_t **cinematic)
     (*cinematic) = malloc(sizeof(cinematic_t));
     (*cinematic)->text_zone = NULL;
     create_cinematic_player_and_enemy(cinematic);
-    (*cinematic)->city = load_sprite_data("assets/background/city.png");;
+    (*cinematic)->city = load_sprite_data("assets/background/city.png");
     (*cinematic)->light = load_sprite_data("assets/background/light.png");
     (*cinematic)->skip_button =
-    load_sprite_data("assets/cinematic/skip_cine.png");;
+    load_sprite_data("assets/cinematic/skip_cine.png");
     (*cinematic)->walk = true;
     (*cinematic)->run = true;
     if (create_text_zone(&(*cinematic)->text_zone,
     "Oh no my groceries! Dirty thief! You'll see what I'm made of !"
     " I'm going to find you !\n\n\n\nPress space to skip") == 84)
-       return (true);
+        return (true);
     (*cinematic)->text_zone->text_clock = create_clock_data();
     set_framerate_clock_data((*cinematic)->text_zone->text_clock, 0.03);
     create_sprites_cinematic((*cinematic));

@@ -21,6 +21,7 @@ sfVector2f scale, sfVector2f position)
     (*sprite_data)->scale = scale;
     sfSprite_setScale((*sprite_data)->sprite, (*sprite_data)->scale);
     sfSprite_setPosition((*sprite_data)->sprite, (*sprite_data)->position);
-    sfSprite_setTexture((*sprite_data)->sprite, (*sprite_data)->texture, sfFalse);
+    sfSprite_setTexture((*sprite_data)->sprite, (*sprite_data)->texture,
+    sfFalse);
     return (0);
 }

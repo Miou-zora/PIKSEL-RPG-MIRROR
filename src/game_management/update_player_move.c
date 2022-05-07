@@ -40,6 +40,8 @@ void player_animation_iddle(player_t *player)
 
 void move_player_walk(player_t *player, game_t *game)
 {
+    manage_down(game);
+    manage_up(game);
     if (player->move_up == true && player->player_mode == 1)
         player->pos.y -= 7.5;
     if (player->move_down == true && player->player_mode == 1)
@@ -52,6 +54,8 @@ void move_player_walk(player_t *player, game_t *game)
 
 void move_player_run(player_t *player, game_t *game)
 {
+    manage_down(game);
+    manage_up(game);
     if (player->move_up == true && player->player_mode == 2)
         player->pos.y -= 15;
     if (player->move_down == true && player->player_mode == 2)
