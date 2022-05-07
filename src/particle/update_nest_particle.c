@@ -16,7 +16,6 @@ void update_particle(particle_t *particle, float delta_time)
 
     particle->position.x += x_speed * delta_time;
     particle->position.y += y_speed * delta_time;
-    // my_printf("%i\n", (int)( (particle->speed - 1.f) * 100));
     particle->acceleration += delta_time / 50 * (particle->speed - 0.5f);
 }
 

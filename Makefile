@@ -120,6 +120,7 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/init_enemy.c							\
 						$(PATH_ENEMY)/enemy_attack_player.c					\
 						$(PATH_ENEMY)/player_attack_enemy.c					\
+						$(PATH_ENEMY)/move_enemy.c 							\
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 

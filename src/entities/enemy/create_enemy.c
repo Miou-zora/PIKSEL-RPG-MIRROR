@@ -19,7 +19,10 @@ enemy_t *create_enemy(void)
     enemy->id = NOT_SET;
     enemy->stat = (stat_t){0};
     enemy->moving_state = IDDLE;
+    enemy->display = false;
     enemy->base_speed = NOT_SET;
+    enemy->distance_à_parcourir = 0;
+    enemy->scene = NOT_SET;
     enemy->clock_data = NULL;
     enemy->pos = (sfVector2f){NOT_SET, NOT_SET};
     enemy->animator_standing = NULL;
@@ -29,15 +32,16 @@ enemy_t *create_enemy(void)
     return (enemy);
 }
 
-enemy_t *create_enemy_depend_of_category(int category_enemy, sfVector2f pos)
+enemy_t *create_enemy_depend_of_category(int category_enemy, sfVector2f pos,
+sfVector2i spawn_info)
 {
     int enum_categories[] = {MOB, MINI_BOSS, BOSS, 0};
-    enemy_t *(*functions_enemy_creation[])(sfVector2f) = {spawn_mob_enemy,
-    spawn_mini_boss_enemy, spawn_boss_enemy, NULL};
+    enemy_t *(*functions_enemy_creation[])(sfVector2f, sfVector2i) =
+    {spawn_mob_enemy, spawn_mini_boss_enemy, spawn_boss_enemy, NULL};
 
     for (int i = 0; enum_categories[i] != 0; i++) {
         if (category_enemy == enum_categories[i]) {
-            return (functions_enemy_creation[i](pos));
+            return (functions_enemy_creation[i](pos, spawn_info));
         }
     }
     return (NULL);
@@ -65,11 +69,13 @@ void put_in_enemy(enemies_list_t **enemies_list, enemy_t *enemy)
     (*cursor)->enemy = enemy;
 }
 
-int add_enemy(int category_enemy, enemies_list_t **enemies_list, sfVector2f pos)
+int add_enemy(int category_enemy, enemies_list_t **enemies_list,
+sfVector2f pos, sfVector2i spawn)
 {
     if (enemies_list == NULL || category_enemy <= 0)
         return (84);
-    enemy_t *enemy = create_enemy_depend_of_category(category_enemy, pos);
+    enemy_t *enemy = create_enemy_depend_of_category(category_enemy, pos,
+    spawn);
     if (enemy == NULL)
         return (84);
     put_in_enemy(enemies_list, enemy);

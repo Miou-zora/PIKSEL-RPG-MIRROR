@@ -45,7 +45,7 @@ void update_dead_list(enemies_list_t **enemies_list, player_t *player)
     enemies_list_t **cursor = enemies_list;
 
     while(cursor != NULL && (*cursor) != NULL) {
-        if (is_dead_enemy((*cursor)->enemy)) {
+        if (is_dead_enemy((*cursor)->enemy) == true) {
             player->stat->xp += (*cursor)->enemy->stat.xp;
             delete_enemy_from_list(cursor);
         }
