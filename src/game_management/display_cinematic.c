@@ -24,7 +24,8 @@ void display_sprite_cinematic(game_t *game)
     game->cinematic->anim_enemy_run->sprite_data->sprite, NULL);
     sfRenderWindow_drawSprite(game->window,
     game->cinematic->light->sprite, NULL);
-    if (game->cinematic->anim_enemy_run->sprite_data->pos.x >= game->cinematic->anim_player_walk->sprite_data->pos.x)
+    if (game->cinematic->anim_enemy_run->sprite_data->pos.x >=
+    game->cinematic->anim_player_walk->sprite_data->pos.x)
         display_text_zone(game->window, game->cinematic->text_zone);
     sfRenderWindow_drawSprite(game->window,
     game->cinematic->skip_button->sprite, NULL);

@@ -27,7 +27,7 @@ int manage_key_f(game_t *game)
         && game->background->scene_background == CITY) {
             game->npc[0]->display_text = true;
             return (0);
-        } else 
+        } else
             game->npc[0]->display_text = false;
         if (room_to_city(game))
             return (0);

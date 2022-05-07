@@ -44,7 +44,7 @@ int detect_pos(sfVector2i position)
     for (int i = 0; i < 4; i++) {
         if (position.x > hitboxes[i][0].x && position.x < hitboxes[i][1].x &&
         position.y > hitboxes[i][0].y && position.y < hitboxes[i][1].y)
-            return(i);
+            return (i);
     }
     return (-1);
 }

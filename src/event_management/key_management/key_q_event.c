@@ -64,7 +64,7 @@ void move_background_left(game_t *game, int speed)
         sfSprite_setTextureRect(game->background->bedroom->sprite->sprite,
         game->background->bedroom->sprite->rect);
     } else if ((game->background->bedroom->sprite->rect.left <= 0
-    || game->background->bedroom->sprite->rect.left >= 300)  
+    || game->background->bedroom->sprite->rect.left >= 300)
     && game->player->pos.x - 15 * speed >= 200
     && game->background->scene_background == ROOM) {
         move_player_left(game, speed);

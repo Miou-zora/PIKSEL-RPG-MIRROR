@@ -23,7 +23,7 @@ int find_which_setting(game_t *game)
         mouse_position.x <= rect_pos_right.x &&
         mouse_position.y >= rect_pos_left.y &&
         mouse_position.y <= rect_pos_right.y)
-            return(i);
+            return (i);
     }
     return (-1);
 }

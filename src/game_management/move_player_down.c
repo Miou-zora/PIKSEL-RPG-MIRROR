@@ -29,7 +29,6 @@ void manage_down_city(game_t *game)
     if (game->background->scene_background == CITY
     && game->player->pos.y > 475)
         game->player->move_down = false;
-    
 }
 
 void manage_down_room(game_t *game)

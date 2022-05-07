@@ -35,7 +35,6 @@ void get_loot(game_t *game)
             return;
         }
     }
-    
 }
 
 void move_loot(loot_t **loot, int to_move)
@@ -51,7 +50,6 @@ void move_loot(loot_t **loot, int to_move)
             (sfVector2f){to_move, 0});
         }
     }
-    
 }
 
 bool init_loot(loot_t *loot[10])

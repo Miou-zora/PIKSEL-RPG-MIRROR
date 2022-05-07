@@ -15,7 +15,8 @@ void display_background(game_t *game)
         game->background->bedroom->sprite->sprite, NULL);
         display_npc(game);
         display_loot(game);
-        display_hitbox(game->player->hitbox, game->window, game->player->hitbox_color);
+        display_hitbox(game->player->hitbox, game->window,
+        game->player->hitbox_color);
         display_player_sprites(game->player, game);
         if (game->background->menu->pause->display_pause == true)
             display_pause(game);
@@ -60,7 +61,6 @@ void display_background(game_t *game)
         game->player->stat->top_bar->sprite, NULL);
         display_stats(game);
     }
-    
 }
 
 void display_menu(game_t *game)

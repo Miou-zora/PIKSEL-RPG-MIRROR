@@ -52,7 +52,7 @@ bool initialize_game(game_t **game)
     if ((*game) == NULL)
         return (true);
     if (fill_game(*game) == true) {
-        // destroy_game
+        my_printf("destroy game here");
         return (true);
     }
     return (false);

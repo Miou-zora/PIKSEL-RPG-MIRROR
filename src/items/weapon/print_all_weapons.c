@@ -37,8 +37,7 @@ void print_weapon(weapon_t *weapon)
     my_printf("\tId: %d\n", weapon->id);
     my_printf("\tType weapon: ");
     print_weapon_type(weapon->type_weapon);
-    my_printf(
-    "\n\tRarity: %i\n", weapon->rarity);
+    my_printf("\n\tRarity: %i\n", weapon->rarity);
     my_printf("\tDamage Bonus: %i\n", weapon->damage);
     if (weapon->sprite_data != NULL) {
         my_printf("\tSprite: \033[32mloaded\033[39m\n");

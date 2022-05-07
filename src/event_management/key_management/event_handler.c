@@ -24,7 +24,6 @@ static void key_run(player_t *player)
     }
 }
 
-
 void detect_key(player_t *player, clock_data_t *clock)
 {
     key_run(player);
