@@ -21,9 +21,8 @@ framebuffer_t *framebuffer)
     framebuffer->width, framebuffer->width, 0, 0);
     sfSprite_setTexture(sprite, texture, sfTrue);
     sfSprite_setPosition(sprite, (sfVector2f){enemy->pos.x -
-    framebuffer->width / 2.f + enemy->actual_animator->size_image.x / 2,
-    enemy->pos.y - framebuffer->height / 2.f +
-    enemy->actual_animator->size_image.y / 2});
+    framebuffer->width / 2.f + enemy->actual_animator->size_image.x / 2 * enemy->actual_animator->sprite_data->scale.x, enemy->pos.y -
+    framebuffer->height / 2.f + enemy->actual_animator->size_image.y / 2 * enemy->actual_animator->sprite_data->scale.y});
     sfRenderWindow_drawSprite(window, sprite, NULL);
 }
 
