@@ -8,6 +8,17 @@
 #include "struct_var.h"
 #include "my.h"
 
+bool forest_to_city_display_text(game_t *game)
+{
+    if (game->player->traveled_distance > 25
+    && game->player->traveled_distance < 30
+    && game->background->scene_background == FOREST) {
+        game->npc[2]->display_text = true;
+        return (true);
+    }
+    return (false);
+}
+
 bool forest_to_city(game_t *game)
 {
     if (game->player->traveled_distance > 25
@@ -26,11 +37,7 @@ bool forest_to_city(game_t *game)
         game->player->pos = (sfVector2f){820, 440};
         return (true);
     }
-    if (game->player->traveled_distance > 25
-    && game->player->traveled_distance < 30
-    && game->background->scene_background == FOREST) {
-        game->npc[2]->display_text = true;
+    if (forest_to_city_display_text(game))
         return (true);
-    }
     return (false);
 }

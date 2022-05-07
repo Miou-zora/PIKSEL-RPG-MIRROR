@@ -8,7 +8,7 @@
 #include "struct_var.h"
 #include "my.h"
 
-void display_background(game_t *game)
+void display_room(game_t *game)
 {
     if (game->background->scene_background == ROOM) {
         sfRenderWindow_drawSprite(game->window,
@@ -21,6 +21,10 @@ void display_background(game_t *game)
         if (game->background->menu->pause->display_pause == true)
             display_pause(game);
     }
+}
+
+void display_city(game_t *game)
+{
     if (game->background->scene_background == CITY) {
         sfRenderWindow_drawSprite(game->window,
         game->background->town[0]->sprite->sprite, NULL);
@@ -33,6 +37,10 @@ void display_background(game_t *game)
         if (game->background->menu->pause->display_pause == true)
             display_pause(game);
     }
+}
+
+void display_forest(game_t *game)
+{
     if (game->background->scene_background == FOREST) {
         sfRenderWindow_drawSprite(game->window,
         game->background->forest[0]->sprite->sprite, NULL);
@@ -45,6 +53,10 @@ void display_background(game_t *game)
             display_pause(game);
         display_enemies_list(&(game->enemies_list), game->window);
     }
+}
+
+void display_labo(game_t *game)
+{
     if (game->background->scene_background == LABO) {
         sfRenderWindow_drawSprite(game->window,
         game->background->laboratory->sprite->sprite, NULL);
@@ -54,6 +66,14 @@ void display_background(game_t *game)
             display_pause(game);
         display_enemies_list(&(game->enemies_list), game->window);
     }
+}
+
+void display_background(game_t *game)
+{
+    display_room(game);
+    display_city(game);
+    display_forest(game);
+    display_labo(game);
     if (game->background->scene_background != MENU
     && game->background->scene_background != SETTINGS
     && game->background->scene_background != CINEMATIC) {

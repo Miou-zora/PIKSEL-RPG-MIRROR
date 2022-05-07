@@ -23,8 +23,7 @@ void move_player_right(game_t *game, int speed)
 static void move_forest(game_t *game, int speed)
 {
     if (game->background->scene_background == FOREST
-    && game->player->pos.x > 800
-    && game->player->pos.x < 831
+    && game->player->pos.x > 800 && game->player->pos.x < 831
     && game->player->traveled_distance < 560) {
         if (game->background->loot != NULL)
             move_loot(game->background->loot, -20 * speed);
@@ -43,18 +42,12 @@ static void move_forest(game_t *game, int speed)
         move_player_right(game, speed * 2);
         move_enemy_right(game, speed * 2);
     }
-    if (game->player->pos.x + 16 * speed <= 1700
-    && game->background->scene_background == LABO) {
-        move_player_right(game, speed);
-        move_enemy_right(game, speed);
-    }
 }
 
-void move_background_right(game_t *game, int speed)
+static void move_room(game_t *game, int speed)
 {
     if (game->background->bedroom->sprite->rect.left < 300
-    && game->player->pos.x > 800
-    && game->player->pos.x < 831
+    && game->player->pos.x > 800 && game->player->pos.x < 831
     && game->background->scene_background == ROOM) {
         if (game->background->loot != NULL)
             move_loot(game->background->loot, -20 * speed);
@@ -68,9 +61,12 @@ void move_background_right(game_t *game, int speed)
     && game->background->scene_background == ROOM) {
         move_player_right(game, speed);
     }
+}
+
+static void move_city(game_t *game, int speed)
+{
     if (game->background->scene_background == CITY
-    && game->player->pos.x > 800
-    && game->player->pos.x < 831
+    && game->player->pos.x > 800 && game->player->pos.x < 831
     && game->player->traveled_distance < 560) {
         if (game->background->loot != NULL)
             move_loot(game->background->loot, -20 * speed);
@@ -89,7 +85,18 @@ void move_background_right(game_t *game, int speed)
         move_player_right(game, speed);
         move_enemy_right(game, speed);
     }
+}
+
+void move_background_right(game_t *game, int speed)
+{
+    move_room(game, speed);
+    move_city(game, speed);
     move_forest(game, speed);
+    if (game->player->pos.x + 16 * speed <= 1700
+    && game->background->scene_background == LABO) {
+        move_player_right(game, speed);
+        move_enemy_right(game, speed);
+    }
 }
 
 int manage_key_d(game_t *game)

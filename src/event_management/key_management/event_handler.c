@@ -29,7 +29,7 @@ void detect_key(player_t *player, clock_data_t *clock)
     key_run(player);
     drain_clock_data(clock);
     while (update_clock_data(clock)) {
-        
+        detect_press_q_and_d(player);
     }
 }
 
