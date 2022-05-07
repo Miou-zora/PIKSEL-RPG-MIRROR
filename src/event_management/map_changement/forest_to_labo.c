@@ -17,6 +17,7 @@ bool forest_to_labo(game_t *game)
         game->npc[3]->display_text = false;
         game->background->scene_background = LABO;
         game->player->traveled_distance = 0;
+        game->player->pos = (sfVector2f){100, 390};
         sfSound_play(game->sound_music->teleport);
     }
     if (game->player->traveled_distance > 478

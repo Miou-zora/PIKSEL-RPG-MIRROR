@@ -44,8 +44,9 @@ void fill_stats(char **stats, int *stats_values, game_t *game)
     sfText_setPosition(text[2], (sfVector2f){900, 20});
     sfText_setPosition(text[3], (sfVector2f){1400, 20});
     sfText_setPosition(text[4], (sfVector2f){1800, 20});
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++) {
         sfRenderWindow_drawText(game->window, text[i], NULL);
+    }
 }
 
 void display_stats(game_t *game)

@@ -100,7 +100,7 @@ bool init_enemy(game_t *game)
 {
     add_enemy_on_city(game);
     add_enemy_on_forest(game);
-    add_enemy(BOSS, &(game->enemies_list), (sfVector2f){1300, 600},
+    add_enemy(BOSS, &(game->enemies_list), (sfVector2f){1700, 500},
     (sfVector2i){LABO, 0});
     return (false);
 }
