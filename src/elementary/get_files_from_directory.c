@@ -29,25 +29,12 @@ int get_number_of_files_in_directory(char *directory, char *expected_extension)
     return (nb_files);
 }
 
-char **get_files_from_directory(char *directory, char *expected_extension)
+char **read_dir(char **files, DIR *dir, char *expected_extension,
+char *directory)
 {
-    DIR *dir = NULL;
-    struct dirent *file;
-    int nb_of_files = get_number_of_files_in_directory(directory,
-    expected_extension);
-    char **files = NULL;
     int i = 0;
+    struct dirent *file;
 
-    if (directory == NULL)
-        return (NULL);
-    dir = opendir(directory);
-    if (dir == NULL || nb_of_files == 0)
-        return (NULL);
-    files = my_calloc(nb_of_files + 1, sizeof(*files));
-    if (files == NULL) {
-        closedir(dir);
-        return (NULL);
-    }
     while ((file = readdir(dir)) != NULL) {
         if (file->d_name[0] != '.' && file->d_type == DT_REG &&
         verif_extension(file->d_name, expected_extension)) {
@@ -60,6 +47,27 @@ char **get_files_from_directory(char *directory, char *expected_extension)
         }
     }
     files[i] = NULL;
+    return (files);
+}
+
+char **get_files_from_directory(char *directory, char *expected_extension)
+{
+    DIR *dir = NULL;
+    int nb_of_files = get_number_of_files_in_directory(directory,
+    expected_extension);
+    char **files = NULL;
+
+    if (directory == NULL)
+        return (NULL);
+    dir = opendir(directory);
+    if (dir == NULL || nb_of_files == 0)
+        return (NULL);
+    files = my_calloc(nb_of_files + 1, sizeof(*files));
+    if (files == NULL) {
+        closedir(dir);
+        return (NULL);
+    }
+    files = read_dir(files, dir, expected_extension, directory);
     closedir(dir);
     return (files);
 }

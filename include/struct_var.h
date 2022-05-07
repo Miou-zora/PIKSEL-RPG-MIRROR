@@ -98,7 +98,6 @@ struct dialogues_s {
     text_zone_t *text_zone;
     bool binary_reponse;
     dialogues_t **next;
-    //struct quest *quest_add;
 };
 
 struct inventory_s {
@@ -370,7 +369,8 @@ char *get_file(char *path);
 char **get_data_from_file(char *path);
 void freen(void *ptr);
 int put_str_error(char *str);
-int get_number_of_files_in_directory(char *directory, char *expected_extension);
+int get_number_of_files_in_directory(char *directory,
+char *expected_extension);
 char **get_files_from_directory(char *directory, char *expected_extension);
 void freen_array(void *array);
 bool verif_extension(char *filename, char *expected_extension);
@@ -496,7 +496,6 @@ bool init_cinematic(cinematic_t **cinematic);
 void skip_cinematic(game_t *game);
 void clock_cine_text(cinematic_t **cinematic);
 
-
 //* text zone
 
 int create_text_zone(text_zone_t **text_zone, char *text_string);
@@ -532,7 +531,6 @@ sprite_data_t *set_sprite(sprite_data_t *sprite);
 void move_loot(loot_t **loot, int to_move);
 void move_background_left(game_t *game, int speed);
 void move_background_right(game_t *game, int speed);
-
 
 //* player
 

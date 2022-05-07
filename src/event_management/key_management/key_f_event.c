@@ -5,8 +5,6 @@
 ** key_f_event
 */
 
-
-
 #include "struct_var.h"
 #include "my.h"
 

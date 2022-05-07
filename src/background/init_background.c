@@ -38,7 +38,7 @@ bool init_laboratory(laboratory_t **laboratory)
 
     if (*laboratory == NULL)
         return (true);
-    (*laboratory)->sprite = load_sprite_data("assets/background/Labo.png");
+    (*laboratory)->sprite = load_sprite_data("assets/background/labo.png");
     if ((*laboratory)->sprite == NULL)
         return (true);
     (*laboratory)->sprite->pos = (sfVector2f){0, 0};

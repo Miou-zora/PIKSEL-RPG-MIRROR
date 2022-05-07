@@ -52,8 +52,7 @@ void print_armor(armor_t *armor)
     print_armor_type(armor->type_armor);
     my_printf("\n\tType bonus: ");
     print_type_bonus_basic(armor->type_bonus_basic);
-    my_printf(
-    "\n\tRarity: %i\n", armor->rarity);
+    my_printf("\n\tRarity: %i\n", armor->rarity);
     my_printf("\tValue Bonus: %i\n", armor->value_bonus);
     if (armor->sprite_data != NULL) {
         my_printf("\tSprite: \033[32mloaded\033[39m\n");

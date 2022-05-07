@@ -18,7 +18,8 @@ static particle_t *create_particle(particle_t *particle)
         new_particle->speed *= new_particle->speed * new_particle->speed * 2;
         new_particle->position = (sfVector2f){0, 0};
         new_particle->next = particle;
-        new_particle->color = (sfColor){rand() % 255, rand() % 255, rand() % 255, 255};
+        new_particle->color = (sfColor){rand() % 255, rand() % 255,
+        rand() % 255, 255};
         new_particle->prev = NULL;
         if (particle)
             new_particle->prev = particle->prev;
@@ -37,7 +38,8 @@ sfVector2i size_framebuffer)
     size_framebuffer.y);
     if (nest_particle->framebuffer == NULL)
         return (NULL);
-    nest_particle->offset = (sfVector2f){size_framebuffer.x / 2, size_framebuffer.y / 2};
+    nest_particle->offset = (sfVector2f){size_framebuffer.x / 2,
+    size_framebuffer.y / 2};
     nest_particle->all_particles = NULL;
     for (int i = 0; i < number_of_particle; i++) {
         nest_particle->all_particles =

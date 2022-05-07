@@ -10,7 +10,8 @@
 
 void sound_on(game_t *game)
 {
-    sfRectangleShape_setPosition(game->background->menu->settings_rectangles[0],
+    sfRectangleShape_setPosition(
+    game->background->menu->settings_rectangles[0],
     game->background->menu->rectangles_positions[0]);
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[0],
     game->background->menu->rectangles_sizes[0]);
@@ -19,7 +20,8 @@ void sound_on(game_t *game)
 
 void sound_off(game_t *game)
 {
-    sfRectangleShape_setPosition(game->background->menu->settings_rectangles[0],
+    sfRectangleShape_setPosition(
+    game->background->menu->settings_rectangles[0],
     game->background->menu->rectangles_positions[1]);
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[0],
     game->background->menu->rectangles_sizes[1]);
@@ -28,7 +30,8 @@ void sound_off(game_t *game)
 
 void music_on(game_t *game)
 {
-    sfRectangleShape_setPosition(game->background->menu->settings_rectangles[1],
+    sfRectangleShape_setPosition(
+    game->background->menu->settings_rectangles[1],
     game->background->menu->rectangles_positions[2]);
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[1],
     game->background->menu->rectangles_sizes[2]);
@@ -37,7 +40,8 @@ void music_on(game_t *game)
 
 void music_off(game_t *game)
 {
-    sfRectangleShape_setPosition(game->background->menu->settings_rectangles[1],
+    sfRectangleShape_setPosition(
+    game->background->menu->settings_rectangles[1],
     game->background->menu->rectangles_positions[3]);
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[1],
     game->background->menu->rectangles_sizes[3]);

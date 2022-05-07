@@ -8,7 +8,6 @@
 #include "struct_var.h"
 #include "my.h"
 
-
 void manage_up_lab(game_t *game)
 {
     if (game->background->scene_background == LABO

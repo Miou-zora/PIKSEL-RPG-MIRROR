@@ -10,7 +10,8 @@
 
 void set_fps_30(game_t *game)
 {
-    sfRectangleShape_setPosition(game->background->menu->settings_rectangles[2],
+    sfRectangleShape_setPosition(
+    game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_positions[4]);
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_sizes[4]);
@@ -20,7 +21,8 @@ void set_fps_30(game_t *game)
 
 void set_fps_60(game_t *game)
 {
-    sfRectangleShape_setPosition(game->background->menu->settings_rectangles[2],
+    sfRectangleShape_setPosition(
+    game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_positions[5]);
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_sizes[5]);
@@ -30,7 +32,8 @@ void set_fps_60(game_t *game)
 
 void set_fps_120(game_t *game)
 {
-    sfRectangleShape_setPosition(game->background->menu->settings_rectangles[2],
+    sfRectangleShape_setPosition(
+    game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_positions[6]);
     sfRectangleShape_setSize(game->background->menu->settings_rectangles[2],
     game->background->menu->rectangles_sizes[6]);

@@ -54,7 +54,6 @@ bool init_city_to_forest_npc(npc_t *npc[4])
     return (false);
 }
 
-
 bool init_forest_to_city_npc(npc_t *npc[4])
 {
     npc[2] = my_calloc(1, sizeof(npc_t));

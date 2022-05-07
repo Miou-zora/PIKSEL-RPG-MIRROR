@@ -25,7 +25,6 @@ void add_weapon(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->weapon->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     if (temp != NULL) {
-        my_putstr("on repose l'ancienne arme");
         loot->weapon = temp;
         loot->armor_or_weapon = 1;
         pos.x += 50;

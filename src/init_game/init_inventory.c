@@ -11,7 +11,7 @@
 bool init_inventory(inventory_t **inventory)
 {
     (*inventory) = my_calloc(1, sizeof(inventory_t));
-    (*inventory)->sprite_data = load_sprite_data("assets/items/Inventory.png");
+    (*inventory)->sprite_data = load_sprite_data("assets/items/inventory.png");
     if ((*inventory)->sprite_data == NULL)
         return (true);
     sfSprite_setScale((*inventory)->sprite_data->sprite,

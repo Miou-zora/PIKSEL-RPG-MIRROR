@@ -22,7 +22,8 @@ bool verif_extension(char *filename, char *expected_extension)
             j = i;
         i++;
     }
-    for (i = 0; expected_extension[i] != '\0' && filename[i + j] != '\0'; i++) {
+    for (i = 0; expected_extension[i] != '\0'
+    && filename[i + j] != '\0'; i++) {
         if (filename[j + i] != expected_extension[i])
             return (false);
         i++;

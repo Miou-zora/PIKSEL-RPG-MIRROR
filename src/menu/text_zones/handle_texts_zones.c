@@ -29,7 +29,7 @@ int set_text_strings(text_zone_t **text_zone, char *text_string)
     (*text_zone)->text_string = my_strdup(text_string);
     if (my_strlen(text_string) < 110)
         return (0);
-    for (int i = 110; text_string[i] != '\0'; i+= 115) {
+    for (int i = 110; text_string[i] != '\0'; i += 115) {
         add_return_to_the_line(text_zone, text_string, i);
     }
     return (0);

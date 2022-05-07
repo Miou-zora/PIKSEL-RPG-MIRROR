@@ -19,8 +19,10 @@ void update_particle(particle_t *particle, float delta_time)
     particle->acceleration += delta_time / 50 * (particle->speed - 0.5f);
 }
 
-static void shade_framebuffer(framebuffer_t *framebuffer) {
-    for (unsigned int i = 0; i < framebuffer->width * framebuffer->height * 4; i++) {
+static void shade_framebuffer(framebuffer_t *framebuffer)
+{
+    for (unsigned int i = 0; i <
+    framebuffer->width * framebuffer->height * 4; i++) {
         framebuffer->pixels[i] -= (framebuffer->pixels[i] > 0) ? 1 : 0;
     }
 }

@@ -8,7 +8,6 @@
 #include "my.h"
 #include "struct_var.h"
 
-
 bool init_player_animator_gun_and_punch(player_t *player)
 {
     player->gun = load_animator("scripts/animator/gun_player.ani");
