@@ -68,10 +68,15 @@ void update_enemy_drain(enemy_t *enemy, game_t *game)
     update_animator(enemy->actual_animator, game);
     drain_clock_data(enemy->clock_data);
     drain_clock_data(enemy->attack_clock);
+    my_printf("biento\n");
     while (update_clock_data(enemy->clock_data)) {
+        my_printf("boucle\n");
         if (game->background->menu->pause->display_pause == false) {
+            my_printf("if\n");
             move_enemy_to_pos(enemy, game->player->pos);
+            my_printf("if2\n");
             update_nest_particle(enemy->nest_particle, 1);
+            my_printf("if3\n");
         }
     }
     while (update_clock_data(enemy->attack_clock)) {
@@ -83,19 +88,26 @@ void update_enemy_drain(enemy_t *enemy, game_t *game)
 
 void update_enemy(enemy_t *enemy, game_t *game)
 {
+    my_printf("h\n");
     if (enemy == NULL)
         return;
+    my_printf("r\n");
     update_enemy_drain(enemy, game);
+    my_printf("1\n");
     if (enemy->scene == game->background->scene_background
     && enemy->distance_to_travel - 60 < game->player->traveled_distance
     && enemy->distance_to_travel + 60 > game->player->traveled_distance) {
         enemy->display = true;
     } else
         enemy->display = false;
+    my_printf("Start\n");
+    update_healthbar(enemy);
+    my_printf("v\n");
     sfSprite_setPosition(enemy->animator_standing->sprite_data->sprite,
     enemy->pos);
     sfSprite_setPosition(enemy->animator_moving->sprite_data->sprite,
     enemy->pos);
+    my_printf("j\n");
 }
 
 void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
@@ -103,11 +115,17 @@ void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
     enemies_list_t **cursor = enemies_list;
 
     while ((*cursor) != NULL) {
+        my_printf("f\n");
         update_enemy((*cursor)->enemy, game);
+        my_printf("a\n");
         if (game->player->attack == true) {
+            my_printf("b\n");
             attack_enemy((*cursor)->enemy, game);
         }
+        my_printf("c\n");
         cursor = &((*cursor)->next);
+        my_printf("e\n");
     }
+    my_printf("d\n");
     update_dead_list(enemies_list, game->player);
 }

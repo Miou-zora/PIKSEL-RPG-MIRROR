@@ -30,6 +30,8 @@ enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->animator_moving->clock_data->framerate_seconds = 0.1;
     enemy->agro_distance = 1000.f;
     enemy->nest_particle = NULL;
+    enemy->healthbar = create_framebuffer(enemy->actual_animator->size_image.x,
+    20);
     return (enemy);
 }
 
@@ -42,6 +44,8 @@ enemy_t *spawn_mini_boss_animator(enemy_t *enemy)
     enemy->agro_distance = 1000.f;
     enemy->nest_particle = create_nest_particle(500, (sfVector2i){200, 200});
     enemy->nest_particle->color = (sfColor){255, 255, 255, 255};
+    enemy->healthbar = create_framebuffer(enemy->actual_animator->size_image.x,
+    20);
     return (enemy);
 }
 
@@ -82,6 +86,8 @@ enemy_t *spawn_boss_enemy_animator(enemy_t *enemy)
     enemy->animator_moving->clock_data->framerate_seconds = 0.05;
     enemy->actual_animator = enemy->animator_standing;
     enemy->nest_particle->color = (sfColor){255, 0, 255, 255};
+    enemy->healthbar = create_framebuffer(enemy->actual_animator->size_image.x,
+    20);
     return (enemy);
 }
 
