@@ -58,7 +58,7 @@ enemy_t *spawn_mini_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->name = my_strdup("basic_temp_name");
     enemy->clock_data = init_clock_data(0.03);
     enemy->moving_state = IDDLE;
-    enemy->stat = (stat_t){.actual_life = 200, .armor = 0, .health = 10,
+    enemy->stat = (stat_t){.actual_life = 1000, .armor = 0, .health = 1000,
     .level = 1, .power = 1, .speed = 1, .xp = 150, .top_bar = NULL};
     enemy->base_speed = 3.6f;
     enemy->type_enemy = MINI_BOSS;
