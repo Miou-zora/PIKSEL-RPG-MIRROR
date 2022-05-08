@@ -73,6 +73,7 @@ bool init_pause_menu(pause_menu_t **pause)
     sfSprite_setScale((*pause)->sprite->sprite, (sfVector2f){7, 7});
     (*pause)->display_pause = false;
     (*pause)->back = load_sprite_data("assets/menu/back_pause.png");
+    (*pause)->display_pause_sprite = false;
     return (false);
 }
 

@@ -48,6 +48,7 @@ void fill_stats(char **stats, int *stats_values, game_t *game)
         sfRenderWindow_drawText(game->window, text[i], NULL);
         freen(&text[i]);
     }
+    freen(&text);
 }
 
 void display_stats(game_t *game)
