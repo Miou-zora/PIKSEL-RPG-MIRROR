@@ -41,7 +41,5 @@ bool forest_to_city(game_t *game)
         sfSound_play(game->sound_music->teleport);
         return (true);
     }
-    if (forest_to_city_display_text(game))
-        return (true);
-    return (false);
+    return (forest_to_city_display_text(game)) ? (true) : (false);
 }

@@ -17,6 +17,7 @@ int launch_game(game_t *game)
 int settings(game_t *game)
 {
     sprite_data_t *settings_background = NULL;
+
     settings_background = load_sprite_data("assets/menu/settings.png");
     sfSprite_setScale(settings_background->sprite, (sfVector2f){8, 8});
     sfSprite_setPosition(settings_background->sprite, (sfVector2f){0, 0});
@@ -36,6 +37,7 @@ int quit(game_t *game)
 int detect_pos(sfVector2i position)
 {
     sfVector2f **hitboxes = my_calloc(4, sizeof(sfVector2f *));
+
     hitboxes[0] = initialize_positions("365 295 1585 430", 2);
     hitboxes[1] = initialize_positions("365 535 1585 670", 2);
     hitboxes[2] = initialize_positions("365 775 1585 910", 2);
@@ -62,9 +64,7 @@ int go_to_good_menu(sfVector2i position, game_t *game)
         if (settings(game) == 84)
             return (84);
     }
-    if (mouse_pos == 2)
-        quit(game);
-    if (mouse_pos == 3)
-        how_to_play(game);
+    (mouse_pos == 2) ? quit(game) : 0;
+    (mouse_pos == 3) ? how_to_play(game) : 0;
     return (0);
 }
