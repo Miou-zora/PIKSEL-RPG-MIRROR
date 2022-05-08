@@ -649,3 +649,5 @@ void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos);
 
 void display_pause(game_t *game);
 void manage_pause(game_t *game);
+void update_position(player_t *player);
+void update_direction_attack(game_t *game);
