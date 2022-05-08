@@ -12,16 +12,20 @@
 void sword_attack(sfVector2f enemy_pos,
 sfVector2f player_pos, enemy_t *enemy, bool direction)
 {
+    sfIntRect rect_ene = {enemy_pos.x, enemy_pos.y,
+    enemy->actual_animator->size_image.x * enemy->actual_animator->sprite_data->scale.x,
+    enemy->actual_animator->size_image.y * enemy->actual_animator->sprite_data->scale.y};
+    sfIntRect rect_player = {player_pos.x + 30, player_pos.y, 125, 200};
+
     if (direction == true) {
-        if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 150 &&
-        enemy_pos.y > player_pos.y - 200 && enemy_pos.y < player_pos.y + 200) {
-            enemy->stat.actual_life -= 30;
+        if (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) {
+            enemy->stat.actual_life -= 10;
         }
     } else {
-        player_pos.x -= 170;
-        if (enemy_pos.x > player_pos.x - 150 && enemy_pos.x < player_pos.x &&
-        enemy_pos.y > player_pos.y - 200 && enemy_pos.y < player_pos.y + 200) {
-            enemy->stat.actual_life -= 30;
+        rect_player.left -= 30;
+        rect_player.left -= 200;
+        if (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) {
+            enemy->stat.actual_life -= 10;
         }
     }
 }
@@ -29,16 +33,20 @@ sfVector2f player_pos, enemy_t *enemy, bool direction)
 void spear_attack(sfVector2f enemy_pos,
 sfVector2f player_pos, enemy_t *enemy, bool direction)
 {
+    sfIntRect rect_ene = {enemy_pos.x, enemy_pos.y,
+    enemy->actual_animator->size_image.x * enemy->actual_animator->sprite_data->scale.x,
+    enemy->actual_animator->size_image.y * enemy->actual_animator->sprite_data->scale.y};
+    sfIntRect rect_player = {player_pos.x + 30, player_pos.y + 30, 300, 100};
+
     if (direction == true) {
-        if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 230 &&
-        enemy_pos.y > player_pos.y - 100 && enemy_pos.y < player_pos.y + 100) {
-            enemy->stat.actual_life -= 20;
+        if (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) {
+            enemy->stat.actual_life -= 100;
         }
     } else {
-        player_pos.x -= 170;
-        if (enemy_pos.x > player_pos.x - 230 && enemy_pos.x < player_pos.x &&
-        enemy_pos.y > player_pos.y - 100 && enemy_pos.y < player_pos.y + 100) {
-            enemy->stat.actual_life -= 20;
+        rect_player.left -= 30;
+        rect_player.left -= 300;
+        if (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) {
+            enemy->stat.actual_life -= 100;
         }
     }
 }
@@ -46,16 +54,20 @@ sfVector2f player_pos, enemy_t *enemy, bool direction)
 void gloves_attack(sfVector2f enemy_pos,
 sfVector2f player_pos, enemy_t *enemy, bool direction)
 {
+    sfIntRect rect_ene = {enemy_pos.x, enemy_pos.y,
+    enemy->actual_animator->size_image.x * enemy->actual_animator->sprite_data->scale.x,
+    enemy->actual_animator->size_image.y * enemy->actual_animator->sprite_data->scale.y};
+    sfIntRect rect_player = {player_pos.x + 30, player_pos.y - 30, 100, 300};
+
     if (direction == true) {
-        if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 100 &&
-        enemy_pos.y > player_pos.y - 250 && enemy_pos.y < player_pos.y + 250) {
-            enemy->stat.actual_life -= 20;
+        if (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) {
+            enemy->stat.actual_life -= 100;
         }
     } else {
-        player_pos.x -= 170;
-        if (enemy_pos.x > player_pos.x - 100 && enemy_pos.x < player_pos.x &&
-        enemy_pos.y > player_pos.y - 250 && enemy_pos.y < player_pos.y + 250) {
-            enemy->stat.actual_life -= 20;
+        rect_player.left -= 30;
+        rect_player.left -= 200;
+        if (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) {
+            enemy->stat.actual_life -= 100;
         }
     }
 }
@@ -63,15 +75,19 @@ sfVector2f player_pos, enemy_t *enemy, bool direction)
 void gun_attack(sfVector2f enemy_pos,
 sfVector2f player_pos, enemy_t *enemy, bool direction)
 {
+    sfIntRect rect_ene = {enemy_pos.x, enemy_pos.y,
+    enemy->actual_animator->size_image.x * enemy->actual_animator->sprite_data->scale.x,
+    enemy->actual_animator->size_image.y * enemy->actual_animator->sprite_data->scale.y};
+    sfIntRect rect_player = {player_pos.x + 10, player_pos.y + 30, 500, 20};
+
     if (direction == true) {
-        if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 500 &&
-        enemy_pos.y > player_pos.y - 50 && enemy_pos.y < player_pos.y + 50) {
+        if (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) {
             enemy->stat.actual_life -= 60;
         }
     } else {
-        player_pos.x -= 170;
-        if (enemy_pos.x > player_pos.x - 500 && enemy_pos.x < player_pos.x &&
-        enemy_pos.y > player_pos.y - 50 && enemy_pos.y < player_pos.y + 50) {
+        rect_player.left -= 20;
+        rect_player.left -= 500;
+        if (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) {
             enemy->stat.actual_life -= 60;
         }
     }
