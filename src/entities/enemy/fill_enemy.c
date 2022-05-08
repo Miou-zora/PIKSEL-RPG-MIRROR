@@ -55,6 +55,8 @@ enemy_t *fill_enemy(enemy_t *enemy, char **data)
         if (check_error(enemy)) {
             return (NULL);
         }
+        enemy->attack_clock = create_clock_data();
+        set_framerate_clock_data(enemy->attack_clock, 0.1);
     }
     return (enemy);
 }
