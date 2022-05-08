@@ -87,8 +87,10 @@ void update_enemy(enemy_t *enemy, game_t *game)
         return;
     update_enemy_drain(enemy, game);
     if (enemy->scene == game->background->scene_background
-    && enemy->distance_to_travel - 60 < game->player->traveled_distance
-    && enemy->distance_to_travel + 60 > game->player->traveled_distance) {
+    && ((enemy->distance_to_travel - 60 < game->player->traveled_distance
+    && enemy->distance_to_travel + 60 > game->player->traveled_distance)
+    || (enemy->pos.x < 2000 && enemy->pos.x > -150))
+    ) {
         enemy->display = true;
     } else
         enemy->display = false;

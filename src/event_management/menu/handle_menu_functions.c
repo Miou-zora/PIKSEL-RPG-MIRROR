@@ -53,6 +53,7 @@ int detect_pos(sfVector2i position)
 int go_to_good_menu(sfVector2i position, game_t *game)
 {
     int mouse_pos = detect_pos(position);
+
     if (mouse_pos == 0) {
         reset_clock_data(game->cinematic->clock_move_player);
         reset_clock_data(game->cinematic->clock_move_enemy);
