@@ -69,6 +69,7 @@ bool init_player(player_t *player)
     if (init_player_clock(player))
         return (true);
     init_move_player(player);
+    player->weapon = 0;
     player->hitbox = (sfIntRect){player->pos.x, player->pos.y + 100, 100, 20};
     player->hitbox_color = sfRed;
     if (init_stats(&(player->stat)) == 84)

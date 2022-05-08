@@ -41,13 +41,15 @@ void delete_enemy_from_list(enemies_list_t **enemies_list)
     (*enemies_list) = over_cursor;
 }
 
-void update_dead_list(enemies_list_t **enemies_list, player_t *player)
+void update_dead_list(enemies_list_t **enemies_list, player_t *player,
+loot_t **loot)
 {
     enemies_list_t **cursor = enemies_list;
 
     while (cursor != NULL && (*cursor) != NULL) {
         if (is_dead_enemy((*cursor)->enemy) == true) {
             player->stat->xp += (*cursor)->enemy->stat.xp;
+            spawn_random_loot(loot, (*cursor)->enemy->pos);
             delete_enemy_from_list(cursor);
         }
         if (cursor != NULL && (*cursor) != NULL && (*cursor)->next != NULL) {
@@ -58,7 +60,8 @@ void update_dead_list(enemies_list_t **enemies_list, player_t *player)
     }
 }
 
-void kill_all_enemy(enemies_list_t **enemies_list, player_t *player)
+void kill_all_enemy(enemies_list_t **enemies_list, player_t *player,
+loot_t **loot)
 {
     enemies_list_t **cursor = enemies_list;
 
@@ -67,5 +70,5 @@ void kill_all_enemy(enemies_list_t **enemies_list, player_t *player)
             (*cursor)->enemy->stat.actual_life = 0;
         cursor = &((*cursor)->next);
     }
-    update_dead_list(enemies_list, player);
+    update_dead_list(enemies_list, player, loot);
 }

@@ -30,7 +30,8 @@ void check_if_boss_dead(game_t *game)
     if (game->background->scene_background == LABO
     && game->player->pos.x + 20 >= game->npc[4]->sprite_data->pos.x
     && game->npc[4]->sprite_data->pos.x + 20 <= game->player->pos.x) {
-        kill_all_enemy(&game->enemies_list, game->player);
+        kill_all_enemy(&game->enemies_list, game->player,
+        (loot_t **)&(game->background->loot));
         if (init_game(game))
             my_printf("fail");
     }

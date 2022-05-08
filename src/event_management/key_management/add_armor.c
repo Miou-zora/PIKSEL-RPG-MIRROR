@@ -8,18 +8,18 @@
 #include "struct_var.h"
 #include "my.h"
 
-void add_helmet_pos(loot_t *loot, sfVector2f *pos, armor_t *temp,
+void add_helmet_pos(loot_t **loot, sfVector2f *pos, armor_t *temp,
 sfVector2f *scale)
 {
     if (temp != NULL) {
-        loot->armor = temp;
-        loot->armor_or_weapon = 0;
+        (*loot)->armor = temp;
+        (*loot)->armor_or_weapon = 0;
         pos->x += 50;
-        loot->position.x += 50;
-        sfSprite_setPosition(loot->armor->sprite_data->sprite, *pos);
-        sfSprite_setScale(loot->armor->sprite_data->sprite, *scale);
+        (*loot)->position.x += 50;
+        sfSprite_setPosition((*loot)->armor->sprite_data->sprite, *pos);
+        sfSprite_setScale((*loot)->armor->sprite_data->sprite, *scale);
     } else {
-        loot->armor_or_weapon = 3;
+        (*loot)->armor_or_weapon = 3;
     }
 }
 
@@ -39,22 +39,21 @@ void add_helmet(inventory_t *inventory, loot_t *loot)
     (sfVector2f){355, 245});
     sfSprite_setScale(inventory->helmet->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
-    add_helmet_pos(loot, &pos, temp, &scale);
-    freen(&temp);
+    add_helmet_pos(&loot, &pos, temp, &scale);
 }
 
-void add_chestplate_pos(loot_t *loot, sfVector2f *pos, armor_t *temp,
+void add_chestplate_pos(loot_t **loot, sfVector2f *pos, armor_t *temp,
 sfVector2f *scale)
 {
     if (temp != NULL) {
-        loot->armor = temp;
-        loot->armor_or_weapon = 0;
+        (*loot)->armor = temp;
+        (*loot)->armor_or_weapon = 0;
         pos->x += 50;
-        loot->position.x += 50;
-        sfSprite_setPosition(loot->armor->sprite_data->sprite, *pos);
-        sfSprite_setScale(loot->armor->sprite_data->sprite, *scale);
+        (*loot)->position.x += 50;
+        sfSprite_setPosition((*loot)->armor->sprite_data->sprite, *pos);
+        sfSprite_setScale((*loot)->armor->sprite_data->sprite, *scale);
     } else {
-        loot->armor_or_weapon = 3;
+        (*loot)->armor_or_weapon = 3;
     }
 }
 
@@ -75,6 +74,5 @@ void add_chestplate(inventory_t *inventory, loot_t *loot)
     (sfVector2f){355, 530});
     sfSprite_setScale(inventory->chestplate->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
-    add_chestplate_pos(loot, &pos, temp, &scale);
-    freen(&temp);
+    add_chestplate_pos(&loot, &pos, temp, &scale);
 }
