@@ -20,7 +20,8 @@ void leave(game_t *game)
 
 void go_to_menu(game_t *game)
 {
-    game->background->scene_background = MENU;
+    if (init_game(game))
+        my_printf("fail");
 }
 
 void click_on_buttons_on_pause(game_t *game)

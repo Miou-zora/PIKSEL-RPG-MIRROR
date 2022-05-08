@@ -10,7 +10,8 @@
 
 int manage_key_s(game_t *game)
 {
-    if (game->event.key.code == sfKeyS) {
+    if (game->event.key.code == sfKeyS
+    && game->background->menu->pause->display_pause == false) {
         game->player->move_down = true;
     }
     return (0);

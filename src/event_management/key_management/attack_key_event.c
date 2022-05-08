@@ -10,7 +10,8 @@
 
 int manage_attack_key(game_t *game)
 {
-    if (game->event.key.code == sfKeyM) {
+    if (game->event.key.code == sfKeyM
+    && game->background->menu->pause->display_pause == false) {
         game->player->attack = true;
     }
     return (0);

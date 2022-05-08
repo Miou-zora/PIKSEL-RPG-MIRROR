@@ -10,8 +10,6 @@
 
 bool init_game(game_t *game)
 {
-    if (initialize_menu(&(game->background->menu)) == true)
-        return (true);
     if (init_cinematic(&(game->cinematic)) == true)
         return (true);
     if (init_back(game->background))
@@ -38,6 +36,8 @@ bool fill_game(game_t *game)
     game->background = my_calloc(1, sizeof(background_t));
     game->player = my_calloc(1, sizeof(player_t));
     if (game->background == NULL)
+        return (true);
+    if (initialize_menu(&(game->background->menu)) == true)
         return (true);
     init_game(game);
     return (false);

@@ -46,9 +46,11 @@ void move_player_walk(player_t *player, game_t *game)
         player->pos.y -= 7.5;
     if (player->move_down == true && player->player_mode == 1)
         player->pos.y += 7.5;
-    if (player->move_right == true && player->player_mode == 1)
+    if (player->move_right == true && player->player_mode == 1
+    && game->background->menu->pause->display_pause == false)
         move_background_right(game, 1);
-    if (player->move_left == true && player->player_mode == 1)
+    if (player->move_left == true && player->player_mode == 1
+    && game->background->menu->pause->display_pause == false)
         move_background_left(game, 1);
 }
 

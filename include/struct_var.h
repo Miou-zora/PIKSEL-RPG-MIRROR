@@ -480,6 +480,7 @@ void display(game_t *game);
 void update(game_t *game);
 void manage_up(game_t *game);
 void manage_down(game_t *game);
+bool init_game(game_t *game);
 
 //* cinematic
 
