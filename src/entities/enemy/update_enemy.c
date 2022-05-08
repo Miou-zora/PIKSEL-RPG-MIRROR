@@ -110,5 +110,5 @@ void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
         }
         cursor = &((*cursor)->next);
     }
-    update_dead_list(enemies_list, game->player);
+    update_dead_list(enemies_list, game->player, (loot_t **)&(game->background->loot));
 }
