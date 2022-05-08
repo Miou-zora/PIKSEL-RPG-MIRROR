@@ -17,9 +17,8 @@ weapon_t *load_weapon(char *filepath)
             freen(&(*data));
             freen(&data);
         }
-        if (weapon != NULL) {
+        if (weapon != NULL)
             destroy_weapon(&weapon);
-        }
         return (NULL);
     }
     if (fill_weapon(weapon, data) == NULL) {
