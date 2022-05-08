@@ -303,6 +303,7 @@ struct pause_menu_s {
     sfVector2f *rectangles_positions;
     sfVector2f *rectangles_sizes;
     bool display_pause;
+    bool display_pause_sprite;
 };
 
 struct menu_s {

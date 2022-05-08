@@ -14,7 +14,6 @@ static void key_run(player_t *player)
         player->player_mode = 2;
     else
         player->player_mode = 1;
-
     if (player->player_mode == 2) {
         player->player_walk = false;
         player->player_run = true;
@@ -56,18 +55,16 @@ void select_weapon(player_t *player)
 int event_handler(game_t *game)
 {
     while (sfRenderWindow_pollEvent(game->window, &(game->event))) {
-        if (game->event.type == sfEvtClosed) {
+        if (game->event.type == sfEvtClosed)
             sfRenderWindow_close(game->window);
-        }
         if (game->background->scene_background == MENU)
             handle_menu_events(game);
         if (game->background->scene_background == SETTINGS)
             handle_settings_events(game);
         if (sfKeyboard_isKeyPressed(game->event.key.code) == true
         && game->event.key.code == sfKeySpace
-        && game->background->scene_background == CINEMATIC) {
+        && game->background->scene_background == CINEMATIC)
             game->background->scene_background = ROOM;
-        }
         manage_key(game);
         manage_pause(game);
         select_weapon(game->player);

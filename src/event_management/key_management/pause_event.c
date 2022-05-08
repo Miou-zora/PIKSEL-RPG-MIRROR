@@ -11,6 +11,7 @@
 void resume(game_t *game)
 {
     game->background->menu->pause->display_pause = false;
+    game->background->menu->pause->display_pause_sprite = false;
 }
 
 void leave(game_t *game)
@@ -46,12 +47,15 @@ void manage_pause(game_t *game)
 {
     if (sfKeyboard_isKeyPressed(game->event.key.code) == true &&
     game->event.key.code == sfKeyEscape) {
-        if (game->background->menu->pause->display_pause == false)
+        if (game->background->menu->pause->display_pause == false) {
             game->background->menu->pause->display_pause = true;
-        else
+            game->background->menu->pause->display_pause_sprite = true;
+        } else {
             game->background->menu->pause->display_pause = false;
+            game->background->menu->pause->display_pause_sprite = false;
+        }
     }
-    if (game->background->menu->pause->display_pause == true &&
+    if (game->background->menu->pause->display_pause_sprite == true &&
     game->event.type == sfEvtMouseButtonPressed) {
         click_on_buttons_on_pause(game);
     }

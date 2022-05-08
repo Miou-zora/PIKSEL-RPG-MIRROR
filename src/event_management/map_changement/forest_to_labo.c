@@ -18,13 +18,14 @@ bool forest_to_labo(game_t *game)
         game->background->scene_background = LABO;
         game->player->traveled_distance = 0;
         game->player->pos = (sfVector2f){100, 390};
-        sfSound_play(game->sound_music->teleport);
+        game->background->menu->pause->display_pause = false;
     }
     if (game->player->traveled_distance > 478
     && game->player->traveled_distance < 520
     && game->background->scene_background == FOREST) {
         game->npc[3]->display_text = true;
         sfSound_play(game->sound_music->terry);
+        game->background->menu->pause->display_pause = true;
     }
     return (false);
 }
