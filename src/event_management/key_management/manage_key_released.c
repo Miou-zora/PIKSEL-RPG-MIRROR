@@ -27,8 +27,7 @@ void manage_key_released(game_t *game)
             game->player->move_left = false;
         }
         manage_up_and_down(game);
-        if (game->event.key.code == sfKeyLShift) {
-            game->player->player_mode = 1;
-        }
+        (game->event.key.code == sfKeyLShift) ?
+        game->player->player_mode = 1 : 0;
     }
 }

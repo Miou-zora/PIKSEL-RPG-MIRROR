@@ -61,8 +61,7 @@ void manage_pause(game_t *game)
             game->background->menu->pause->display_pause_sprite = false;
         }
     }
-    if (game->background->menu->pause->display_pause_sprite == true &&
-    game->event.type == sfEvtMouseButtonPressed) {
-        click_on_buttons_on_pause(game);
-    }
+    (game->background->menu->pause->display_pause_sprite == true &&
+    game->event.type == sfEvtMouseButtonPressed) ?
+    click_on_buttons_on_pause(game) : 0;
 }
