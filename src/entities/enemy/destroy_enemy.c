@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 5 if
+
 void destroy_enemy(enemy_t **enemy)
 {
     if (enemy == NULL || *enemy == NULL)

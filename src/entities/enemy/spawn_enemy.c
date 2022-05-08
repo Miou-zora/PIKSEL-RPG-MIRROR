@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 23
+
 enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
 {
     enemy_t *enemy = create_enemy();

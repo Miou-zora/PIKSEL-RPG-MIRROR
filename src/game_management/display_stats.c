@@ -31,8 +31,6 @@ void fill_stats(display_stat_t *to_display, sfRenderWindow *window)
         to_display->stats[i] = put_in_str(to_display->stats_values[i],
         to_display->stats[i]);
         sfText_setString(to_display->text[i], to_display->stats[i]);
-        sfText_setFont(to_display->text[i],
-        sfFont_createFromFile("assets/font/font.ttf"));
         sfText_setScale(to_display->text[i], (sfVector2f){2, 2});
         sfText_setColor(to_display->text[i], sfGreen);
     }
