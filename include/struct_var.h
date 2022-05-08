@@ -396,7 +396,8 @@ sfVector2f pos, sfVector2i spawn_inf);
 void update_enemies_list(enemies_list_t **enemies_list, game_t *game);
 void display_enemies_list(enemies_list_t **enemies_list,
 sfRenderWindow *window);
-void update_dead_list(enemies_list_t **enemies_list, player_t *player);
+void update_dead_list(enemies_list_t **enemies_list, player_t *player,
+loot_t **loot);
 bool init_enemy(game_t *game);
 void attack_player(enemy_t *enemy, player_t *player);
 void attack_enemy(enemy_t *enemy, game_t *game);
@@ -404,7 +405,8 @@ void move_enemy_left(game_t *game, int speed);
 void move_enemy_right(game_t *game, int speed);
 void update_healthbar(enemy_t *enemy);
 void display_healthbar(enemy_t *enemy, sfRenderWindow *window);
-void kill_all_enemy(enemies_list_t **enemies_list, player_t *player);
+void kill_all_enemy(enemies_list_t **enemies_list, player_t *player,
+loot_t **loot);
 
 //* armor
 

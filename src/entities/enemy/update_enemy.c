@@ -87,8 +87,10 @@ void update_enemy(enemy_t *enemy, game_t *game)
         return;
     update_enemy_drain(enemy, game);
     if (enemy->scene == game->background->scene_background
-    && enemy->distance_to_travel - 60 < game->player->traveled_distance
-    && enemy->distance_to_travel + 60 > game->player->traveled_distance) {
+    && ((enemy->distance_to_travel - 60 < game->player->traveled_distance
+    && enemy->distance_to_travel + 60 > game->player->traveled_distance)
+    || (enemy->pos.x < 2000 && enemy->pos.x > -150))
+    ) {
         enemy->display = true;
     } else
         enemy->display = false;
@@ -110,5 +112,5 @@ void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
         }
         cursor = &((*cursor)->next);
     }
-    update_dead_list(enemies_list, game->player);
+    update_dead_list(enemies_list, game->player, (loot_t **)&(game->background->loot));
 }
