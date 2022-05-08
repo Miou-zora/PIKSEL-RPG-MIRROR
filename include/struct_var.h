@@ -70,6 +70,7 @@ typedef struct inventory_s inventory_t;
 typedef struct enemies_list_s enemies_list_t;
 typedef struct sound_music_s sound_music_t;
 typedef struct pause_menu_s pause_menu_t;
+typedef struct lose_s lose_t;
 
 /************************** struct ***********************************/
 
@@ -304,6 +305,10 @@ struct bedroom_s {
     sprite_data_t *sprite;
 };
 
+struct lose_s {
+    sprite_data_t *sprite;
+};
+
 struct laboratory_s {
     sprite_data_t *sprite;
 };
@@ -332,6 +337,7 @@ struct menu_s {
 
 struct background_s {
     menu_t *menu;
+    lose_t *lose;
     forest_t *forest[2];
     town_t *town[2];
     laboratory_t *laboratory;
@@ -371,6 +377,7 @@ struct game_s {
     cinematic_t *cinematic;
     enemies_list_t *enemies_list;
     sound_music_t *sound_music;
+    bool is_dead;
 };
 
 /************************** functions ***********************************/
@@ -545,6 +552,7 @@ void update_how_to_play(menu_t *menu);
 
 //* background
 
+bool init_lose(lose_t **lose);
 bool init_back(background_t *background);
 bool init_forest(forest_t *forest[2]);
 bool init_town(town_t *town[2]);

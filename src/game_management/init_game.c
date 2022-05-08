@@ -35,6 +35,7 @@ bool fill_game(game_t *game)
     "Piksel RPG", sfClose, NULL);
     if (game->window == NULL)
         return (true);
+    game->is_dead = false;
     game->background = my_calloc(1, sizeof(background_t));
     game->player = my_calloc(1, sizeof(player_t));
     if (game->background == NULL)
