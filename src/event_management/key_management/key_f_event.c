@@ -10,6 +10,17 @@
 
 ///////////////////////////////// 6 if
 
+bool manage_forest(game_t *game)
+{
+    if (forest_to_city(game))
+        return (true);
+    if (forest_to_labo(game))
+        return (true);
+    if (labo_to_forest(game))
+        return (true);
+    return (false);
+}
+
 int manage_background_tp(game_t *game)
 {
     if (room_to_city(game))
@@ -18,11 +29,7 @@ int manage_background_tp(game_t *game)
         return (0);
     if (city_to_forest(game))
         return (0);
-    if (forest_to_city(game))
-        return (0);
-    if (forest_to_labo(game))
-        return (0);
-    if (labo_to_forest(game))
+    if (manage_forest(game))
         return (0);
     return (0);
 }

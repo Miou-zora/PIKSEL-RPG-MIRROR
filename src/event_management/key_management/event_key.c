@@ -8,8 +8,6 @@
 #include "struct_var.h"
 #include "my.h"
 
-///////////////////////////////// 5 if
-
 void key_run(player_t *player)
 {
     if (sfKeyboard_isKeyPressed(sfKeyLShift)) {
@@ -33,27 +31,6 @@ static void select_weapon(player_t *player)
         player->weapon = 3;
     if (sfKeyboard_isKeyPressed(sfKeyNumpad4))
         player->weapon = 4;
-}
-
-void manage_key_released(game_t *game)
-{
-    if (game->event.type == sfEvtKeyReleased) {
-        if (game->event.key.code == sfKeyD) {
-            game->player->move_right = false;
-        }
-        if (game->event.key.code == sfKeyQ) {
-            game->player->move_left = false;
-        }
-        if (game->event.key.code == sfKeyZ) {
-            game->player->move_up = false;
-        }
-        if (game->event.key.code == sfKeyS) {
-            game->player->move_down = false;
-        }
-        if (game->event.key.code == sfKeyLShift) {
-            game->player->player_mode = 1;
-        }
-    }
 }
 
 static void manage_key_pressed(game_t *game)

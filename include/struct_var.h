@@ -491,6 +491,7 @@ void move_player_run(player_t *player, game_t *game);
 void move_player_walk(player_t *player, game_t *game);
 void detect_press_q_and_d(player_t *player, game_t *game);
 void display_text(game_t *game);
+void manage_key_released(game_t *game);
 
 //* game management
 
@@ -542,6 +543,7 @@ int how_to_play(game_t *game);
 int initialize_how_to_play(game_t *game);
 bool display_one_more_char(text_zone_t **text_zone);
 void update_how_to_play(menu_t *menu);
+bool create_how_to_play(text_zone_t **text_zone);
 
 //* background
 
@@ -552,6 +554,10 @@ sprite_data_t *set_sprite(sprite_data_t *sprite);
 void move_loot(loot_t **loot, int to_move);
 void move_background_left(game_t *game, int speed);
 void move_background_right(game_t *game, int speed);
+void move_player_left(game_t *game, int speed);
+void move_player_right(game_t *game, int speed);
+void display_background(game_t *game);
+
 
 //* player
 
@@ -609,6 +615,16 @@ bool init_npc(npc_t *npc[5]);
 void update_npc(game_t *game);
 void move_npc_left(game_t *game, int speed);
 void move_npc_right(game_t *game, int speed);
+bool create_npc_zero_text(npc_t *npc);
+bool create_npc_one_text(npc_t *npc);
+bool create_npc_two_text(npc_t *npc);
+bool create_npc_three_text(npc_t *npc);
+bool create_npc_four_text(npc_t *npc);
+bool init_quest_npc(npc_t *npc[5]);
+bool init_city_to_forest_npc(npc_t *npc[5]);
+bool init_forest_to_city_npc(npc_t *npc[5]);
+bool init_forest_to_lab_npc(npc_t *npc[5]);
+bool init_win_npc(npc_t *npc[5]);
 
 //* sound / music
 
@@ -617,6 +633,7 @@ bool init_sound(sound_music_t **sound_music);
 //* enemy
 
 void attack_player(enemy_t *enemy, player_t *player);
+void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos);
 
 //* pause
 

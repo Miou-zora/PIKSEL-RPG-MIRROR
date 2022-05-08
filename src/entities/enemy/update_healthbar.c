@@ -38,7 +38,8 @@ bool boss, bool is_life)
     254 : 30};
 
     if (boss) {
-        color = (sfColor){framebuffer->pixels[(y * framebuffer->width + x) * 4 + 0],
+        color =
+        (sfColor){framebuffer->pixels[(y * framebuffer->width + x) * 4 + 0],
         framebuffer->pixels[(y * framebuffer->width + x) * 4 + 1],
         framebuffer->pixels[(y * framebuffer->width + x) * 4 + 2],
         (is_life) ? 254 : 30};
@@ -54,10 +55,12 @@ void update_healthbar(enemy_t *enemy)
 {
     unsigned int pos_life = enemy->actual_animator->sprite_data->scale.x *
     enemy->stat.actual_life * enemy->healthbar->width / enemy->stat.health;
-    bool boss = (enemy->type_enemy == BOSS || enemy->type_enemy == MINI_BOSS) ?
+    bool boss =
+    (enemy->type_enemy == BOSS || enemy->type_enemy == MINI_BOSS) ?
     true : false;
 
-    for (unsigned int y = 0; y < enemy->healthbar->height * enemy->healthbar->width; y++) {
+    for (unsigned int y = 0; y < enemy->healthbar->height *
+    enemy->healthbar->width; y++) {
         if (y % enemy->healthbar->width < pos_life)
             update_pixel(enemy->healthbar, y, boss, true);
         else

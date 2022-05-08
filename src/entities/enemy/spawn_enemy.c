@@ -8,7 +8,13 @@
 #include "struct_var.h"
 #include "my.h"
 
-///////////////////////////////// 23
+void set_animator(enemy_t *enemy)
+{
+    enemy->animator_standing = load_animator("scripts/animator/iddle.ani");
+    enemy->animator_moving = load_animator("scripts/animator/iddle.ani");
+    enemy->actual_animator = enemy->animator_standing;
+    enemy->animator_moving->clock_data->framerate_seconds = 0.1;
+}
 
 enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
 {
@@ -26,10 +32,7 @@ enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->pos = pos;
     enemy->scene = spawn_info.x;
     enemy->distance_to_travel = spawn_info.y;
-    enemy->animator_standing = load_animator("scripts/animator/iddle.ani");
-    enemy->animator_moving = load_animator("scripts/animator/iddle.ani");
-    enemy->actual_animator = enemy->animator_standing;
-    enemy->animator_moving->clock_data->framerate_seconds = 0.1;
+    set_animator(enemy);
     enemy->agro_distance = 1000.f;
     enemy->nest_particle = NULL;
     enemy->healthbar = create_framebuffer(enemy->actual_animator->size_image.x *

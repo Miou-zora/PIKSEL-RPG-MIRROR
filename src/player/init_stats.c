@@ -10,6 +10,19 @@
 
 ///////////////////////////////// 22 lines
 
+bool init_each_stat(display_stat_t *to_display, int i)
+{
+    to_display->stats[i] = my_calloc(4, sizeof(char));
+    if (to_display->stats[i] == NULL)
+        return (false);
+    to_display->text[i] = sfText_create();
+    sfText_setFont(to_display->text[i],
+    sfFont_createFromFile("assets/font/font.ttf"));
+    if (to_display->text[i] == NULL)
+        return (false);
+    return (false);
+}
+
 display_stat_t *init_display_of_stats(void)
 {
     display_stat_t *to_display = my_calloc(1, sizeof(display_stat_t));
@@ -22,13 +35,7 @@ display_stat_t *init_display_of_stats(void)
     if (to_display->stats == NULL)
         return (NULL);
     for (int i = 0; i < 5; i++) {
-        to_display->stats[i] = my_calloc(4, sizeof(char));
-        if (to_display->stats[i] == NULL)
-            return (NULL);
-        to_display->text[i] = sfText_create();
-        sfText_setFont(to_display->text[i],
-        sfFont_createFromFile("assets/font/font.ttf"));
-        if (to_display->text[i] == NULL)
+        if (init_each_stat(to_display, i))
             return (NULL);
     }
     to_display->stats_values = my_calloc(5, sizeof(int *));

@@ -8,8 +8,6 @@
 #include "struct_var.h"
 #include "my.h"
 
-///////////////////////////////// 21 lines
-
 void create_sprites_cinematic(cinematic_t *cinematic)
 {
     create_sprite_cine_player(cinematic);
@@ -32,12 +30,11 @@ void create_cinematic_player_and_enemy(cinematic_t **cinematic)
     (*cinematic)->anim_player_walk = animator_player_walk;
     (*cinematic)->anim_player_walk->sprite_data = sprite_data_player_walk;
     (*cinematic)->anim_player_walk->clock_data = create_clock_data();
-    set_framerate_clock_data((*cinematic)->anim_player_walk->clock_data,
-    0.08);
+    set_framerate_clock_data((*cinematic)->anim_player_walk->clock_data, 0.1);
     (*cinematic)->anim_enemy_run = animator_enemy_run;
     (*cinematic)->anim_enemy_run->sprite_data = sprite_data_enemy_run;
     (*cinematic)->anim_enemy_run->clock_data = create_clock_data();
-    set_framerate_clock_data((*cinematic)->anim_enemy_run->clock_data, 0.08);
+    set_framerate_clock_data((*cinematic)->anim_enemy_run->clock_data, 0.1);
     (*cinematic)->clock_move_player = create_clock_data();
     set_framerate_clock_data((*cinematic)->clock_move_player, 0.07);
     (*cinematic)->clock_move_enemy = create_clock_data();
