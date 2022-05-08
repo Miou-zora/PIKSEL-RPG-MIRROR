@@ -9,19 +9,6 @@
 #include "struct_var.h"
 #include "my.h"
 
-///////////////////////////////// 6 functions
-
-void move_player_left(game_t *game, int speed)
-{
-    game->player->pos.x -= 15.f * speed;
-    if (speed <= 1)
-        sfSprite_setPosition(game->player->walk->sprite_data->sprite ,
-        game->player->pos);
-    else
-        sfSprite_setPosition(game->player->run->sprite_data->sprite ,
-        game->player->pos);
-}
-
 static void move_forest(game_t *game, int speed)
 {
     if (game->background->scene_background == FOREST

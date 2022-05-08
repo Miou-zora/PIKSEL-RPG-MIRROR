@@ -8,7 +8,13 @@
 #include "struct_var.h"
 #include "my.h"
 
-///////////////////////////////// 5 if
+void destroy_animators(enemy_t **enemy)
+{
+    if ((*enemy)->animator_standing != NULL)
+        destroy_animator(&((*enemy)->animator_standing));
+    if ((*enemy)->animator_moving != NULL)
+        destroy_animator(&((*enemy)->animator_moving));
+}
 
 void destroy_enemy(enemy_t **enemy)
 {
@@ -16,10 +22,7 @@ void destroy_enemy(enemy_t **enemy)
         return;
     if ((*enemy)->name != NULL)
         freen(&((*enemy)->name));
-    if ((*enemy)->animator_standing != NULL)
-        destroy_animator(&((*enemy)->animator_standing));
-    if ((*enemy)->animator_moving != NULL)
-        destroy_animator(&((*enemy)->animator_moving));
+    destroy_animators(enemy);
     if ((*enemy)->clock_data != NULL) {
         destroy_clock_data(&((*enemy)->clock_data));
     }

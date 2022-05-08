@@ -19,7 +19,6 @@ sprite_data_t *set_sprite(sprite_data_t *sprite)
 bool init_room(bedroom_t **bedroom)
 {
     *bedroom = malloc(sizeof(bedroom_t));
-    my_printf("malloc bedroom\n");
     if (*bedroom == NULL)
         return (true);
     (*bedroom)->sprite = load_sprite_data("assets/background/appart.png");
@@ -35,7 +34,6 @@ bool init_room(bedroom_t **bedroom)
 bool init_laboratory(laboratory_t **laboratory)
 {
     *laboratory = malloc(sizeof(laboratory_t));
-    my_printf("malloc lab\n");
     if (*laboratory == NULL)
         return (true);
     (*laboratory)->sprite = load_sprite_data("assets/background/labo.png");

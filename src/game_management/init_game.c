@@ -8,13 +8,9 @@
 #include "struct_var.h"
 #include "my.h"
 
-///////////////////////////////// 7 if
-
-bool init_game(game_t *game)
+bool init_characters_and_cinematic(game_t *game)
 {
     if (init_cinematic(&(game->cinematic)) == true)
-        return (true);
-    if (init_back(game->background))
         return (true);
     if (init_player(game->player))
         return (true);
@@ -22,7 +18,16 @@ bool init_game(game_t *game)
         return (true);
     if (init_npc(game->npc))
         return (true);
+    return (false);
+}
+
+bool init_game(game_t *game)
+{
+    if (init_back(game->background))
+        return (true);
     if (init_inventory(&game->player->inventory))
+        return (true);
+    if (init_characters_and_cinematic(game))
         return (true);
     if (init_sound(&game->sound_music))
         return (true);

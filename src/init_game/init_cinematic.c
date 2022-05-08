@@ -8,8 +8,6 @@
 #include "struct_var.h"
 #include "my.h"
 
-///////////////////////////////// 21 lines
-
 void create_sprites_cinematic(cinematic_t *cinematic)
 {
     create_sprite_cine_player(cinematic);
@@ -23,7 +21,6 @@ void create_cinematic_player_and_enemy(cinematic_t **cinematic)
 {
     animator_t *animator_player_walk = malloc(sizeof(animator_t));
     animator_t *animator_enemy_run = malloc(sizeof(animator_t));
-    my_printf("malloc  player walk\n");
     sprite_data_t *sprite_data_player_walk =
     load_sprite_data("assets/player/stick_walk.png");
     sprite_data_t *sprite_data_enemy_run =
@@ -32,12 +29,11 @@ void create_cinematic_player_and_enemy(cinematic_t **cinematic)
     (*cinematic)->anim_player_walk = animator_player_walk;
     (*cinematic)->anim_player_walk->sprite_data = sprite_data_player_walk;
     (*cinematic)->anim_player_walk->clock_data = create_clock_data();
-    set_framerate_clock_data((*cinematic)->anim_player_walk->clock_data,
-    0.08);
+    set_framerate_clock_data((*cinematic)->anim_player_walk->clock_data, 0.1);
     (*cinematic)->anim_enemy_run = animator_enemy_run;
     (*cinematic)->anim_enemy_run->sprite_data = sprite_data_enemy_run;
     (*cinematic)->anim_enemy_run->clock_data = create_clock_data();
-    set_framerate_clock_data((*cinematic)->anim_enemy_run->clock_data, 0.08);
+    set_framerate_clock_data((*cinematic)->anim_enemy_run->clock_data, 0.1);
     (*cinematic)->clock_move_player = create_clock_data();
     set_framerate_clock_data((*cinematic)->clock_move_player, 0.07);
     (*cinematic)->clock_move_enemy = create_clock_data();
@@ -47,7 +43,6 @@ void create_cinematic_player_and_enemy(cinematic_t **cinematic)
 bool init_cinematic(cinematic_t **cinematic)
 {
     (*cinematic) = malloc(sizeof(cinematic_t));
-    my_printf("malloc  player cinek\n");
     (*cinematic)->text_zone = NULL;
     create_cinematic_player_and_enemy(cinematic);
     (*cinematic)->city = load_sprite_data("assets/background/city.png");

@@ -95,6 +95,8 @@ sfVector2f player_pos, enemy_t *enemy, bool direction)
 
 void attack_enemy(enemy_t *enemy, game_t *game)
 {
+    if (enemy->scene != game->background->scene_background)
+        return;
     void (*attacks[4])(sfVector2f enemy_pos,
     sfVector2f player_pos, enemy_t *enemy, bool direction) =
     {sword_attack, spear_attack, gloves_attack, gun_attack};

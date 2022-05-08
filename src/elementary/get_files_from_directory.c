@@ -40,7 +40,6 @@ char *directory)
         verif_extension(file->d_name, expected_extension)) {
             files[i] = my_calloc(my_strlen(directory) + 2 +
             my_strlen(file->d_name), sizeof(*files[i]));
-            my_printf("read dir\n");
             files[i] = my_strcat(files[i], directory);
             files[i] = my_strcat(files[i], "/");
             files[i] = my_strcat(files[i], file->d_name);
@@ -64,7 +63,6 @@ char **get_files_from_directory(char *directory, char *expected_extension)
     if (dir == NULL || nb_of_files == 0)
         return (NULL);
     files = my_calloc(nb_of_files + 1, sizeof(*files));
-    my_printf("read file\n");
     if (files == NULL) {
         closedir(dir);
         return (NULL);

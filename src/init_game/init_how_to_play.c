@@ -8,8 +8,6 @@
 #include "my.h"
 #include "struct_var.h"
 
-///////////////////////////////// 5 if
-
 void add_return_to_the_line(text_zone_t **text_zone, char *text_string, int i)
 {
     for (; text_string[i] != '\0'; i++) {
@@ -55,18 +53,8 @@ int set_text_zone_variables(text_zone_t **text_zone)
 
 int create_text_zone(text_zone_t **text_zone, char *text_string)
 {
-    (*text_zone) = malloc(sizeof(text_zone_t));
-    if ((*text_zone) == NULL)
+    if (create_how_to_play(text_zone))
         return (84);
-    (*text_zone)->font =
-    sfFont_createFromFile("assets/font/font.ttf");
-    if ((*text_zone)->font == NULL) {
-        return (84);
-    }
-    (*text_zone)->text = sfText_create();
-    if ((*text_zone)->text == NULL) {
-        return (84);
-    }
     if (set_text_strings(text_zone, text_string) == 84) {
         return (84);
     }

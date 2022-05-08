@@ -58,6 +58,7 @@ SRC_MENU	=			src/init_game/init_menu.c							\
 						src/game_management/update_how_to_play.c			\
 						src/event_management/key_management/pause_event.c	\
 						src/game_management/display_pause.c					\
+						src/init_game/create_htp_text.c						\
 
 PATH_PLAYER = 			src/player
 
@@ -99,6 +100,8 @@ SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
 						$(PATH_EVENT)/map_changement/forest_to_labo.c 		\
 						$(PATH_EVENT)/map_changement/labo_to_forest.c 		\
 						$(PATH_EVENT)/map_changement/forest_to_city.c 		\
+						$(PATH_EVENT)/key_management/manage_key_released.c	\
+						$(PATH_EVENT)/key_management/move_player_w_back.c	\
 
 MAIN 		=			src/main.c
 
@@ -128,7 +131,8 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/player_attack_enemy.c					\
 						$(PATH_ENEMY)/move_enemy.c 							\
 						$(PATH_ENEMY)/update_healthbar.c					\
-						$(PATH_ENEMY)/display_healthbar.c
+						$(PATH_ENEMY)/display_healthbar.c					\
+						$(PATH_ENEMY)/move_enemy_to_player.c
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 
@@ -157,6 +161,7 @@ PATH_BACKGROUND = 		src/background
 SRC_BACKGROUND = 		$(PATH_BACKGROUND)/init_background.c				\
 						$(PATH_BACKGROUND)/init_background_town.c			\
 						$(PATH_BACKGROUND)/init_background_forest.c			\
+						src/game_management/display_background.c			\
 
 PATH_WEAPON =			src/items/weapon
 
@@ -176,6 +181,8 @@ SRC_NPC = 				$(PATH_NPC)/init_npc.c 								\
 						$(PATH_NPC)/display_npc.c 							\
 						$(PATH_NPC)/move_npc.c 								\
 						$(PATH_NPC)/update_npc.c 							\
+						$(PATH_NPC)/create_npc_text_zone.c					\
+						$(PATH_NPC)/init_all_npc.c							\
 
 PATH_SPRITE_DATA =		src/sprite_data
 

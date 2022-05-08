@@ -8,14 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
-///////////////////////////////// 21 lines
-
-enemy_t *create_enemy(void)
+void set_enemy_variables(enemy_t *enemy)
 {
-    enemy_t *enemy = my_calloc(1, sizeof(*enemy));
-
-    if (enemy == NULL)
-        return (NULL);
     enemy->type_enemy = NOT_SET;
     enemy->name = NULL;
     enemy->id = NOT_SET;
@@ -32,8 +26,17 @@ enemy_t *create_enemy(void)
     enemy->agro_distance = 0.f;
     enemy->nest_particle = NULL;
     enemy->healthbar = NULL;
+}
+
+enemy_t *create_enemy(void)
+{
+    enemy_t *enemy = my_calloc(1, sizeof(*enemy));
+
+    if (enemy == NULL)
+        return (NULL);
     enemy->attack_clock = create_clock_data();
     set_framerate_clock_data(enemy->attack_clock, 1);
+    set_enemy_variables(enemy);
     return (enemy);
 }
 
