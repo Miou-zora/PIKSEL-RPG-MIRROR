@@ -30,6 +30,7 @@ bool create_sound_from_file(sound_music_t **sound_music)
 bool init_sound(sound_music_t **sound_music)
 {
     (*sound_music) = malloc(sizeof(sound_music_t));
+     my_printf("malloc sound\n");
     if (create_sound_from_file(sound_music) == true)
         return (true);
     (*sound_music)->damage = sfSound_create();

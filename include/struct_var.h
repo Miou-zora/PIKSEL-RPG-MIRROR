@@ -13,6 +13,7 @@
 #include <SFML/Network.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include "my.h"
 
 /************************** global ***********************************/
 

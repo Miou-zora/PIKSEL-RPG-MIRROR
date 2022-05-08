@@ -33,6 +33,7 @@ void add_weapon(inventory_t *inventory, loot_t *loot)
 
     if (inventory->helmet != NULL) {
         temp = malloc(sizeof(weapon_t));
+        my_printf("malloc weapon\n");
         temp = inventory->weapon;
     }
     inventory->weapon = loot->weapon;

@@ -6,12 +6,13 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 #include <stdlib.h>
 
 sprite_data_t *create_sprite_data(void)
 {
     sprite_data_t *sprite_data = malloc(sizeof(*sprite_data));
-
+     my_printf("malloc sprite data\n");
     if (sprite_data) {
         sprite_data->sprite = NULL;
         sprite_data->texture = NULL;

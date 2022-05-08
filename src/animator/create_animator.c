@@ -6,12 +6,14 @@
 */
 
 #include "struct_var.h"
+#include "my.h"
 #include "stdlib.h"
 
 animator_t *create_animator(void)
 {
     animator_t *animator = malloc(sizeof(*animator));
 
+    my_printf("malloc animator\n");
     if (animator) {
         animator->actual_image = (sfVector2i){NOT_SET, NOT_SET};
         animator->clock_data = NULL;
