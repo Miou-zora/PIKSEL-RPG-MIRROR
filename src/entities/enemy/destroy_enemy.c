@@ -58,7 +58,7 @@ void update_dead_list(enemies_list_t **enemies_list, player_t *player)
     }
 }
 
-void kill_all_enemy(enemies_list_t **enemies_list)
+void kill_all_enemy(enemies_list_t **enemies_list, player_t *player)
 {
     enemies_list_t **cursor = enemies_list;
 
@@ -68,4 +68,5 @@ void kill_all_enemy(enemies_list_t **enemies_list)
         if (cursor != NULL && (*cursor) != NULL && (*cursor)->next != NULL)
             cursor = &((*cursor)->next);
     }
+    update_dead_list(enemies_list, player);
 }

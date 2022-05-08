@@ -399,7 +399,7 @@ void attack_player(enemy_t *enemy, player_t *player);
 void attack_enemy(enemy_t *enemy, game_t *game);
 void move_enemy_left(game_t *game, int speed);
 void move_enemy_right(game_t *game, int speed);
-void kill_all_enemy(enemies_list_t **enemies_list);
+void kill_all_enemy(enemies_list_t **enemies_list, player_t *player);
 
 //* armor
 
