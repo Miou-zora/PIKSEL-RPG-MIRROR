@@ -46,10 +46,9 @@ void display_armors(game_t *game)
         sfRenderWindow_drawSprite(game->window,
         game->player->inventory->pant->sprite_data->sprite, NULL);
     }
-    if (game->player->inventory->helmet != NULL) {
-        sfRenderWindow_drawSprite(game->window,
-        game->player->inventory->helmet->sprite_data->sprite, NULL);
-    }
+    (game->player->inventory->helmet != NULL) ?
+    sfRenderWindow_drawSprite(game->window,
+    game->player->inventory->helmet->sprite_data->sprite, NULL) : 0;
 }
 
 void display_inventory(game_t *game)

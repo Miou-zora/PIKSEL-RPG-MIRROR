@@ -13,6 +13,7 @@ int find_which_setting(game_t *game)
     sfVector2i mouse_position = sfMouse_getPositionRenderWindow(game->window);
     sfVector2f rect_pos_left = {0, 0};
     sfVector2f rect_pos_right = {0, 0};
+
     for (int i = 0; i < 9; i++) {
         rect_pos_left = game->background->menu->rectangles_positions[i];
         rect_pos_right.x =
@@ -43,6 +44,7 @@ void handle_settings_events(game_t *game)
     int which_setting = -1;
     void(*settings_functions[8])(game_t *) = {sound_on, sound_off, music_on,
     music_off, set_fps_30, set_fps_60, set_fps_120, come_back_to_menu};
+
     if (game->event.type == sfEvtMouseButtonPressed) {
         which_setting = find_which_setting(game);
         if (which_setting != -1) {
