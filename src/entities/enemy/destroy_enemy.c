@@ -65,8 +65,7 @@ void kill_all_enemy(enemies_list_t **enemies_list, player_t *player)
     while (cursor != NULL && (*cursor) != NULL) {
         if ((*cursor)->enemy != NULL)
             (*cursor)->enemy->stat.actual_life = 0;
-        if (cursor != NULL && (*cursor) != NULL && (*cursor)->next != NULL)
-            cursor = &((*cursor)->next);
+        cursor = &((*cursor)->next);
     }
     update_dead_list(enemies_list, player);
 }
