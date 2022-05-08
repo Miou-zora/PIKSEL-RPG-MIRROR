@@ -70,3 +70,16 @@ int manage_key(game_t *game)
     manage_key_released(game);
     return (0);
 }
+
+void manage_lose(game_t *game)
+{
+    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
+
+    if (game->is_dead) {
+        if (game->event.type == sfEvtMouseButtonPressed
+        && mouse_pos.x > 610 && mouse_pos.x < 1400 && mouse_pos.y > 795
+        && mouse_pos.y < 950) {
+            destroy_game(game);
+        }
+    }
+}

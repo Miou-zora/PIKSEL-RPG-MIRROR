@@ -343,6 +343,7 @@ struct background_s {
     laboratory_t *laboratory;
     bedroom_t *bedroom;
     enum scene_background_t scene_background;
+    enum scene_background_t last_scene_background;
     loot_t *loot[10];
 };
 
@@ -435,9 +436,11 @@ void destroy_all_armors(armor_t ***armors);
 armor_t **load_all_armors(char *filepath);
 void print_armor(armor_t *armor);
 void print_all_armors(armor_t **armors);
+void manage_lose(game_t *game);
 
 //* weapon
 
+void destroy_game(game_t *game);
 void destroy_weapon(weapon_t **weapon);
 weapon_t *create_weapon(void);
 weapon_t *load_weapon(char *filepath);

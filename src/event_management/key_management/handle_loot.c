@@ -62,3 +62,14 @@ bool init_loot(loot_t *loot[10])
     }
     return (false);
 }
+
+void destroy_game(game_t *game)
+{
+    kill_all_enemy(&game->enemies_list, game->player,
+    (loot_t **)&(game->background->loot));
+    sfMusic_destroy(game->sound_music->music);
+    sfSound_destroy(game->sound_music->damage);
+    sfSound_destroy(game->sound_music->terry);
+    sfSound_destroy(game->sound_music->teleport);
+    sfRenderWindow_close(game->window);
+}

@@ -10,7 +10,8 @@
 
 int launch_game(game_t *game)
 {
-    game->background->scene_background = CINEMATIC;
+    game->background->scene_background =
+    game->background->last_scene_background;
     return (0);
 }
 

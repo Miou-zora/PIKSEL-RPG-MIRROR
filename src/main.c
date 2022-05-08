@@ -33,6 +33,7 @@ int my_rpg(void)
             display(game);
         }
     }
+    sfRenderWindow_destroy(game->window);
     return (0);
 }
 
