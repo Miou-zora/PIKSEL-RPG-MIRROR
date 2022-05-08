@@ -18,9 +18,8 @@ armor_t *load_armor(char *path)
             freen(&(*data));
             freen(&data);
         }
-        if (armor != NULL) {
+        if (armor != NULL)
             destroy_armor(&armor);
-        }
         return (NULL);
     }
     if (fill_armor(armor, data) == NULL) {

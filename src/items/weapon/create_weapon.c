@@ -11,7 +11,6 @@
 weapon_t *create_weapon(void)
 {
     weapon_t *weapon = malloc(sizeof(*weapon));
-     my_printf("malloc weapon\n");
     if (weapon) {
         weapon->name = NULL;
         weapon->id = NOT_SET;

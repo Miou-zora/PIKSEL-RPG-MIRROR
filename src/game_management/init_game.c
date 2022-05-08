@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 7 if
+
 bool init_game(game_t *game)
 {
     if (init_cinematic(&(game->cinematic)) == true)
@@ -35,7 +37,6 @@ bool fill_game(game_t *game)
         return (true);
     game->background = my_calloc(1, sizeof(background_t));
     game->player = my_calloc(1, sizeof(player_t));
-    my_printf("init game\n");
     if (game->background == NULL)
         return (true);
     if (initialize_menu(&(game->background->menu)) == true)
@@ -50,11 +51,9 @@ bool initialize_game(game_t **game)
     if (game == NULL)
         return (true);
     (*game) = my_calloc(1, sizeof(*(*game)));
-    my_printf("init game\n");
     if ((*game) == NULL)
         return (true);
     if (fill_game(*game) == true) {
-        my_printf("destroy game here");
         return (true);
     }
     return (false);
