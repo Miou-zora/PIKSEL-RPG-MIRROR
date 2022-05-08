@@ -20,6 +20,7 @@ void display_healthbar(enemy_t *enemy, sfRenderWindow *window)
     sfTexture_updateFromPixels(texture, enemy->healthbar->pixels,
     enemy->healthbar->width, enemy->healthbar->height, 0, 0);
     sfSprite_setTexture(sprite, texture, sfTrue);
-    sfSprite_setPosition(sprite, (sfVector2f){enemy->pos.x, enemy->pos.y - 25});
+    sfSprite_setPosition(sprite, (sfVector2f){enemy->pos.x, enemy->pos.y -
+    25});
     sfRenderWindow_drawSprite(window, sprite, NULL);
 }
