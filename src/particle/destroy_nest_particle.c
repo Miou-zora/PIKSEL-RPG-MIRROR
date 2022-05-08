@@ -11,7 +11,7 @@ void destroy_nest_particle(nest_particle_t **nest_particle)
 {
     particle_t *cursor = NULL;
 
-    if (nest_particle == NULL)
+    if (nest_particle == NULL || (*nest_particle) == NULL)
         return;
     cursor = (*nest_particle)->all_particles;
     while (cursor != NULL) {
