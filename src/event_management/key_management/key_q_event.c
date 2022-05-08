@@ -101,8 +101,7 @@ void move_background_left(game_t *game, int speed)
 
 int manage_key_q(game_t *game)
 {
-    if (game->event.key.code == sfKeyQ
-    && game->background->menu->pause->display_pause == false) {
+    if (game->event.key.code == sfKeyQ) {
         game->player->move_left = true;
         game->player->direction = false;
     }

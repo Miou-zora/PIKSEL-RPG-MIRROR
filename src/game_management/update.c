@@ -46,10 +46,12 @@ void update_direction_attack(game_t *game)
 
 void clock_player(player_t *player, game_t *game)
 {
-    move_player_walk(player, game);
-    move_player_run(player, game);
-    update_direction_attack(game);
-    update_position(player);
+    if (game->background->menu->pause->display_pause == false) {
+        move_player_walk(player, game);
+        move_player_run(player, game);
+        update_direction_attack(game);
+        update_position(player);
+    }
 }
 
 void clock_animation_player(player_t *player)
