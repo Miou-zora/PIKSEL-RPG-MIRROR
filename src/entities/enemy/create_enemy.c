@@ -32,6 +32,8 @@ enemy_t *create_enemy(void)
     enemy->agro_distance = 0.f;
     enemy->nest_particle = NULL;
     enemy->healthbar = NULL;
+    enemy->attack_clock = create_clock_data();
+    set_framerate_clock_data(enemy->attack_clock, 1);
     return (enemy);
 }
 
