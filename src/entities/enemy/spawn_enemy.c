@@ -25,7 +25,7 @@ enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->name = my_strdup("basic_temp_name");
     enemy->clock_data = init_clock_data(0.03);
     enemy->moving_state = IDDLE;
-    enemy->stat = (stat_t){.actual_life = 100, .armor = 0, .health = 10,
+    enemy->stat = (stat_t){.actual_life = 300, .armor = 0, .health = 10,
     .level = 1, .power = 1, .speed = 1, .xp = 50, .top_bar = NULL};
     enemy->base_speed = 3.f;
     enemy->type_enemy = MOB;
@@ -47,7 +47,7 @@ enemy_t *spawn_mini_boss_animator(enemy_t *enemy)
     enemy->actual_animator = enemy->animator_standing;
     enemy->animator_moving->clock_data->framerate_seconds = 0.08;
     enemy->agro_distance = 1000.f;
-    enemy->nest_particle = create_nest_particle(500, (sfVector2i){200, 200});
+    enemy->nest_particle = create_nest_particle(700, (sfVector2i){200, 200});
     enemy->nest_particle->color = (sfColor){255, 255, 255, 255};
     enemy->healthbar = create_framebuffer(enemy->actual_animator->size_image.x *
     enemy->actual_animator->sprite_data->scale.x, 20);
@@ -63,7 +63,7 @@ enemy_t *spawn_mini_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->name = my_strdup("basic_temp_name");
     enemy->clock_data = init_clock_data(0.03);
     enemy->moving_state = IDDLE;
-    enemy->stat = (stat_t){.actual_life = 1000, .armor = 0, .health = 1000,
+    enemy->stat = (stat_t){.actual_life = 1500, .armor = 0, .health = 1000,
     .level = 1, .power = 1, .speed = 1, .xp = 150, .top_bar = NULL};
     enemy->base_speed = 3.6f;
     enemy->type_enemy = MINI_BOSS;

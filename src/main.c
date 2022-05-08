@@ -10,6 +10,9 @@
 #include "my.h"
 #include "struct_var.h"
 
+const float NOT_SET = 0;
+const float PI = 3.14159265358979323846;
+
 int my_rpg(void)
 {
     game_t *game = NULL;
