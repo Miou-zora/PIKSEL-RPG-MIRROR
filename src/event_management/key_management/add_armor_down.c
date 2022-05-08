@@ -68,7 +68,6 @@ void add_boots(inventory_t *inventory, loot_t *loot)
 
     if (inventory->boots != NULL) {
         temp = malloc(sizeof(armor_t));
-        my_printf("malloc boots\n");
         temp = inventory->boots;
     }
     inventory->boots = loot->armor;
