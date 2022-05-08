@@ -50,7 +50,7 @@ void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
     while ((*cursor) != NULL) {
         update_enemy((*cursor)->enemy, game);
         if (game->background->menu->pause->display_pause == false) {
-            attack_player((*cursor)->enemy, game->player);
+            attack_player((*cursor)->enemy, game->player, game);
         }
         if (game->player->attack == true) {
             attack_enemy((*cursor)->enemy, game);
