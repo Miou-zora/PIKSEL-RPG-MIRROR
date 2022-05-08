@@ -11,7 +11,10 @@
 int manage_key_z(game_t *game)
 {
     if (game->event.key.code == sfKeyZ
-    && game->background->menu->pause->display_pause == false) {
+    && game->background->menu->pause->display_pause == false
+    && game->background->scene_background != MENU
+    && game->background->scene_background != SETTINGS
+    && game->background->scene_background != CINEMATIC) {
         game->player->move_up = true;
     }
     return (0);
