@@ -27,8 +27,8 @@ void attack_player(enemy_t *enemy, player_t *player, game_t *game)
         enemy_pos.x = enemy->pos.x - 50;
         enemy_pos.y = enemy->pos.y - 100;
         if (enemy_pos.x <= player->pos.x + 75 &&
-        enemy_pos.x >= player->pos.x - 75 && enemy_pos.y <= player->pos.y + 75 &&
-        enemy_pos.y >= player->pos.y - 75) {
+        enemy_pos.x >= player->pos.x - 75 && enemy_pos.y <= player->pos.y + 75
+        && enemy_pos.y >= player->pos.y - 75) {
             player->stat->actual_life -= 10;
             dead_by_enemy(player, game);
         }

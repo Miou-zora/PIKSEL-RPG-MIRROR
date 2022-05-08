@@ -34,8 +34,8 @@ void spawn_random_loot(loot_t **loot, sfVector2f pos)
     sfGreen, sfGreen, sfGreen, sfGreen, sfBlue, sfBlue, sfBlue, sfRed, sfRed,
     sfYellow};
 
-    for (; loot[which_loot]->armor_or_weapon < 2
-    && which_loot < 9; which_loot++);
+    for (; loot[which_loot]->armor_or_weapon < 2 && which_loot < 9;
+    which_loot++);
     if (which_loot < 9) {
         loot[which_loot] = malloc(sizeof(loot_t));
         loot[which_loot]->position = pos;
