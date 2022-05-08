@@ -53,11 +53,6 @@ static void manage_key_pressed(game_t *game)
 int manage_key(game_t *game)
 {
     if (sfKeyboard_isKeyPressed(game->event.key.code) == true) {
-        if (game->event.key.code == sfKeySpace &&
-        game->background->scene_background != MENU
-        && game->background->menu->pause->display_pause == false) {
-            spawn_random_loot(game->background->loot, (sfVector2f){700, 600});
-        }
         if (game->event.key.code == sfKeyE
         && game->background->scene_background != MENU
         && game->background->scene_background != SETTINGS

@@ -132,7 +132,8 @@ SRC_ENEMY =				$(PATH_ENEMY)/create_enemy.c						\
 						$(PATH_ENEMY)/move_enemy.c 							\
 						$(PATH_ENEMY)/update_healthbar.c					\
 						$(PATH_ENEMY)/display_healthbar.c					\
-						$(PATH_ENEMY)/move_enemy_to_player.c
+						$(PATH_ENEMY)/move_enemy_to_player.c				\
+						$(PATH_ENEMY)/set_pos_and_size.c
 
 PATH_CLOCK_DATA =		$(PATH_ELEMENTARY)/clock
 

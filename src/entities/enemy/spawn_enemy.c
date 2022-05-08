@@ -21,7 +21,7 @@ enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
     .level = 1, .power = 1, .speed = 1, .xp = 20, .top_bar = NULL};
     enemy->base_speed = 3.f;
     enemy->type_enemy = MOB;
-    enemy->pos = pos;
+    set_pos_and_size(enemy, pos, 75);
     enemy->scene = spawn_info.x;
     enemy->distance_to_travel = spawn_info.y;
     set_animator(enemy);
@@ -59,7 +59,7 @@ enemy_t *spawn_mini_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
     .level = 1, .power = 1, .speed = 1, .xp = 30, .top_bar = NULL};
     enemy->base_speed = 3.6f;
     enemy->type_enemy = MINI_BOSS;
-    enemy->pos = pos;
+    set_pos_and_size(enemy, pos, 75);
     enemy->scene = spawn_info.x;
     enemy->distance_to_travel = spawn_info.y;
     enemy = spawn_mini_boss_animator(enemy);
@@ -101,7 +101,7 @@ enemy_t *spawn_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
     .level = 1, .power = 1, .speed = 1, .xp = 999999999, .top_bar = NULL};
     enemy->base_speed = 6.f;
     enemy->type_enemy = BOSS;
-    enemy->pos = pos;
+    set_pos_and_size(enemy, pos, 300);
     enemy->scene = spawn_info.x;
     enemy->distance_to_travel = spawn_info.y;
     enemy = spawn_boss_enemy_animator(enemy);

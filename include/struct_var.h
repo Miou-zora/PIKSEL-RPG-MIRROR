@@ -161,6 +161,7 @@ struct enemy_s {
     enum scene_background_t scene;
     char *name;
     int id;
+    int size;
     stat_t stat;
     float base_speed;
     bool display;
@@ -648,6 +649,7 @@ bool init_sound(sound_music_t **sound_music);
 
 void attack_player(enemy_t *enemy, player_t *player, game_t *game);
 void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos);
+void set_pos_and_size(enemy_t *enemy, sfVector2f pos, int size);
 
 //* pause
 
