@@ -10,10 +10,7 @@
 
 static void key_run(player_t *player)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyLShift))
-        player->player_mode = 2;
-    else
-        player->player_mode = 1;
+    player->player_mode = (sfKeyboard_isKeyPressed(sfKeyLShift)) ? 2 : 1;
     if (player->player_mode == 2) {
         player->player_walk = false;
         player->player_run = true;
@@ -59,8 +56,8 @@ int event_handler(game_t *game)
             sfRenderWindow_close(game->window);
         if (game->background->scene_background == MENU)
             handle_menu_events(game);
-        if (game->background->scene_background == SETTINGS)
-            handle_settings_events(game);
+        (game->background->scene_background == SETTINGS) ?
+        handle_settings_events(game) : 0;
         if (sfKeyboard_isKeyPressed(game->event.key.code) == true
         && game->event.key.code == sfKeySpace
         && game->background->scene_background == CINEMATIC) {

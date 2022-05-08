@@ -14,20 +14,20 @@ void detect_press_q_and_d(player_t *player, game_t *game)
     && game->background->menu->pause->display_pause == false) {
         player->move_right = true;
         player->direction = true;
-        if (player->player_mode == 1)
-            player->walk->sprite_data->rect.top = 0;
-        else if (player->player_mode == 2)
-            player->run->sprite_data->rect.top = 0;
+        (player->player_mode == 1) ?
+        player->walk->sprite_data->rect.top = 0 : 0;
+        (player->player_mode == 2) ?
+        player->run->sprite_data->rect.top = 0 : 0;
     } else
         player->move_left = false;
     if (sfKeyboard_isKeyPressed(sfKeyQ)
     && game->background->menu->pause->display_pause == false) {
         player->move_left = true;
         player->direction = false;
-        if (player->player_mode == 1)
-            player->walk->sprite_data->rect.top = 48;
-        else if (player->player_mode == 2)
-            player->run->sprite_data->rect.top = 48;
+        (player->player_mode == 1) ?
+        player->walk->sprite_data->rect.top = 48 : 0;
+        (player->player_mode == 2) ?
+        player->run->sprite_data->rect.top = 48 : 0;
     } else
         player->move_left = false;
 }
