@@ -17,10 +17,10 @@
 
 /************************** global ***********************************/
 
-#define NOT_SET 0
+extern const float NOT_SET;
 #define sfKeyReturn sfKeyInsert
 #define sfKeyEnter sfKeyInsert
-#define PI 3.14159265358979323846
+extern const float PI;
 
 /************************** enum ***********************************/
 
@@ -557,7 +557,6 @@ void move_background_right(game_t *game, int speed);
 void move_player_left(game_t *game, int speed);
 void move_player_right(game_t *game, int speed);
 void display_background(game_t *game);
-
 
 //* player
 
