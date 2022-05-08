@@ -88,6 +88,7 @@ SRC_EVENT =				$(PATH_EVENT)/key_management/event_handler.c		\
 						$(PATH_EVENT)/key_management/key_s_event.c 			\
 						$(PATH_EVENT)/key_management/key_z_event.c 			\
 						$(PATH_EVENT)/key_management/key_f_event.c 			\
+						$(PATH_EVENT)/key_management/key_q_d_event.c 		\
 						$(PATH_EVENT)/key_management/attack_key_event.c		\
 						$(PATH_EVENT)/key_management/add_armor_down.c		\
 						$(PATH_EVENT)/key_management/handle_loot.c			\
