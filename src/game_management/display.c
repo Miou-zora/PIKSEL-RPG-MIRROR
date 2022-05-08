@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 7 functions
+
 void display_room(game_t *game)
 {
     if (game->background->scene_background == ROOM) {
