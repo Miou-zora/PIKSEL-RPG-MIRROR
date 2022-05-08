@@ -24,7 +24,12 @@ bool init_quest_npc(npc_t *npc[5])
     npc[0]->display = false;
     npc[0]->sprite_data = set_sprite(npc[0]->sprite_data);
     if (create_text_zone(&npc[0]->dialogue,
-    "Find the thief and take revenge !!") == 84)
+    "                                                                         \
+                                        \
+                           Find the thief and take revenge !!        \
+                                                \n\n\n                     \
+                                                                        \
+                    press f to continue") == 84)
         return (true);
     npc[0]->dialogue->text_clock = create_clock_data();
     set_framerate_clock_data(npc[0]->dialogue->text_clock, 0.03);
@@ -47,7 +52,12 @@ bool init_city_to_forest_npc(npc_t *npc[5])
     npc[1]->display = false;
     npc[1]->sprite_data = set_sprite(npc[1]->sprite_data);
     if (create_text_zone(&npc[1]->dialogue,
-    "You will be teleported in the forest") == 84)
+    "                                                                         \
+                                        \
+                           You will be teleported in the forest        \
+                                                \n\n\n                     \
+                                                                        \
+                    press f to continue") == 84)
         return (true);
     npc[1]->dialogue->text_clock = create_clock_data();
     set_framerate_clock_data(npc[1]->dialogue->text_clock, 0.03);
@@ -70,7 +80,12 @@ bool init_forest_to_city_npc(npc_t *npc[5])
     npc[2]->display = false;
     npc[2]->sprite_data = set_sprite(npc[2]->sprite_data);
     if (create_text_zone(&npc[2]->dialogue,
-    "You will be teleported in the town") == 84)
+    "                                                                         \
+                                        \
+                           You will be teleported in the city        \
+                                                \n\n\n                     \
+                                                                        \
+                    press f to continue") == 84)
         return (true);
     npc[2]->dialogue->text_clock = create_clock_data();
     set_framerate_clock_data(npc[2]->dialogue->text_clock, 0.03);
@@ -93,7 +108,12 @@ bool init_forest_to_lab_npc(npc_t *npc[5])
     npc[3]->display_text = false;
     npc[3]->sprite_data = set_sprite(npc[3]->sprite_data);
     if (create_text_zone(&npc[3]->dialogue,
-    "You will be teleported in the lab") == 84)
+    "                                                                         \
+                                        \
+                           You will be teleported in the lab        \
+                                                \n\n\n                     \
+                                                                        \
+                    press f to continue") == 84)
         return (true);
     npc[3]->dialogue->text_clock = create_clock_data();
     set_framerate_clock_data(npc[3]->dialogue->text_clock, 0.03);
@@ -116,7 +136,12 @@ bool init_win_npc(npc_t *npc[5])
     npc[4]->display_text = false;
     npc[4]->sprite_data = set_sprite(npc[4]->sprite_data);
     if (create_text_zone(&npc[4]->dialogue,
-    "Good job you have make your revenge :)") == 84)
+    "                                                                         \
+                                        \
+                           Good job you have make your revenge :)        \
+                                                \n\n\n                     \
+                                                                        \
+                    press f to continue") == 84)
         return (true);
     npc[4]->dialogue->text_clock = create_clock_data();
     set_framerate_clock_data(npc[4]->dialogue->text_clock, 0.03);

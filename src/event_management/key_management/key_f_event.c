@@ -40,12 +40,19 @@ int manage_background(game_t *game)
 {
     if (game->player->traveled_distance >= 90
     && game->player->traveled_distance <= 130
+    && game->background->scene_background == CITY
+    && game->background->menu->pause->display_pause == true) {
+        game->background->menu->pause->display_pause = false;
+        game->npc[0]->display_text = false;
+        return (0);
+    } else if (game->player->traveled_distance >= 90
+    && game->player->traveled_distance <= 130
     && game->background->scene_background == CITY) {
         game->npc[0]->display_text = true;
         sfSound_play(game->sound_music->terry);
+        game->background->menu->pause->display_pause = true;
         return (0);
-    } else
-        game->npc[0]->display_text = false;
+    }
     if (manage_background_tp(game))
         return (0);
     check_if_boss_dead(game);
@@ -57,13 +64,6 @@ int manage_key_f(game_t *game)
     if (game->event.key.code == sfKeyF) {
         if (game->background->loot != NULL)
             get_loot(game);
-        if (game->player->traveled_distance >= 90
-        && game->player->traveled_distance <= 130
-        && game->background->scene_background == CITY
-        && game->npc[0]->display_text == true) {
-            game->npc[0]->display_text = false;
-            return (0);
-        }
         manage_background(game);
     }
     return (0);
