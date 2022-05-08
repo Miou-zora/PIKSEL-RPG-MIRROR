@@ -29,6 +29,7 @@ void delete_enemy_from_list(enemies_list_t **enemies_list)
     enemies_list_t *over_cursor = (*enemies_list)->next;
     enemies_list_t *cursor = (*enemies_list);
 
+    destroy_nest_particle(&((*enemies_list)->enemy->nest_particle));
     destroy_enemy(&((*enemies_list)->enemy));
     if (cursor->prev != NULL) {
         cursor->prev->next = cursor->next;
@@ -54,5 +55,17 @@ void update_dead_list(enemies_list_t **enemies_list, player_t *player)
         } else {
             cursor = NULL;
         }
+    }
+}
+
+void kill_all_enemy(enemies_list_t **enemies_list)
+{
+    enemies_list_t **cursor = enemies_list;
+
+    while (cursor != NULL && (*cursor) != NULL) {
+        if ((*cursor)->enemy != NULL)
+            (*cursor)->enemy->stat.actual_life = 0;
+        if (cursor != NULL && (*cursor) != NULL && (*cursor)->next != NULL)
+            cursor = &((*cursor)->next);
     }
 }

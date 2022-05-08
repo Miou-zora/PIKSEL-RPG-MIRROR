@@ -399,6 +399,7 @@ void attack_player(enemy_t *enemy, player_t *player);
 void attack_enemy(enemy_t *enemy, game_t *game);
 void move_enemy_left(game_t *game, int speed);
 void move_enemy_right(game_t *game, int speed);
+void kill_all_enemy(enemies_list_t **enemies_list);
 
 //* armor
 
@@ -563,6 +564,7 @@ nest_particle_t *create_nest_particle(int number_of_particle,
 sfVector2i size_framebuffer);
 void update_nest_particle(nest_particle_t *nest_particle, float delta_time);
 void put_nest_particle_on_framebuffer(nest_particle_t *nest_particle);
+void destroy_nest_particle(nest_particle_t **nest_particle);
 
 //* inventory
 

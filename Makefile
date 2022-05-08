@@ -43,6 +43,7 @@ SRC_PARTICLES =			$(PATH_PARTICLES)/create_framebuffer.c				\
 						$(PATH_PARTICLES)/create_nest_particle.c			\
 						$(PATH_PARTICLES)/update_nest_particle.c			\
 						$(PATH_PARTICLES)/put_nest_particle_on_framebuffer.c\
+						$(PATH_PARTICLES)/destroy_nest_particle.c
 
 SRC_MENU	=			src/init_game/init_menu.c							\
 						src/event_management/menu/handle_menu_functions.c	\
