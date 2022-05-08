@@ -56,6 +56,7 @@ void put_in_enemy(enemies_list_t **enemies_list, enemy_t *enemy)
         cursor = &((*cursor)->next);
     if ((*cursor) == NULL) {
         (*cursor) = my_calloc(1, sizeof(*(*cursor)));
+        my_printf("put in ennemy\n");
         if ((*cursor) == NULL)
             return;
         (*cursor)->prev = NULL;

@@ -21,7 +21,7 @@ void create_cinematic_player_and_enemy(cinematic_t **cinematic)
 {
     animator_t *animator_player_walk = malloc(sizeof(animator_t));
     animator_t *animator_enemy_run = malloc(sizeof(animator_t));
-     my_printf("malloc  player walk\n");
+    my_printf("malloc  player walk\n");
     sprite_data_t *sprite_data_player_walk =
     load_sprite_data("assets/player/stick_walk.png");
     sprite_data_t *sprite_data_enemy_run =
@@ -45,6 +45,7 @@ void create_cinematic_player_and_enemy(cinematic_t **cinematic)
 bool init_cinematic(cinematic_t **cinematic)
 {
     (*cinematic) = malloc(sizeof(cinematic_t));
+    my_printf("malloc  player cinek\n");
     (*cinematic)->text_zone = NULL;
     create_cinematic_player_and_enemy(cinematic);
     (*cinematic)->city = load_sprite_data("assets/background/city.png");

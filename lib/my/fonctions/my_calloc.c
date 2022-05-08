@@ -12,7 +12,7 @@ void *my_memset(void *, int, int);
 void *my_calloc(int elem_count, int elem_size)
 {
     void *ptr = malloc(elem_count * elem_size);
-    write(1, "calloc my norm", 15);
+
     if (!ptr)
         return (NULL);
     my_memset(ptr, 0, elem_count * elem_size);

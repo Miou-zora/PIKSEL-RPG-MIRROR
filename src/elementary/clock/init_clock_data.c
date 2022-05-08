@@ -11,7 +11,7 @@
 clock_data_t *init_clock_data(float framerate_seconds)
 {
     clock_data_t *clock_data = my_calloc(1, sizeof(*clock_data));
-
+    my_printf("read clock\n");
     if (clock_data == NULL)
         return (NULL);
     clock_data->clock = sfClock_create();

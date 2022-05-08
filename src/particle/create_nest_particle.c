@@ -31,7 +31,7 @@ nest_particle_t *create_nest_particle(int number_of_particle,
 sfVector2i size_framebuffer)
 {
     nest_particle_t *nest_particle = my_calloc(1, sizeof(*nest_particle));
-
+    my_printf("creat nest\n");
     if (nest_particle == NULL)
         return (NULL);
     nest_particle->framebuffer = create_framebuffer(size_framebuffer.x,

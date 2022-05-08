@@ -36,7 +36,7 @@ int quit(game_t *game)
 int detect_pos(sfVector2i position)
 {
     sfVector2f **hitboxes = my_calloc(4, sizeof(sfVector2f *));
-
+    my_printf("hit bosxe\n");
     hitboxes[0] = initialize_positions("365 295 1585 430", 2);
     hitboxes[1] = initialize_positions("365 535 1585 670", 2);
     hitboxes[2] = initialize_positions("365 775 1585 910", 2);
