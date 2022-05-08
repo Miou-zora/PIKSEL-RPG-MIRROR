@@ -23,7 +23,7 @@ sfVector2f *scale)
     }
 }
 
-void add_helmet(inventory_t *inventory, loot_t *loot)
+void add_helmet(inventory_t *inventory, loot_t *loot, player_t *player)
 {
     armor_t *temp = NULL;
     sfVector2f pos =
@@ -41,6 +41,8 @@ void add_helmet(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->helmet->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     add_helmet_pos(&loot, &pos, temp, &scale);
+    if (temp == NULL)
+        player->stat->armor += 1;
 }
 
 void add_chestplate_pos(loot_t **loot, sfVector2f *pos, armor_t *temp,
@@ -57,7 +59,7 @@ sfVector2f *scale)
         (*loot)->armor_or_weapon = 3;
 }
 
-void add_chestplate(inventory_t *inventory, loot_t *loot)
+void add_chestplate(inventory_t *inventory, loot_t *loot, player_t *player)
 {
     armor_t *temp = NULL;
     sfVector2f pos =
@@ -75,4 +77,6 @@ void add_chestplate(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->chestplate->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     add_chestplate_pos(&loot, &pos, temp, &scale);
+    if (temp == NULL)
+        player->stat->armor += 2;
 }

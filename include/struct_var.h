@@ -608,12 +608,13 @@ bool init_loot(loot_t *loot[10]);
 void display_inventory(game_t *game);
 bool init_inventory(inventory_t **inventory);
 void invert_display_of_inventory(inventory_t *inventory);
-void add_loot_to_inventory(inventory_t *inventory, loot_t *loot);
-void add_helmet(inventory_t *inventory, loot_t *loot);
-void add_chestplate(inventory_t *inventory, loot_t *loot);
-void add_pant(inventory_t *inventory, loot_t *loot);
-void add_boots(inventory_t *inventory, loot_t *loot);
-void add_weapon(inventory_t *inventory, loot_t *loot);
+void add_loot_to_inventory(inventory_t *inventory, loot_t *loot,
+player_t *player);
+void add_helmet(inventory_t *inventory, loot_t *loot, player_t *player);
+void add_chestplate(inventory_t *inventory, loot_t *loot, player_t *player);
+void add_pant(inventory_t *inventory, loot_t *loot, player_t *player);
+void add_boots(inventory_t *inventory, loot_t *loot, player_t *player);
+void add_weapon(inventory_t *inventory, loot_t *loot, player_t *player);
 void remove_loot(loot_t *loot[10]);
 void free_loot(loot_t *loot);
 
