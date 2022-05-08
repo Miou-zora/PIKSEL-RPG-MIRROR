@@ -11,6 +11,7 @@ int initialize_sprite_data(sprite_data_t **sprite_data, char *path_to_image,
 sfVector2f scale, sfVector2f position)
 {
     (*sprite_data) = my_calloc(1, sizeof(*(*sprite_data)));
+    my_printf("init sprite data\n");
     (*sprite_data)->sprite = sfSprite_create();
     if ((*sprite_data)->sprite == NULL)
         return (84);

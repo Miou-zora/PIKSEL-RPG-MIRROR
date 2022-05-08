@@ -24,12 +24,15 @@ display_stat_t *init_display_of_stats(void)
         if (to_display->stats[i] == NULL)
             return (NULL);
         to_display->text[i] = sfText_create();
+        sfText_setFont(to_display->text[i],
+        sfFont_createFromFile("assets/font/font.ttf"));
         if (to_display->text[i] == NULL)
             return (NULL);
     }
     to_display->stats_values = my_calloc(5, sizeof(int *));
     if (to_display->stats_values == NULL)
         return (NULL);
+    my_printf("init display\n");
     return (to_display);
 }
 
