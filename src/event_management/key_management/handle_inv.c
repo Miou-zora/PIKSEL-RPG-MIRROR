@@ -26,14 +26,15 @@ void invert_display_of_inventory(inventory_t *inventory)
         inventory->display_inventory = false;
 }
 
-void add_loot_to_inventory(inventory_t *inventory, loot_t *loot)
+void add_loot_to_inventory(inventory_t *inventory, loot_t *loot,
+player_t *player)
 {
-    void (*armors[5])(inventory_t *, loot_t *) =
+    void (*armors[5])(inventory_t *, loot_t *, player_t *) =
     {add_weapon, add_helmet, add_chestplate, add_pant, add_boots};
 
     if (loot->armor_or_weapon == 1) {
-        armors[0](inventory, loot);
+        armors[0](inventory, loot, player);
     } else if (loot->armor_or_weapon == 0) {
-        armors[loot->armor->id](inventory, loot);
+        armors[loot->armor->id](inventory, loot, player);
     }
 }

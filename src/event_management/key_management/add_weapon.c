@@ -22,7 +22,7 @@ sfVector2f *scale)
         (*loot)->armor_or_weapon = 3;
 }
 
-void add_weapon(inventory_t *inventory, loot_t *loot)
+void add_weapon(inventory_t *inventory, loot_t *loot, player_t *player)
 {
     weapon_t *temp = NULL;
     sfVector2f pos =
@@ -40,4 +40,5 @@ void add_weapon(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->weapon->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     add_weapon_pos(&loot, &pos, temp, &scale);
+    player->stat->xp += 0;
 }
