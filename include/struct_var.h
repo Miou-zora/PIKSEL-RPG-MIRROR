@@ -591,6 +591,7 @@ void add_pant(inventory_t *inventory, loot_t *loot);
 void add_boots(inventory_t *inventory, loot_t *loot);
 void add_weapon(inventory_t *inventory, loot_t *loot);
 void remove_loot(loot_t *loot[10]);
+void free_loot(loot_t *loot);
 
 //* npc
 
