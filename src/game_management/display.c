@@ -34,6 +34,7 @@ void display_city(game_t *game)
         display_player_sprites(game->player, game);
         sfRenderWindow_drawSprite(game->window,
         game->background->town[1]->sprite->sprite, NULL);
+        display_text(game);
         if (game->background->menu->pause->display_pause_sprite == true)
             display_pause(game);
     }
@@ -52,6 +53,7 @@ void display_forest(game_t *game)
             display_pause(game);
         display_enemies_list(&(game->enemies_list), game->window);
         display_player_sprites(game->player, game);
+        display_text(game);
     }
 }
 
@@ -65,6 +67,7 @@ void display_labo(game_t *game)
         if (game->background->menu->pause->display_pause_sprite == true)
             display_pause(game);
         display_enemies_list(&(game->enemies_list), game->window);
+        display_text(game);
     }
 }
 

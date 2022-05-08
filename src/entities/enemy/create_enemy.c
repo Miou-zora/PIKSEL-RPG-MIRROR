@@ -29,6 +29,7 @@ enemy_t *create_enemy(void)
     enemy->animator_moving = NULL;
     enemy->agro_distance = 0.f;
     enemy->nest_particle = NULL;
+    enemy->healthbar = NULL;
     return (enemy);
 }
 

@@ -163,6 +163,7 @@ struct enemy_s {
     animator_t *animator_moving;
     nest_particle_t *nest_particle;
     clock_data_t *attack_clock;
+    framebuffer_t *healthbar;
 };
 
 struct framebuffer_s {
@@ -401,6 +402,8 @@ void attack_player(enemy_t *enemy, player_t *player);
 void attack_enemy(enemy_t *enemy, game_t *game);
 void move_enemy_left(game_t *game, int speed);
 void move_enemy_right(game_t *game, int speed);
+void update_healthbar(enemy_t *enemy);
+void display_healthbar(enemy_t *enemy, sfRenderWindow *window);
 void kill_all_enemy(enemies_list_t **enemies_list, player_t *player);
 
 //* armor
@@ -475,6 +478,7 @@ bool labo_to_forest(game_t *game);
 void move_player_run(player_t *player, game_t *game);
 void move_player_walk(player_t *player, game_t *game);
 void detect_press_q_and_d(player_t *player, game_t *game);
+void display_text(game_t *game);
 
 //* game management
 

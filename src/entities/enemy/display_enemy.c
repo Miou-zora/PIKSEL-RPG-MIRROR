@@ -40,6 +40,7 @@ void display_enemy(enemy_t *enemy, sfRenderWindow *window)
         sfRenderWindow_drawSprite(window,
         enemy->actual_animator->sprite_data->sprite, NULL);
     }
+    display_healthbar(enemy, window);
 }
 
 void display_enemies_list(enemies_list_t **enemies_list,
