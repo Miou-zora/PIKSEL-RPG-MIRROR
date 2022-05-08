@@ -10,38 +10,70 @@
 #include <stdio.h>
 
 void sword_attack(sfVector2f enemy_pos,
-sfVector2f player_pos, enemy_t *enemy)
+sfVector2f player_pos, enemy_t *enemy, bool direction)
 {
-    if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 120 &&
-    enemy_pos.y > player_pos.y - 200 && enemy_pos.y < player_pos.y + 200) {
-        enemy->stat.actual_life -= 15;
+    if (direction == true) {
+        if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 150 &&
+        enemy_pos.y > player_pos.y - 200 && enemy_pos.y < player_pos.y + 200) {
+            enemy->stat.actual_life -= 30;
+        }
+    } else {
+        player_pos.x -= 170;
+        if (enemy_pos.x > player_pos.x - 150 && enemy_pos.x < player_pos.x &&
+        enemy_pos.y > player_pos.y - 200 && enemy_pos.y < player_pos.y + 200) {
+            enemy->stat.actual_life -= 30;
+        }
     }
 }
 
 void spear_attack(sfVector2f enemy_pos,
-sfVector2f player_pos, enemy_t *enemy)
+sfVector2f player_pos, enemy_t *enemy, bool direction)
 {
-    if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 230 &&
-    enemy_pos.y > player_pos.y - 100 && enemy_pos.y < player_pos.y + 100) {
-        enemy->stat.actual_life -= 10;
+    if (direction == true) {
+        if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 230 &&
+        enemy_pos.y > player_pos.y - 100 && enemy_pos.y < player_pos.y + 100) {
+            enemy->stat.actual_life -= 20;
+        }
+    } else {
+        player_pos.x -= 170;
+        if (enemy_pos.x > player_pos.x - 230 && enemy_pos.x < player_pos.x &&
+        enemy_pos.y > player_pos.y - 100 && enemy_pos.y < player_pos.y + 100) {
+            enemy->stat.actual_life -= 20;
+        }
     }
 }
 
 void gloves_attack(sfVector2f enemy_pos,
-sfVector2f player_pos, enemy_t *enemy)
+sfVector2f player_pos, enemy_t *enemy, bool direction)
 {
-    if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 100 &&
-    enemy_pos.y > player_pos.y - 250 && enemy_pos.y < player_pos.y + 250) {
-        enemy->stat.actual_life -= 10;
+    if (direction == true) {
+        if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 100 &&
+        enemy_pos.y > player_pos.y - 250 && enemy_pos.y < player_pos.y + 250) {
+            enemy->stat.actual_life -= 20;
+        }
+    } else {
+        player_pos.x -= 170;
+        if (enemy_pos.x > player_pos.x - 100 && enemy_pos.x < player_pos.x &&
+        enemy_pos.y > player_pos.y - 250 && enemy_pos.y < player_pos.y + 250) {
+            enemy->stat.actual_life -= 20;
+        }
     }
 }
 
 void gun_attack(sfVector2f enemy_pos,
-sfVector2f player_pos, enemy_t *enemy)
+sfVector2f player_pos, enemy_t *enemy, bool direction)
 {
-    if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 500 &&
-    enemy_pos.y > player_pos.y - 50 && enemy_pos.y < player_pos.y + 50) {
-        enemy->stat.actual_life -= 30;
+    if (direction == true) {
+        if (enemy_pos.x > player_pos.x && enemy_pos.x < player_pos.x + 500 &&
+        enemy_pos.y > player_pos.y - 50 && enemy_pos.y < player_pos.y + 50) {
+            enemy->stat.actual_life -= 60;
+        }
+    } else {
+        player_pos.x -= 170;
+        if (enemy_pos.x > player_pos.x - 500 && enemy_pos.x < player_pos.x &&
+        enemy_pos.y > player_pos.y - 50 && enemy_pos.y < player_pos.y + 50) {
+            enemy->stat.actual_life -= 60;
+        }
     }
 }
 
@@ -52,7 +84,8 @@ void attack_enemy(enemy_t *enemy, game_t *game)
     player_pos.x += 170;
     player_pos.y += 100;
     void (*attacks[4])(sfVector2f enemy_pos,
-    sfVector2f player_pos, enemy_t *) =
+    sfVector2f player_pos, enemy_t *enemy, bool direction) =
     {sword_attack, spear_attack, gloves_attack, gun_attack};
-    attacks[game->player->weapon - 1](enemy_pos, player_pos, enemy);
+    attacks[game->player->weapon - 1](enemy_pos,
+    player_pos, enemy, game->player->direction);
 }
