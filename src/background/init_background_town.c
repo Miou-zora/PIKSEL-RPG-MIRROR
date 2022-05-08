@@ -61,9 +61,9 @@ bool init_lose(lose_t **lose)
     (*lose)->sprite = load_sprite_data("assets/menu/lose.png");
     if ((*lose)->sprite == NULL)
         return (true);
-    (*lose)->sprite->pos = (sfVector2f){0, 0};
+    (*lose)->sprite->pos = (sfVector2f){300, 180};
     (*lose)->sprite->rect = (sfIntRect){0, 0, 1080, 1920};
-    (*lose)->sprite->scale = (sfVector2f){4, 4};
+    (*lose)->sprite->scale = (sfVector2f){6, 6};
     (*lose)->sprite = set_sprite((*lose)->sprite);
     return (false);
 }

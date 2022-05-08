@@ -38,5 +38,8 @@ void display(game_t *game)
     if (game->background->scene_background == CINEMATIC) {
         display_sprite_cinematic(game);
     }
+    if (game->is_dead == true)
+        sfRenderWindow_drawSprite(game->window,
+        game->background->lose->sprite->sprite, NULL);
     sfRenderWindow_display(game->window);
 }
