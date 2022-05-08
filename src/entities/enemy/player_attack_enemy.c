@@ -26,7 +26,7 @@ sfVector2f player_pos, enemy_t *enemy, bool direction)
         rect_player.left -= 30;
         rect_player.left -= 200;
         if (sfIntRect_intersects(&rect_ene, &rect_player, NULL))
-            enemy->stat.actual_life -= 15;
+            enemy->stat.actual_life -= 10;
     }
 }
 
@@ -47,7 +47,7 @@ sfVector2f player_pos, enemy_t *enemy, bool direction)
         rect_player.left -= 30;
         rect_player.left -= 300;
         if (sfIntRect_intersects(&rect_ene, &rect_player, NULL))
-            enemy->stat.actual_life -= 100;
+            enemy->stat.actual_life -= 25;
     }
 }
 
@@ -68,7 +68,7 @@ sfVector2f player_pos, enemy_t *enemy, bool direction)
         rect_player.left -= 30;
         rect_player.left -= 200;
         if (sfIntRect_intersects(&rect_ene, &rect_player, NULL))
-            enemy->stat.actual_life -= 100;
+            enemy->stat.actual_life -= 25;
     }
 }
 
@@ -89,7 +89,7 @@ sfVector2f player_pos, enemy_t *enemy, bool direction)
         rect_player.left -= 20;
         rect_player.left -= 500;
         (sfIntRect_intersects(&rect_ene, &rect_player, NULL)) ?
-        enemy->stat.actual_life -= 60 : 0;
+        enemy->stat.actual_life -= 20 : 0;
     }
 }
 
