@@ -163,6 +163,7 @@ struct enemy_s {
     animator_t *animator_moving;
     nest_particle_t *nest_particle;
     clock_data_t *attack_clock;
+    framebuffer_t *healthbar;
 };
 
 struct framebuffer_s {
@@ -231,6 +232,7 @@ struct player_s {
     clock_data_t *c_sword;
     clock_data_t *c_spear;
     clock_data_t *clock_update_animator;
+    clock_data_t *attack_clock;
     animator_t *run;
     animator_t *walk;
     animator_t *iddle;
@@ -400,6 +402,8 @@ void attack_player(enemy_t *enemy, player_t *player);
 void attack_enemy(enemy_t *enemy, game_t *game);
 void move_enemy_left(game_t *game, int speed);
 void move_enemy_right(game_t *game, int speed);
+void update_healthbar(enemy_t *enemy);
+void display_healthbar(enemy_t *enemy, sfRenderWindow *window);
 void kill_all_enemy(enemies_list_t **enemies_list, player_t *player);
 
 //* armor

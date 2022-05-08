@@ -92,6 +92,7 @@ void update_enemy(enemy_t *enemy, game_t *game)
         enemy->display = true;
     } else
         enemy->display = false;
+    update_healthbar(enemy);
     sfSprite_setPosition(enemy->animator_standing->sprite_data->sprite,
     enemy->pos);
     sfSprite_setPosition(enemy->animator_moving->sprite_data->sprite,

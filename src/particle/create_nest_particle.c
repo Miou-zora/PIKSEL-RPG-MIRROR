@@ -10,7 +10,7 @@
 
 static particle_t *create_particle(particle_t *particle)
 {
-    particle_t *new_particle = my_calloc(1, sizeof(*particle));
+    particle_t *new_particle = my_calloc(1, sizeof(*new_particle));
 
     if (new_particle) {
         new_particle->acceleration = 2.f * PI * (float)(rand() % 1000) / 1000;
