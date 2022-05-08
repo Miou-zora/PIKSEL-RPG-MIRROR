@@ -474,6 +474,7 @@ bool labo_to_forest(game_t *game);
 void move_player_run(player_t *player, game_t *game);
 void move_player_walk(player_t *player, game_t *game);
 void detect_press_q_and_d(player_t *player, game_t *game);
+void display_text(game_t *game);
 
 //* game management
 
