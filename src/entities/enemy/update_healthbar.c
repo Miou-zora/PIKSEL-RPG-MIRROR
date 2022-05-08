@@ -53,10 +53,10 @@ bool boss, bool is_life)
 
 void update_healthbar(enemy_t *enemy)
 {
-    unsigned int pos_life = enemy->actual_animator->sprite_data->scale.x *
-    enemy->stat.actual_life * enemy->healthbar->width / enemy->stat.health;
-    bool boss =
-    (enemy->type_enemy == BOSS || enemy->type_enemy == MINI_BOSS) ?
+    unsigned int pos_life = enemy->stat.actual_life * enemy->healthbar->width
+    / enemy->stat.health;
+    bool boss = (enemy->type_enemy == BOSS ||
+    enemy->type_enemy == MINI_BOSS) ?
     true : false;
 
     for (unsigned int y = 0; y < enemy->healthbar->height *
