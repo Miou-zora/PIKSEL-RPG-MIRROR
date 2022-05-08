@@ -16,7 +16,7 @@ void resume(game_t *game)
 
 void leave(game_t *game)
 {
-    sfRenderWindow_close(game->window);
+    destroy_game(game);
 }
 
 void go_to_menu(game_t *game)

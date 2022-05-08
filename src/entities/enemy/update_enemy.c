@@ -9,8 +9,6 @@
 #include "math.h"
 #include "my.h"
 
-///////////////////////////////// 6 functions
-
 void update_enemy_drain(enemy_t *enemy, game_t *game)
 {
     update_animator(enemy->actual_animator, game);
