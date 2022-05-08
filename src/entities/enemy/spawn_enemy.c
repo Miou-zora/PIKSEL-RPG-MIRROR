@@ -26,7 +26,7 @@ enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->clock_data = init_clock_data(0.03);
     enemy->moving_state = IDDLE;
     enemy->stat = (stat_t){.actual_life = 300, .armor = 0, .health = 10,
-    .level = 1, .power = 1, .speed = 1, .xp = 50, .top_bar = NULL};
+    .level = 1, .power = 1, .speed = 1, .xp = 20, .top_bar = NULL};
     enemy->base_speed = 3.f;
     enemy->type_enemy = MOB;
     enemy->pos = pos;
@@ -64,7 +64,7 @@ enemy_t *spawn_mini_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->clock_data = init_clock_data(0.03);
     enemy->moving_state = IDDLE;
     enemy->stat = (stat_t){.actual_life = 1500, .armor = 0, .health = 1000,
-    .level = 1, .power = 1, .speed = 1, .xp = 150, .top_bar = NULL};
+    .level = 1, .power = 1, .speed = 1, .xp = 30, .top_bar = NULL};
     enemy->base_speed = 3.6f;
     enemy->type_enemy = MINI_BOSS;
     enemy->pos = pos;
@@ -106,7 +106,7 @@ enemy_t *spawn_boss_enemy(sfVector2f pos, sfVector2i spawn_info)
     enemy->clock_data = init_clock_data(0.03);
     enemy->moving_state = IDDLE;
     enemy->stat = (stat_t){.actual_life = 10000, .armor = 0, .health = 10000,
-    .level = 1, .power = 1, .speed = 1, .xp = 1000, .top_bar = NULL};
+    .level = 1, .power = 1, .speed = 1, .xp = 999999999, .top_bar = NULL};
     enemy->base_speed = 6.f;
     enemy->type_enemy = BOSS;
     enemy->pos = pos;
