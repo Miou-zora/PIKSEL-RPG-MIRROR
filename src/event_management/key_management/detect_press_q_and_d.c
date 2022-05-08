@@ -8,6 +8,15 @@
 #include "struct_var.h"
 #include "my.h"
 
+void do_something(game_t *game)
+{
+    manage_key(game);
+    manage_pause(game);
+    detect_key(game->player, game->clock_secondary, game);
+    player_attack(game->player);
+    manage_lose(game);
+}
+
 void detect_press_q_and_d(player_t *player, game_t *game)
 {
     if (sfKeyboard_isKeyPressed(sfKeyD)

@@ -9,6 +9,14 @@
 #include "math.h"
 #include "my.h"
 
+void set_animator(enemy_t *enemy)
+{
+    enemy->animator_standing = load_animator("scripts/animator/iddle.ani");
+    enemy->animator_moving = load_animator("scripts/animator/iddle.ani");
+    enemy->actual_animator = enemy->animator_standing;
+    enemy->animator_moving->clock_data->framerate_seconds = 0.1;
+}
+
 void update_enemy_drain(enemy_t *enemy, game_t *game)
 {
     update_animator(enemy->actual_animator, game);

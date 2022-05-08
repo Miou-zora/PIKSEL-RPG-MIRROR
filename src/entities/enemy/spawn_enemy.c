@@ -8,14 +8,6 @@
 #include "struct_var.h"
 #include "my.h"
 
-void set_animator(enemy_t *enemy)
-{
-    enemy->animator_standing = load_animator("scripts/animator/iddle.ani");
-    enemy->animator_moving = load_animator("scripts/animator/iddle.ani");
-    enemy->actual_animator = enemy->animator_standing;
-    enemy->animator_moving->clock_data->framerate_seconds = 0.1;
-}
-
 enemy_t *spawn_mob_enemy(sfVector2f pos, sfVector2i spawn_info)
 {
     enemy_t *enemy = create_enemy();

@@ -468,6 +468,7 @@ void increment_animator_image_pos(animator_t *animator);
 animator_t *fill_animator(animator_t *animator, char **data);
 void update_animator(animator_t *animator, game_t *game);
 void re_set_animator(animator_t **target, animator_t **giver);
+void set_animator(enemy_t *enemy);
 
 //* clock_data
 
@@ -553,6 +554,9 @@ int initialize_how_to_play(game_t *game);
 bool display_one_more_char(text_zone_t **text_zone);
 void update_how_to_play(menu_t *menu);
 bool create_how_to_play(text_zone_t **text_zone);
+void do_something(game_t *game);
+void player_attack(player_t *player);
+void detect_key(player_t *player, clock_data_t *clock, game_t *game);
 
 //* background
 
