@@ -20,6 +20,8 @@ void attack_player(enemy_t *enemy, player_t *player, game_t *game)
 {
     sfVector2f enemy_pos;
 
+    if (enemy->scene != game->background->scene_background)
+        return;
     drain_clock_data(enemy->attack_clock);
     while (update_clock_data(enemy->attack_clock)) {
         enemy_pos.x = enemy->pos.x - 50;
