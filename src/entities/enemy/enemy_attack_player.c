@@ -19,6 +19,6 @@ void attack_player(enemy_t *enemy, player_t *player)
         if (enemy_pos.x <= player->pos.x + 75 &&
         enemy_pos.x >= player->pos.x - 75 && enemy_pos.y <= player->pos.y + 75 &&
         enemy_pos.y >= player->pos.y - 75)
-            player->stat->actual_life -= 10;
+            player->stat->actual_life -= 20;
     }
 }
