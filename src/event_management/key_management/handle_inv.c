@@ -8,6 +8,16 @@
 #include "struct_var.h"
 #include "my.h"
 
+void free_loot(loot_t *loot)
+{
+    if (loot->armor != NULL)
+        destroy_armor(&loot->armor);
+    if (loot->weapon != NULL)
+        destroy_weapon(&loot->weapon);
+    destroy_clock_data(&loot->disparition_clock);
+    freen(&loot);
+}
+
 void invert_display_of_inventory(inventory_t *inventory)
 {
     if (inventory->display_inventory == false)
