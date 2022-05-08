@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 21 lines
+
 void create_sprites_cinematic(cinematic_t *cinematic)
 {
     create_sprite_cine_player(cinematic);
