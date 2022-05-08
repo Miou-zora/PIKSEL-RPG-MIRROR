@@ -11,7 +11,7 @@
 clock_data_t *create_clock_data(void)
 {
     clock_data_t *clock_data = malloc(sizeof(*clock_data));
-    my_printf("malloc clock data\n");
+
     clock_data->clock = sfClock_create();
     clock_data->elapsed_time = NOT_SET;
     clock_data->framerate_seconds = NOT_SET;
