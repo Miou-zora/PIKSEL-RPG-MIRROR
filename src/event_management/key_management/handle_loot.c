@@ -67,6 +67,7 @@ void destroy_game(game_t *game)
 {
     kill_all_enemy(&game->enemies_list, game->player,
     (loot_t **)&(game->background->loot));
+    sfMusic_stop(game->sound_music->music);
     sfMusic_destroy(game->sound_music->music);
     sfSound_destroy(game->sound_music->damage);
     sfSound_destroy(game->sound_music->terry);

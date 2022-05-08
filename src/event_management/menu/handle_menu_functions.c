@@ -31,7 +31,7 @@ int settings(game_t *game)
 
 int quit(game_t *game)
 {
-    sfRenderWindow_close(game->window);
+    destroy_game(game);
     return (0);
 }
 
