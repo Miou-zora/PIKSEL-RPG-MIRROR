@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 21 lines
+
 enemy_t *create_enemy(void)
 {
     enemy_t *enemy = my_calloc(1, sizeof(*enemy));

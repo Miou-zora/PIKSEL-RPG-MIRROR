@@ -9,6 +9,8 @@
 #include "math.h"
 #include "my.h"
 
+///////////////////////////////// 6 functions
+
 void change_enemy_direction(sfVector2f *enemy_core, sfVector2f *pos,
 enemy_t *enemy)
 {
@@ -112,5 +114,6 @@ void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
         }
         cursor = &((*cursor)->next);
     }
-    update_dead_list(enemies_list, game->player, (loot_t **)&(game->background->loot));
+    update_dead_list(enemies_list, game->player,
+    (loot_t **)&(game->background->loot));
 }
