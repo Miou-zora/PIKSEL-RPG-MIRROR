@@ -32,6 +32,7 @@ void add_helmet(inventory_t *inventory, loot_t *loot)
     sfSprite_getScale(loot->armor->sprite_data->sprite);
     if (inventory->helmet != NULL) {
         temp = malloc(sizeof(armor_t));
+        my_printf("malloc helmet\n");
         temp = inventory->helmet;
     }
     inventory->helmet = loot->armor;
@@ -67,6 +68,7 @@ void add_chestplate(inventory_t *inventory, loot_t *loot)
 
     if (inventory->chestplate != NULL) {
         temp = malloc(sizeof(armor_t));
+        my_printf("malloc chestplate\n");
         temp = inventory->chestplate;
     }
     inventory->chestplate = loot->armor;

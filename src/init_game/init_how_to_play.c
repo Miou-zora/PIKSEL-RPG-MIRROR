@@ -54,6 +54,7 @@ int set_text_zone_variables(text_zone_t **text_zone)
 int create_text_zone(text_zone_t **text_zone, char *text_string)
 {
     (*text_zone) = malloc(sizeof(text_zone_t));
+     my_printf("malloc text zone\n");
     if ((*text_zone) == NULL)
         return (84);
     (*text_zone)->font =

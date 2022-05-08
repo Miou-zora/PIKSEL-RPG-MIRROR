@@ -62,6 +62,7 @@ int initialize_settings_rectangles(menu_t *menu, game_t *game)
 bool init_pause_menu(pause_menu_t **pause)
 {
     (*pause) = malloc(sizeof(menu_t));
+     my_printf("malloc init pause\n");
     if ((*pause) == NULL)
         return (true);
     (*pause)->rectangles_positions =

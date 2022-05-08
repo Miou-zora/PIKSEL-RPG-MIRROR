@@ -27,9 +27,10 @@ char *put_in_str(int nb, char *str)
 void fill_stats(char **stats, int *stats_values, game_t *game)
 {
     sfText **text = malloc(sizeof(sfText *) * 5);
-
+    my_printf("malloc text\n");
     for (int i = 0; i < 5; i++) {
         stats[i] = malloc(sizeof(char) * (get_nbrlen(stats_values[i]) + 2));
+        my_printf("malloc stat\n");
         stats[i][0] = '\0';
         stats[i] = put_in_str(stats_values[i], stats[i]);
         text[i] = sfText_create();
@@ -54,7 +55,8 @@ void display_stats(game_t *game)
 {
     char **stats = malloc(sizeof(char *) * 5);
     int *stats_values = malloc(sizeof(int) * 5);
-
+    my_printf("malloc stats_values\n");
+     my_printf("malloc stats\n");
     stats_values[0] = game->player->stat->level;
     stats_values[1] = game->player->stat->xp;
     stats_values[2] = game->player->stat->actual_life;
