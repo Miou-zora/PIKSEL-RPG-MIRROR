@@ -103,7 +103,7 @@ bool init_win_npc(npc_t *npc[5])
     npc[4]->display = false;
     npc[4]->display_text = false;
     npc[4]->sprite_data = set_sprite(npc[4]->sprite_data);
-    if (create_npc_three_text(npc[4]))
+    if (create_npc_four_text(npc[4]))
         return (true);
     return (false);
 }

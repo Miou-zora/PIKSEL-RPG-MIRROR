@@ -53,7 +53,6 @@ void display_forest(game_t *game)
         display_enemies_list(&(game->enemies_list), game->window);
         display_player_sprites(game->player, game);
         display_text(game);
-        
     }
 }
 

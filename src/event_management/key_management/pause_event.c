@@ -23,7 +23,9 @@ void go_to_menu(game_t *game)
 {
     game->background->menu->pause->display_pause = false;
     game->background->menu->pause->display_pause_sprite = false;
-    init_game(game);
+    game->background->last_scene_background =
+    game->background->scene_background;
+    game->background->scene_background = MENU;
 }
 
 void click_on_buttons_on_pause(game_t *game)

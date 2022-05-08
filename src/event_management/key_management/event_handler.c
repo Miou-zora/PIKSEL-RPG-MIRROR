@@ -63,13 +63,16 @@ int event_handler(game_t *game)
             handle_settings_events(game);
         if (sfKeyboard_isKeyPressed(game->event.key.code) == true
         && game->event.key.code == sfKeySpace
-        && game->background->scene_background == CINEMATIC)
+        && game->background->scene_background == CINEMATIC) {
             game->background->scene_background = ROOM;
+            game->background->last_scene_background = CINEMATIC;
+        }
         manage_key(game);
         manage_pause(game);
         select_weapon(game->player);
         detect_key(game->player, game->clock_secondary, game);
         player_attack(game->player);
+        manage_lose(game);
     }
     return (0);
 }

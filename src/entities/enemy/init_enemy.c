@@ -35,14 +35,6 @@ void add_enemy_on_city_part_two(game_t *game)
 void add_enemy_on_city(game_t *game)
 {
     add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
-    (sfVector2i){CITY, 60});
-    add_enemy(MINI_BOSS, &(game->enemies_list), (sfVector2f){2000, 700},
-    (sfVector2i){CITY, 85});
-    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
-    (sfVector2i){CITY, 142});
-    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
-    (sfVector2i){CITY, 142});
-    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
     (sfVector2i){CITY, 250});
     add_enemy(MINI_BOSS, &(game->enemies_list), (sfVector2f){2000, 700},
     (sfVector2i){CITY, 260});
@@ -77,14 +69,6 @@ void add_enemy_on_forest_part_two(game_t *game)
 
 void add_enemy_on_forest(game_t *game)
 {
-    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
-    (sfVector2i){FOREST, 60});
-    add_enemy(MINI_BOSS, &(game->enemies_list), (sfVector2f){2000, 700},
-    (sfVector2i){FOREST, 85});
-    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
-    (sfVector2i){FOREST, 142});
-    add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
-    (sfVector2i){FOREST, 142});
     add_enemy(MOB, &(game->enemies_list), (sfVector2f){2000, 600},
     (sfVector2i){FOREST, 250});
     add_enemy(MINI_BOSS, &(game->enemies_list), (sfVector2f){2000, 700},
