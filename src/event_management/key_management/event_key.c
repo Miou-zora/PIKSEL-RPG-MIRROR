@@ -78,8 +78,10 @@ int manage_key(game_t *game)
         && game->background->menu->pause->display_pause == false) {
             spawn_random_loot(game->background->loot, (sfVector2f){700, 600});
         }
-        if (game->event.key.code == sfKeyE &&
-        game->background->scene_background != MENU
+        if (game->event.key.code == sfKeyE 
+        && game->background->scene_background != MENU
+        && game->background->scene_background != SETTINGS
+        && game->background->scene_background != CINEMATIC
         && game->background->menu->pause->display_pause == false) {
             invert_display_of_inventory(game->player->inventory);
         }

@@ -45,8 +45,11 @@ void click_on_buttons_on_pause(game_t *game)
 
 void manage_pause(game_t *game)
 {
-    if (sfKeyboard_isKeyPressed(game->event.key.code) == true &&
-    game->event.key.code == sfKeyEscape) {
+    if (sfKeyboard_isKeyPressed(game->event.key.code) == true
+    && game->event.key.code == sfKeyEscape
+    && game->background->scene_background != MENU
+    && game->background->scene_background != SETTINGS
+    && game->background->scene_background != CINEMATIC) {
         if (game->background->menu->pause->display_pause == false) {
             game->background->menu->pause->display_pause = true;
             game->background->menu->pause->display_pause_sprite = true;
