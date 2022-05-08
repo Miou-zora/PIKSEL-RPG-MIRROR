@@ -24,45 +24,38 @@ char *put_in_str(int nb, char *str)
     return (str);
 }
 
-void fill_stats(char **stats, int *stats_values, game_t *game)
+void fill_stats(display_stat_t *to_display, sfRenderWindow *window)
 {
-    sfText **text = malloc(sizeof(sfText *) * 5);
-    my_printf("malloc text\n");
     for (int i = 0; i < 5; i++) {
-        stats[i] = malloc(sizeof(char) * (get_nbrlen(stats_values[i]) + 2));
-        my_printf("malloc stat\n");
-        stats[i][0] = '\0';
-        stats[i] = put_in_str(stats_values[i], stats[i]);
-        text[i] = sfText_create();
-        sfText_setString(text[i], stats[i]);
-        sfText_setFont(text[i],
+        to_display->stats[i][0] = '\0';
+        to_display->stats[i] = put_in_str(to_display->stats_values[i],
+        to_display->stats[i]);
+        sfText_setString(to_display->text[i], to_display->stats[i]);
+        sfText_setFont(to_display->text[i],
         sfFont_createFromFile("assets/font/font.ttf"));
-        sfText_setScale(text[i], (sfVector2f){2, 2});
-        sfText_setColor(text[i], sfGreen);
+        sfText_setScale(to_display->text[i], (sfVector2f){2, 2});
+        sfText_setColor(to_display->text[i], sfGreen);
     }
-    sfText_setPosition(text[0], (sfVector2f){200, 20});
-    sfText_setPosition(text[1], (sfVector2f){550, 20});
-    sfText_setPosition(text[2], (sfVector2f){900, 20});
-    sfText_setPosition(text[3], (sfVector2f){1400, 20});
-    sfText_setPosition(text[4], (sfVector2f){1800, 20});
+    sfText_setPosition(to_display->text[0], (sfVector2f){200, 20});
+    sfText_setPosition(to_display->text[1], (sfVector2f){550, 20});
+    sfText_setPosition(to_display->text[2], (sfVector2f){900, 20});
+    sfText_setPosition(to_display->text[3], (sfVector2f){1400, 20});
+    sfText_setPosition(to_display->text[4], (sfVector2f){1800, 20});
     for (int i = 0; i < 5; i++) {
-        sfRenderWindow_drawText(game->window, text[i], NULL);
-        freen(&text[i]);
+        sfRenderWindow_drawText(window, to_display->text[i], NULL);
     }
 }
 
 void display_stats(game_t *game)
 {
-    char **stats = malloc(sizeof(char *) * 5);
-    int *stats_values = malloc(sizeof(int) * 5);
-    my_printf("malloc stats_values\n");
-     my_printf("malloc stats\n");
-    stats_values[0] = game->player->stat->level;
-    stats_values[1] = game->player->stat->xp;
-    stats_values[2] = game->player->stat->actual_life;
-    stats_values[3] = game->player->stat->armor;
-    stats_values[4] = game->player->stat->speed;
-    fill_stats(stats, stats_values, game);
-    freen(&stats_values);
-    free(stats);
+    game->player->stat->to_display->stats_values[0] =
+    game->player->stat->level;
+    game->player->stat->to_display->stats_values[1] = game->player->stat->xp;
+    game->player->stat->to_display->stats_values[2] =
+    game->player->stat->actual_life;
+    game->player->stat->to_display->stats_values[3] =
+    game->player->stat->armor;
+    game->player->stat->to_display->stats_values[4] =
+    game->player->stat->speed;
+    fill_stats(game->player->stat->to_display, game->window);
 }

@@ -28,12 +28,21 @@ int manage_background_tp(game_t *game)
 void check_if_boss_dead(game_t *game)
 {
     if (game->background->scene_background == LABO
-    && game->player->pos.x + 20 >= game->npc[4]->sprite_data->pos.x
-    && game->npc[4]->sprite_data->pos.x + 20 <= game->player->pos.x) {
+    && game->player->pos.x + 100 >= game->npc[4]->sprite_data->pos.x
+    && game->npc[4]->sprite_data->pos.x - 100 <= game->player->pos.x
+    && game->npc[4]->display_text == true) {
+        game->background->menu->pause->display_pause = false;
+        game->npc[0]->display_text = false;
         kill_all_enemy(&game->enemies_list, game->player,
         (loot_t **)&(game->background->loot));
         if (init_game(game))
             my_printf("fail");
+    } else if (game->background->scene_background == LABO
+    && game->player->pos.x + 100 >= game->npc[4]->sprite_data->pos.x
+    && game->npc[4]->sprite_data->pos.x - 100 <= game->player->pos.x) {
+        game->npc[4]->display_text = true;
+        sfSound_play(game->sound_music->terry);
+        game->background->menu->pause->display_pause = true;
     }
 }
 
