@@ -8,25 +8,27 @@
 #include "struct_var.h"
 #include "my.h"
 
+void change_color(sfUint8 *coloro, sfUint8 *colort)
+{
+    if ((*coloro) > 0)
+        (*coloro) -= 1;
+    else
+        (*colort) += 1;
+}
+
 void update_fade_pixel(sfColor *color)
 {
     if (color->r == 255 && color->g < 255) {
-        if (color->b > 0)
-            color->b -= 1;
-        else
-            color->g += 1;
+        change_color(&(color->b), &(color->g));
+        return;
     } else if (color->g == 255 && color->b < 255) {
-        if (color->r > 0)
-            color->r -= 1;
-        else
-            color->b += 1;
+        change_color(&(color->r), &(color->b));
+        return;
     } else if (color->b == 255 && color->r < 255) {
-        if (color->g > 0)
-            color->g -= 1;
-        else
-            color->r += 1;
-    } else
-        color->r += 1;
+        change_color(&(color->g), &(color->r));
+        return;
+    }
+    color->r += 1;
 }
 
 void update_pixel(framebuffer_t *framebuffer, unsigned int j,

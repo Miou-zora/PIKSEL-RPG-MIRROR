@@ -27,8 +27,7 @@ int manage_background_tp(game_t *game)
         return (0);
     if (city_to_forest(game))
         return (0);
-    if (manage_forest(game))
-        return (0);
+    manage_forest(game);
     return (0);
 }
 
