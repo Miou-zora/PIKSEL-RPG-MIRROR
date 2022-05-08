@@ -69,16 +69,10 @@ void update_enemy_drain(enemy_t *enemy, game_t *game)
 {
     update_animator(enemy->actual_animator, game);
     drain_clock_data(enemy->clock_data);
-    drain_clock_data(enemy->attack_clock);
     while (update_clock_data(enemy->clock_data)) {
         if (game->background->menu->pause->display_pause == false) {
             move_enemy_to_pos(enemy, game->player->pos);
             update_nest_particle(enemy->nest_particle, 1);
-        }
-    }
-    while (update_clock_data(enemy->attack_clock)) {
-        if (game->background->menu->pause->display_pause == false) {
-            attack_player(enemy, game->player);
         }
     }
 }
@@ -109,6 +103,9 @@ void update_enemies_list(enemies_list_t **enemies_list, game_t *game)
 
     while ((*cursor) != NULL) {
         update_enemy((*cursor)->enemy, game);
+        if (game->background->menu->pause->display_pause == false) {
+            attack_player((*cursor)->enemy, game->player);
+        }
         if (game->player->attack == true) {
             attack_enemy((*cursor)->enemy, game);
         }
