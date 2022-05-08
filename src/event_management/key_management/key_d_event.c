@@ -101,7 +101,8 @@ void move_background_right(game_t *game, int speed)
 
 int manage_key_d(game_t *game)
 {
-    if (game->event.key.code == sfKeyD) {
+    if (game->event.key.code == sfKeyD
+    && game->background->menu->pause->display_pause == false) {
         game->player->move_right = true;
         game->player->direction = true;
     }

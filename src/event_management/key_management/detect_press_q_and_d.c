@@ -8,9 +8,10 @@
 #include "struct_var.h"
 #include "my.h"
 
-void detect_press_q_and_d(player_t *player)
+void detect_press_q_and_d(player_t *player, game_t *game)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyD)) {
+    if (sfKeyboard_isKeyPressed(sfKeyD)
+    && game->background->menu->pause->display_pause == false) {
         player->move_right = true;
         player->direction = true;
         if (player->player_mode == 1)
@@ -19,7 +20,8 @@ void detect_press_q_and_d(player_t *player)
             player->run->sprite_data->rect.top = 0;
     } else
         player->move_left = false;
-    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
+    if (sfKeyboard_isKeyPressed(sfKeyQ)
+    && game->background->menu->pause->display_pause == false) {
         player->move_left = true;
         player->direction = false;
         if (player->player_mode == 1)

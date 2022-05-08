@@ -65,10 +65,9 @@ static void move_enemy_to_pos(enemy_t *enemy, sfVector2f pos)
 
 void update_enemy_drain(enemy_t *enemy, game_t *game)
 {
-    update_animator(enemy->actual_animator);
+    update_animator(enemy->actual_animator, game);
     drain_clock_data(enemy->clock_data);
     drain_clock_data(enemy->attack_clock);
-    
     while (update_clock_data(enemy->clock_data)) {
         if (game->background->menu->pause->display_pause == false) {
             move_enemy_to_pos(enemy, game->player->pos);

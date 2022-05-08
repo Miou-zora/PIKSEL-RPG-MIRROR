@@ -24,12 +24,12 @@ static void key_run(player_t *player)
     }
 }
 
-void detect_key(player_t *player, clock_data_t *clock)
+void detect_key(player_t *player, clock_data_t *clock, game_t *game)
 {
     key_run(player);
     drain_clock_data(clock);
     while (update_clock_data(clock)) {
-        detect_press_q_and_d(player);
+        detect_press_q_and_d(player, game);
     }
 }
 
@@ -71,7 +71,7 @@ int event_handler(game_t *game)
         manage_key(game);
         manage_pause(game);
         select_weapon(game->player);
-        detect_key(game->player, game->clock_secondary);
+        detect_key(game->player, game->clock_secondary, game);
         player_attack(game->player);
     }
     return (0);

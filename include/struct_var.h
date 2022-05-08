@@ -440,7 +440,7 @@ void destroy_animator(animator_t **animator);
 animator_t *load_animator(char *path);
 void increment_animator_image_pos(animator_t *animator);
 animator_t *fill_animator(animator_t *animator, char **data);
-void update_animator(animator_t *animator);
+void update_animator(animator_t *animator, game_t *game);
 void re_set_animator(animator_t **target, animator_t **giver);
 
 //* clock_data
@@ -471,7 +471,7 @@ bool forest_to_labo(game_t *game);
 bool labo_to_forest(game_t *game);
 void move_player_run(player_t *player, game_t *game);
 void move_player_walk(player_t *player, game_t *game);
-void detect_press_q_and_d(player_t *player);
+void detect_press_q_and_d(player_t *player, game_t *game);
 
 //* game management
 
