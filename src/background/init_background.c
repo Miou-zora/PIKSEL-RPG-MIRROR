@@ -61,7 +61,7 @@ bool init_back(background_t *background)
         return (true);
     if (init_loot(background->loot))
         return (true);
-    if (init_lose(background->lose))
+    if (init_lose(&background->lose))
         return (true);
     return (false);
 }

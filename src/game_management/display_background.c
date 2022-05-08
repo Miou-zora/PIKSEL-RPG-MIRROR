@@ -70,6 +70,7 @@ void display_labo(game_t *game)
     }
 }
 
+
 void display_background(game_t *game)
 {
     display_room(game);
