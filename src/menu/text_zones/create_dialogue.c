@@ -10,7 +10,6 @@
 int create_dialogue_bubble(dialogues_t **bubble, char *string)
 {
     (*bubble) = malloc(sizeof(dialogues_t));
-     my_printf("malloc ubub\n");
     if ((*bubble) == NULL)
         return (84);
     if (create_text_zone(&((*bubble)->text_zone), string) == 84) {
@@ -26,7 +25,6 @@ int create_each_bubble_of_monologue(dialogues_t **dialogue,
 char **bubbles, int i)
 {
     (*dialogue)->next = malloc(sizeof(dialogues_t *) * 2);
-     my_printf("malloc diag\n");
     (*dialogue)->next[1] = NULL;
     if ((*dialogue)->next == NULL)
         return (84);
@@ -47,7 +45,6 @@ int question_or_monologue)
         return (84);
     if (question_or_monologue == 0) {
         (*dialogue)->next = malloc(sizeof(dialogues_t *) * 2);
-         my_printf("malloc dialogue qest\n");
         if ((*dialogue)->next == NULL)
             return (84);
         if (create_dialogue_bubble(&((*dialogue)->next[0]), bubbles[1]) == 84)

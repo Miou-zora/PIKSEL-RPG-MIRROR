@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 22 lines
+
 display_stat_t *init_display_of_stats(void)
 {
     display_stat_t *to_display = my_calloc(1, sizeof(display_stat_t));
@@ -32,7 +34,6 @@ display_stat_t *init_display_of_stats(void)
     to_display->stats_values = my_calloc(5, sizeof(int *));
     if (to_display->stats_values == NULL)
         return (NULL);
-    my_printf("init display\n");
     return (to_display);
 }
 

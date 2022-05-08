@@ -8,9 +8,10 @@
 #include "my.h"
 #include "struct_var.h"
 
+///////////////////////////////// 6 functions with 5 function with 23 lines or +
+
 bool init_quest_npc(npc_t *npc[5])
 {
-    my_printf("init npc\n");
     npc[0] = my_calloc(1, sizeof(npc_t));
     if (npc[0] == NULL)
         return (true);

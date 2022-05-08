@@ -9,6 +9,8 @@
 #include "struct_var.h"
 #include <stdlib.h>
 
+/////////////////////////////////  5 if
+
 void add_return_to_the_line(text_zone_t **text_zone, char *text_string, int i)
 {
     for (; text_string[i] != '\0'; i++) {
@@ -22,7 +24,6 @@ void add_return_to_the_line(text_zone_t **text_zone, char *text_string, int i)
 int set_text_strings(text_zone_t **text_zone, char *text_string)
 {
     (*text_zone)->current_string = my_calloc(1, (my_strlen(text_string) + 1));
-    my_printf("set text strings\n");
     if ((*text_zone)->current_string == NULL)
         return (84);
     (*text_zone)->current_string[0] = '\0';
@@ -56,7 +57,6 @@ int set_text_zone_variables(text_zone_t **text_zone)
 int create_text_zone(text_zone_t **text_zone, char *text_string)
 {
     (*text_zone) = malloc(sizeof(text_zone_t));
-    my_printf("malloc text eo,r\n");
     if ((*text_zone) == NULL)
         return (84);
     (*text_zone)->font =
