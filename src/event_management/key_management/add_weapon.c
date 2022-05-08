@@ -30,6 +30,7 @@ void add_weapon(inventory_t *inventory, loot_t *loot)
     sfSprite_getPosition(loot->weapon->sprite_data->sprite);
     sfVector2f scale =
     sfSprite_getScale(loot->weapon->sprite_data->sprite);
+
     if (inventory->helmet != NULL) {
         temp = malloc(sizeof(weapon_t));
         temp = inventory->weapon;
@@ -40,4 +41,5 @@ void add_weapon(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->weapon->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     add_weapon_pos(loot, &pos, temp, &scale);
+    freen(&temp);
 }

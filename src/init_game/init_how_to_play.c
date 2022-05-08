@@ -24,7 +24,6 @@ int set_text_strings(text_zone_t **text_zone, char *text_string)
     if ((*text_zone)->current_string == NULL)
         return (84);
     (*text_zone)->current_string[0] = '\0';
-    (*text_zone)->text_string = my_calloc(1, (my_strlen(text_string) + 1));
     (*text_zone)->text_string = my_strdup(text_string);
     if (my_strlen(text_string) < 110)
         return (0);

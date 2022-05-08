@@ -40,6 +40,7 @@ void add_helmet(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->helmet->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     add_helmet_pos(loot, &pos, temp, &scale);
+    freen(&temp);
 }
 
 void add_chestplate_pos(loot_t *loot, sfVector2f *pos, armor_t *temp,
@@ -75,4 +76,5 @@ void add_chestplate(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->chestplate->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     add_chestplate_pos(loot, &pos, temp, &scale);
+    freen(&temp);
 }

@@ -46,6 +46,7 @@ int detect_pos(sfVector2i position)
         position.y > hitboxes[i][0].y && position.y < hitboxes[i][1].y)
             return (i);
     }
+    freen(&(*hitboxes));
     return (-1);
 }
 

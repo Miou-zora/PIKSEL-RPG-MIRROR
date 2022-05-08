@@ -11,6 +11,7 @@
 framebuffer_t *create_framebuffer(unsigned int width, unsigned int height)
 {
     framebuffer_t *framebuffer = my_calloc(1, sizeof(*framebuffer));
+
     if (framebuffer) {
         framebuffer->width = width;
         framebuffer->height = height;

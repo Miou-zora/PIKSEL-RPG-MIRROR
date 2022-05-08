@@ -46,6 +46,7 @@ void fill_stats(char **stats, int *stats_values, game_t *game)
     sfText_setPosition(text[4], (sfVector2f){1800, 20});
     for (int i = 0; i < 5; i++) {
         sfRenderWindow_drawText(game->window, text[i], NULL);
+        freen(&text[i]);
     }
 }
 
@@ -60,4 +61,6 @@ void display_stats(game_t *game)
     stats_values[3] = game->player->stat->armor;
     stats_values[4] = game->player->stat->speed;
     fill_stats(stats, stats_values, game);
+    freen(&stats_values);
+    free(stats);
 }

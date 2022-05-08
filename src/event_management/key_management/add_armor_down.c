@@ -41,6 +41,7 @@ void add_pant(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->pant->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     add_pant_pos(loot, &pos, temp, &scale);
+    freen(&temp);
 }
 
 void add_boots_pos(loot_t *loot, sfVector2f *pos, armor_t *temp,
@@ -76,4 +77,5 @@ void add_boots(inventory_t *inventory, loot_t *loot)
     sfSprite_setScale(inventory->boots->sprite_data->sprite,
     (sfVector2f){2.1, 2.1});
     add_boots_pos(loot, &pos, temp, &scale);
+    freen(&temp);
 }
