@@ -471,6 +471,7 @@ int manage_key_z(game_t *game);
 int manage_key_s(game_t *game);
 int manage_key_q(game_t *game);
 int manage_key_f(game_t *game);
+int manage_key_q_f(game_t *game);
 int manage_attack_key(game_t *game);
 bool room_to_city(game_t *game);
 bool city_to_room(game_t *game);
@@ -591,6 +592,7 @@ void add_pant(inventory_t *inventory, loot_t *loot);
 void add_boots(inventory_t *inventory, loot_t *loot);
 void add_weapon(inventory_t *inventory, loot_t *loot);
 void remove_loot(loot_t *loot[10]);
+void free_loot(loot_t *loot);
 
 //* npc
 

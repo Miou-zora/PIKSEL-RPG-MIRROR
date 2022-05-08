@@ -61,6 +61,7 @@ static void manage_key_pressed(game_t *game)
     manage_key_s(game);
     manage_key_d(game);
     manage_key_f(game);
+    manage_key_q_f(game);
     manage_attack_key(game);
     select_weapon(game->player);
     if (game->event.key.code == sfKeyLShift)
