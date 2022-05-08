@@ -30,8 +30,8 @@ void display_city(game_t *game)
         game->background->town[0]->sprite->sprite, NULL);
         display_npc(game);
         display_loot(game);
-        display_player_sprites(game->player, game);
         display_enemies_list(&(game->enemies_list), game->window);
+        display_player_sprites(game->player, game);
         sfRenderWindow_drawSprite(game->window,
         game->background->town[1]->sprite->sprite, NULL);
         if (game->background->menu->pause->display_pause == true)
@@ -48,10 +48,10 @@ void display_forest(game_t *game)
         game->background->forest[1]->sprite->sprite, NULL);
         display_npc(game);
         display_loot(game);
-        display_player_sprites(game->player, game);
         if (game->background->menu->pause->display_pause == true)
             display_pause(game);
         display_enemies_list(&(game->enemies_list), game->window);
+        display_player_sprites(game->player, game);
     }
 }
 
