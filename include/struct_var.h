@@ -45,6 +45,7 @@ typedef struct npc_s npc_t;
 typedef struct dialogues_s dialogues_t;
 typedef struct enemy_sprite_s enemy_sprite_t;
 typedef struct stat_s stat_t;
+typedef struct display_stat_s display_stat_t;
 typedef struct scene_s scene_t;
 typedef struct selection_zone_s selection_zone_t;
 typedef struct settings_infos_s settings_infos_t;
@@ -128,6 +129,12 @@ struct npc_s {
     enum scene_background_t scene;
 };
 
+struct display_stat_s {
+    char **stats;
+    int *stats_values;
+    sfText **text;
+};
+
 struct stat_s {
     int actual_life;
     int health;
@@ -137,6 +144,7 @@ struct stat_s {
     int level;
     int xp;
     sprite_data_t *top_bar;
+    display_stat_t *to_display;
 };
 
 struct enemies_list_s {
