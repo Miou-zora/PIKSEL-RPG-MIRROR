@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 5 if
+
 void key_run(player_t *player)
 {
     if (sfKeyboard_isKeyPressed(sfKeyLShift)) {
@@ -79,7 +81,7 @@ int manage_key(game_t *game)
         && game->background->menu->pause->display_pause == false) {
             spawn_random_loot(game->background->loot, (sfVector2f){700, 600});
         }
-        if (game->event.key.code == sfKeyE 
+        if (game->event.key.code == sfKeyE
         && game->background->scene_background != MENU
         && game->background->scene_background != SETTINGS
         && game->background->scene_background != CINEMATIC

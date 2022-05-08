@@ -33,7 +33,6 @@ void add_pant(inventory_t *inventory, loot_t *loot)
 
     if (inventory->pant != NULL) {
         temp = malloc(sizeof(armor_t));
-        my_printf("malloc pants\n");
         temp = inventory->pant;
     }
     inventory->pant = loot->armor;

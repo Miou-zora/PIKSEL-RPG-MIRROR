@@ -30,9 +30,9 @@ void add_helmet(inventory_t *inventory, loot_t *loot)
     sfSprite_getPosition(loot->armor->sprite_data->sprite);
     sfVector2f scale =
     sfSprite_getScale(loot->armor->sprite_data->sprite);
+
     if (inventory->helmet != NULL) {
         temp = malloc(sizeof(armor_t));
-        my_printf("malloc helmet\n");
         temp = inventory->helmet;
     }
     inventory->helmet = loot->armor;
@@ -53,9 +53,8 @@ sfVector2f *scale)
         (*loot)->position.x += 50;
         sfSprite_setPosition((*loot)->armor->sprite_data->sprite, *pos);
         sfSprite_setScale((*loot)->armor->sprite_data->sprite, *scale);
-    } else {
+    } else
         (*loot)->armor_or_weapon = 3;
-    }
 }
 
 void add_chestplate(inventory_t *inventory, loot_t *loot)
@@ -68,7 +67,6 @@ void add_chestplate(inventory_t *inventory, loot_t *loot)
 
     if (inventory->chestplate != NULL) {
         temp = malloc(sizeof(armor_t));
-        my_printf("malloc chestplate\n");
         temp = inventory->chestplate;
     }
     inventory->chestplate = loot->armor;

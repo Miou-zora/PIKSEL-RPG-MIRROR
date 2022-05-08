@@ -8,6 +8,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 6 if
+
 int manage_background_tp(game_t *game)
 {
     if (room_to_city(game))

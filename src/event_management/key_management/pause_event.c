@@ -23,8 +23,7 @@ void go_to_menu(game_t *game)
 {
     game->background->menu->pause->display_pause = false;
     game->background->menu->pause->display_pause_sprite = false;
-    if (init_game(game))
-        my_printf("fail");
+    init_game(game);
 }
 
 void click_on_buttons_on_pause(game_t *game)

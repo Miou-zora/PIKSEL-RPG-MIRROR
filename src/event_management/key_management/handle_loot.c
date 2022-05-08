@@ -56,7 +56,6 @@ bool init_loot(loot_t *loot[10])
 {
     for (int i = 0; i < 10; i++) {
         loot[i] = malloc(sizeof(loot_t));
-        my_printf("malloc loot\n");
         if (loot[i] == NULL)
             return (true);
         loot[i]->armor_or_weapon = 2;

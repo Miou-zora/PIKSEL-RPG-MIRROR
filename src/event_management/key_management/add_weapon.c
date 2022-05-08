@@ -18,9 +18,8 @@ sfVector2f *scale)
         (*loot)->position.x += 50;
         sfSprite_setPosition((*loot)->weapon->sprite_data->sprite, *pos);
         sfSprite_setScale((*loot)->weapon->sprite_data->sprite, *scale);
-    } else {
+    } else
         (*loot)->armor_or_weapon = 3;
-    }
 }
 
 void add_weapon(inventory_t *inventory, loot_t *loot)
@@ -33,7 +32,6 @@ void add_weapon(inventory_t *inventory, loot_t *loot)
 
     if (inventory->helmet != NULL) {
         temp = malloc(sizeof(weapon_t));
-        my_printf("malloc weapon\n");
         temp = inventory->weapon;
     }
     inventory->weapon = loot->weapon;

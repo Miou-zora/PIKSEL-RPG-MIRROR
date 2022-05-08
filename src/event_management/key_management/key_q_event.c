@@ -9,6 +9,8 @@
 #include "struct_var.h"
 #include "my.h"
 
+///////////////////////////////// 6 functions
+
 void move_player_left(game_t *game, int speed)
 {
     game->player->pos.x -= 15.f * speed;
