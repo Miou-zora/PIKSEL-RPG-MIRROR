@@ -26,7 +26,7 @@ static void move_forest(game_t *game, int speed)
     && game->player->pos.x > 800 && game->player->pos.x < 831
     && game->player->traveled_distance < 560) {
         if (game->background->loot != NULL)
-            move_loot(game->background->loot, -20 * speed);
+            move_loot(game->background->loot, -20 * speed * 2);
         game->background->forest[0]->sprite->rect.left += 5 * speed;
         game->background->forest[1]->sprite->rect.left += 10 * speed;
         game->player->traveled_distance += 1 * speed;
