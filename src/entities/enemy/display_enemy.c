@@ -48,6 +48,8 @@ sfRenderWindow *window)
 {
     enemies_list_t **cursor = enemies_list;
 
+    if (*enemies_list == NULL || window == NULL)
+        return;
     while ((*cursor)->prev != NULL)
         (*cursor) = (*cursor)->prev;
     while ((*cursor) != NULL) {

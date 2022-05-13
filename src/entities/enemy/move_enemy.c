@@ -10,6 +10,8 @@
 
 static void move_enemy_to_left(game_t *game, int speed)
 {
+    if (game->enemies_list == NULL)
+        return;
     while (game->enemies_list->next != NULL) {
         if (game->enemies_list->enemy->display == true)
             game->enemies_list->enemy->pos.x += 20 * speed;
@@ -28,6 +30,8 @@ void move_enemy_left(game_t *game, int speed)
 
 static void move_enemy_to_right(game_t *game, int speed)
 {
+    if (game->enemies_list == NULL)
+        return;
     while (game->enemies_list->next != NULL) {
         if (game->enemies_list->enemy->display == true)
             game->enemies_list->enemy->pos.x -= 20 * speed;

@@ -63,9 +63,11 @@ void move_player_run(player_t *player, game_t *game)
     if (player->move_down == true && player->player_mode == 2)
         player->pos.y += 15;
     if (player->move_left == true && player->player_mode == 2
-    && game->background->menu->pause->display_pause == false)
+    && game->background->menu->pause->display_pause == false) {
         move_background_left(game, 2);
+    }
     if (player->move_right == true && player->player_mode == 2
-    && game->background->menu->pause->display_pause == false)
+    && game->background->menu->pause->display_pause == false){
         move_background_right(game, 2);
+    }
 }

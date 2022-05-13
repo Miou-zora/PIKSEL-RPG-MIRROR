@@ -14,8 +14,6 @@ void display_room(game_t *game)
         game->background->bedroom->sprite->sprite, NULL);
         display_npc(game);
         display_loot(game);
-        display_hitbox(game->player->hitbox, game->window,
-        game->player->hitbox_color);
         display_player_sprites(game->player, game);
         if (game->background->menu->pause->display_pause_sprite == true)
             display_pause(game);

@@ -16,6 +16,6 @@ int free_dialogue(dialogues_t **dialogue)
         if ((*dialogue)->next[1] != NULL)
             free_dialogue(&((*dialogue)->next[1]));
     }
-    free((*dialogue));
+    freen((*dialogue));
     return (0);
 }
