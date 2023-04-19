@@ -11,3 +11,4 @@ unit_tests
 include/my.h
 vgcore.*
 tests_background
+test_queng
